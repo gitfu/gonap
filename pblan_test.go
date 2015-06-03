@@ -10,7 +10,7 @@ func mklanid(lan_dcid string) string {
 					"name":"A Lan"
 					}`)
 	resp := CreateLan(lan_dcid, jason)
-	lan := AsLan(resp.Body)
+	lan := ToLan(resp.Body)
 	lanid := lan.Id
 	return lanid
 }
@@ -20,7 +20,7 @@ func TestListLans(t *testing.T) {
 	shouldbe := "collection"
 	want := 200
 	resp := ListLans(lan_dcid)
-	lans := AsLans(resp.Body)
+	lans := ToLans(resp.Body)
 	if lans.Type != shouldbe {
 		t.Errorf("ListServers() type == %v, wanted %v", lans.Type, shouldbe)
 	}
@@ -47,7 +47,7 @@ func TestGetLan(t *testing.T) {
 	want := 200
 	lanid := mklanid(lan_dcid)
 	resp := GetLan(lan_dcid, lanid)
-	lan := AsLan(resp.Body)
+	lan := ToLan(resp.Body)
 	if lan.Type != shouldbe {
 		t.Errorf("GetLan() type == %v, wanted %v", lan.Type, shouldbe)
 	}

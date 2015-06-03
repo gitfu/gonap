@@ -13,7 +13,7 @@ func mksrvid(srv_dcid string) string {
 					"ram": 4096
 					}`)
 	resp := CreateServer(srv_dcid, jason)
-	srv := AsServer(resp.Body)
+	srv := ToServer(resp.Body)
 	srvid := srv.Id
 	return srvid
 }
@@ -22,7 +22,7 @@ func ExampleListServers() {
 	//	shouldbe := "collection"
 	//want := 200
 	resp := ListServers(srv_dcid)
-	srvs := AsServers(resp.Body)
+	srvs := ToServers(resp.Body)
 	fmt.Println(srvs.Type)
 	// Output: collection
 
@@ -33,7 +33,7 @@ func TestListServers(t *testing.T) {
 	shouldbe := "collection"
 	want := 200
 	resp := ListServers(srv_dcid)
-	srvs := AsServers(resp.Body)
+	srvs := ToServers(resp.Body)
 	if srvs.Type != shouldbe {
 		t.Errorf("ListServers() type == %v, wanted %v", srvs.Type, shouldbe)
 	}
@@ -62,7 +62,7 @@ func TestGetServer(t *testing.T) {
 	want := 200
 	srvid := mksrvid(srv_dcid)
 	resp := GetServer(srv_dcid, srvid)
-	srv := AsServer(resp.Body)
+	srv := ToServer(resp.Body)
 	if srv.Type != shouldbe {
 		t.Errorf("GetServer() type == %v, wanted %v", srv.Type, shouldbe)
 	}

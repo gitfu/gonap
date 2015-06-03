@@ -8,7 +8,7 @@ func mkipblkid() string {
 					"name":"Original IpBlock",
 					"location":"us/las"
 					}`))
-	ipblk := AsIpblock(resp.Body)
+	ipblk := ToIpblock(resp.Body)
 	ipblkid := ipblk.Id
 	return ipblkid
 }
@@ -18,7 +18,7 @@ func TestListIpBlocks(t *testing.T) {
 	shouldbe := "collection"
 	want := 200
 	resp := ListIpBlocks()
-	ipbs := AsIpblocks(resp.Body)
+	ipbs := ToIpblocks(resp.Body)
 	if ipbs.Type != shouldbe {
 		t.Errorf("ListIpblocks() type == %v, wanted %v", ipbs.Type, shouldbe)
 	}
@@ -46,7 +46,7 @@ func TestGetIpBlock(t *testing.T) {
 	want := 200
 	ipblkid := mkipblkid()
 	resp := GetIpBlock(ipblkid)
-	ipb := AsIpblock(resp.Body)
+	ipb := ToIpblock(resp.Body)
 	if ipb.Type != shouldbe {
 		t.Errorf("GetIpBlock() type == %v, wanted %v", ipb.Type, shouldbe)
 	}

@@ -14,7 +14,7 @@ func mknicid(nic_dcid, nic_srvid string) string {
 					}`)
 
 	resp := CreateNic(nic_dcid, nic_srvid, jason)
-	nic := AsNic(resp.Body)
+	nic := ToNic(resp.Body)
 	nicid := nic.Id
 	return nicid
 }
@@ -24,7 +24,7 @@ func TestListNics(t *testing.T) {
 	shouldbe := "collection"
 	want := 200
 	resp := ListNics(nic_dcid, nic_srvid)
-	nics := AsNics(resp.Body)
+	nics := ToNics(resp.Body)
 	if nics.Type != shouldbe {
 		t.Errorf("ListNics() type == %v, wanted %v", nics.Type, shouldbe)
 	}
@@ -53,7 +53,7 @@ func TestGetNic(t *testing.T) {
 	want := 200
 	nicid := mknicid(nic_dcid, nic_srvid)
 	resp := GetNic(nic_dcid, nic_srvid, nicid)
-	nic := AsNic(resp.Body)
+	nic := ToNic(resp.Body)
 	if nic.Type != shouldbe {
 		t.Errorf("GetNic() type == %v, wanted %v", nic.Type, shouldbe)
 	}

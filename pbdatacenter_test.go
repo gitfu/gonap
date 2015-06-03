@@ -7,7 +7,7 @@ func mkdcid() string {
 					"name":"Original DC",
 					"location":"us/las"
 					}`))
-	dc := AsDatacenter(resp.Body)
+	dc := ToDatacenter(resp.Body)
 	dcid := dc.Id
 	return dcid
 }
@@ -17,7 +17,7 @@ func TestListDatacenters(t *testing.T) {
 	shouldbe := "collection"
 	want := 200
 	resp := ListDatacenters()
-	dcs := AsDatacenters(resp.Body)
+	dcs := ToDatacenters(resp.Body)
 	if dcs.Type != shouldbe {
 		t.Errorf("ListDatacenters() type == %v, wanted %v", dcs.Type, shouldbe)
 	}
@@ -45,7 +45,7 @@ func TestGetDatacenter(t *testing.T) {
 	want := 200
 	dcid := mkdcid()
 	resp := GetDatacenter(dcid)
-	dc := AsDatacenter(resp.Body)
+	dc := ToDatacenter(resp.Body)
 	if dc.Type != shouldbe {
 		t.Errorf("ListDatacenters() type == %v, wanted %v", dc.Type, shouldbe)
 	}
