@@ -28,13 +28,13 @@ type Loadbalancers struct {
 	Items []Loadbalancer `json:"items,omitempty"`
 }
 
-func AsLoadbalancers(body []byte) Loadbalancers {
+func ToLoadbalancers(body []byte) Loadbalancers {
 	var Loadbalancers Loadbalancers
 	json.Unmarshal(body, &Loadbalancers)
 	return Loadbalancers
 }
 
-func AsLoadbalancer(body []byte) Loadbalancer {
+func ToLoadbalancer(body []byte) Loadbalancer {
 	var Loadbalancer Loadbalancer
 	json.Unmarshal(body, &Loadbalancer)
 	return Loadbalancer
@@ -75,7 +75,7 @@ func ListBalancedNics(dcid, lbalid string) PBResp {
 	return is_get(path)
 }
 
-func AssociateNics(dcid string, lbalid string, jason []byte) PBResp {
+func TosociateNics(dcid string, lbalid string, jason []byte) PBResp {
 	path := balnic_col_path(dcid, lbalid)
 	return is_post(path, jason)
 }

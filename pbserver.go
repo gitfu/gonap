@@ -27,7 +27,7 @@ type Server struct {
 	Entities   SrvEnts  `json:"entities,omitempty"`
 }
 
-func AsServer(body []byte) Server {
+func ToServer(body []byte) Server {
 	var Server Server
 	json.Unmarshal(body, &Server)
 	return Server
@@ -40,19 +40,12 @@ type Servers struct {
 	Items []Server `json:"items,omitempty"`
 }
 
-func AsServers(body []byte) Servers {
+func ToServers(body []byte) Servers {
 	var Servers Servers
 	json.Unmarshal(body, &Servers)
 	return Servers
 }
 
-/**
-
-Server collection
-	List servers
-	Create a server
-
-**/
 func ListServers(dcid string) PBResp {
 	path := server_col_path(dcid)
 	return is_get(path)

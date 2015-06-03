@@ -22,7 +22,7 @@ type FwRule struct {
 	Properties FwRuleProperties `json:"properties,omitempty"`
 }
 
-func AsFwRule(body []byte) FwRule {
+func ToFwRule(body []byte) FwRule {
 	var FwRule FwRule
 	json.Unmarshal(body, &FwRule)
 	return FwRule
@@ -35,7 +35,7 @@ type FwRules struct {
 	Items []FwRule `json:"items,omitempty"`
 }
 
-func AsFwRules(body []byte) FwRules {
+func ToFwRules(body []byte) FwRules {
 	var FwRules FwRules
 	json.Unmarshal(body, &FwRules)
 	return FwRules

@@ -2,13 +2,13 @@ package gonap
 
 import "encoding/json"
 
-func AsCdRoms(body []byte) Images {
+func ToCdRoms(body []byte) Images {
 	var CdRoms Images
 	json.Unmarshal(body, &CdRoms)
 	return CdRoms
 }
 
-func AsCdRom(body []byte) Image {
+func ToCdRom(body []byte) Image {
 	var CdRom Image
 	json.Unmarshal(body, &CdRom)
 	return CdRom

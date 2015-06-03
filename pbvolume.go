@@ -30,7 +30,7 @@ type Volume struct {
 	Properties VolProps `json:"properties,omitempty"`
 }
 
-func AsVolume(body []byte) Volume {
+func ToVolume(body []byte) Volume {
 	var Volume Volume
 	json.Unmarshal(body, &Volume)
 	return Volume
@@ -43,7 +43,7 @@ type Volumes struct {
 	Items []Volume `json:"items,omitempty"`
 }
 
-func AsVolumes(body []byte) Volumes {
+func ToVolumes(body []byte) Volumes {
 	var Volumes Volumes
 	json.Unmarshal(body, &Volumes)
 	return Volumes

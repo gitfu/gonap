@@ -22,13 +22,13 @@ type Ipblocks struct {
 	Items []Ipblock `json:"items,omitempty"`
 }
 
-func AsIpblocks(body []byte) Ipblocks {
+func ToIpblocks(body []byte) Ipblocks {
 	var Ipblocks Ipblocks
 	json.Unmarshal(body, &Ipblocks)
 	return Ipblocks
 }
 
-func AsIpblock(body []byte) Ipblock {
+func ToIpblock(body []byte) Ipblock {
 	var Ipblock Ipblock
 	json.Unmarshal(body, &Ipblock)
 	return Ipblock

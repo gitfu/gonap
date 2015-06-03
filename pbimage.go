@@ -37,13 +37,13 @@ type Images struct {
 	Items []Image `json:"items,omitempty"`
 }
 
-func AsImage(body []byte) Image {
+func ToImage(body []byte) Image {
 	var Image Image
 	json.Unmarshal(body, &Image)
 	return Image
 }
 
-func AsImages(body []byte) Images {
+func ToImages(body []byte) Images {
 	var Images Images
 	json.Unmarshal(body, &Images)
 	return Images

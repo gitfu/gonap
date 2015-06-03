@@ -39,10 +39,12 @@ func SetAuth(u, p string) {
 	Passwd = p
 }
 
-// mk_url concates Endpoint and a url path .
+// mk_url  either:
+// returns the path (if it`s a full url)
+//			 or
+//	returns	Endpoint+ path .
 func mk_url(path string) string {
 	if strings.HasPrefix(path, "http") {
-		fmt.Println(" has prefix")
 		return path
 	}
 	url := Endpoint + path

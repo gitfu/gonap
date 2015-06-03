@@ -26,29 +26,17 @@ type Nics struct {
 	Items []Nic  `json:"items,omitempty"`
 }
 
-func AsNics(body []byte) Nics {
+func ToNics(body []byte) Nics {
 	var Nics Nics
 	json.Unmarshal(body, &Nics)
 	return Nics
 }
 
-func AsNic(body []byte) Nic {
+func ToNic(body []byte) Nic {
 	var Nic Nic
 	json.Unmarshal(body, &Nic)
 	return Nic
 }
-
-/**
-Nic
-Nics collection
-	List nics
-	Create a nic
-Nic
-	Retrieve a nic
-	Replace properties of nic
-	Partially update a nic
-	Remove nic
-**/
 
 // ListNics returns a PBResp with nic collection data in PBResp.Body
 func ListNics(dcid, srvid string) PBResp {

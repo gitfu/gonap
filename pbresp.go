@@ -10,8 +10,8 @@ type PBResp struct {
 	Body       []byte
 }
 
-// AsJson returns PBResp.Body as the raw json
-func (r *PBResp) AsJson() {
+// ToJson returns PBResp.Body as the raw json
+func (r *PBResp) ToJson() {
 
 	fmt.Printf("%s\n", string(r.Body))
 

@@ -28,7 +28,7 @@ type Snapshot struct {
 	Properties SnapProps `json:"properties,omitempty"`
 }
 
-func AsSnapshot(body []byte) Snapshot {
+func ToSnapshot(body []byte) Snapshot {
 	var Snapshot Snapshot
 	json.Unmarshal(body, &Snapshot)
 	return Snapshot
@@ -41,7 +41,7 @@ type Snapshots struct {
 	Items []Snapshot `json:"items,omitempty"`
 }
 
-func AsSnapshots(body []byte) Snapshots {
+func ToSnapshots(body []byte) Snapshots {
 	var Snapshots Snapshots
 	json.Unmarshal(body, &Snapshots)
 	return Snapshots

@@ -27,13 +27,13 @@ type Lans struct {
 	Items []Lan  `json:"items,omitempty"`
 }
 
-func AsLans(body []byte) Lans {
+func ToLans(body []byte) Lans {
 	var Lans Lans
 	json.Unmarshal(body, &Lans)
 	return Lans
 }
 
-func AsLan(body []byte) Lan {
+func ToLan(body []byte) Lan {
 	var Lan Lan
 	json.Unmarshal(body, &Lan)
 	return Lan

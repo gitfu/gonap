@@ -16,8 +16,8 @@ type Location struct {
 	Properties LocationProperties `json:"properties"`
 }
 
-// AsLocation Unmarshals json into a Location struct
-func AsLocation(body []byte) Location {
+// ToLocation Unmarshals json into a Location struct
+func ToLocation(body []byte) Location {
 	var Location Location
 	json.Unmarshal(body, &Location)
 	return Location
@@ -31,8 +31,8 @@ type Locations struct {
 	Items []Location `json:"items,omitempty"`
 }
 
-// AsLocations Unmarshals json into a Locations struct
-func AsLocations(body []byte) Locations {
+// ToLocations Unmarshals json into a Locations struct
+func ToLocations(body []byte) Locations {
 	var Locations Locations
 	json.Unmarshal(body, &Locations)
 	return Locations
