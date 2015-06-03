@@ -1,13 +1,13 @@
 package gonap
 
 import "encoding/json"
-
+import "fmt"
 type DcProperties struct {
 	Name        string `json:"name"`
 	Location    string `json:"location"`
 	Description string `json:"description,omitempty"`
 }
-
+// DCEntities is a struct inside a Datacenter struct to hold collections of other structs
 type DcEntities struct {
 	Servers       Servers       `json:"servers,omitempty"`
 	Loadbalancers Loadbalancers `json:"loadbalancers,omitempty"`
@@ -25,37 +25,80 @@ type Datacenter struct {
 	Entities   DcEntities   `json:"entities,omitempty"`
 }
 
-/**
-func (dc *Datacenter) Asjson() []byte {
-
+// Datacenter.Tojson marshals the Datacenter struct into json
+func (dc *Datacenter) Tojson() []byte {
+	jason, err := json.MarshalIndent(dc,"","    ")
+	if err !=nil {
+		fmt.Println(err)
+	
+	}
+	fmt.Println(jason)
+	return jason
 }
-**/
+
+// Listservers lists the servers in the datacenter
 func (dc *Datacenter) Listservers() Servers {
 	pbresp := ListServers(dc.Id)
-	return AsServers(pbresp.Body)
+	return ToServers(pbresp.Body)
 }
-func (dc *Datacenter) Getserver(srvid string) Server {
-	path := dc.Entities.Servers.Href + slash(srvid)
-	pbresp := is_get(path)
-	return AsServer(pbresp.Body)
+// Createserver creates a server from a jason []byte and returns a Server struct
+func  (dc *Datacenter) Createserver(jason []byte) Server {
+	path := dc.Entities.Servers.Href
+	pbresp := is_post(path, jason)
+	return ToServer(pbresp.Body)
+}
 
+func (dc * Datacenter) Getserver(srvid string) Server {
+	path := dc.Entities.Servers.Href+ slash(srvid)
+	pbresp:=is_get(path)
+	return ToServer(pbresp.Body)
 }
-func (dc *Datacenter) Listvolumes() Volumes {
-	pbresp := ListVolumes(dc.Id)
-	return AsVolumes(pbresp.Body)
-}
+
+
 func (dc *Datacenter) Listlans() Lans {
 	pbresp := ListLans(dc.Id)
-	return AsLans(pbresp.Body)
+	return ToLans(pbresp.Body)
 }
+
+func  (dc *Datacenter) Createlan(jason []byte) Lan {
+	path := dc.Entities.Lans.Href
+	pbresp := is_post(path, jason)
+	return ToLan(pbresp.Body)
+}
+
+func (dc * Datacenter) Getlan(lanid string) Lan {
+	path := dc.Entities.Lans.Href+ slash(lanid)
+	pbresp:=is_get(path)
+	return ToLan(pbresp.Body)
+}
+
 
 func (dc *Datacenter) Listloadbalancers() Loadbalancers {
 	pbresp := ListLoadbalancers(dc.Id)
-	return AsLoadbalancers(pbresp.Body)
+	return ToLoadbalancers(pbresp.Body)
 }
 
-// AsDatacenter unmarshalls a []byte into a Datacenter struct
-func AsDatacenter(body []byte) Datacenter {
+
+func  (dc *Datacenter) Createloadbalancer(jason []byte) Loadbalancer {
+	path := dc.Entities.Loadbalancers.Href
+	pbresp := is_post(path, jason)
+	return ToLoadbalancer(pbresp.Body)
+}
+
+func (dc * Datacenter) Getloadbalancer(lbalid string) Loadbalancer {
+	path := dc.Entities.Loadbalancers.Href+ slash(lbalid)
+	pbresp:=is_get(path)
+	return ToLoadbalancer(pbresp.Body)
+}
+
+func (dc *Datacenter) Listvolumes() Volumes {
+	pbresp := ListVolumes(dc.Id)
+	return ToVolumes(pbresp.Body)
+}
+
+
+// ToDatacenter unmarshalls a []byte into a Datacenter struct
+func ToDatacenter(body []byte) Datacenter {
 	var Datacenter Datacenter
 	json.Unmarshal(body, &Datacenter)
 	return Datacenter
@@ -69,9 +112,9 @@ type Datacenters struct {
 	Items []Datacenter `json:"items,omitempty"`
 }
 
-// AsDatacenter unmarshalls a []byte into a Datacenters struct
+// ToDatacenter unmarshalls a []byte into a Datacenters struct
 
-func AsDatacenters(body []byte) Datacenters {
+func ToDatacenters(body []byte) Datacenters {
 	var Datacenters Datacenters
 	json.Unmarshal(body, &Datacenters)
 	return Datacenters
