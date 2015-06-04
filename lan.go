@@ -20,6 +20,11 @@ type Lan struct {
 	Entities   LanEntities   `json:"entities,omitempty"`
 }
 
+func (lan *Lan) Listlanmembers() Nics{
+	pbresp:=is_get(lan.Entities.Nics.Href)
+	return ToNics(pbresp.Body)
+}
+
 type Lans struct {
 	Id    string `json:"id,omitempty"`
 	Type  string `json:"type,omitempty"`
@@ -37,21 +42,6 @@ func ToLan(body []byte) Lan {
 	var Lan Lan
 	json.Unmarshal(body, &Lan)
 	return Lan
-}
-
-func ListLans(dcid string) PBResp {
-	path := lan_col_path(dcid)
-	return is_get(path)
-}
-
-func CreateLan(dcid string, jason []byte) PBResp {
-	path := lan_col_path(dcid)
-	return is_post(path, jason)
-}
-
-func GetLan(dcid, lanid string) PBResp {
-	path := lan_path(dcid, lanid)
-	return is_get(path)
 }
 
 func UpdateLan(dcid string, lanid string, jason []byte) PBResp {

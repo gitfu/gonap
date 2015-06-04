@@ -2,6 +2,9 @@ package gonap
 
 import "encoding/json"
 import "fmt"
+
+const datacenters_path = "/datacenters"
+
 type DcProperties struct {
 	Name        string `json:"name"`
 	Location    string `json:"location"`
@@ -17,28 +20,35 @@ type DcEntities struct {
 
 // Datacenter is  struct to hold data for a datacenter
 type Datacenter struct {
-	Id         string       `json:"id,omitempty"`
-	Type       string       `json:"type,omitempty"`
-	Href       string       `json:"href,omitempty"`
+	Id         string       `json:"id"`
+	Type       string       `json:"type"`
+	Href       string       `json:"href"`
 	MetaData   MetaData     `json:"metadata,omitempty"`
-	Properties DcProperties `json:"properties,omitempty"`
+	Properties DcProperties `json:"properties"`
 	Entities   DcEntities   `json:"entities,omitempty"`
+}
+
+func (dc *Datacenter)Save() {
+	path := dc.Href
+	jason,err := json.MarshalIndent(&dc.Properties,"","    ")
+	if err !=nil {panic(err)}
+	pbreq := is_patch(path, jason)
+	fmt.Println("save status code is ",pbreq.StatusCode)
 }
 
 // Datacenter.Tojson marshals the Datacenter struct into json
 func (dc *Datacenter) Tojson() []byte {
-	jason, err := json.MarshalIndent(dc,"","    ")
+	jason, err := json.MarshalIndent(&dc,"","    ")
 	if err !=nil {
 		fmt.Println(err)
-	
 	}
-	fmt.Println(jason)
+	//fmt.Println(string(jason))
 	return jason
 }
 
 // Listservers lists the servers in the datacenter
 func (dc *Datacenter) Listservers() Servers {
-	pbresp := ListServers(dc.Id)
+	pbresp:=is_get(dc.Entities.Servers.Href)
 	return ToServers(pbresp.Body)
 }
 // Createserver creates a server from a jason []byte and returns a Server struct
@@ -55,8 +65,14 @@ func (dc * Datacenter) Getserver(srvid string) Server {
 }
 
 
+func (dc * Datacenter) Deleteserver(srvid string) PBResp {
+	path := dc.Entities.Servers.Href+ slash(srvid)
+	pbresp:=is_delete(path)
+	return pbresp
+}
+
 func (dc *Datacenter) Listlans() Lans {
-	pbresp := ListLans(dc.Id)
+	pbresp:=is_get(dc.Entities.Lans.Href)
 	return ToLans(pbresp.Body)
 }
 
@@ -72,6 +88,11 @@ func (dc * Datacenter) Getlan(lanid string) Lan {
 	return ToLan(pbresp.Body)
 }
 
+func (dc * Datacenter) Deletelan(lanid string) PBResp {
+	path := dc.Entities.Lans.Href+ slash(lanid)
+	pbresp:=is_delete(path)
+	return pbresp
+}
 
 func (dc *Datacenter) Listloadbalancers() Loadbalancers {
 	pbresp := ListLoadbalancers(dc.Id)
@@ -92,7 +113,7 @@ func (dc * Datacenter) Getloadbalancer(lbalid string) Loadbalancer {
 }
 
 func (dc *Datacenter) Listvolumes() Volumes {
-	pbresp := ListVolumes(dc.Id)
+	pbresp:=is_get(dc.Entities.Volumes.Href)
 	return ToVolumes(pbresp.Body)
 }
 
@@ -112,7 +133,7 @@ type Datacenters struct {
 	Items []Datacenter `json:"items,omitempty"`
 }
 
-// ToDatacenter unmarshalls a []byte into a Datacenters struct
+// AsDatacenter unmarshalls a []byte into a Datacenters struct
 
 func ToDatacenters(body []byte) Datacenters {
 	var Datacenters Datacenters
@@ -120,24 +141,22 @@ func ToDatacenters(body []byte) Datacenters {
 	return Datacenters
 }
 
-func ListDatacenters() PBResp {
-	path := dc_col_path()
-	return is_get(path)
 
+
+func ListDatacenters() PBResp {
+	return is_get(datacenters_path)
 }
 func CreateDatacenter(jason []byte) PBResp {
-	path := dc_col_path()
-	return is_post(path, jason)
-
+	return is_post(datacenters_path, jason)
 }
 
 func GetDatacenter(dcid string) PBResp {
-	path := dc_path(dcid)
+	path := datacenters_path+slash(dcid)
 	return is_get(path)
 }
 
 func UpdateDatacenter(dcid string, jason []byte) PBResp {
-	path := dc_path(dcid)
+	path := datacenters_path+slash(dcid)
 	return is_put(path, jason)
 }
 

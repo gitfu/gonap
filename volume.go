@@ -1,10 +1,11 @@
 package gonap
 
 import "encoding/json"
+import "fmt"
 
 type VolProps struct {
 	Name                string `json:"name,omitempty"`
-	Size                int    `json:"size,omitempty"`
+	Size                int    `json:"size"`
 	Bus                 string `json:"bus,omitempty"`
 	Image               string `json:"image,omitempty"`
 	ImagePassword       string `json:"imagePassword,omitempty"`
@@ -23,11 +24,19 @@ type VolProps struct {
 }
 
 type Volume struct {
-	Id         string   `json:"id,omitempty"`
-	Type       string   `json:"type,omitempty"`
-	Href       string   `json:"href,omitempty"`
+	Id         string   `json:"id"`
+	Type       string   `json:"type"`
+	Href       string   `json:"href"`
 	MetaData   MetaData `json:"metadata,omitempty"`
 	Properties VolProps `json:"properties,omitempty"`
+}
+
+func (vol *Volume) Save() {
+	path := vol.Href
+	jason,err := json.MarshalIndent(&vol.Properties,"","    ")
+	if err !=nil {panic(err)}
+	pbreq := is_patch(path, jason)
+	fmt.Println("save status code is ",pbreq.StatusCode)
 }
 
 func ToVolume(body []byte) Volume {
@@ -37,9 +46,9 @@ func ToVolume(body []byte) Volume {
 }
 
 type Volumes struct {
-	Id    string   `json:"id,omitempty"`
-	Type  string   `json:"type,omitempty"`
-	Href  string   `json:"href,omitempty"`
+	Id    string   `json:"id"`
+	Type  string   `json:"type"`
+	Href  string   `json:"href"`
 	Items []Volume `json:"items,omitempty"`
 }
 
@@ -49,15 +58,6 @@ func ToVolumes(body []byte) Volumes {
 	return Volumes
 }
 
-func ListVolumes(dcid string) PBResp {
-	path := volume_col_path(dcid)
-	return is_get(path)
-}
-
-func GetVolume(dcid, volid string) PBResp {
-	path := volume_path(dcid, volid)
-	return is_get(path)
-}
 
 func UpdateVolume(dcid string, volid string, jason []byte) PBResp {
 	path := volume_path(dcid, volid)
