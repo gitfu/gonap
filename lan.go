@@ -2,23 +2,23 @@ package gonap
 
 import "encoding/json"
 
-type LanProperties struct {
+type Lan_Properties struct {
 	Name   string `json:"name,omitempty"`
 	Public bool   `json:"public,omitempty"`
 }
 
-type LanEntities struct {
+type Lan_Entities struct {
 	Nics Nics `json:"nics,omitempty"`
 }
 
 type Lan struct {
-	Id         string        `json:"id,omitempty"`
-	Type       string        `json:"type,omitempty"`
-	Href       string        `json:"href,omitempty"`
-	MetaData   MetaData      `json:"metadata,omitempty"`
-	Properties LanProperties `json:"properties"`
-	Entities   LanEntities   `json:"entities,omitempty"`
-	Resp       PBResp        `json:"-"`
+	Id         string         `json:"id,omitempty"`
+	Type       string         `json:"type,omitempty"`
+	Href       string         `json:"href,omitempty"`
+	MetaData   MetaData       `json:"metadata,omitempty"`
+	Properties Lan_Properties `json:"properties"`
+	Entities   Lan_Entities   `json:"entities,omitempty"`
+	Resp       PBResp         `json:"-"`
 }
 
 type Lans struct {

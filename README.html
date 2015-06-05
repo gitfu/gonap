@@ -228,12 +228,12 @@
 				
 			
 				
-				<dd><a href="#LanEntities">type LanEntities</a></dd>
+				<dd><a href="#Lan_Entities">type Lan_Entities</a></dd>
 				
 				
 			
 				
-				<dd><a href="#LanProperties">type LanProperties</a></dd>
+				<dd><a href="#Lan_Properties">type Lan_Properties</a></dd>
 				
 				
 			
@@ -1139,7 +1139,7 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="Ipblock">type <a href="/src/pkg/target/ipblock.go?s=141:474#L1">Ipblock</a></h2>
+			<h2 id="Ipblock">type <a href="/src/pkg/target/ipblock.go?s=141:479#L1">Ipblock</a></h2>
 			<pre>type Ipblock struct {
     Id         <a href="/pkg/builtin/#string">string</a>             `json:&#34;id,omitempty&#34;`
     Type       <a href="/pkg/builtin/#string">string</a>             `json:&#34;type,omitempty&#34;`
@@ -1160,21 +1160,21 @@ ListImages returns an Images struct
 
 			
 				
-				<h3 id="GetIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1161:1202#L40">GetIpBlock</a></h3>
+				<h3 id="GetIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1166:1207#L40">GetIpBlock</a></h3>
 				<pre>func GetIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#Ipblock">Ipblock</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="ReleaseIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1273:1318#L45">ReleaseIpBlock</a></h3>
+				<h3 id="ReleaseIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1278:1323#L45">ReleaseIpBlock</a></h3>
 				<pre>func ReleaseIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#Ipblock">Ipblock</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="ReserveIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1046:1087#L35">ReserveIpBlock</a></h3>
+				<h3 id="ReserveIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1051:1092#L35">ReserveIpBlock</a></h3>
 				<pre>func ReserveIpBlock(jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Ipblock">Ipblock</a></pre>
 				
 				
@@ -1206,7 +1206,7 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="Ipblocks">type <a href="/src/pkg/target/ipblock.go?s=602:817#L16">Ipblocks</a></h2>
+			<h2 id="Ipblocks">type <a href="/src/pkg/target/ipblock.go?s=607:822#L16">Ipblocks</a></h2>
 			<pre>type Ipblocks struct {
     Id    <a href="/pkg/builtin/#string">string</a>    `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>    `json:&#34;type,omitempty&#34;`
@@ -1226,7 +1226,7 @@ ListImages returns an Images struct
 
 			
 				
-				<h3 id="ListIpBlocks">func <a href="/src/pkg/target/ipblock.go?s=952:980#L31">ListIpBlocks</a></h3>
+				<h3 id="ListIpBlocks">func <a href="/src/pkg/target/ipblock.go?s=957:985#L31">ListIpBlocks</a></h3>
 				<pre>func ListIpBlocks() <a href="#Ipblocks">Ipblocks</a></pre>
 				
 				
@@ -1237,15 +1237,15 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="Lan">type <a href="/src/pkg/target/lan.go?s=214:572#L4">Lan</a></h2>
+			<h2 id="Lan">type <a href="/src/pkg/target/lan.go?s=216:576#L4">Lan</a></h2>
 			<pre>type Lan struct {
-    Id         <a href="/pkg/builtin/#string">string</a>        `json:&#34;id,omitempty&#34;`
-    Type       <a href="/pkg/builtin/#string">string</a>        `json:&#34;type,omitempty&#34;`
-    Href       <a href="/pkg/builtin/#string">string</a>        `json:&#34;href,omitempty&#34;`
-    MetaData   <a href="#MetaData">MetaData</a>      `json:&#34;metadata,omitempty&#34;`
-    Properties <a href="#LanProperties">LanProperties</a> `json:&#34;properties&#34;`
-    Entities   <a href="#LanEntities">LanEntities</a>   `json:&#34;entities,omitempty&#34;`
-    Resp       <a href="#PBResp">PBResp</a>        `json:&#34;-&#34;`
+    Id         <a href="/pkg/builtin/#string">string</a>         `json:&#34;id,omitempty&#34;`
+    Type       <a href="/pkg/builtin/#string">string</a>         `json:&#34;type,omitempty&#34;`
+    Href       <a href="/pkg/builtin/#string">string</a>         `json:&#34;href,omitempty&#34;`
+    MetaData   <a href="#MetaData">MetaData</a>       `json:&#34;metadata,omitempty&#34;`
+    Properties <a href="#Lan_Properties">Lan_Properties</a> `json:&#34;properties&#34;`
+    Entities   <a href="#Lan_Entities">Lan_Entities</a>   `json:&#34;entities,omitempty&#34;`
+    Resp       <a href="#PBResp">PBResp</a>         `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -1259,7 +1259,7 @@ ListImages returns an Images struct
 
 			
 				
-				<h3 id="CreateLan">func <a href="/src/pkg/target/lan.go?s=1297:1342#L44">CreateLan</a></h3>
+				<h3 id="CreateLan">func <a href="/src/pkg/target/lan.go?s=1301:1346#L44">CreateLan</a></h3>
 				<pre>func CreateLan(dcid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Lan">Lan</a></pre>
 				<p>
 CreateLan creates a lan in the datacenter
@@ -1270,7 +1270,7 @@ from a jason []byte and returns a Lan struct
 			        
 			
 				
-				<h3 id="DeleteLan">func <a href="/src/pkg/target/lan.go?s=1891:1929#L66">DeleteLan</a></h3>
+				<h3 id="DeleteLan">func <a href="/src/pkg/target/lan.go?s=1895:1933#L66">DeleteLan</a></h3>
 				<pre>func DeleteLan(dcid, lanid <a href="/pkg/builtin/#string">string</a>) <a href="#Lan">Lan</a></pre>
 				<p>
 DeleteLan deletes a lan where id == lanid
@@ -1280,7 +1280,7 @@ DeleteLan deletes a lan where id == lanid
 			        
 			
 				
-				<h3 id="GetLan">func <a href="/src/pkg/target/lan.go?s=1483:1518#L50">GetLan</a></h3>
+				<h3 id="GetLan">func <a href="/src/pkg/target/lan.go?s=1487:1522#L50">GetLan</a></h3>
 				<pre>func GetLan(dcid, lanid <a href="/pkg/builtin/#string">string</a>) <a href="#Lan">Lan</a></pre>
 				<p>
 GetLan pulls data for the lan where id = lanid returns a Lan struct
@@ -1290,14 +1290,14 @@ GetLan pulls data for the lan where id = lanid returns a Lan struct
 			        
 			
 				
-				<h3 id="PatchLan">func <a href="/src/pkg/target/lan.go?s=1714:1772#L60">PatchLan</a></h3>
+				<h3 id="PatchLan">func <a href="/src/pkg/target/lan.go?s=1718:1776#L60">PatchLan</a></h3>
 				<pre>func PatchLan(dcid <a href="/pkg/builtin/#string">string</a>, lanid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Lan">Lan</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="UpdateLan">func <a href="/src/pkg/target/lan.go?s=1583:1642#L55">UpdateLan</a></h3>
+				<h3 id="UpdateLan">func <a href="/src/pkg/target/lan.go?s=1587:1646#L55">UpdateLan</a></h3>
 				<pre>func UpdateLan(dcid <a href="/pkg/builtin/#string">string</a>, lanid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Lan">Lan</a></pre>
 				
 				
@@ -1308,8 +1308,8 @@ GetLan pulls data for the lan where id = lanid returns a Lan struct
 		
 			
 			
-			<h2 id="LanEntities">type <a href="/src/pkg/target/lan.go?s=150:212#L1">LanEntities</a></h2>
-			<pre>type LanEntities struct {
+			<h2 id="Lan_Entities">type <a href="/src/pkg/target/lan.go?s=151:214#L1">Lan_Entities</a></h2>
+			<pre>type Lan_Entities struct {
     Nics <a href="#Nics">Nics</a> `json:&#34;nics,omitempty&#34;`
 }</pre>
 			
@@ -1328,8 +1328,8 @@ GetLan pulls data for the lan where id = lanid returns a Lan struct
 		
 			
 			
-			<h2 id="LanProperties">type <a href="/src/pkg/target/lan.go?s=39:148#L1">LanProperties</a></h2>
-			<pre>type LanProperties struct {
+			<h2 id="Lan_Properties">type <a href="/src/pkg/target/lan.go?s=39:149#L1">Lan_Properties</a></h2>
+			<pre>type Lan_Properties struct {
     Name   <a href="/pkg/builtin/#string">string</a> `json:&#34;name,omitempty&#34;`
     Public <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;public,omitempty&#34;`
 }</pre>
@@ -1349,7 +1349,7 @@ GetLan pulls data for the lan where id = lanid returns a Lan struct
 		
 			
 			
-			<h2 id="Lans">type <a href="/src/pkg/target/lan.go?s=574:770#L14">Lans</a></h2>
+			<h2 id="Lans">type <a href="/src/pkg/target/lan.go?s=578:774#L14">Lans</a></h2>
 			<pre>type Lans struct {
     Id    <a href="/pkg/builtin/#string">string</a> `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a> `json:&#34;type,omitempty&#34;`
@@ -1369,7 +1369,7 @@ GetLan pulls data for the lan where id = lanid returns a Lan struct
 
 			
 				
-				<h3 id="ListLans">func <a href="/src/pkg/target/lan.go?s=1110:1141#L37">ListLans</a></h3>
+				<h3 id="ListLans">func <a href="/src/pkg/target/lan.go?s=1114:1145#L37">ListLans</a></h3>
 				<pre>func ListLans(dcid <a href="/pkg/builtin/#string">string</a>) <a href="#Lans">Lans</a></pre>
 				<p>
 ListLan returns a Lans struct collection for lans in the Datacenter
@@ -1806,7 +1806,7 @@ Returns Nic struct
 			        
 			
 				
-				<h3 id="ListLanMembers">func <a href="/src/pkg/target/lan.go?s=2060:2104#L73">ListLanMembers</a></h3>
+				<h3 id="ListLanMembers">func <a href="/src/pkg/target/lan.go?s=2064:2108#L73">ListLanMembers</a></h3>
 				<pre>func ListLanMembers(dcid, lanid <a href="/pkg/builtin/#string">string</a>) <a href="#Nics">Nics</a></pre>
 				<p>
 ListLanMembers returns a Nic struct collection for the Lan
