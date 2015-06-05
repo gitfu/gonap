@@ -1,16 +1,11 @@
-# ```go nap ```
-#### ```A rethink of my REST-ful ways in Go.``` 
+PACKAGE DOCUMENTATION
 
-
-## PACKAGE DOCUMENTATION
-
-#### package gonap
-```
+package gonap
     import "github.com/gitfu/gonap"
-```
 
-#### VARIABLES
-```
+
+VARIABLES
+
 var Depth = "5"
     Depth sets the level of detail returned from the REST server .
 
@@ -22,9 +17,9 @@ var Passwd = "my_password"
 
 var Username = "my_username"
     Username for authentication .
-```
-#### FUNCTIONS
-```
+
+FUNCTIONS
+
 func SetAuth(u, p string)
     SetAuth is used to set Username and Passwd. Username and Passwd are
     declared in config.go
@@ -35,89 +30,98 @@ func SetDepth(newdepth string) string
 func SetEndpoint(newendpoint string) string
     SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
     config.go
-```
 
-#### ```TYPES```
+TYPES
 
-```go
 type Datacenter struct {
-    Id         string       `json:"id,omitempty"`
-    Type       string       `json:"type,omitempty"`
-    Href       string       `json:"href,omitempty"`
-    MetaData   MetaData     `json:"metadata,omitempty"`
-    Properties DcProperties `json:"properties,omitempty"`
-    Entities   DcEntities   `json:"entities,omitempty"`
+    Id         string                `json:"id"`
+    Type       string                `json:"type"`
+    Href       string                `json:"href"`
+    MetaData   MetaData              `json:"metadata,omitempty"`
+    Properties Datacenter_Properties `json:"properties"`
+    Entities   Datacenter_Entities   `json:"entities,omitempty"`
+    Resp       PBResp                `json:"-"`
 }
-```
-
-
     Datacenter is struct to hold data for a datacenter
-    
-```go
-func AsDatacenter(body []byte) Datacenter
-```
-```go
-    AsDatacenter unmarshalls a []byte into a Datacenter struct
-```
-```go
-func (dc *Datacenter) Getserver(srvid string) Server
-```
-```go
-func (dc *Datacenter) Listlans() Lans
-```
-```go
-func (dc *Datacenter) Listloadbalancers() Loadbalancers
-```
-```go
-func (dc *Datacenter) Listservers() Servers
-    * func (dc *Datacenter) Asjson() []byte {
 
-    } *
-```
-```go
-func (dc *Datacenter) Listvolumes() Volumes
-```
-```go
-type Datacenters struct {
-    Id    string       `json:"id,omitempty"`
-    Type  string       `json:"type,omitempty"`
-    Href  string       `json:"href,omitempty"`
-    Items []Datacenter `json:"items,omitempty"`
-}
-    Datacenters is a struct for Datacenter collections
-```
-```go
-func AsDatacenters(body []byte) Datacenters
-```
-```go
-type DcEntities struct {
+func CreateDatacenter(jason []byte) Datacenter
+    CreateDatacenter creates a datacenter and returns a Datacenter struct
+
+func DeleteDatacenter(dcid string) Datacenter
+    Deletes a Datacenter where id==dcid
+
+func GetDatacenter(dcid string) Datacenter
+    GetDatacenter returns a Datacenter struct where id == dcid
+
+func PatchDatacenter(dcid string, jason []byte) Datacenter
+    PatchDatacenter replaces any Datacenter properties with the values in
+    jason returns an Datacenter struct where id ==dcid
+
+func UpdateDatacenter(dcid string, jason []byte) Datacenter
+    UpdateDatacenter updates all Datacenter properties from values in jason
+    returns an Datacenter struct where id ==dcid
+
+func (dc *Datacenter) Save()
+    Save converts the datacenter struct's properties to json and "patch"es
+    them to the rest server
+
+func (dc *Datacenter) ToJson() string
+    Datacenter.ToJson marshals the Datacenter struct into json
+
+type Datacenter_Entities struct {
     Servers       Servers       `json:"servers,omitempty"`
     Loadbalancers Loadbalancers `json:"loadbalancers,omitempty"`
     Lans          Lans          `json:"lans,omitempty"`
     Volumes       Volumes       `json:"volumes,omitempty"`
 }
-```
-```go
-type DcProperties struct {
+    Datacenter_Entities is a struct inside a Datacenter struct to hold
+    collections of other structs
+
+type Datacenter_Properties struct {
     Name        string `json:"name"`
     Location    string `json:"location"`
     Description string `json:"description,omitempty"`
 }
-```
-```go
-type FwRule struct {
-    Id         string           `json:"id,omitempty"`
-    Type       string           `json:"type,omitempty"`
-    Href       string           `json:"href,omitempty"`
-    MetaData   MetaData         `json:"metadata,omitempty"`
-    Properties FwRuleProperties `json:"properties,omitempty"`
+
+type Datacenters struct {
+    Id    string       `json:"id,omitempty"`
+    Type  string       `json:"type,omitempty"`
+    Href  string       `json:"href,omitempty"`
+    Items []Datacenter `json:"items,omitempty"`
+    Resp  PBResp       `json:"-"`
 }
-```
-```go
-func AsFwRule(body []byte) FwRule
-```
-```go
-type FwRuleProperties struct {
+    Datacenters is a struct for Datacenter collections
+
+func ListDatacenters() Datacenters
+    ListDatacenters returns a Datacenter collection struct
+
+func (dcs *Datacenters) ToJson() string
+    Datacenter.ToJson marshals the Datacenter struct into json
+
+type FwRule struct {
+    Id_Type_Href
+    MetaData   MetaData          `json:"metadata,omitempty"`
+    Properties FwRule_Properties `json:"properties,omitempty"`
+    Resp       PBResp            `json:"-"`
+}
+
+func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) FwRule
+
+func DeleteFWRule(dcid, srvid, nicid, fwruleid string) FwRule
+    DeleteFwRule removes firewall rule
+
+func GetFwRule(dcid, srvid, nicid, fwruleid string) FwRule
+    GetFwRule Retrieve a firewall rule and returns fwRule struct
+
+func PatchFWRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) FwRule
+    PatchFwRule Partially updates a firewall rule with data from []byte
+    jason returns FwRule struct
+
+func UpdateFwRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) FwRule
+    UpdateFwRule Replaces all the properties of firewall rule, returns a
+    FwRule struct
+
+type FwRule_Properties struct {
     Name           string `json:"name,omitempty"`
     Protocol       string `json:"protocol,omitempty"`
     SourceMac      string `json:"sourceMac,omitempty"`
@@ -128,35 +132,53 @@ type FwRuleProperties struct {
     IcmpType       string `json:"icmpType,omitempty"`
     IcmpCode       string `json:"icmpCode,omitempty"`
 }
-```
-```go
+
 type FwRules struct {
-    Id    string   `json:"id,omitempty"`
-    Type  string   `json:"type,omitempty"`
-    Href  string   `json:"href,omitempty"`
+    Id_Type_Href
     Items []FwRule `json:"items,omitempty"`
+    Resp  PBResp   `json:"-"`
 }
-```
-```go
-func AsFwRules(body []byte) FwRules
-```
-```go
+
+func ListFwRules(dcid, srvid, nicid string) FwRules
+
+type Id_Type_Href struct {
+    Id   string `json:"id"`
+    Type string `json:"type"`
+    Href string `json:"href"`
+}
+
 type Image struct {
-    Id         string          `json:"id,omitempty"`
-    Type       string          `json:"type,omitempty"`
-    Href       string          `json:"href,omitempty"`
-    MetaData   MetaData        `json:"metadata,omitempty"`
-    Properties ImageProperties `json:"properties,omitempty"`
+    Id_Type_Href
+    MetaData   MetaData         `json:"metadata,omitempty"`
+    Properties Image_Properties `json:"properties,omitempty"`
+    Resp       PBResp           `json:"-"`
 }
-```
-```go
-func AsCdRom(body []byte) Image
-```
-```go
-func AsImage(body []byte) Image
-```
-```go
-type ImageProperties struct {
+    Image is thr struct for image data
+
+func AttachCdrom(dcid string, srvid string, cdid string) Image
+
+func CreateImage(jason []byte) Image
+    CreateImage creates an Image and returns an Image struct
+
+func DeleteImage(imageid string) Image
+    Deletes an image where id==imageid
+
+func DetachCdrom(dcid, srvid, cdid string) Image
+
+func GetAttachedCdrom(dcid, srvid, cdid string) Image
+
+func GetImage(imageid string) Image
+    GetImage returns an Image struct where id ==imageid
+
+func PatchImage(imageid string, jason []byte) Image
+    PatchImage replaces any image properties from values in jason returns an
+    Image struct where id ==imageid
+
+func UpdateImage(imageid string, jason []byte) Image
+    UpdateImage updates all image properties from values in jason returns an
+    Image struct where id ==imageid
+
+type Image_Properties struct {
     Name                string `json:"name,omitempty"`
     Description         string `json:"description,omitempty"`
     Location            string `json:"location"`
@@ -175,155 +197,157 @@ type ImageProperties struct {
     DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
     LicenceType         string `json:"licenceType,omitempty"`
 }
-```
-```go
+
 type Images struct {
-    Id    string  `json:"id,omitempty"`
-    Type  string  `json:"type,omitempty"`
-    Href  string  `json:"href,omitempty"`
+    Id_Type_Href
     Items []Image `json:"items,omitempty"`
+    Resp  PBResp  `json:"-"`
 }
-```
-```go
-func AsCdRoms(body []byte) Images
-```
-```go
-func AsImages(body []byte) Images
-```
-```go
+    Images is a struct for Image collections
+
+func ListAttachedCdroms(dcid, srvid string) Images
+
+func ListImages() Images
+    ListImages returns an Images struct
+
 type Ipblock struct {
-    Id         string            `json:"id,omitempty"`
-    Type       string            `json:"type,omitempty"`
-    Href       string            `json:"href,omitempty"`
-    MetaData   MetaData          `json:"metadata,omitempty"`
-    Properties IpblockProperties `json:"properties"`
+    Id_Type_Href
+    MetaData   MetaData           `json:"metadata,omitempty"`
+    Properties Ipblock_Properties `json:"properties"`
+    Resp       PBResp             `json:"-"`
 }
-```
-```go
-func AsIpblock(body []byte) Ipblock
-```
-```go
-type IpblockProperties struct {
+
+func GetIpBlock(ipblockid string) Ipblock
+
+func ReleaseIpBlock(ipblockid string) Ipblock
+
+func ReserveIpBlock(jason []byte) Ipblock
+
+type Ipblock_Properties struct {
     Location string `json:"location"`
     Size     int    `json:"size"`
 }
-```
-```go
+
 type Ipblocks struct {
-    Id    string    `json:"id,omitempty"`
-    Type  string    `json:"type,omitempty"`
-    Href  string    `json:"href,omitempty"`
+    Id_Type_Href
     Items []Ipblock `json:"items,omitempty"`
+    Resp  PBResp    `json:"-"`
 }
-```
-```go
-func AsIpblocks(body []byte) Ipblocks
-```
-```go
+
+func ListIpBlocks() Ipblocks
+
 type Lan struct {
-    Id         string        `json:"id,omitempty"`
-    Type       string        `json:"type,omitempty"`
-    Href       string        `json:"href,omitempty"`
-    MetaData   MetaData      `json:"metadata,omitempty"`
-    Properties LanProperties `json:"properties"`
-    Entities   LanEntities   `json:"entities,omitempty"`
+    Id         string         `json:"id,omitempty"`
+    Type       string         `json:"type,omitempty"`
+    Href       string         `json:"href,omitempty"`
+    MetaData   MetaData       `json:"metadata,omitempty"`
+    Properties Lan_Properties `json:"properties"`
+    Entities   Lan_Entities   `json:"entities,omitempty"`
+    Resp       PBResp         `json:"-"`
 }
-```
-```go
-func AsLan(body []byte) Lan
-```
-```go
-type LanEntities struct {
+
+func CreateLan(dcid string, jason []byte) Lan
+    CreateLan creates a lan in the datacenter from a jason []byte and
+    returns a Lan struct
+
+func DeleteLan(dcid, lanid string) Lan
+    DeleteLan deletes a lan where id == lanid
+
+func GetLan(dcid, lanid string) Lan
+    GetLan pulls data for the lan where id = lanid returns a Lan struct
+
+func PatchLan(dcid string, lanid string, jason []byte) Lan
+
+func UpdateLan(dcid string, lanid string, jason []byte) Lan
+
+type Lan_Entities struct {
     Nics Nics `json:"nics,omitempty"`
 }
-```
-```go
-type LanProperties struct {
+
+type Lan_Properties struct {
     Name   string `json:"name,omitempty"`
     Public bool   `json:"public,omitempty"`
 }
-```
-```go
+
 type Lans struct {
     Id    string `json:"id,omitempty"`
     Type  string `json:"type,omitempty"`
     Href  string `json:"href,omitempty"`
     Items []Lan  `json:"items,omitempty"`
+    Resp  PBResp `json:"-"`
 }
-```
-```go
-func AsLans(body []byte) Lans
-```
-```go
-type LbalEnts struct {
+
+func ListLans(dcid string) Lans
+    ListLan returns a Lans struct collection for lans in the Datacenter
+
+type Loadbalancer struct {
+    Id_Type_Href
+    MetaData   MetaData                `json:"metadata,omitempty"`
+    Properties Loadbalancer_Properties `json:"properties,omitempty"`
+    Entities   Loadbalancer_Entities   `json:"entities,omitempty"`
+    Resp       PBResp                  `json:"-"`
+}
+
+func CreateLoadbalancer(dcid string, jason []byte) Loadbalancer
+    Createloadbalancer creates a loadbalancer in the datacenter from a jason
+    []byte and returns a Loadbalancer struct
+
+func DeleteLoadbalancer(dcid, lbalid string) Loadbalancer
+
+func GetLoadbalancer(dcid, lbalid string) Loadbalancer
+    GetLoadbalancer pulls data for the Loadbalancer where id = lbalid
+    returns a Loadbalancer struct
+
+func PatchLoadBalancer(dcid string, lbalid string, jason []byte) Loadbalancer
+
+func UpdateLoadbalancer(dcid string, lbalid string, jason []byte) Loadbalancer
+
+type Loadbalancer_Entities struct {
     BalancedNics Nics `json:"balancednics,omitempty"`
 }
-```
-```go
-type LbalProps struct {
+
+type Loadbalancer_Properties struct {
     Name string `json:"name,omitempty"`
     Ip   string `json:"ip,omitempty"`
     Dhcp bool   `json:"dhcp,omitempty"`
 }
-```
-```go
-type Loadbalancer struct {
-    Id         string    `json:"id,omitempty"`
-    Type       string    `json:"type,omitempty"`
-    Href       string    `json:"href,omitempty"`
-    MetaData   MetaData  `json:"metadata,omitempty"`
-    Properties LbalProps `json:"properties,omitempty"`
-    Entities   LbalEnts  `json:"entities,omitempty"`
-}
-```
-```go
-func AsLoadbalancer(body []byte) Loadbalancer
-```
-```go
+
 type Loadbalancers struct {
-    Id    string         `json:"id,omitempty"`
-    Type  string         `json:"type,omitempty"`
-    Href  string         `json:"href,omitempty"`
+    Id_Type_Href
     Items []Loadbalancer `json:"items,omitempty"`
+    Resp  PBResp         `json:"-"`
 }
-```
-```go
-func AsLoadbalancers(body []byte) Loadbalancers
-```
-```go
+
+func ListLoadbalancers(dcid string) Loadbalancers
+    Listloadbalancers returns a Loadbalancers struct for loadbalancers in
+    the Datacenter
+
 type Location struct {
-    Id         string             `json:"id,omitempty"`
-    Type       string             `json:"type,omitempty"`
-    Href       string             `json:"href,omitempty"`
-    MetaData   MetaData           `json:"metadata,omitempty"`
-    Properties LocationProperties `json:"properties"`
+    Id_Type_Href
+    MetaData   MetaData            `json:"metadata,omitempty"`
+    Properties Location_Properties `json:"properties"`
+    Resp       PBResp              `json:"-"`
 }
     Location is the struct for a Location
-```
-```go
-func AsLocation(body []byte) Location
-    AsLocation Unmarshals json into a Location struct
-```
-```go
-type LocationProperties struct {
+
+func GetLocation(locid string) Location
+    GetLocation returns a PBResp with data for a location in the Body
+
+type Location_Properties struct {
     Name string `json:"name"`
 }
-    LocationProperties is aa struct for Locaation Properties
-```
-```go
+    Location_Properties is aa struct for Locaation Properties
+
 type Locations struct {
-    Id    string     `json:"id,omitempty"`
-    Type  string     `json:"type,omitempty"`
-    Href  string     `json:"href,omitempty"`
+    Id_Type_Href
     Items []Location `json:"items,omitempty"`
+    Resp  PBResp     `json:"-"`
 }
     Locations is the struct for a Location Collection
-```
-```go
-func AsLocations(body []byte) Locations
-    AsLocations Unmarshals json into a Locations struct
-```
-```go
+
+func ListLocations() Locations
+    ListLocations returns a PBResp with location collection data in the Body
+
 type MetaData struct {
     LastModified   string `json:"lastModifiedDate,omitempty"`
     LastModifiedBy string `json:"lastModifiedBy,omitempty"`
@@ -332,24 +356,40 @@ type MetaData struct {
     State          string `json:"state,omitempty"`
     Etag           string `json:"etag,omitempty"`
 }
-```
-```go
-MetaData is a struct for metadata returned in a PBResp.Body
-```
-```go
+    MetaData is a struct for metadata returned in a PBResp.Body
+
 type Nic struct {
-    Id         string        `json:"id,omitempty"`
-    Type       string        `json:"type,omitempty"`
-    Href       string        `json:"href,omitempty"`
-    MetaData   MetaData      `json:"metadata,omitempty"`
-    Properties NicProperties `json:"properties,omitempty"`
+    Id         string         `json:"id,omitempty"`
+    Type       string         `json:"type,omitempty"`
+    Href       string         `json:"href,omitempty"`
+    MetaData   MetaData       `json:"metadata,omitempty"`
+    Properties Nic_Properties `json:"properties,omitempty"`
+    Resp       PBResp         `json:"-"`
 }
-```
-```go
-func AsNic(body []byte) Nic
-```
-```go
-type NicProperties struct {
+
+func CreateNic(dcid string, srvid string, jason []byte) Nic
+    CreateNic creates a nic on a server from a jason []byte and returns a
+    Nic struct
+
+func DeleteBalancedNic(dcid, lbalid, balnicid string) Nic
+
+func DeleteNic(dcid, srvid, nicid string) Nic
+    DeleteNic deletes the nic where id=nicid and returns a PBResp struct
+
+func GetBalancedNic(dcid, lbalid, balnicid string) Nic
+
+func GetNic(dcid, srvid, nicid string) Nic
+    GetNic pulls data for the nic where id = srvid returns a Nic struct
+
+func PatchNic(dcid string, srvid string, nicid string, jason []byte) Nic
+    PatchNic partial update of nic properties passed in as jason []byte
+    Returns Nic struct
+
+func UpdateNic(dcid string, srvid string, nicid string, jason []byte) Nic
+    UpdateNic is a full update of nic properties passed in as jason []byte
+    Returns Nic struct
+
+type Nic_Properties struct {
     Name           string   `json:"name,omitempty"`
     Ips            []string `json:"ips,omitempty"`
     Dhcp           bool     `json:"dhcp,omitempty"`
@@ -357,266 +397,143 @@ type NicProperties struct {
     FirewallActive bool     `json:"firewallActive,omitempty"`
     Firewallrules  []FwRule `json:"firewallrules,omitempty"`
 }
-```
-```go
+
 type Nics struct {
     Id    string `json:"id,omitempty"`
     Type  string `json:"type,omitempty"`
     Href  string `json:"href,omitempty"`
     Items []Nic  `json:"items,omitempty"`
+    Resp  PBResp `json:"-"`
 }
-```
-```go
-func AsNics(body []byte) Nics
-```
-```go
+
+func AssociateNics(dcid string, lbalid string, jason []byte) Nics
+
+func ListBalancedNics(dcid, lbalid string) Nics
+
+func ListLanMembers(dcid, lanid string) Nics
+    ListLanMembers returns a Nic struct collection for the Lan
+
+func ListNics(dcid, srvid string) Nics
+    ListNics returns a Nics struct collection
+
 type PBResp struct {
     StatusCode int
     Headers    http.Header
     Body       []byte
+    // contains filtered or unexported fields
 }
-```
-
-##### ```   PBResp is the struct returned by all Rest request functions ```
-
-```go
-func AssociateNics(dcid string, lbalid string, jason []byte) PBResp
-```
-```go
-func AttachCdrom(dcid string, srvid string, cdid string) PBResp
-
-func AttachVolume(dcid string, srvid string, volid string) PBResp
-```
-```go
-func CreateDatacenter(jason []byte) PBResp
-
-func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) PBResp
-
-func CreateLan(dcid string, jason []byte) PBResp
-
-func CreateLoadbalancer(dcid string, jason []byte) PBResp
-
-func CreateNic(dcid string, srvid string, jason []byte) PBResp
-    *
-
-	CreateNic takes []byte jason to create a nic
-	Returns a PBResp struct with Nic data in PBResp.Body .
-
-    *
-
-func CreateServer(dcid string, jason []byte) PBResp
-```
-```go
-func DeleteBalancedNic(dcid, lbalid, balnicid string) PBResp
-
-func DeleteDatacenter(dcid string) PBResp
-
-func DeleteFWRule(dcid, srvid, nicid, fwruleid string) PBResp
-
-func DeleteImage(imageid string) PBResp
-
-func DeleteLan(dcid, lanid string) PBResp
-
-func DeleteLoadbalancer(dcid, lbalid string) PBResp
-
-func DeleteNic(dcid, srvid, nicid string) PBResp
-
-func DeleteServer(dcid, srvid string) PBResp
-
-func DeleteSnapshot(snapid string) PBResp
-
-func DeleteVolume(dcid, volid string) PBResp
-
-func DetachCdrom(dcid, srvid, cdid string) PBResp
-
-func DetachVolume(dcid, srvid, volid string) PBResp
-```
-```go
-func GetAttachedCdrom(dcid, srvid, cdid string) PBResp
-
-func GetAttachedVolume(dcid, srvid, volid string) PBResp
-
-func GetBalancedNic(dcid, lbalid, balnicid string) PBResp
-
-func GetDatacenter(dcid string) PBResp
-
-func GetFwRule(dcid, srvid, nicid, fwruleid string) PBResp
-    * Firewall rule
-
-	Retrieve a firewall rule
-	Replace properties of firewall rule
-	Partially update a firewall rule
-	Remove firewall rule
-
-    *
-```
-```go
-func GetImage(imageid string) PBResp
-
-func GetIpBlock(ipblockid string) PBResp
-
-func GetLan(dcid, lanid string) PBResp
-
-func GetLoadbalancer(dcid, lbalid string) PBResp
-
-func GetLocation(locid string) PBResp
-    GetLocations returns a PBResp with data for a location in the Body
-
-func GetNic(dcid, srvid, nicid string) PBResp
-    GetNic returns a PBResp with nic data in PBResp.Body
-
-func GetRequest(requestid string) PBResp
-
-func GetServer(dcid, srvid string) PBResp
-
-func GetSnapshot(snapid string) PBResp
-
-func GetVolume(dcid, volid string) PBResp
-```
-```go
-func ListAttachedCdroms(dcid, srvid string) PBResp
-
-func ListAttachedVolumes(dcid, srvid string) PBResp
-
-func ListBalancedNics(dcid, lbalid string) PBResp
-
-func ListDatacenters() PBResp
-
-func ListFwRules(dcid, srvid, nicid string) PBResp
-
-func ListImages() PBResp
-
-func ListIpBlocks() PBResp
-
-func ListLanMembers(dcid, lanid string) PBResp
-
-func ListLans(dcid string) PBResp
-
-func ListLoadbalancers(dcid string) PBResp
-
-func ListLocations() PBResp
-    ListLocations returns a PBResp with location collection data in the Body
-
-func ListNics(dcid, srvid string) PBResp
-    ListNics returns a PBResp with nic collection data in PBResp.Body
+    PBResp is the struct returned by all Rest request functions
 
 func ListRequests() PBResp
 
-func ListServers(dcid string) PBResp
-    *
-
-    Server collection
-
-	List servers
-	Create a server
-
-    *
-
-func ListSnapshots() PBResp
-
-func ListVolumes(dcid string) PBResp
-```
-```go
-func PatchDatacenter(dcid string, jason []byte) PBResp
-
-func PatchFWRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) PBResp
-
-func PatchImage(imageid string, jason []byte) PBResp
-
-func PatchLan(dcid string, lanid string, jason []byte) PBResp
-
-func PatchLoadBalancer(dcid string, lbalid string, jason []byte) PBResp
-
-func PatchNic(dcid string, srvid string, nicid string, jason []byte) PBResp
-
-func PatchServer(dcid string, srvid string, jason []byte) PBResp
-
-func PatchSnapshot(snapid string, jason []byte) PBResp
-
-func PatchVolume(dcid string, volid string, jason []byte) PBResp
-
-func RebootServer(dcid, srvid string) PBResp
-
-func ReleaseIpBlock(ipblockid string) PBResp
-
-func ReserveIpBlock(jason []byte) PBResp
-
-func StartServer(dcid, srvid string) PBResp
-    * Start server command
-
-	Execute start server
-
-    Stop server command
-
-	Execute Stop Server
-
-    Reboot server command
-
-	Execute reboot server
-
-    *
-
 func StatusRequest(requestid string) PBResp
 
-func StopServer(dcid, srvid string) PBResp
-
-func UpdateDatacenter(dcid string, jason []byte) PBResp
-
-func UpdateFwRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) PBResp
-
-func UpdateImage(imageid string, jason []byte) PBResp
-
-func UpdateLan(dcid string, lanid string, jason []byte) PBResp
-```
-```go
-func UpdateLoadbalancer(dcid string, lbalid string, jason []byte) PBResp
-```
-```go
-func UpdateNic(dcid string, srvid string, nicid string, jason []byte) PBResp
-```
-```go
-func UpdateServer(dcid string, srvid string, jason []byte) PBResp
-```
-```go
-func UpdateSnapshot(snapid string, jason []byte) PBResp
-```
-```go
-func UpdateVolume(dcid string, volid string, jason []byte) PBResp
-```
-```go
-func (r *PBResp) AsJson()
-    AsJson returns PBResp.Body as the raw json
-```
-```go
 func (r *PBResp) PrintHeaders()
     PrintHeaders prints the http headers as k,v pairs
-```
-```go
+
+type RestRequest struct {
+    Id_Type_Href
+    Metadata               MetaData `json:"metadata"`
+    RestRequest_Properties `json:"properties"`
+    Resp                   PBResp `json:"-"`
+}
+
+func GetRequest(requestid string) RestRequest
+
+type RestRequest_Properties struct {
+    Method  string            `json:"method"`
+    Headers map[string]string `json:"headers"`
+    Body    string            `json:"body"`
+    Url     string            `json:"url"`
+}
+
 type Server struct {
-    Id         string   `json:"id,omitempty"`
-    Type       string   `json:"type,omitempty"`
-    Href       string   `json:"href,omitempty"`
-    MetaData   MetaData `json:"metadata,omitempty"`
-    Properties SrvProps `json:"properties,omitempty"`
-    Entities   SrvEnts  `json:"entities,omitempty"`
+    Id_Type_Href
+    MetaData   MetaData          `json:"metadata,omitempty"`
+    Properties Server_Properties `json:"properties,omitempty"`
+    Entities   Server_Entities   `json:"entities,omitempty"`
+    Resp       PBResp            `json:"-"`
 }
-```
-```go
-func AsServer(body []byte) Server
-```
-```go
+    Server is a struct for Server data
+
+func CreateServer(dcid string, jason []byte) Server
+    CreateServer creates a server from a jason []byte and returns a Server
+    struct
+
+func DeleteServer(dcid, srvid string) Server
+    DeleteServer deletes the server where id=srvid and returns Server struct
+
+func GetServer(dcid, srvid string) Server
+    GetServer pulls data for the server where id = srvid returns a Server
+    struct
+
+func PatchServer(dcid string, srvid string, jason []byte) Server
+    PatchServer partial update of server properties passed in as jason
+    []byte Returns Server struct
+
+func RebootServer(dcid, srvid string) Server
+    RebootServer reboots a server
+
+func StartServer(dcid, srvid string) Server
+    StartServer starts a server
+
+func StopServer(dcid, srvid string) Server
+    StopServer stops a server
+
+func UpdateServer(dcid string, srvid string, jason []byte) Server
+    UpdateServer is a full update of server properties passed in as jason
+    []byte Returns Server struct
+
+type Server_Entities struct {
+    Cdroms  Images  `json:"cdroms,omitempty"`
+    Nics    Nics    `json:"nics,omitempty"`
+    Volumes Volumes `json:"volumes,omitempty"`
+}
+
+type Server_Properties struct {
+    Name             string `json:"name,omitempty"`
+    Cores            int    `json:"cores,omitempty"`
+    Ram              int    `json:"ram,omitempty"`
+    Availabilityzone string `json:"availabilityzone,omitempty"`
+    Licencetype      string `json:"licencetype,omitempty"`
+    Bootvolume       string `json:"bootvolume,omitempty"`
+    Bootcdrom        string `json:"bootcdrom,omitempty"`
+}
+
 type Servers struct {
-    Id    string   `json:"id,omitempty"`
-    Type  string   `json:"type,omitempty"`
-    Href  string   `json:"href,omitempty"`
+    Id_Type_Href
     Items []Server `json:"items,omitempty"`
+    Resp  PBResp   `json:"-"`
 }
-```
-```go
-func AsServers(body []byte) Servers
-```
-```go
-type SnapProps struct {
+    Servers is a struct for Server struct collections
+
+func ListServers(dcid string) Servers
+    ListServers returns a server struct collection
+
+type Snapshot struct {
+    Id_Type_Href
+    MetaData   MetaData            `json:"metadata,omitempty"`
+    Properties Snapshot_Properties `json:"properties,omitempty"`
+    Resp       PBResp              `json:"-"`
+}
+    Snapshot struct for Snapshot data
+
+func DeleteSnapshot(snapid string) Snapshot
+    Deletes a Snapshot with id == snapid
+
+func GetSnapshot(snapid string) Snapshot
+    GetSnapshot retrieves Snapshot data where id==snapid returns a` snapshot
+    struct
+
+func PatchSnapshot(snapid string, jason []byte) Snapshot
+    PatchSnapshot replaces any snapshot properties from values in jason
+    returns an Snapshot struct where id ==snapid
+
+func UpdateSnapshot(snapid string, jason []byte) Snapshot
+    UpdateSnapshot replaces all snapshot properties from values in jason
+    returns an Snapshot struct where id ==snapid
+
+type Snapshot_Properties struct {
     Name                string `json:"name,omitempty"`
     Description         string `json:"description,omitempty"`
     Location            string `json:"location,omitempty"`
@@ -633,52 +550,45 @@ type SnapProps struct {
     DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
     LicenceType         string `json:"licenceType,omitempty"`
 }
-```
-```go
-type Snapshot struct {
-    Id         string    `json:"id,omitempty"`
-    Type       string    `json:"type,omitempty"`
-    Href       string    `json:"href,omitempty"`
-    MetaData   MetaData  `json:"metadata,omitempty"`
-    Properties SnapProps `json:"properties,omitempty"`
-}
-```
-```go
-func AsSnapshot(body []byte) Snapshot
-```
-```go
+    Snapshot_Properties struct
+
 type Snapshots struct {
-    Id    string     `json:"id,omitempty"`
-    Type  string     `json:"type,omitempty"`
-    Href  string     `json:"href,omitempty"`
+    Id_Type_Href
     Items []Snapshot `json:"items,omitempty"`
+    Resp  PBResp     `json:"-"`
 }
-```
-```go
-func AsSnapshots(body []byte) Snapshots
-```
-```go
-type SrvEnts struct {
-    Cdroms  Images  `json:"cdroms,omitempty"`
-    Nics    Nics    `json:"nics,omitempty"`
-    Volumes Volumes `json:"volumes,omitempty"`
+    Snapshots struct for a Snapshot collection
+
+func ListSnapshots() Snapshots
+    ListSnapshots retrieves a collection of snapshot data returns a
+    Snapshots struct
+
+type Volume struct {
+    Id         string            `json:"id"`
+    Type       string            `json:"type"`
+    Href       string            `json:"href"`
+    MetaData   MetaData          `json:"metadata,omitempty"`
+    Properties Volume_Properties `json:"properties,omitempty"`
+    Resp       PBResp            `json:"-"`
 }
-```
-```go
-type SrvProps struct {
-    Name             string `json:"name,omitempty"`
-    Cores            int    `json:"cores,omitempty"`
-    Ram              int    `json:"ram,omitempty"`
-    Availabilityzone string `json:"availabilityzone,omitempty"`
-    Licencetype      string `json:"licencetype,omitempty"`
-    Bootvolume       string `json:"bootvolume,omitempty"`
-    Bootcdrom        string `json:"bootcdrom,omitempty"`
-}
-```
-```go
-type VolProps struct {
+
+func AttachVolume(dcid string, srvid string, volid string) Volume
+
+func DeleteVolume(dcid, volid string) Volume
+
+func DetachVolume(dcid, srvid, volid string) Volume
+
+func GetAttachedVolume(dcid, srvid, volid string) Volume
+
+func PatchVolume(dcid string, volid string, jason []byte) Volume
+
+func UpdateVolume(dcid string, volid string, jason []byte) Volume
+
+func (vol *Volume) Save()
+
+type Volume_Properties struct {
     Name                string `json:"name,omitempty"`
-    Size                int    `json:"size,omitempty"`
+    Size                int    `json:"size"`
     Bus                 string `json:"bus,omitempty"`
     Image               string `json:"image,omitempty"`
     ImagePassword       string `json:"imagePassword,omitempty"`
@@ -695,28 +605,22 @@ type VolProps struct {
     DiscScsiHotPlug     bool   `json:"discScsiHotPlug,omitempty"`
     DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
 }
-```
-```go
-type Volume struct {
-    Id         string   `json:"id,omitempty"`
-    Type       string   `json:"type,omitempty"`
-    Href       string   `json:"href,omitempty"`
-    MetaData   MetaData `json:"metadata,omitempty"`
-    Properties VolProps `json:"properties,omitempty"`
-}
-```
-```go
-func AsVolume(body []byte) Volume
-```
-```go
-type Volumes struct {
-    Id    string   `json:"id,omitempty"`
-    Type  string   `json:"type,omitempty"`
-    Href  string   `json:"href,omitempty"`
-    Items []Volume `json:"items,omitempty"`
-}
-```
-```go
-func AsVolumes(body []byte) Volumes
 
-```
+type Volumes struct {
+    Id    string   `json:"id"`
+    Type  string   `json:"type"`
+    Href  string   `json:"href"`
+    Items []Volume `json:"items,omitempty"`
+    Resp  PBResp   `json:"-"`
+}
+
+func ListAttachedVolumes(dcid, srvid string) Volumes
+
+func ListVolumes(dcid string) Volumes
+    ListVolumes returns a Volumes struct for volumes in the Datacenter
+
+SUBDIRECTORIES
+
+	p
+	tests
+
