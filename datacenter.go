@@ -58,30 +58,6 @@ func (dc *Datacenter) ToJson() string {
 	return string(jason)
 }
 
-// Listloadbalancers returns a Loadbalancers struct
-// for loadbalancers in the Datacenter
-func (dc *Datacenter) ListLoadbalancers() Loadbalancers {
-	path := dc.Entities.Loadbalancers.Href
-	pbresp := is_get(path)
-	return ToLoadbalancers(pbresp.Body)
-}
-
-// Createloadbalancer creates a loadbalancer in the datacenter
-//from a jason []byte and returns a Loadbalancer struct
-func (dc *Datacenter) CreateLoadbalancer(jason []byte) Loadbalancer {
-	path := dc.Entities.Loadbalancers.Href
-	pbresp := is_post(path, jason)
-	return ToLoadbalancer(pbresp.Body)
-}
-
-// GetLoadbalancer pulls data for the Loadbalancer
-// where id = lbalid returns a Loadbalancer struct
-func (dc *Datacenter) GetLoadbalancer(lbalid string) Loadbalancer {
-	path := dc.Entities.Loadbalancers.Href + slash(lbalid)
-	pbresp := is_get(path)
-	return ToLoadbalancer(pbresp.Body)
-}
-
 // ListVolumes returns a Volumes struct for volumes in the Datacenter
 
 func (dc *Datacenter) ListVolumes() Volumes {
