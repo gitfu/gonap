@@ -3,7 +3,7 @@ package gonap
 import "encoding/json"
 import "fmt"
 
-type VolProps struct {
+type Volume_Properties struct {
 	Name                string `json:"name,omitempty"`
 	Size                int    `json:"size"`
 	Bus                 string `json:"bus,omitempty"`
@@ -24,12 +24,12 @@ type VolProps struct {
 }
 
 type Volume struct {
-	Id         string   `json:"id"`
-	Type       string   `json:"type"`
-	Href       string   `json:"href"`
-	MetaData   MetaData `json:"metadata,omitempty"`
-	Properties VolProps `json:"properties,omitempty"`
-	Resp       PBResp   `json:"-"`
+	Id         string            `json:"id"`
+	Type       string            `json:"type"`
+	Href       string            `json:"href"`
+	MetaData   MetaData          `json:"metadata,omitempty"`
+	Properties Volume_Properties `json:"properties,omitempty"`
+	Resp       PBResp            `json:"-"`
 }
 
 func (vol *Volume) Save() {

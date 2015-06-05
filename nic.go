@@ -2,7 +2,7 @@ package gonap
 
 import "encoding/json"
 
-type NicProperties struct {
+type Nic_Properties struct {
 	Name           string   `json:"name,omitempty"`
 	Ips            []string `json:"ips,omitempty"`
 	Dhcp           bool     `json:"dhcp,omitempty"`
@@ -12,12 +12,12 @@ type NicProperties struct {
 }
 
 type Nic struct {
-	Id         string        `json:"id,omitempty"`
-	Type       string        `json:"type,omitempty"`
-	Href       string        `json:"href,omitempty"`
-	MetaData   MetaData      `json:"metadata,omitempty"`
-	Properties NicProperties `json:"properties,omitempty"`
-	Resp       PBResp        `json:"-"`
+	Id         string         `json:"id,omitempty"`
+	Type       string         `json:"type,omitempty"`
+	Href       string         `json:"href,omitempty"`
+	MetaData   MetaData       `json:"metadata,omitempty"`
+	Properties Nic_Properties `json:"properties,omitempty"`
+	Resp       PBResp         `json:"-"`
 }
 
 func toNic(pbresp PBResp) Nic {
