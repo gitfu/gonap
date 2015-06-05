@@ -2,7 +2,7 @@ package gonap
 
 import "encoding/json"
 
-type ImageProperties struct {
+type Image_Properties struct {
 	Name                string `json:"name,omitempty"`
 	Description         string `json:"description,omitempty"`
 	Location            string `json:"location"`
@@ -24,17 +24,18 @@ type ImageProperties struct {
 
 // Image is thr struct for image data
 type Image struct {
-	Id         string          `json:"id,omitempty"`
-	Type       string          `json:"type,omitempty"`
-	Href       string          `json:"href,omitempty"`
-	MetaData   MetaData        `json:"metadata,omitempty"`
-	Properties ImageProperties `json:"properties,omitempty"`
-	Resp       PBResp          `json:"-"`
+	Id         string           `json:"id,omitempty"`
+	Type       string           `json:"type,omitempty"`
+	Href       string           `json:"href,omitempty"`
+	MetaData   MetaData         `json:"metadata,omitempty"`
+	Properties Image_Properties `json:"properties,omitempty"`
+	Resp       PBResp           `json:"-"`
 }
 
 func toImage(pbresp PBResp) Image {
 	var img Image
 	json.Unmarshal(pbresp.Body, &img)
+	img.Resp = pbresp
 	return img
 }
 

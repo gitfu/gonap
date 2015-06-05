@@ -3,7 +3,7 @@ package gonap
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
+	//	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -58,16 +58,12 @@ func mk_url(path string) string {
 	return url
 }
 
-// is_delete performs an http.NewRequest DELETE  and returns a PBResp struct
-func is_delete(path string) PBResp {
-	url := mk_url(path)
+func do(req *http.Request) PBResp {
 	client := &http.Client{}
-	req, _ := http.NewRequest("DELETE", url, nil)
 	req.SetBasicAuth(Username, Passwd)
-	req.Header.Add("Content-Type", fullheader)
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 	defer resp.Body.Close()
 	resp_body, _ := ioutil.ReadAll(resp.Body)
@@ -75,113 +71,55 @@ func is_delete(path string) PBResp {
 	R.Body = resp_body
 	R.Headers = resp.Header
 	R.StatusCode = resp.StatusCode
-
 	return R
+}
+
+// is_delete performs an http.NewRequest DELETE  and returns a PBResp struct
+func is_delete(path string) PBResp {
+	url := mk_url(path)
+	req, _ := http.NewRequest("DELETE", url, nil)
+	req.Header.Add("Content-Type", fullheader)
+	return do(req)
 
 }
 
 // is_get performs an http.NewRequest GET and returns a PBResp struct
 func is_get(path string) PBResp {
 	url := mk_url(path) + `?depth=` + Depth
-	client := &http.Client{}
 	req, _ := http.NewRequest("GET", url, nil)
-	req.SetBasicAuth(Username, Passwd)
 	req.Header.Add("Content-Type", fullheader)
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer resp.Body.Close()
-	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var R PBResp
-	R.req_url = url
-	R.Body = resp_body
-	R.Headers = resp.Header
-	R.StatusCode = resp.StatusCode
-	return R
+	return do(req)
 }
 
 // is_patch performs an http.NewRequest PATCH and returns a PBResp struct
 func is_patch(path string, jason []byte) PBResp {
 	url := mk_url(path)
-	client := &http.Client{}
 	req, _ := http.NewRequest("PATCH", url, bytes.NewBuffer(jason))
-	req.SetBasicAuth(Username, Passwd)
 	req.Header.Add("Content-Type", patchheader)
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer resp.Body.Close()
-	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var R PBResp
-	R.Body = resp_body
-	R.Headers = resp.Header
-	R.StatusCode = resp.StatusCode
-	return R
+	return do(req)
 }
 
 // is_put performs an http.NewRequest PUT and returns a PBResp struct
 func is_put(path string, jason []byte) PBResp {
 	url := mk_url(path)
-	client := &http.Client{}
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(jason))
-	req.SetBasicAuth(Username, Passwd)
 	req.Header.Add("Content-Type", fullheader)
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer resp.Body.Close()
-	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var R PBResp
-	R.Body = resp_body
-	R.Headers = resp.Header
-	R.StatusCode = resp.StatusCode
-	return R
+	return do(req)
 }
 
 // is_post performs an http.NewRequest POST and returns a PBResp struct
 func is_post(path string, jason []byte) PBResp {
 	url := mk_url(path)
-	client := &http.Client{}
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jason))
-	req.SetBasicAuth(Username, Passwd)
 	req.Header.Add("Content-Type", fullheader)
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-
-	}
-	defer resp.Body.Close()
-	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var R PBResp
-	R.Body = resp_body
-	R.Headers = resp.Header
-	R.StatusCode = resp.StatusCode
-	return R
-
+	return do(req)
 }
 
 // is_command performs an http.NewRequest PUT and returns a PBResp struct
 func is_command(path string, jason string) PBResp {
 	url := mk_url(path)
 	body := json.RawMessage(jason)
-	client := &http.Client{}
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(body))
-	req.SetBasicAuth(Username, Passwd)
 	req.Header.Add("Content-Type", commandheader)
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-
-	}
-	defer resp.Body.Close()
-	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var R PBResp
-	R.Body = resp_body
-	R.Headers = resp.Header
-	R.StatusCode = resp.StatusCode
-	return R
-
+	return do(req)
 }

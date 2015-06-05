@@ -118,12 +118,24 @@
 				<dd><a href="#FwRule">type FwRule</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToFwRule">func ToFwRule(body []byte) FwRule</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#CreateFwRule">func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) FwRule</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#DeleteFWRule">func DeleteFWRule(dcid, srvid, nicid, fwruleid string) FwRule</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GetFwRule">func GetFwRule(dcid, srvid, nicid, fwruleid string) FwRule</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PatchFWRule">func PatchFWRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) FwRule</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UpdateFwRule">func UpdateFwRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) FwRule</a></dd>
 				
 				
 			
 				
-				<dd><a href="#FwRuleProperties">type FwRuleProperties</a></dd>
+				<dd><a href="#FwRule_Properties">type FwRule_Properties</a></dd>
 				
 				
 			
@@ -131,7 +143,7 @@
 				<dd><a href="#FwRules">type FwRules</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToFwRules">func ToFwRules(body []byte) FwRules</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#ListFwRules">func ListFwRules(dcid, srvid, nicid string) FwRules</a></dd>
 				
 				
 			
@@ -165,7 +177,7 @@
 				
 			
 				
-				<dd><a href="#ImageProperties">type ImageProperties</a></dd>
+				<dd><a href="#Image_Properties">type Image_Properties</a></dd>
 				
 				
 			
@@ -361,25 +373,10 @@
 				<dd><a href="#PBResp">type PBResp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#CreateFwRule">func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#DeleteFWRule">func DeleteFWRule(dcid, srvid, nicid, fwruleid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#GetFwRule">func GetFwRule(dcid, srvid, nicid, fwruleid string) PBResp</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#GetRequest">func GetRequest(requestid string) PBResp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ListFwRules">func ListFwRules(dcid, srvid, nicid string) PBResp</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#ListRequests">func ListRequests() PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#PatchFWRule">func PatchFWRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#RebootServer">func RebootServer(dcid, srvid string) PBResp</a></dd>
@@ -392,9 +389,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#StopServer">func StopServer(dcid, srvid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#UpdateFwRule">func UpdateFwRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) PBResp</a></dd>
 				
 				
 					
@@ -632,7 +626,7 @@ Username for authentication .
 		
 			
 			
-			<h2 id="SetAuth">func <a href="/src/pkg/target/req.go?s=931:956#L27">SetAuth</a></h2>
+			<h2 id="SetAuth">func <a href="/src/pkg/target/req.go?s=933:958#L27">SetAuth</a></h2>
 			<pre>func SetAuth(u, p <a href="/pkg/builtin/#string">string</a>)</pre>
 			<p>
 SetAuth is used to set Username and Passwd. Username and Passwd are declared in config.go
@@ -644,7 +638,7 @@ SetAuth is used to set Username and Passwd. Username and Passwd are declared in 
 		
 			
 			
-			<h2 id="SetDepth">func <a href="/src/pkg/target/req.go?s=591:628#L15">SetDepth</a></h2>
+			<h2 id="SetDepth">func <a href="/src/pkg/target/req.go?s=593:630#L15">SetDepth</a></h2>
 			<pre>func SetDepth(newdepth <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 			<p>
 SetDepth is used to set Depth
@@ -656,7 +650,7 @@ SetDepth is used to set Depth
 		
 			
 			
-			<h2 id="SetEndpoint">func <a href="/src/pkg/target/req.go?s=748:791#L21">SetEndpoint</a></h2>
+			<h2 id="SetEndpoint">func <a href="/src/pkg/target/req.go?s=750:793#L21">SetEndpoint</a></h2>
 			<pre>func SetEndpoint(newendpoint <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 			<p>
 SetEnpoint is used to set the REST Endpoint. Endpoint is declared in config.go
@@ -869,13 +863,14 @@ Datacenter.ToJson marshals the Datacenter struct into json
 		
 			
 			
-			<h2 id="FwRule">type <a href="/src/pkg/target/fwrule.go?s=539:834#L7">FwRule</a></h2>
+			<h2 id="FwRule">type <a href="/src/pkg/target/fwrule.go?s=540:881#L7">FwRule</a></h2>
 			<pre>type FwRule struct {
-    Id         <a href="/pkg/builtin/#string">string</a>           `json:&#34;id,omitempty&#34;`
-    Type       <a href="/pkg/builtin/#string">string</a>           `json:&#34;type,omitempty&#34;`
-    Href       <a href="/pkg/builtin/#string">string</a>           `json:&#34;href,omitempty&#34;`
-    MetaData   <a href="#MetaData">MetaData</a>         `json:&#34;metadata,omitempty&#34;`
-    Properties <a href="#FwRuleProperties">FwRuleProperties</a> `json:&#34;properties,omitempty&#34;`
+    Id         <a href="/pkg/builtin/#string">string</a>            `json:&#34;id,omitempty&#34;`
+    Type       <a href="/pkg/builtin/#string">string</a>            `json:&#34;type,omitempty&#34;`
+    Href       <a href="/pkg/builtin/#string">string</a>            `json:&#34;href,omitempty&#34;`
+    MetaData   <a href="#MetaData">MetaData</a>          `json:&#34;metadata,omitempty&#34;`
+    Properties <a href="#FwRule_Properties">FwRule_Properties</a> `json:&#34;properties,omitempty&#34;`
+    Resp       <a href="#PBResp">PBResp</a>            `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -889,9 +884,51 @@ Datacenter.ToJson marshals the Datacenter struct into json
 
 			
 				
-				<h3 id="ToFwRule">func <a href="/src/pkg/target/fwrule.go?s=836:869#L15">ToFwRule</a></h3>
-				<pre>func ToFwRule(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#FwRule">FwRule</a></pre>
+				<h3 id="CreateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1481:1560#L43">CreateFwRule</a></h3>
+				<pre>func CreateFwRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#FwRule">FwRule</a></pre>
 				
+				
+			        
+			
+				
+				<h3 id="DeleteFWRule">func <a href="/src/pkg/target/fwrule.go?s=2473:2534#L69">DeleteFWRule</a></h3>
+				<pre>func DeleteFWRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#FwRule">FwRule</a></pre>
+				<p>
+DeleteFwRule removes firewall rule
+</p>
+
+				
+			        
+			
+				
+				<h3 id="GetFwRule">func <a href="/src/pkg/target/fwrule.go?s=1714:1772#L49">GetFwRule</a></h3>
+				<pre>func GetFwRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#FwRule">FwRule</a></pre>
+				<p>
+GetFwRule Retrieve a firewall rule and returns fwRule struct
+</p>
+
+				
+			        
+			
+				
+				<h3 id="PatchFWRule">func <a href="/src/pkg/target/fwrule.go?s=2243:2338#L63">PatchFWRule</a></h3>
+				<pre>func PatchFWRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, fwruleid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#FwRule">FwRule</a></pre>
+				<p>
+PatchFwRule 	Partially updates a firewall rule with data from []byte jason
+returns FwRule struct
+</p>
+
+				
+			        
+			
+				
+				<h3 id="UpdateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1949:2045#L56">UpdateFwRule</a></h3>
+				<pre>func UpdateFwRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, fwruleid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#FwRule">FwRule</a></pre>
+				<p>
+UpdateFwRule Replaces all the properties of firewall rule,
+returns a FwRule struct
+</p>
+
 				
 			        
 			
@@ -900,8 +937,8 @@ Datacenter.ToJson marshals the Datacenter struct into json
 		
 			
 			
-			<h2 id="FwRuleProperties">type <a href="/src/pkg/target/fwrule.go?s=39:537#L1">FwRuleProperties</a></h2>
-			<pre>type FwRuleProperties struct {
+			<h2 id="FwRule_Properties">type <a href="/src/pkg/target/fwrule.go?s=39:538#L1">FwRule_Properties</a></h2>
+			<pre>type FwRule_Properties struct {
     Name           <a href="/pkg/builtin/#string">string</a> `json:&#34;name,omitempty&#34;`
     Protocol       <a href="/pkg/builtin/#string">string</a> `json:&#34;protocol,omitempty&#34;`
     SourceMac      <a href="/pkg/builtin/#string">string</a> `json:&#34;sourceMac,omitempty&#34;`
@@ -928,12 +965,13 @@ Datacenter.ToJson marshals the Datacenter struct into json
 		
 			
 			
-			<h2 id="FwRules">type <a href="/src/pkg/target/fwrule.go?s=940:1122#L21">FwRules</a></h2>
+			<h2 id="FwRules">type <a href="/src/pkg/target/fwrule.go?s=1006:1215#L23">FwRules</a></h2>
 			<pre>type FwRules struct {
     Id    <a href="/pkg/builtin/#string">string</a>   `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>   `json:&#34;type,omitempty&#34;`
     Href  <a href="/pkg/builtin/#string">string</a>   `json:&#34;href,omitempty&#34;`
     Items []<a href="#FwRule">FwRule</a> `json:&#34;items,omitempty&#34;`
+    Resp  <a href="#PBResp">PBResp</a>   `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -947,8 +985,8 @@ Datacenter.ToJson marshals the Datacenter struct into json
 
 			
 				
-				<h3 id="ToFwRules">func <a href="/src/pkg/target/fwrule.go?s=1124:1159#L28">ToFwRules</a></h3>
-				<pre>func ToFwRules(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#FwRules">FwRules</a></pre>
+				<h3 id="ListFwRules">func <a href="/src/pkg/target/fwrule.go?s=1347:1398#L38">ListFwRules</a></h3>
+				<pre>func ListFwRules(dcid, srvid, nicid <a href="/pkg/builtin/#string">string</a>) <a href="#FwRules">FwRules</a></pre>
 				
 				
 			        
@@ -958,14 +996,14 @@ Datacenter.ToJson marshals the Datacenter struct into json
 		
 			
 			
-			<h2 id="Image">type <a href="/src/pkg/target/image.go?s=1093:1421#L16">Image</a></h2>
+			<h2 id="Image">type <a href="/src/pkg/target/image.go?s=1094:1428#L16">Image</a></h2>
 			<pre>type Image struct {
-    Id         <a href="/pkg/builtin/#string">string</a>          `json:&#34;id,omitempty&#34;`
-    Type       <a href="/pkg/builtin/#string">string</a>          `json:&#34;type,omitempty&#34;`
-    Href       <a href="/pkg/builtin/#string">string</a>          `json:&#34;href,omitempty&#34;`
-    MetaData   <a href="#MetaData">MetaData</a>        `json:&#34;metadata,omitempty&#34;`
-    Properties <a href="#ImageProperties">ImageProperties</a> `json:&#34;properties,omitempty&#34;`
-    Resp       <a href="#PBResp">PBResp</a>          `json:&#34;-&#34;`
+    Id         <a href="/pkg/builtin/#string">string</a>           `json:&#34;id,omitempty&#34;`
+    Type       <a href="/pkg/builtin/#string">string</a>           `json:&#34;type,omitempty&#34;`
+    Href       <a href="/pkg/builtin/#string">string</a>           `json:&#34;href,omitempty&#34;`
+    MetaData   <a href="#MetaData">MetaData</a>         `json:&#34;metadata,omitempty&#34;`
+    Properties <a href="#Image_Properties">Image_Properties</a> `json:&#34;properties,omitempty&#34;`
+    Resp       <a href="#PBResp">PBResp</a>           `json:&#34;-&#34;`
 }</pre>
 			<p>
 Image is thr struct for image data
@@ -989,7 +1027,7 @@ Image is thr struct for image data
 			        
 			
 				
-				<h3 id="CreateImage">func <a href="/src/pkg/target/image.go?s=2086:2122#L54">CreateImage</a></h3>
+				<h3 id="CreateImage">func <a href="/src/pkg/target/image.go?s=2112:2148#L55">CreateImage</a></h3>
 				<pre>func CreateImage(jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Image">Image</a></pre>
 				<p>
 CreateImage creates an Image and returns an Image struct
@@ -999,7 +1037,7 @@ CreateImage creates an Image and returns an Image struct
 			        
 			
 				
-				<h3 id="DeleteImage">func <a href="/src/pkg/target/image.go?s=2854:2892#L80">DeleteImage</a></h3>
+				<h3 id="DeleteImage">func <a href="/src/pkg/target/image.go?s=2880:2918#L81">DeleteImage</a></h3>
 				<pre>func DeleteImage(imageid <a href="/pkg/builtin/#string">string</a>) <a href="#Image">Image</a></pre>
 				<p>
 Deletes an image where id==imageid
@@ -1023,7 +1061,7 @@ Deletes an image where id==imageid
 			        
 			
 				
-				<h3 id="GetImage">func <a href="/src/pkg/target/image.go?s=2247:2282#L60">GetImage</a></h3>
+				<h3 id="GetImage">func <a href="/src/pkg/target/image.go?s=2273:2308#L61">GetImage</a></h3>
 				<pre>func GetImage(imageid <a href="/pkg/builtin/#string">string</a>) <a href="#Image">Image</a></pre>
 				<p>
 GetImage returns an Image struct where id ==imageid
@@ -1033,7 +1071,7 @@ GetImage returns an Image struct where id ==imageid
 			        
 			
 				
-				<h3 id="PatchImage">func <a href="/src/pkg/target/image.go?s=2691:2742#L74">PatchImage</a></h3>
+				<h3 id="PatchImage">func <a href="/src/pkg/target/image.go?s=2717:2768#L75">PatchImage</a></h3>
 				<pre>func PatchImage(imageid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Image">Image</a></pre>
 				<p>
 PatchImage replaces any image properties from values in jason
@@ -1044,7 +1082,7 @@ returns an Image struct where id ==imageid
 			        
 			
 				
-				<h3 id="UpdateImage">func <a href="/src/pkg/target/image.go?s=2457:2509#L67">UpdateImage</a></h3>
+				<h3 id="UpdateImage">func <a href="/src/pkg/target/image.go?s=2483:2535#L68">UpdateImage</a></h3>
 				<pre>func UpdateImage(imageid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Image">Image</a></pre>
 				<p>
 UpdateImage updates all image properties from values in jason
@@ -1059,8 +1097,8 @@ returns an Image struct where id ==imageid
 		
 			
 			
-			<h2 id="ImageProperties">type <a href="/src/pkg/target/image.go?s=39:1053#L1">ImageProperties</a></h2>
-			<pre>type ImageProperties struct {
+			<h2 id="Image_Properties">type <a href="/src/pkg/target/image.go?s=39:1054#L1">Image_Properties</a></h2>
+			<pre>type Image_Properties struct {
     Name                <a href="/pkg/builtin/#string">string</a> `json:&#34;name,omitempty&#34;`
     Description         <a href="/pkg/builtin/#string">string</a> `json:&#34;description,omitempty&#34;`
     Location            <a href="/pkg/builtin/#string">string</a> `json:&#34;location&#34;`
@@ -1095,7 +1133,7 @@ returns an Image struct where id ==imageid
 		
 			
 			
-			<h2 id="Images">type <a href="/src/pkg/target/image.go?s=1568:1771#L32">Images</a></h2>
+			<h2 id="Images">type <a href="/src/pkg/target/image.go?s=1594:1797#L33">Images</a></h2>
 			<pre>type Images struct {
     Id    <a href="/pkg/builtin/#string">string</a>  `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>  `json:&#34;type,omitempty&#34;`
@@ -1125,7 +1163,7 @@ Images is a struct for Image collections
 			        
 			
 				
-				<h3 id="ListImages">func <a href="/src/pkg/target/image.go?s=1939:1963#L48">ListImages</a></h3>
+				<h3 id="ListImages">func <a href="/src/pkg/target/image.go?s=1965:1989#L49">ListImages</a></h3>
 				<pre>func ListImages() <a href="#Images">Images</a></pre>
 				<p>
 ListImages returns an Images struct
@@ -1852,39 +1890,6 @@ PBResp is the struct returned by all Rest request functions
 
 			
 				
-				<h3 id="CreateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1356:1435#L39">CreateFwRule</a></h3>
-				<pre>func CreateFwRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="DeleteFWRule">func <a href="/src/pkg/target/fwrule.go?s=2155:2216#L66">DeleteFWRule</a></h3>
-				<pre>func DeleteFWRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="GetFwRule">func <a href="/src/pkg/target/fwrule.go?s=1656:1714#L51">GetFwRule</a></h3>
-				<pre>func GetFwRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				<p>
-*
-Firewall rule
-</p>
-<pre>Retrieve a firewall rule
-Replace properties of firewall rule
-Partially update a firewall rule
-Remove firewall rule
-</pre>
-<p>
-*
-</p>
-
-				
-			        
-			
-				
 				<h3 id="GetRequest">func <a href="/src/pkg/target/request_status.go?s=96:136#L1">GetRequest</a></h3>
 				<pre>func GetRequest(requestid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
@@ -1892,22 +1897,8 @@ Remove firewall rule
 			        
 			
 				
-				<h3 id="ListFwRules">func <a href="/src/pkg/target/fwrule.go?s=1234:1284#L34">ListFwRules</a></h3>
-				<pre>func ListFwRules(dcid, srvid, nicid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
 				<h3 id="ListRequests">func <a href="/src/pkg/target/request_status.go?s=15:41#L1">ListRequests</a></h3>
 				<pre>func ListRequests() <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="PatchFWRule">func <a href="/src/pkg/target/fwrule.go?s=1973:2068#L61">PatchFWRule</a></h3>
-				<pre>func PatchFWRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, fwruleid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
@@ -1936,13 +1927,6 @@ Remove firewall rule
 				
 				<h3 id="StopServer">func <a href="/src/pkg/target/server_command.go?s=246:288#L5">StopServer</a></h3>
 				<pre>func StopServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="UpdateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1792:1888#L56">UpdateFwRule</a></h3>
-				<pre>func UpdateFwRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, fwruleid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
@@ -2129,7 +2113,7 @@ ListServers returns a server struct collection
 		
 			
 			
-			<h2 id="Snapshot">type <a href="/src/pkg/target/snapshot.go?s=968:1323#L13">Snapshot</a></h2>
+			<h2 id="Snapshot">type <a href="/src/pkg/target/snapshot.go?s=1034:1389#L15">Snapshot</a></h2>
 			<pre>type Snapshot struct {
     Id         <a href="/pkg/builtin/#string">string</a>              `json:&#34;id,omitempty&#34;`
     Type       <a href="/pkg/builtin/#string">string</a>              `json:&#34;type,omitempty&#34;`
@@ -2138,7 +2122,10 @@ ListServers returns a server struct collection
     Properties <a href="#Snapshot_Properties">Snapshot_Properties</a> `json:&#34;properties,omitempty&#34;`
     Resp       <a href="#PBResp">PBResp</a>              `json:&#34;-&#34;`
 }</pre>
-			
+			<p>
+Snapshot struct for Snapshot data
+</p>
+
 
 			
 
@@ -2150,30 +2137,45 @@ ListServers returns a server struct collection
 
 			
 				
-				<h3 id="DeleteSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2299:2342#L64">DeleteSnapshot</a></h3>
+				<h3 id="DeleteSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2861:2904#L76">DeleteSnapshot</a></h3>
 				<pre>func DeleteSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#Snapshot">Snapshot</a></pre>
-				
+				<p>
+Deletes a Snapshot with id == snapid
+</p>
+
 				
 			        
 			
 				
-				<h3 id="GetSnapshot">func <a href="/src/pkg/target/snapshot.go?s=1920:1960#L49">GetSnapshot</a></h3>
+				<h3 id="GetSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2205:2245#L56">GetSnapshot</a></h3>
 				<pre>func GetSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#Snapshot">Snapshot</a></pre>
-				
+				<p>
+GetSnapshot retrieves Snapshot data where id==snapid
+returns a` snapshot struct
+</p>
+
 				
 			        
 			
 				
-				<h3 id="PatchSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2164:2220#L59">PatchSnapshot</a></h3>
+				<h3 id="PatchSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2686:2742#L70">PatchSnapshot</a></h3>
 				<pre>func PatchSnapshot(snapid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Snapshot">Snapshot</a></pre>
-				
+				<p>
+PatchSnapshot replaces any snapshot properties from values in jason
+returns an Snapshot struct where id ==snapid
+</p>
+
 				
 			        
 			
 				
-				<h3 id="UpdateSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2030:2087#L54">UpdateSnapshot</a></h3>
+				<h3 id="UpdateSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2434:2491#L63">UpdateSnapshot</a></h3>
 				<pre>func UpdateSnapshot(snapid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Snapshot">Snapshot</a></pre>
-				
+				<p>
+UpdateSnapshot replaces all snapshot properties from values in jason
+returns an Snapshot struct where id ==snapid
+</p>
+
 				
 			        
 			
@@ -2182,7 +2184,7 @@ ListServers returns a server struct collection
 		
 			
 			
-			<h2 id="Snapshot_Properties">type <a href="/src/pkg/target/snapshot.go?s=39:966#L1">Snapshot_Properties</a></h2>
+			<h2 id="Snapshot_Properties">type <a href="/src/pkg/target/snapshot.go?s=68:995#L1">Snapshot_Properties</a></h2>
 			<pre>type Snapshot_Properties struct {
     Name                <a href="/pkg/builtin/#string">string</a> `json:&#34;name,omitempty&#34;`
     Description         <a href="/pkg/builtin/#string">string</a> `json:&#34;description,omitempty&#34;`
@@ -2200,7 +2202,10 @@ ListServers returns a server struct collection
     DiscScsiHotUnplug   <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;discScsiHotUnplug,omitempty&#34;`
     LicenceType         <a href="/pkg/builtin/#string">string</a> `json:&#34;licenceType,omitempty&#34;`
 }</pre>
-			
+			<p>
+Snapshot_Properties struct
+</p>
+
 
 			
 
@@ -2216,7 +2221,7 @@ ListServers returns a server struct collection
 		
 			
 			
-			<h2 id="Snapshots">type <a href="/src/pkg/target/snapshot.go?s=1458:1679#L29">Snapshots</a></h2>
+			<h2 id="Snapshots">type <a href="/src/pkg/target/snapshot.go?s=1570:1791#L32">Snapshots</a></h2>
 			<pre>type Snapshots struct {
     Id    <a href="/pkg/builtin/#string">string</a>     `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>     `json:&#34;type,omitempty&#34;`
@@ -2224,7 +2229,10 @@ ListServers returns a server struct collection
     Items []<a href="#Snapshot">Snapshot</a> `json:&#34;items,omitempty&#34;`
     Resp  <a href="#PBResp">PBResp</a>     `json:&#34;-&#34;`
 }</pre>
-			
+			<p>
+Snapshots struct for a Snapshot collection
+</p>
+
 
 			
 
@@ -2236,9 +2244,13 @@ ListServers returns a server struct collection
 
 			
 				
-				<h3 id="ListSnapshots">func <a href="/src/pkg/target/snapshot.go?s=1821:1851#L44">ListSnapshots</a></h3>
+				<h3 id="ListSnapshots">func <a href="/src/pkg/target/snapshot.go?s=2020:2050#L49">ListSnapshots</a></h3>
 				<pre>func ListSnapshots() <a href="#Snapshots">Snapshots</a></pre>
-				
+				<p>
+ListSnapshots retrieves a collection of snapshot data
+returns a Snapshots struct
+</p>
+
 				
 			        
 			

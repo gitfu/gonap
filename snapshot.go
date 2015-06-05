@@ -2,6 +2,7 @@ package gonap
 
 import "encoding/json"
 
+//Snapshot_Properties struct
 type Snapshot_Properties struct {
 	Name                string `json:"name,omitempty"`
 	Description         string `json:"description,omitempty"`
@@ -20,6 +21,7 @@ type Snapshot_Properties struct {
 	LicenceType         string `json:"licenceType,omitempty"`
 }
 
+// Snapshot struct for Snapshot data
 type Snapshot struct {
 	Id         string              `json:"id,omitempty"`
 	Type       string              `json:"type,omitempty"`
@@ -36,6 +38,7 @@ func toSnapshot(pbresp PBResp) Snapshot {
 	return snap
 }
 
+// Snapshots struct for a Snapshot collection
 type Snapshots struct {
 	Id    string     `json:"id,omitempty"`
 	Type  string     `json:"type,omitempty"`
@@ -51,26 +54,35 @@ func toSnapshots(pbresp PBResp) Snapshots {
 	return snaps
 }
 
+// ListSnapshots retrieves a collection of snapshot data
+// returns a Snapshots struct
 func ListSnapshots() Snapshots {
 	path := snapshot_col_path()
 	return toSnapshots(is_get(path))
 }
 
+// GetSnapshot retrieves Snapshot data where id==snapid
+// returns a` snapshot struct
 func GetSnapshot(snapid string) Snapshot {
 	path := snapshot_path(snapid)
 	return toSnapshot(is_get(path))
 }
 
+// UpdateSnapshot replaces all snapshot properties from values in jason
+//returns an Snapshot struct where id ==snapid
 func UpdateSnapshot(snapid string, jason []byte) Snapshot {
 	path := snapshot_path(snapid)
 	return toSnapshot(is_put(path, jason))
 }
 
+// PatchSnapshot replaces any snapshot properties from values in jason
+//returns an Snapshot struct where id ==snapid
 func PatchSnapshot(snapid string, jason []byte) Snapshot {
 	path := snapshot_path(snapid)
 	return toSnapshot(is_patch(path, jason))
 }
 
+// Deletes a Snapshot with id == snapid
 func DeleteSnapshot(snapid string) Snapshot {
 	path := snapshot_path(snapid)
 	return toSnapshot(is_delete(path))
