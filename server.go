@@ -91,3 +91,38 @@ func DeleteServer(dcid, srvid string) Server {
 	path := server_path(dcid, srvid)
 	return toServer(is_delete(path))
 }
+
+func toCdRom(pbresp PBResp) Image {
+	var cdrom Image
+	json.Unmarshal(pbresp.Body, &cdrom)
+	cdrom.Resp = pbresp
+	return cdrom
+}
+
+func toCdRoms(pbresp PBResp) Images {
+	var cdroms Images
+	json.Unmarshal(pbresp.Body, &cdroms)
+	cdroms.Resp = pbresp
+	return cdroms
+}
+
+func ListAttachedCdroms(dcid, srvid string) Images {
+	path := server_cdrom_col_path(dcid, srvid)
+	return toCdRoms(is_get(path))
+}
+
+func AttachCdrom(dcid string, srvid string, cdid string) Image {
+	jason := []byte(`{"id":"` + cdid + `"}`)
+	path := server_cdrom_col_path(dcid, srvid)
+	return toCdRom(is_post(path, jason))
+}
+
+func GetAttachedCdrom(dcid, srvid, cdid string) Image {
+	path := server_cdrom_path(dcid, srvid, cdid)
+	return toCdRom(is_get(path))
+}
+
+func DetachCdrom(dcid, srvid, cdid string) Image {
+	path := server_cdrom_path(dcid, srvid, cdid)
+	return toCdRom(is_delete(path))
+}

@@ -2,24 +2,24 @@ package gonap
 
 import "encoding/json"
 
-type LbalProps struct {
+type Loadbalancer_Properties struct {
 	Name string `json:"name,omitempty"`
 	Ip   string `json:"ip,omitempty"`
 	Dhcp bool   `json:"dhcp,omitempty"`
 }
 
-type LbalEnts struct {
+type Loadbalancer_Entities struct {
 	BalancedNics Nics `json:"balancednics,omitempty"`
 }
 
 type Loadbalancer struct {
-	Id         string    `json:"id,omitempty"`
-	Type       string    `json:"type,omitempty"`
-	Href       string    `json:"href,omitempty"`
-	MetaData   MetaData  `json:"metadata,omitempty"`
-	Properties LbalProps `json:"properties,omitempty"`
-	Entities   LbalEnts  `json:"entities,omitempty"`
-	Resp       PBResp    `json:"-"`
+	Id         string                  `json:"id,omitempty"`
+	Type       string                  `json:"type,omitempty"`
+	Href       string                  `json:"href,omitempty"`
+	MetaData   MetaData                `json:"metadata,omitempty"`
+	Properties Loadbalancer_Properties `json:"properties,omitempty"`
+	Entities   Loadbalancer_Entities   `json:"entities,omitempty"`
+	Resp       PBResp                  `json:"-"`
 }
 
 func toLoadbalancer(pbresp PBResp) Loadbalancer {
