@@ -1,28 +1,31 @@
-## PACKAGE DOCUMENTATION
+## Go Docs
 
 #### package gonap 
 
-```
+```go
 import "github.com/gitfu/gonap"
 ```
 
 #### Variables
-```
+```go
 var Depth = "5"
 ```
 * Depth sets the level of detail returned from the REST server .
-
+```go
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
-    Endpoint is the base url for REST requests .
-
+```
+* Endpoint is the base url for REST requests .
+```go
 var Passwd = "my_password"
-    Password for authentication .
+```
+
+*    Password for authentication .
 
 var Username = "my_username"
     Username for authentication .
 
-FUNCTIONS
-
+#### FUNCTIONS
+```go
 func SetAuth(u, p string)
     SetAuth is used to set Username and Passwd. Username and Passwd are
     declared in config.go
@@ -33,9 +36,12 @@ func SetDepth(newdepth string) string
 func SetEndpoint(newendpoint string) string
     SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
     config.go
+```
 
-TYPES
+#### TYPES
 
+##### Datacenters
+```go
 type Datacenter struct {
     Id         string                `json:"id"`
     Type       string                `json:"type"`
@@ -100,7 +106,10 @@ func ListDatacenters() Datacenters
 
 func (dcs *Datacenters) ToJson() string
     Datacenter.ToJson marshals the Datacenter struct into json
+```
 
+##### Firewall Rules
+```go
 type FwRule struct {
     Id_Type_Href
     MetaData   MetaData          `json:"metadata,omitempty"`
@@ -149,7 +158,10 @@ type Id_Type_Href struct {
     Type string `json:"type"`
     Href string `json:"href"`
 }
+```
 
+#### Images and Cdroms
+```go
 type Image struct {
     Id_Type_Href
     MetaData   MetaData         `json:"metadata,omitempty"`
@@ -212,7 +224,9 @@ func ListAttachedCdroms(dcid, srvid string) Images
 
 func ListImages() Images
     ListImages returns an Images struct
-
+```
+##### Ipblocks
+```go
 type Ipblock struct {
     Id_Type_Href
     MetaData   MetaData           `json:"metadata,omitempty"`
@@ -622,8 +636,4 @@ func ListAttachedVolumes(dcid, srvid string) Volumes
 func ListVolumes(dcid string) Volumes
     ListVolumes returns a Volumes struct for volumes in the Datacenter
 
-SUBDIRECTORIES
-
-	p
-	tests
-
+```
