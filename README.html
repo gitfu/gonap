@@ -281,7 +281,7 @@
 				<dd><a href="#Location">type Location</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToLocation">func ToLocation(body []byte) Location</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#GetLocation">func GetLocation(locid string) Location</a></dd>
 				
 				
 			
@@ -294,7 +294,7 @@
 				<dd><a href="#Locations">type Locations</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToLocations">func ToLocations(body []byte) Locations</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#ListLocations">func ListLocations() Locations</a></dd>
 				
 				
 			
@@ -370,9 +370,6 @@
 					<dd>&nbsp; &nbsp; <a href="#GetIpBlock">func GetIpBlock(ipblockid string) PBResp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#GetLocation">func GetLocation(locid string) PBResp</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#GetRequest">func GetRequest(requestid string) PBResp</a></dd>
 				
 					
@@ -383,9 +380,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#ListIpBlocks">func ListIpBlocks() PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#ListLocations">func ListLocations() PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#ListRequests">func ListRequests() PBResp</a></dd>
@@ -1533,13 +1527,14 @@ for loadbalancers in the Datacenter
 		
 			
 			
-			<h2 id="Location">type <a href="/src/pkg/target/location.go?s=267:564#L4">Location</a></h2>
+			<h2 id="Location">type <a href="/src/pkg/target/location.go?s=267:606#L4">Location</a></h2>
 			<pre>type Location struct {
     Id         <a href="/pkg/builtin/#string">string</a>             `json:&#34;id,omitempty&#34;`
     Type       <a href="/pkg/builtin/#string">string</a>             `json:&#34;type,omitempty&#34;`
     Href       <a href="/pkg/builtin/#string">string</a>             `json:&#34;href,omitempty&#34;`
     MetaData   <a href="#MetaData">MetaData</a>           `json:&#34;metadata,omitempty&#34;`
     Properties <a href="#LocationProperties">LocationProperties</a> `json:&#34;properties&#34;`
+    Resp       <a href="#PBResp">PBResp</a>             `json:&#34;-&#34;`
 }</pre>
 			<p>
 Location is the struct for a Location
@@ -1556,10 +1551,10 @@ Location is the struct for a Location
 
 			
 				
-				<h3 id="ToLocation">func <a href="/src/pkg/target/location.go?s=619:656#L13">ToLocation</a></h3>
-				<pre>func ToLocation(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Location">Location</a></pre>
+				<h3 id="GetLocation">func <a href="/src/pkg/target/location.go?s=1379:1418#L42">GetLocation</a></h3>
+				<pre>func GetLocation(locid <a href="/pkg/builtin/#string">string</a>) <a href="#Location">Location</a></pre>
 				<p>
-ToLocation Unmarshals json into a Location struct
+GetLocation returns a PBResp with data for a location in the Body
 </p>
 
 				
@@ -1593,12 +1588,13 @@ LocationProperties is aa struct for Locaation Properties
 		
 			
 			
-			<h2 id="Locations">type <a href="/src/pkg/target/location.go?s=788:980#L20">Locations</a></h2>
+			<h2 id="Locations">type <a href="/src/pkg/target/location.go?s=790:1011#L21">Locations</a></h2>
 			<pre>type Locations struct {
     Id    <a href="/pkg/builtin/#string">string</a>     `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>     `json:&#34;type,omitempty&#34;`
     Href  <a href="/pkg/builtin/#string">string</a>     `json:&#34;href,omitempty&#34;`
     Items []<a href="#Location">Location</a> `json:&#34;items,omitempty&#34;`
+    Resp  <a href="#PBResp">PBResp</a>     `json:&#34;-&#34;`
 }</pre>
 			<p>
 Locations is the struct for a Location Collection
@@ -1615,10 +1611,10 @@ Locations is the struct for a Location Collection
 
 			
 				
-				<h3 id="ToLocations">func <a href="/src/pkg/target/location.go?s=1037:1076#L28">ToLocations</a></h3>
-				<pre>func ToLocations(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Locations">Locations</a></pre>
+				<h3 id="ListLocations">func <a href="/src/pkg/target/location.go?s=1225:1255#L37">ListLocations</a></h3>
+				<pre>func ListLocations() <a href="#Locations">Locations</a></pre>
 				<p>
-ToLocations Unmarshals json into a Locations struct
+ListLocations returns a PBResp with location collection data in the Body
 </p>
 
 				
@@ -1901,16 +1897,6 @@ Remove firewall rule
 			        
 			
 				
-				<h3 id="GetLocation">func <a href="/src/pkg/target/location.go?s=1368:1405#L40">GetLocation</a></h3>
-				<pre>func GetLocation(locid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				<p>
-GetLocation returns a PBResp with data for a location in the Body
-</p>
-
-				
-			        
-			
-				
 				<h3 id="GetRequest">func <a href="/src/pkg/target/request_status.go?s=96:136#L1">GetRequest</a></h3>
 				<pre>func GetRequest(requestid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
@@ -1935,16 +1921,6 @@ GetLocation returns a PBResp with data for a location in the Body
 				<h3 id="ListIpBlocks">func <a href="/src/pkg/target/ipblock.go?s=917:943#L29">ListIpBlocks</a></h3>
 				<pre>func ListIpBlocks() <a href="#PBResp">PBResp</a></pre>
 				
-				
-			        
-			
-				
-				<h3 id="ListLocations">func <a href="/src/pkg/target/location.go?s=1235:1262#L35">ListLocations</a></h3>
-				<pre>func ListLocations() <a href="#PBResp">PBResp</a></pre>
-				<p>
-ListLocations returns a PBResp with location collection data in the Body
-</p>
-
 				
 			        
 			
