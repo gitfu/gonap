@@ -22,7 +22,7 @@ type Lan struct {
 
 func (lan *Lan) Listlanmembers() Nics {
 	pbresp := is_get(lan.Entities.Nics.Href)
-	return ToNics(pbresp.Body)
+	return toNics(pbresp.Body)
 }
 
 type Lans struct {

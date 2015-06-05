@@ -80,27 +80,3 @@ func DeleteNic(dcid, srvid, nicid string) Nic {
 	path := nic_path(dcid, srvid, nicid)
 	return toNic(is_delete(path))
 }
-
-// GetNic returns a PBResp with nic data in PBResp.Body
-func GetNic(dcid, srvid, nicid string) PBResp {
-	path := nic_path(dcid, srvid, nicid)
-	return is_get(path)
-
-}
-
-func UpdateNic(dcid string, srvid string, nicid string, jason []byte) PBResp {
-	path := nic_path(dcid, srvid, nicid)
-	return is_put(path, jason)
-
-}
-
-func PatchNic(dcid string, srvid string, nicid string, jason []byte) PBResp {
-	path := nic_path(dcid, srvid, nicid)
-	return is_patch(path, jason)
-
-}
-
-func DeleteNic(dcid, srvid, nicid string) PBResp {
-	path := nic_path(dcid, srvid, nicid)
-	return is_delete(path)
-}
