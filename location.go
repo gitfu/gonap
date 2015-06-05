@@ -2,22 +2,19 @@ package gonap
 
 import "encoding/json"
 
-// locations_path for urls
-const locations_path = "/locations"
-
-// LocationProperties is aa struct for Locaation Properties
-type LocationProperties struct {
+// Location_Properties is aa struct for Locaation Properties
+type Location_Properties struct {
 	Name string `json:"name"`
 }
 
 // Location is the struct for a Location
 type Location struct {
-	Id         string             `json:"id,omitempty"`
-	Type       string             `json:"type,omitempty"`
-	Href       string             `json:"href,omitempty"`
-	MetaData   MetaData           `json:"metadata,omitempty"`
-	Properties LocationProperties `json:"properties"`
-	Resp       PBResp             `json:"-"`
+	Id         string              `json:"id,omitempty"`
+	Type       string              `json:"type,omitempty"`
+	Href       string              `json:"href,omitempty"`
+	MetaData   MetaData            `json:"metadata,omitempty"`
+	Properties Location_Properties `json:"properties"`
+	Resp       PBResp              `json:"-"`
 }
 
 func toLocation(pbresp PBResp) Location {

@@ -286,7 +286,7 @@
 				
 			
 				
-				<dd><a href="#LocationProperties">type LocationProperties</a></dd>
+				<dd><a href="#Location_Properties">type Location_Properties</a></dd>
 				
 				
 			
@@ -361,9 +361,6 @@
 					<dd>&nbsp; &nbsp; <a href="#DeleteFWRule">func DeleteFWRule(dcid, srvid, nicid, fwruleid string) PBResp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteSnapshot">func DeleteSnapshot(snapid string) PBResp</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#GetFwRule">func GetFwRule(dcid, srvid, nicid, fwruleid string) PBResp</a></dd>
 				
 					
@@ -371,9 +368,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#GetRequest">func GetRequest(requestid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#GetSnapshot">func GetSnapshot(snapid string) PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#ListFwRules">func ListFwRules(dcid, srvid, nicid string) PBResp</a></dd>
@@ -385,13 +379,7 @@
 					<dd>&nbsp; &nbsp; <a href="#ListRequests">func ListRequests() PBResp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ListSnapshots">func ListSnapshots() PBResp</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#PatchFWRule">func PatchFWRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#PatchSnapshot">func PatchSnapshot(snapid string, jason []byte) PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#RebootServer">func RebootServer(dcid, srvid string) PBResp</a></dd>
@@ -413,9 +401,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#UpdateFwRule">func UpdateFwRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#UpdateSnapshot">func UpdateSnapshot(snapid string, jason []byte) PBResp</a></dd>
 				
 				
 					
@@ -461,15 +446,24 @@
 				
 			
 				
-				<dd><a href="#SnapProps">type SnapProps</a></dd>
+				<dd><a href="#Snapshot">type Snapshot</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#DeleteSnapshot">func DeleteSnapshot(snapid string) Snapshot</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GetSnapshot">func GetSnapshot(snapid string) Snapshot</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PatchSnapshot">func PatchSnapshot(snapid string, jason []byte) Snapshot</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UpdateSnapshot">func UpdateSnapshot(snapid string, jason []byte) Snapshot</a></dd>
 				
 				
 			
 				
-				<dd><a href="#Snapshot">type Snapshot</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#ToSnapshot">func ToSnapshot(body []byte) Snapshot</a></dd>
+				<dd><a href="#Snapshot_Properties">type Snapshot_Properties</a></dd>
 				
 				
 			
@@ -477,7 +471,7 @@
 				<dd><a href="#Snapshots">type Snapshots</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToSnapshots">func ToSnapshots(body []byte) Snapshots</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#ListSnapshots">func ListSnapshots() Snapshots</a></dd>
 				
 				
 			
@@ -1527,14 +1521,14 @@ for loadbalancers in the Datacenter
 		
 			
 			
-			<h2 id="Location">type <a href="/src/pkg/target/location.go?s=267:606#L4">Location</a></h2>
+			<h2 id="Location">type <a href="/src/pkg/target/location.go?s=205:550#L1">Location</a></h2>
 			<pre>type Location struct {
-    Id         <a href="/pkg/builtin/#string">string</a>             `json:&#34;id,omitempty&#34;`
-    Type       <a href="/pkg/builtin/#string">string</a>             `json:&#34;type,omitempty&#34;`
-    Href       <a href="/pkg/builtin/#string">string</a>             `json:&#34;href,omitempty&#34;`
-    MetaData   <a href="#MetaData">MetaData</a>           `json:&#34;metadata,omitempty&#34;`
-    Properties <a href="#LocationProperties">LocationProperties</a> `json:&#34;properties&#34;`
-    Resp       <a href="#PBResp">PBResp</a>             `json:&#34;-&#34;`
+    Id         <a href="/pkg/builtin/#string">string</a>              `json:&#34;id,omitempty&#34;`
+    Type       <a href="/pkg/builtin/#string">string</a>              `json:&#34;type,omitempty&#34;`
+    Href       <a href="/pkg/builtin/#string">string</a>              `json:&#34;href,omitempty&#34;`
+    MetaData   <a href="#MetaData">MetaData</a>            `json:&#34;metadata,omitempty&#34;`
+    Properties <a href="#Location_Properties">Location_Properties</a> `json:&#34;properties&#34;`
+    Resp       <a href="#PBResp">PBResp</a>              `json:&#34;-&#34;`
 }</pre>
 			<p>
 Location is the struct for a Location
@@ -1551,7 +1545,7 @@ Location is the struct for a Location
 
 			
 				
-				<h3 id="GetLocation">func <a href="/src/pkg/target/location.go?s=1379:1418#L42">GetLocation</a></h3>
+				<h3 id="GetLocation">func <a href="/src/pkg/target/location.go?s=1323:1362#L39">GetLocation</a></h3>
 				<pre>func GetLocation(locid <a href="/pkg/builtin/#string">string</a>) <a href="#Location">Location</a></pre>
 				<p>
 GetLocation returns a PBResp with data for a location in the Body
@@ -1565,12 +1559,12 @@ GetLocation returns a PBResp with data for a location in the Body
 		
 			
 			
-			<h2 id="LocationProperties">type <a href="/src/pkg/target/location.go?s=163:224#L1">LocationProperties</a></h2>
-			<pre>type LocationProperties struct {
+			<h2 id="Location_Properties">type <a href="/src/pkg/target/location.go?s=100:162#L1">Location_Properties</a></h2>
+			<pre>type Location_Properties struct {
     Name <a href="/pkg/builtin/#string">string</a> `json:&#34;name&#34;`
 }</pre>
 			<p>
-LocationProperties is aa struct for Locaation Properties
+Location_Properties is aa struct for Locaation Properties
 </p>
 
 
@@ -1588,7 +1582,7 @@ LocationProperties is aa struct for Locaation Properties
 		
 			
 			
-			<h2 id="Locations">type <a href="/src/pkg/target/location.go?s=790:1011#L21">Locations</a></h2>
+			<h2 id="Locations">type <a href="/src/pkg/target/location.go?s=734:955#L18">Locations</a></h2>
 			<pre>type Locations struct {
     Id    <a href="/pkg/builtin/#string">string</a>     `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>     `json:&#34;type,omitempty&#34;`
@@ -1611,7 +1605,7 @@ Locations is the struct for a Location Collection
 
 			
 				
-				<h3 id="ListLocations">func <a href="/src/pkg/target/location.go?s=1225:1255#L37">ListLocations</a></h3>
+				<h3 id="ListLocations">func <a href="/src/pkg/target/location.go?s=1169:1199#L34">ListLocations</a></h3>
 				<pre>func ListLocations() <a href="#Locations">Locations</a></pre>
 				<p>
 ListLocations returns a PBResp with location collection data in the Body
@@ -1864,13 +1858,6 @@ PBResp is the struct returned by all Rest request functions
 			        
 			
 				
-				<h3 id="DeleteSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2074:2115#L60">DeleteSnapshot</a></h3>
-				<pre>func DeleteSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
 				<h3 id="GetFwRule">func <a href="/src/pkg/target/fwrule.go?s=1656:1714#L51">GetFwRule</a></h3>
 				<pre>func GetFwRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				<p>
@@ -1904,13 +1891,6 @@ Remove firewall rule
 			        
 			
 				
-				<h3 id="GetSnapshot">func <a href="/src/pkg/target/snapshot.go?s=1737:1775#L45">GetSnapshot</a></h3>
-				<pre>func GetSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
 				<h3 id="ListFwRules">func <a href="/src/pkg/target/fwrule.go?s=1234:1284#L34">ListFwRules</a></h3>
 				<pre>func ListFwRules(dcid, srvid, nicid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
@@ -1932,22 +1912,8 @@ Remove firewall rule
 			        
 			
 				
-				<h3 id="ListSnapshots">func <a href="/src/pkg/target/snapshot.go?s=1654:1681#L40">ListSnapshots</a></h3>
-				<pre>func ListSnapshots() <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
 				<h3 id="PatchFWRule">func <a href="/src/pkg/target/fwrule.go?s=1973:2068#L61">PatchFWRule</a></h3>
 				<pre>func PatchFWRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, fwruleid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="PatchSnapshot">func <a href="/src/pkg/target/snapshot.go?s=1953:2007#L55">PatchSnapshot</a></h3>
-				<pre>func PatchSnapshot(snapid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
@@ -1997,13 +1963,6 @@ Remove firewall rule
 				
 				<h3 id="UpdateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1792:1888#L56">UpdateFwRule</a></h3>
 				<pre>func UpdateFwRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, fwruleid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="UpdateSnapshot">func <a href="/src/pkg/target/snapshot.go?s=1833:1888#L50">UpdateSnapshot</a></h3>
-				<pre>func UpdateSnapshot(snapid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
@@ -2190,8 +2149,61 @@ ListServers returns a server struct collection
 		
 			
 			
-			<h2 id="SnapProps">type <a href="/src/pkg/target/snapshot.go?s=39:956#L1">SnapProps</a></h2>
-			<pre>type SnapProps struct {
+			<h2 id="Snapshot">type <a href="/src/pkg/target/snapshot.go?s=968:1323#L13">Snapshot</a></h2>
+			<pre>type Snapshot struct {
+    Id         <a href="/pkg/builtin/#string">string</a>              `json:&#34;id,omitempty&#34;`
+    Type       <a href="/pkg/builtin/#string">string</a>              `json:&#34;type,omitempty&#34;`
+    Href       <a href="/pkg/builtin/#string">string</a>              `json:&#34;href,omitempty&#34;`
+    MetaData   <a href="#MetaData">MetaData</a>            `json:&#34;metadata,omitempty&#34;`
+    Properties <a href="#Snapshot_Properties">Snapshot_Properties</a> `json:&#34;properties,omitempty&#34;`
+    Resp       <a href="#PBResp">PBResp</a>              `json:&#34;-&#34;`
+}</pre>
+			
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="DeleteSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2299:2342#L64">DeleteSnapshot</a></h3>
+				<pre>func DeleteSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#Snapshot">Snapshot</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="GetSnapshot">func <a href="/src/pkg/target/snapshot.go?s=1920:1960#L49">GetSnapshot</a></h3>
+				<pre>func GetSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#Snapshot">Snapshot</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="PatchSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2164:2220#L59">PatchSnapshot</a></h3>
+				<pre>func PatchSnapshot(snapid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Snapshot">Snapshot</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="UpdateSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2030:2087#L54">UpdateSnapshot</a></h3>
+				<pre>func UpdateSnapshot(snapid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Snapshot">Snapshot</a></pre>
+				
+				
+			        
+			
+
+			
+		
+			
+			
+			<h2 id="Snapshot_Properties">type <a href="/src/pkg/target/snapshot.go?s=39:966#L1">Snapshot_Properties</a></h2>
+			<pre>type Snapshot_Properties struct {
     Name                <a href="/pkg/builtin/#string">string</a> `json:&#34;name,omitempty&#34;`
     Description         <a href="/pkg/builtin/#string">string</a> `json:&#34;description,omitempty&#34;`
     Location            <a href="/pkg/builtin/#string">string</a> `json:&#34;location,omitempty&#34;`
@@ -2224,43 +2236,13 @@ ListServers returns a server struct collection
 		
 			
 			
-			<h2 id="Snapshot">type <a href="/src/pkg/target/snapshot.go?s=958:1220#L13">Snapshot</a></h2>
-			<pre>type Snapshot struct {
-    Id         <a href="/pkg/builtin/#string">string</a>    `json:&#34;id,omitempty&#34;`
-    Type       <a href="/pkg/builtin/#string">string</a>    `json:&#34;type,omitempty&#34;`
-    Href       <a href="/pkg/builtin/#string">string</a>    `json:&#34;href,omitempty&#34;`
-    MetaData   <a href="#MetaData">MetaData</a>  `json:&#34;metadata,omitempty&#34;`
-    Properties <a href="#SnapProps">SnapProps</a> `json:&#34;properties,omitempty&#34;`
-}</pre>
-			
-
-			
-
-			
-
-			
-			
-			
-
-			
-				
-				<h3 id="ToSnapshot">func <a href="/src/pkg/target/snapshot.go?s=1222:1259#L21">ToSnapshot</a></h3>
-				<pre>func ToSnapshot(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Snapshot">Snapshot</a></pre>
-				
-				
-			        
-			
-
-			
-		
-			
-			
-			<h2 id="Snapshots">type <a href="/src/pkg/target/snapshot.go?s=1338:1530#L27">Snapshots</a></h2>
+			<h2 id="Snapshots">type <a href="/src/pkg/target/snapshot.go?s=1458:1679#L29">Snapshots</a></h2>
 			<pre>type Snapshots struct {
     Id    <a href="/pkg/builtin/#string">string</a>     `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>     `json:&#34;type,omitempty&#34;`
     Href  <a href="/pkg/builtin/#string">string</a>     `json:&#34;href,omitempty&#34;`
     Items []<a href="#Snapshot">Snapshot</a> `json:&#34;items,omitempty&#34;`
+    Resp  <a href="#PBResp">PBResp</a>     `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -2274,8 +2256,8 @@ ListServers returns a server struct collection
 
 			
 				
-				<h3 id="ToSnapshots">func <a href="/src/pkg/target/snapshot.go?s=1532:1571#L34">ToSnapshots</a></h3>
-				<pre>func ToSnapshots(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Snapshots">Snapshots</a></pre>
+				<h3 id="ListSnapshots">func <a href="/src/pkg/target/snapshot.go?s=1821:1851#L44">ListSnapshots</a></h3>
+				<pre>func ListSnapshots() <a href="#Snapshots">Snapshots</a></pre>
 				
 				
 			        
