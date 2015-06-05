@@ -379,16 +379,7 @@
 					<dd>&nbsp; &nbsp; <a href="#ListRequests">func ListRequests() PBResp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#RebootServer">func RebootServer(dcid, srvid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#StartServer">func StartServer(dcid, srvid string) PBResp</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#StatusRequest">func StatusRequest(requestid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#StopServer">func StopServer(dcid, srvid string) PBResp</a></dd>
 				
 				
 					
@@ -409,6 +400,15 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#PatchServer">func PatchServer(dcid string, srvid string, jason []byte) Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#RebootServer">func RebootServer(dcid, srvid string) Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#StartServer">func StartServer(dcid, srvid string) Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#StopServer">func StopServer(dcid, srvid string) Server</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#UpdateServer">func UpdateServer(dcid string, srvid string, jason []byte) Server</a></dd>
@@ -626,7 +626,7 @@ Username for authentication .
 		
 			
 			
-			<h2 id="SetAuth">func <a href="/src/pkg/target/req.go?s=933:958#L27">SetAuth</a></h2>
+			<h2 id="SetAuth">func <a href="/src/pkg/target/req.go?s=934:959#L27">SetAuth</a></h2>
 			<pre>func SetAuth(u, p <a href="/pkg/builtin/#string">string</a>)</pre>
 			<p>
 SetAuth is used to set Username and Passwd. Username and Passwd are declared in config.go
@@ -638,7 +638,7 @@ SetAuth is used to set Username and Passwd. Username and Passwd are declared in 
 		
 			
 			
-			<h2 id="SetDepth">func <a href="/src/pkg/target/req.go?s=593:630#L15">SetDepth</a></h2>
+			<h2 id="SetDepth">func <a href="/src/pkg/target/req.go?s=594:631#L15">SetDepth</a></h2>
 			<pre>func SetDepth(newdepth <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 			<p>
 SetDepth is used to set Depth
@@ -650,7 +650,7 @@ SetDepth is used to set Depth
 		
 			
 			
-			<h2 id="SetEndpoint">func <a href="/src/pkg/target/req.go?s=750:793#L21">SetEndpoint</a></h2>
+			<h2 id="SetEndpoint">func <a href="/src/pkg/target/req.go?s=751:794#L21">SetEndpoint</a></h2>
 			<pre>func SetEndpoint(newendpoint <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 			<p>
 SetEnpoint is used to set the REST Endpoint. Endpoint is declared in config.go
@@ -1904,29 +1904,8 @@ PBResp is the struct returned by all Rest request functions
 			        
 			
 				
-				<h3 id="RebootServer">func <a href="/src/pkg/target/server_command.go?s=330:374#L9">RebootServer</a></h3>
-				<pre>func RebootServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="StartServer">func <a href="/src/pkg/target/server_command.go?s=160:203#L1">StartServer</a></h3>
-				<pre>func StartServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
 				<h3 id="StatusRequest">func <a href="/src/pkg/target/request_status.go?s=196:239#L3">StatusRequest</a></h3>
 				<pre>func StatusRequest(requestid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="StopServer">func <a href="/src/pkg/target/server_command.go?s=246:288#L5">StopServer</a></h3>
-				<pre>func StopServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
@@ -2007,6 +1986,36 @@ GetServer pulls data for the server where id = srvid returns a Server struct
 				<p>
 PatchServer partial update of server properties passed in as jason []byte
 Returns Server struct
+</p>
+
+				
+			        
+			
+				
+				<h3 id="RebootServer">func <a href="/src/pkg/target/server.go?s=4932:4976#L162">RebootServer</a></h3>
+				<pre>func RebootServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Server">Server</a></pre>
+				<p>
+RebootServer reboots a server
+</p>
+
+				
+			        
+			
+				
+				<h3 id="StartServer">func <a href="/src/pkg/target/server.go?s=4684:4727#L152">StartServer</a></h3>
+				<pre>func StartServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Server">Server</a></pre>
+				<p>
+StartServer starts a server
+</p>
+
+				
+			        
+			
+				
+				<h3 id="StopServer">func <a href="/src/pkg/target/server.go?s=4807:4849#L157">StopServer</a></h3>
+				<pre>func StopServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Server">Server</a></pre>
+				<p>
+StopServer stops a server
 </p>
 
 				

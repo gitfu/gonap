@@ -147,3 +147,27 @@ func DetachVolume(dcid, srvid, volid string) Volume {
 	path := server_volume_path(dcid, srvid, volid)
 	return toVolume(is_delete(path))
 }
+
+// server_command is a generic function for running server commands
+func server_command(dcid, srvid, cmd string) Server {
+	jason := `
+		{}
+		`
+	path := server_command_path(dcid, srvid, cmd)
+	return toServer(is_command(path, jason))
+}
+
+// StartServer starts a server
+func StartServer(dcid, srvid string) Server {
+	return server_command(dcid, srvid, "start")
+}
+
+// StopServer stops a server
+func StopServer(dcid, srvid string) Server {
+	return server_command(dcid, srvid, "stop")
+}
+
+// RebootServer reboots a server
+func RebootServer(dcid, srvid string) Server {
+	return server_command(dcid, srvid, "reboot")
+}

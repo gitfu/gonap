@@ -92,7 +92,7 @@ func server_path(dcid, srvid string) string {
 }
 
 // server_cmd_path returns the string   "/datacenters/<dcid>/servers/<srvid>/<cmd>"
-func server_cmd_path(dcid, srvid, cmd string) string {
+func server_command_path(dcid, srvid, cmd string) string {
 	return server_path(dcid, srvid) + slash(cmd)
 }
 
