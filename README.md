@@ -1,13 +1,16 @@
-PACKAGE DOCUMENTATION
+## PACKAGE DOCUMENTATION
 
-package gonap
-    import "github.com/gitfu/gonap"
+#### package gonap 
 
+```
+import "github.com/gitfu/gonap"
+```
 
-VARIABLES
-
+#### Variables
+```
 var Depth = "5"
-    Depth sets the level of detail returned from the REST server .
+```
+* Depth sets the level of detail returned from the REST server .
 
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
     Endpoint is the base url for REST requests .
