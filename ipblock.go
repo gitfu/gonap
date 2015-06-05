@@ -8,9 +8,7 @@ type Ipblock_Properties struct {
 }
 
 type Ipblock struct {
-	Id         string             `json:"id,omitempty"`
-	Type       string             `json:"type,omitempty"`
-	Href       string             `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData           `json:"metadata,omitempty"`
 	Properties Ipblock_Properties `json:"properties"`
 	Resp       PBResp             `json:"-"`
@@ -24,9 +22,7 @@ func toIpblock(pbresp PBResp) Ipblock {
 }
 
 type Ipblocks struct {
-	Id    string    `json:"id,omitempty"`
-	Type  string    `json:"type,omitempty"`
-	Href  string    `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Ipblock `json:"items,omitempty"`
 	Resp  PBResp    `json:"-"`
 }

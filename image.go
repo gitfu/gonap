@@ -24,9 +24,7 @@ type Image_Properties struct {
 
 // Image is thr struct for image data
 type Image struct {
-	Id         string           `json:"id,omitempty"`
-	Type       string           `json:"type,omitempty"`
-	Href       string           `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData         `json:"metadata,omitempty"`
 	Properties Image_Properties `json:"properties,omitempty"`
 	Resp       PBResp           `json:"-"`
@@ -41,9 +39,7 @@ func toImage(pbresp PBResp) Image {
 
 // Images is a struct for Image collections
 type Images struct {
-	Id    string  `json:"id,omitempty"`
-	Type  string  `json:"type,omitempty"`
-	Href  string  `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Image `json:"items,omitempty"`
 	Resp  PBResp  `json:"-"`
 }

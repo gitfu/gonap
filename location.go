@@ -9,9 +9,7 @@ type Location_Properties struct {
 
 // Location is the struct for a Location
 type Location struct {
-	Id         string              `json:"id,omitempty"`
-	Type       string              `json:"type,omitempty"`
-	Href       string              `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData            `json:"metadata,omitempty"`
 	Properties Location_Properties `json:"properties"`
 	Resp       PBResp              `json:"-"`
@@ -26,9 +24,7 @@ func toLocation(pbresp PBResp) Location {
 
 // Locations is the struct for a Location Collection
 type Locations struct {
-	Id    string     `json:"id,omitempty"`
-	Type  string     `json:"type,omitempty"`
-	Href  string     `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Location `json:"items,omitempty"`
 	Resp  PBResp     `json:"-"`
 }

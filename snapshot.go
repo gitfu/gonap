@@ -23,9 +23,7 @@ type Snapshot_Properties struct {
 
 // Snapshot struct for Snapshot data
 type Snapshot struct {
-	Id         string              `json:"id,omitempty"`
-	Type       string              `json:"type,omitempty"`
-	Href       string              `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData            `json:"metadata,omitempty"`
 	Properties Snapshot_Properties `json:"properties,omitempty"`
 	Resp       PBResp              `json:"-"`
@@ -40,9 +38,7 @@ func toSnapshot(pbresp PBResp) Snapshot {
 
 // Snapshots struct for a Snapshot collection
 type Snapshots struct {
-	Id    string     `json:"id,omitempty"`
-	Type  string     `json:"type,omitempty"`
-	Href  string     `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Snapshot `json:"items,omitempty"`
 	Resp  PBResp     `json:"-"`
 }

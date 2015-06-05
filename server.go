@@ -20,9 +20,7 @@ type Server_Entities struct {
 
 // Server is a struct for Server data
 type Server struct {
-	Id         string            `json:"id,omitempty"`
-	Type       string            `json:"type,omitempty"`
-	Href       string            `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData          `json:"metadata,omitempty"`
 	Properties Server_Properties `json:"properties,omitempty"`
 	Entities   Server_Entities   `json:"entities,omitempty"`
@@ -39,9 +37,7 @@ func toServer(pbresp PBResp) Server {
 
 // Servers is a struct for Server struct collections
 type Servers struct {
-	Id    string   `json:"id,omitempty"`
-	Type  string   `json:"type,omitempty"`
-	Href  string   `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Server `json:"items,omitempty"`
 	Resp  PBResp   `json:"-"`
 }

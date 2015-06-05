@@ -15,9 +15,7 @@ type FwRule_Properties struct {
 }
 
 type FwRule struct {
-	Id         string            `json:"id,omitempty"`
-	Type       string            `json:"type,omitempty"`
-	Href       string            `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData          `json:"metadata,omitempty"`
 	Properties FwRule_Properties `json:"properties,omitempty"`
 	Resp       PBResp            `json:"-"`
@@ -31,9 +29,7 @@ func toFwRule(pbresp PBResp) FwRule {
 }
 
 type FwRules struct {
-	Id    string   `json:"id,omitempty"`
-	Type  string   `json:"type,omitempty"`
-	Href  string   `json:"href,omitempty"`
+	Id_Type_Href
 	Items []FwRule `json:"items,omitempty"`
 	Resp  PBResp   `json:"-"`
 }

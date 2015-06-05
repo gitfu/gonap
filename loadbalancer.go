@@ -13,9 +13,7 @@ type Loadbalancer_Entities struct {
 }
 
 type Loadbalancer struct {
-	Id         string                  `json:"id,omitempty"`
-	Type       string                  `json:"type,omitempty"`
-	Href       string                  `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData                `json:"metadata,omitempty"`
 	Properties Loadbalancer_Properties `json:"properties,omitempty"`
 	Entities   Loadbalancer_Entities   `json:"entities,omitempty"`
@@ -30,9 +28,7 @@ func toLoadbalancer(pbresp PBResp) Loadbalancer {
 }
 
 type Loadbalancers struct {
-	Id    string         `json:"id,omitempty"`
-	Type  string         `json:"type,omitempty"`
-	Href  string         `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Loadbalancer `json:"items,omitempty"`
 	Resp  PBResp         `json:"-"`
 }
