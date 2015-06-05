@@ -20,8 +20,8 @@ type Lan struct {
 	Entities   LanEntities   `json:"entities,omitempty"`
 }
 
-func (lan *Lan) Listlanmembers() Nics{
-	pbresp:=is_get(lan.Entities.Nics.Href)
+func (lan *Lan) Listlanmembers() Nics {
+	pbresp := is_get(lan.Entities.Nics.Href)
 	return ToNics(pbresp.Body)
 }
 

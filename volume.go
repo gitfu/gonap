@@ -33,10 +33,12 @@ type Volume struct {
 
 func (vol *Volume) Save() {
 	path := vol.Href
-	jason,err := json.MarshalIndent(&vol.Properties,"","    ")
-	if err !=nil {panic(err)}
+	jason, err := json.MarshalIndent(&vol.Properties, "", "    ")
+	if err != nil {
+		panic(err)
+	}
 	pbreq := is_patch(path, jason)
-	fmt.Println("save status code is ",pbreq.StatusCode)
+	fmt.Println("save status code is ", pbreq.StatusCode)
 }
 
 func ToVolume(body []byte) Volume {
@@ -57,7 +59,6 @@ func ToVolumes(body []byte) Volumes {
 	json.Unmarshal(body, &Volumes)
 	return Volumes
 }
-
 
 func UpdateVolume(dcid string, volid string, jason []byte) PBResp {
 	path := volume_path(dcid, volid)
