@@ -21,9 +21,7 @@ type Datacenter_Entities struct {
 
 // Datacenter is  struct to hold data for a datacenter
 type Datacenter struct {
-	Id         string                `json:"id"`
-	Type       string                `json:"type"`
-	Href       string                `json:"href"`
+	Id_Type_Href
 	MetaData   MetaData              `json:"metadata,omitempty"`
 	Properties Datacenter_Properties `json:"properties"`
 	Entities   Datacenter_Entities   `json:"entities,omitempty"`
@@ -60,9 +58,7 @@ func (dc *Datacenter) ToJson() string {
 
 // Datacenters is a struct for Datacenter collections
 type Datacenters struct {
-	Id    string       `json:"id,omitempty"`
-	Type  string       `json:"type,omitempty"`
-	Href  string       `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Datacenter `json:"items,omitempty"`
 	Resp  PBResp       `json:"-"`
 }

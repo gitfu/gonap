@@ -12,9 +12,7 @@ type Lan_Entities struct {
 }
 
 type Lan struct {
-	Id         string         `json:"id,omitempty"`
-	Type       string         `json:"type,omitempty"`
-	Href       string         `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData       `json:"metadata,omitempty"`
 	Properties Lan_Properties `json:"properties"`
 	Entities   Lan_Entities   `json:"entities,omitempty"`
@@ -22,9 +20,7 @@ type Lan struct {
 }
 
 type Lans struct {
-	Id    string `json:"id,omitempty"`
-	Type  string `json:"type,omitempty"`
-	Href  string `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Lan  `json:"items,omitempty"`
 	Resp  PBResp `json:"-"`
 }

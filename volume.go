@@ -24,9 +24,7 @@ type Volume_Properties struct {
 }
 
 type Volume struct {
-	Id         string            `json:"id"`
-	Type       string            `json:"type"`
-	Href       string            `json:"href"`
+	Id_Type_Href
 	MetaData   MetaData          `json:"metadata,omitempty"`
 	Properties Volume_Properties `json:"properties,omitempty"`
 	Resp       PBResp            `json:"-"`
@@ -50,9 +48,7 @@ func toVolume(pbresp PBResp) Volume {
 }
 
 type Volumes struct {
-	Id    string   `json:"id"`
-	Type  string   `json:"type"`
-	Href  string   `json:"href"`
+	Id_Type_Href
 	Items []Volume `json:"items,omitempty"`
 	Resp  PBResp   `json:"-"`
 }

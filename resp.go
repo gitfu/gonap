@@ -6,11 +6,10 @@ import "fmt"
 //import "encoding/json"
 
 type Id_Type_Href struct {
-	Id    string  `json:"id"`
-	Type  string  `json:"type"`
-	Href  string  `json:"href"`
+	Id   string `json:"id"`
+	Type string `json:"type"`
+	Href string `json:"href"`
 }
-
 
 // MetaData is a struct for metadata returned in a PBResp.Body
 type MetaData struct {

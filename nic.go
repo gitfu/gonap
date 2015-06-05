@@ -12,9 +12,7 @@ type Nic_Properties struct {
 }
 
 type Nic struct {
-	Id         string         `json:"id,omitempty"`
-	Type       string         `json:"type,omitempty"`
-	Href       string         `json:"href,omitempty"`
+	Id_Type_Href
 	MetaData   MetaData       `json:"metadata,omitempty"`
 	Properties Nic_Properties `json:"properties,omitempty"`
 	Resp       PBResp         `json:"-"`
@@ -28,9 +26,7 @@ func toNic(pbresp PBResp) Nic {
 }
 
 type Nics struct {
-	Id    string `json:"id,omitempty"`
-	Type  string `json:"type,omitempty"`
-	Href  string `json:"href,omitempty"`
+	Id_Type_Href
 	Items []Nic  `json:"items,omitempty"`
 	Resp  PBResp `json:"-"`
 }
