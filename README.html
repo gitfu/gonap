@@ -184,12 +184,18 @@
 				<dd><a href="#Ipblock">type Ipblock</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToIpblock">func ToIpblock(body []byte) Ipblock</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#GetIpBlock">func GetIpBlock(ipblockid string) Ipblock</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ReleaseIpBlock">func ReleaseIpBlock(ipblockid string) Ipblock</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ReserveIpBlock">func ReserveIpBlock(jason []byte) Ipblock</a></dd>
 				
 				
 			
 				
-				<dd><a href="#IpblockProperties">type IpblockProperties</a></dd>
+				<dd><a href="#Ipblock_Properties">type Ipblock_Properties</a></dd>
 				
 				
 			
@@ -197,7 +203,7 @@
 				<dd><a href="#Ipblocks">type Ipblocks</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToIpblocks">func ToIpblocks(body []byte) Ipblocks</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#ListIpBlocks">func ListIpBlocks() Ipblocks</a></dd>
 				
 				
 			
@@ -364,16 +370,10 @@
 					<dd>&nbsp; &nbsp; <a href="#GetFwRule">func GetFwRule(dcid, srvid, nicid, fwruleid string) PBResp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#GetIpBlock">func GetIpBlock(ipblockid string) PBResp</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#GetRequest">func GetRequest(requestid string) PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#ListFwRules">func ListFwRules(dcid, srvid, nicid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#ListIpBlocks">func ListIpBlocks() PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#ListRequests">func ListRequests() PBResp</a></dd>
@@ -383,12 +383,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#RebootServer">func RebootServer(dcid, srvid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#ReleaseIpBlock">func ReleaseIpBlock(ipblockid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#ReserveIpBlock">func ReserveIpBlock(jason []byte) PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#StartServer">func StartServer(dcid, srvid string) PBResp</a></dd>
@@ -1145,14 +1139,14 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="Ipblock">type <a href="/src/pkg/target/ipblock.go?s=140:472#L1">Ipblock</a></h2>
+			<h2 id="Ipblock">type <a href="/src/pkg/target/ipblock.go?s=141:474#L1">Ipblock</a></h2>
 			<pre>type Ipblock struct {
-    Id         <a href="/pkg/builtin/#string">string</a>            `json:&#34;id,omitempty&#34;`
-    Type       <a href="/pkg/builtin/#string">string</a>            `json:&#34;type,omitempty&#34;`
-    Href       <a href="/pkg/builtin/#string">string</a>            `json:&#34;href,omitempty&#34;`
-    MetaData   <a href="#MetaData">MetaData</a>          `json:&#34;metadata,omitempty&#34;`
-    Properties <a href="#IpblockProperties">IpblockProperties</a> `json:&#34;properties&#34;`
-    Resp       <a href="#PBResp">PBResp</a>            `json:&#34;-&#34;`
+    Id         <a href="/pkg/builtin/#string">string</a>             `json:&#34;id,omitempty&#34;`
+    Type       <a href="/pkg/builtin/#string">string</a>             `json:&#34;type,omitempty&#34;`
+    Href       <a href="/pkg/builtin/#string">string</a>             `json:&#34;href,omitempty&#34;`
+    MetaData   <a href="#MetaData">MetaData</a>           `json:&#34;metadata,omitempty&#34;`
+    Properties <a href="#Ipblock_Properties">Ipblock_Properties</a> `json:&#34;properties&#34;`
+    Resp       <a href="#PBResp">PBResp</a>             `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -1166,8 +1160,22 @@ ListImages returns an Images struct
 
 			
 				
-				<h3 id="ToIpblock">func <a href="/src/pkg/target/ipblock.go?s=807:842#L23">ToIpblock</a></h3>
-				<pre>func ToIpblock(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Ipblock">Ipblock</a></pre>
+				<h3 id="GetIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1161:1202#L40">GetIpBlock</a></h3>
+				<pre>func GetIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#Ipblock">Ipblock</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="ReleaseIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1273:1318#L45">ReleaseIpBlock</a></h3>
+				<pre>func ReleaseIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#Ipblock">Ipblock</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="ReserveIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1046:1087#L35">ReserveIpBlock</a></h3>
+				<pre>func ReserveIpBlock(jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Ipblock">Ipblock</a></pre>
 				
 				
 			        
@@ -1177,8 +1185,8 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="IpblockProperties">type <a href="/src/pkg/target/ipblock.go?s=39:138#L1">IpblockProperties</a></h2>
-			<pre>type IpblockProperties struct {
+			<h2 id="Ipblock_Properties">type <a href="/src/pkg/target/ipblock.go?s=39:139#L1">Ipblock_Properties</a></h2>
+			<pre>type Ipblock_Properties struct {
     Location <a href="/pkg/builtin/#string">string</a> `json:&#34;location&#34;`
     Size     <a href="/pkg/builtin/#int">int</a>    `json:&#34;size&#34;`
 }</pre>
@@ -1198,7 +1206,7 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="Ipblocks">type <a href="/src/pkg/target/ipblock.go?s=474:689#L9">Ipblocks</a></h2>
+			<h2 id="Ipblocks">type <a href="/src/pkg/target/ipblock.go?s=602:817#L16">Ipblocks</a></h2>
 			<pre>type Ipblocks struct {
     Id    <a href="/pkg/builtin/#string">string</a>    `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>    `json:&#34;type,omitempty&#34;`
@@ -1218,8 +1226,8 @@ ListImages returns an Images struct
 
 			
 				
-				<h3 id="ToIpblocks">func <a href="/src/pkg/target/ipblock.go?s=691:728#L17">ToIpblocks</a></h3>
-				<pre>func ToIpblocks(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Ipblocks">Ipblocks</a></pre>
+				<h3 id="ListIpBlocks">func <a href="/src/pkg/target/ipblock.go?s=952:980#L31">ListIpBlocks</a></h3>
+				<pre>func ListIpBlocks() <a href="#Ipblocks">Ipblocks</a></pre>
 				
 				
 			        
@@ -1877,13 +1885,6 @@ Remove firewall rule
 			        
 			
 				
-				<h3 id="GetIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1100:1140#L38">GetIpBlock</a></h3>
-				<pre>func GetIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
 				<h3 id="GetRequest">func <a href="/src/pkg/target/request_status.go?s=96:136#L1">GetRequest</a></h3>
 				<pre>func GetRequest(requestid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
@@ -1893,13 +1894,6 @@ Remove firewall rule
 				
 				<h3 id="ListFwRules">func <a href="/src/pkg/target/fwrule.go?s=1234:1284#L34">ListFwRules</a></h3>
 				<pre>func ListFwRules(dcid, srvid, nicid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="ListIpBlocks">func <a href="/src/pkg/target/ipblock.go?s=917:943#L29">ListIpBlocks</a></h3>
-				<pre>func ListIpBlocks() <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
@@ -1921,20 +1915,6 @@ Remove firewall rule
 				
 				<h3 id="RebootServer">func <a href="/src/pkg/target/server_command.go?s=330:374#L9">RebootServer</a></h3>
 				<pre>func RebootServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="ReleaseIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1200:1244#L43">ReleaseIpBlock</a></h3>
-				<pre>func ReleaseIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="ReserveIpBlock">func <a href="/src/pkg/target/ipblock.go?s=997:1037#L33">ReserveIpBlock</a></h3>
-				<pre>func ReserveIpBlock(jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
