@@ -225,7 +225,8 @@ func ListAttachedCdroms(dcid, srvid string) Images
 func ListImages() Images
     ListImages returns an Images struct
 ```
-
+##### Ipblocks
+```go
 type Ipblock struct {
     Id_Type_Href
     MetaData   MetaData           `json:"metadata,omitempty"`
@@ -635,8 +636,4 @@ func ListAttachedVolumes(dcid, srvid string) Volumes
 func ListVolumes(dcid string) Volumes
     ListVolumes returns a Volumes struct for volumes in the Datacenter
 
-SUBDIRECTORIES
-
-	p
-	tests
-
+```
