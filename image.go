@@ -33,9 +33,9 @@ type Image struct {
 }
 
 func toImage(pbresp PBResp) Image {
-	var IMG Image
-	json.Unmarshal(pbresp.Body, &IMG)
-	return IMG
+	var img Image
+	json.Unmarshal(pbresp.Body, &img)
+	return img
 }
 
 // Images is a struct for Image collections
@@ -48,10 +48,10 @@ type Images struct {
 }
 
 func toImages(pbresp PBResp) Images {
-	var IMGS Images
-	json.Unmarshal(pbresp.Body, &IMGS)
-	IMGS.Resp = pbresp
-	return IMGS
+	var imgs Images
+	json.Unmarshal(pbresp.Body, &imgs)
+	imgs.Resp = pbresp
+	return imgs
 }
 
 // ListImages returns an Images struct

@@ -18,11 +18,7 @@ type Lan struct {
 	MetaData   MetaData      `json:"metadata,omitempty"`
 	Properties LanProperties `json:"properties"`
 	Entities   LanEntities   `json:"entities,omitempty"`
-}
-
-func (lan *Lan) Listlanmembers() Nics {
-	pbresp := is_get(lan.Entities.Nics.Href)
-	return toNics(pbresp.Body)
+	Resp       PBResp        `json:"-"`
 }
 
 type Lans struct {
@@ -30,36 +26,61 @@ type Lans struct {
 	Type  string `json:"type,omitempty"`
 	Href  string `json:"href,omitempty"`
 	Items []Lan  `json:"items,omitempty"`
+	Resp  PBResp `json:"-"`
 }
 
-func ToLans(body []byte) Lans {
-	var Lans Lans
-	json.Unmarshal(body, &Lans)
-	return Lans
+func toLans(pbresp PBResp) Lans {
+	var lans Lans
+	json.Unmarshal(pbresp.Body, &lans)
+	return lans
 }
 
-func ToLan(body []byte) Lan {
-	var Lan Lan
-	json.Unmarshal(body, &Lan)
-	return Lan
+// toLan converts a PBResp struct into a Lan struct
+func toLan(pbresp PBResp) Lan {
+	var lan Lan
+	json.Unmarshal(pbresp.Body, &lan)
+	lan.Resp = pbresp
+	return lan
 }
 
-func UpdateLan(dcid string, lanid string, jason []byte) PBResp {
+// ListLan returns a Lans struct collection for lans in the Datacenter
+func ListLans(dcid string) Lans {
+	path := lan_col_path(dcid)
+	return toLans(is_get(path))
+}
+
+// CreateLan creates a lan in the datacenter
+// from a jason []byte and returns a Lan struct
+func CreateLan(dcid string, jason []byte) Lan {
+	path := lan_col_path(dcid)
+	return toLan(is_post(path, jason))
+}
+
+// GetLan pulls data for the lan where id = lanid returns a Lan struct
+func GetLan(dcid, lanid string) Lan {
 	path := lan_path(dcid, lanid)
-	return is_put(path, jason)
+	return toLan(is_get(path))
 }
 
-func PatchLan(dcid string, lanid string, jason []byte) PBResp {
+func UpdateLan(dcid string, lanid string, jason []byte) Lan {
 	path := lan_path(dcid, lanid)
-	return is_patch(path, jason)
+	return toLan(is_put(path, jason))
 }
 
-func DeleteLan(dcid, lanid string) PBResp {
+func PatchLan(dcid string, lanid string, jason []byte) Lan {
 	path := lan_path(dcid, lanid)
-	return is_delete(path)
+	return toLan(is_patch(path, jason))
 }
 
-func ListLanMembers(dcid, lanid string) PBResp {
+// DeleteLan deletes a lan where id == lanid
+func DeleteLan(dcid, lanid string) Lan {
+	path := lan_path(dcid, lanid)
+	return toLan(is_delete(path))
+
+}
+
+// ListLanMembers returns a Nic struct collection for the Lan
+func ListLanMembers(dcid, lanid string) Nics {
 	path := lan_nic_col(dcid, lanid)
-	return is_get(path)
+	return toNics(is_get(path))
 }

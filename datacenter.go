@@ -58,34 +58,6 @@ func (dc *Datacenter) ToJson() string {
 	return string(jason)
 }
 
-// ListLan returns a Lans struct for lans in the Datacenter
-func (dc *Datacenter) ListLans() Lans {
-	pbresp := is_get(dc.Entities.Lans.Href)
-	return ToLans(pbresp.Body)
-}
-
-// CreateLan creates a lan in the datacenter
-// from a jason []byte and returns a Lan struct
-func (dc *Datacenter) CreateLan(jason []byte) Lan {
-	path := dc.Entities.Lans.Href
-	pbresp := is_post(path, jason)
-	return ToLan(pbresp.Body)
-}
-
-// GetLan pulls data for the lan where id = lanid returns a Lan struct
-func (dc *Datacenter) GetLan(lanid string) Lan {
-	path := dc.Entities.Lans.Href + slash(lanid)
-	pbresp := is_get(path)
-	return ToLan(pbresp.Body)
-}
-
-// DeleteLan deletes a lan where id == lanid
-func (dc *Datacenter) DeleteLan(lanid string) PBResp {
-	path := dc.Entities.Lans.Href + slash(lanid)
-	pbresp := is_delete(path)
-	return pbresp
-}
-
 // Listloadbalancers returns a Loadbalancers struct
 // for loadbalancers in the Datacenter
 func (dc *Datacenter) ListLoadbalancers() Loadbalancers {

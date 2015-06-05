@@ -60,8 +60,7 @@ func ListServers(dcid string) Servers {
 	return toServers(is_get(path))
 }
 
-// CreateServer creates a server in the datacenter
-// from a jason []byte and returns a Server struct
+// CreateServer creates a server from a jason []byte and returns a Server struct
 func CreateServer(dcid string, jason []byte) Server {
 	path := server_col_path(dcid)
 	return toServer(is_post(path, jason))
