@@ -54,7 +54,7 @@ func toServers(pbresp PBResp) Servers {
 	return Servers
 }
 
-// ListServers lists the servers in the datacenter
+// ListServers returns a server struct collection
 func ListServers(dcid string) Servers {
 	path := server_col_path(dcid)
 	return toServers(is_get(path))
@@ -87,8 +87,8 @@ func PatchServer(dcid string, srvid string, jason []byte) Server {
 	return toServer(is_patch(path, jason))
 }
 
-// DeleteServer deletes the server where id=srvid and returns a PBResp struct
-func DeleteServer(dcid, srvid string) PBResp {
+// DeleteServer deletes the server where id=srvid and returns Server struct
+func DeleteServer(dcid, srvid string) Server {
 	path := server_path(dcid, srvid)
-	return is_delete(path)
+	return toServer(is_delete(path))
 }
