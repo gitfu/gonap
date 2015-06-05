@@ -87,9 +87,6 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#Datacenter.ListVolumes">func (dc *Datacenter) ListVolumes() Volumes</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#Datacenter.Save">func (dc *Datacenter) Save()</a></dd>
 				
 					
@@ -358,9 +355,6 @@
 				<dd><a href="#PBResp">type PBResp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#AttachVolume">func AttachVolume(dcid string, srvid string, volid string) PBResp</a></dd>
-				
-					
 					<dd>&nbsp; &nbsp; <a href="#CreateFwRule">func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) PBResp</a></dd>
 				
 					
@@ -368,15 +362,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#DeleteSnapshot">func DeleteSnapshot(snapid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#DeleteVolume">func DeleteVolume(dcid, volid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#DetachVolume">func DetachVolume(dcid, srvid, volid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#GetAttachedVolume">func GetAttachedVolume(dcid, srvid, volid string) PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#GetFwRule">func GetFwRule(dcid, srvid, nicid, fwruleid string) PBResp</a></dd>
@@ -392,9 +377,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#GetSnapshot">func GetSnapshot(snapid string) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#ListAttachedVolumes">func ListAttachedVolumes(dcid, srvid string) PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#ListFwRules">func ListFwRules(dcid, srvid, nicid string) PBResp</a></dd>
@@ -416,9 +398,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#PatchSnapshot">func PatchSnapshot(snapid string, jason []byte) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#PatchVolume">func PatchVolume(dcid string, volid string, jason []byte) PBResp</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#RebootServer">func RebootServer(dcid, srvid string) PBResp</a></dd>
@@ -443,9 +422,6 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#UpdateSnapshot">func UpdateSnapshot(snapid string, jason []byte) PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#UpdateVolume">func UpdateVolume(dcid string, volid string, jason []byte) PBResp</a></dd>
 				
 				
 					
@@ -520,7 +496,22 @@
 				<dd><a href="#Volume">type Volume</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToVolume">func ToVolume(body []byte) Volume</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#AttachVolume">func AttachVolume(dcid string, srvid string, volid string) Volume</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#DeleteVolume">func DeleteVolume(dcid, volid string) Volume</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#DetachVolume">func DetachVolume(dcid, srvid, volid string) Volume</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GetAttachedVolume">func GetAttachedVolume(dcid, srvid, volid string) Volume</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PatchVolume">func PatchVolume(dcid string, volid string, jason []byte) Volume</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#UpdateVolume">func UpdateVolume(dcid string, volid string, jason []byte) Volume</a></dd>
 				
 				
 					
@@ -531,7 +522,10 @@
 				<dd><a href="#Volumes">type Volumes</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ToVolumes">func ToVolumes(body []byte) Volumes</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#ListAttachedVolumes">func ListAttachedVolumes(dcid, srvid string) Volumes</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ListVolumes">func ListVolumes(dcid string) Volumes</a></dd>
 				
 				
 			
@@ -562,8 +556,6 @@
 			
 				<a href="/src/pkg/github.com/gitfu/gonap/location.go">location.go</a>
 			
-				<a href="/src/pkg/github.com/gitfu/gonap/metadata.go">metadata.go</a>
-			
 				<a href="/src/pkg/github.com/gitfu/gonap/nic.go">nic.go</a>
 			
 				<a href="/src/pkg/github.com/gitfu/gonap/paths.go">paths.go</a>
@@ -577,8 +569,6 @@
 				<a href="/src/pkg/github.com/gitfu/gonap/server.go">server.go</a>
 			
 				<a href="/src/pkg/github.com/gitfu/gonap/server_command.go">server_command.go</a>
-			
-				<a href="/src/pkg/github.com/gitfu/gonap/server_volume.go">server_volume.go</a>
 			
 				<a href="/src/pkg/github.com/gitfu/gonap/snapshot.go">snapshot.go</a>
 			
@@ -722,7 +712,7 @@ Datacenter is  struct to hold data for a datacenter
 
 			
 				
-				<h3 id="CreateDatacenter">func <a href="/src/pkg/target/datacenter.go?s=2814:2860#L90">CreateDatacenter</a></h3>
+				<h3 id="CreateDatacenter">func <a href="/src/pkg/target/datacenter.go?s=2619:2665#L83">CreateDatacenter</a></h3>
 				<pre>func CreateDatacenter(jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Datacenter">Datacenter</a></pre>
 				<p>
 CreateDatacenter creates a datacenter and returns a Datacenter struct
@@ -732,7 +722,7 @@ CreateDatacenter creates a datacenter and returns a Datacenter struct
 			        
 			
 				
-				<h3 id="DeleteDatacenter">func <a href="/src/pkg/target/datacenter.go?s=3648:3693#L116">DeleteDatacenter</a></h3>
+				<h3 id="DeleteDatacenter">func <a href="/src/pkg/target/datacenter.go?s=3453:3498#L109">DeleteDatacenter</a></h3>
 				<pre>func DeleteDatacenter(dcid <a href="/pkg/builtin/#string">string</a>) <a href="#Datacenter">Datacenter</a></pre>
 				<p>
 Deletes a Datacenter where id==dcid
@@ -742,7 +732,7 @@ Deletes a Datacenter where id==dcid
 			        
 			
 				
-				<h3 id="GetDatacenter">func <a href="/src/pkg/target/datacenter.go?s=2994:3036#L96">GetDatacenter</a></h3>
+				<h3 id="GetDatacenter">func <a href="/src/pkg/target/datacenter.go?s=2799:2841#L89">GetDatacenter</a></h3>
 				<pre>func GetDatacenter(dcid <a href="/pkg/builtin/#string">string</a>) <a href="#Datacenter">Datacenter</a></pre>
 				<p>
 GetDatacenter returns a Datacenter struct where id == dcid
@@ -752,7 +742,7 @@ GetDatacenter returns a Datacenter struct where id == dcid
 			        
 			
 				
-				<h3 id="PatchDatacenter">func <a href="/src/pkg/target/datacenter.go?s=3478:3536#L110">PatchDatacenter</a></h3>
+				<h3 id="PatchDatacenter">func <a href="/src/pkg/target/datacenter.go?s=3283:3341#L103">PatchDatacenter</a></h3>
 				<pre>func PatchDatacenter(dcid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Datacenter">Datacenter</a></pre>
 				<p>
 PatchDatacenter replaces any Datacenter properties with the values in jason
@@ -763,7 +753,7 @@ returns an Datacenter struct where id ==dcid
 			        
 			
 				
-				<h3 id="UpdateDatacenter">func <a href="/src/pkg/target/datacenter.go?s=3222:3281#L103">UpdateDatacenter</a></h3>
+				<h3 id="UpdateDatacenter">func <a href="/src/pkg/target/datacenter.go?s=3027:3086#L96">UpdateDatacenter</a></h3>
 				<pre>func UpdateDatacenter(dcid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Datacenter">Datacenter</a></pre>
 				<p>
 UpdateDatacenter updates all Datacenter properties from values in jason
@@ -774,14 +764,6 @@ returns an Datacenter struct where id ==dcid
 			        
 			
 
-			
-				
-				<h3 id="Datacenter.ListVolumes">func (*Datacenter) <a href="/src/pkg/target/datacenter.go?s=1813:1856#L53">ListVolumes</a></h3>
-				<pre>func (dc *<a href="#Datacenter">Datacenter</a>) ListVolumes() <a href="#Volumes">Volumes</a></pre>
-				
-				
-				
-			        
 			
 				
 				<h3 id="Datacenter.Save">func (*Datacenter) <a href="/src/pkg/target/datacenter.go?s=1298:1326#L32">Save</a></h3>
@@ -857,7 +839,7 @@ Datacenter_Entities is a struct inside a Datacenter struct to hold collections o
 		
 			
 			
-			<h2 id="Datacenters">type <a href="/src/pkg/target/datacenter.go?s=1991:2224#L59">Datacenters</a></h2>
+			<h2 id="Datacenters">type <a href="/src/pkg/target/datacenter.go?s=1796:2029#L52">Datacenters</a></h2>
 			<pre>type Datacenters struct {
     Id    <a href="/pkg/builtin/#string">string</a>       `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>       `json:&#34;type,omitempty&#34;`
@@ -880,7 +862,7 @@ Datacenters is a struct for Datacenter collections
 
 			
 				
-				<h3 id="ListDatacenters">func <a href="/src/pkg/target/datacenter.go?s=2642:2676#L84">ListDatacenters</a></h3>
+				<h3 id="ListDatacenters">func <a href="/src/pkg/target/datacenter.go?s=2447:2481#L77">ListDatacenters</a></h3>
 				<pre>func ListDatacenters() <a href="#Datacenters">Datacenters</a></pre>
 				<p>
 ListDatacenters returns a Datacenter collection struct
@@ -892,7 +874,7 @@ ListDatacenters returns a Datacenter collection struct
 
 			
 				
-				<h3 id="Datacenters.ToJson">func (*Datacenters) <a href="/src/pkg/target/datacenter.go?s=2426:2465#L75">ToJson</a></h3>
+				<h3 id="Datacenters.ToJson">func (*Datacenters) <a href="/src/pkg/target/datacenter.go?s=2231:2270#L68">ToJson</a></h3>
 				<pre>func (dcs *<a href="#Datacenters">Datacenters</a>) ToJson() <a href="/pkg/builtin/#string">string</a></pre>
 				<p>
 Datacenter.ToJson marshals the Datacenter struct into json
@@ -1018,7 +1000,7 @@ Image is thr struct for image data
 
 			
 				
-				<h3 id="AttachCdrom">func <a href="/src/pkg/target/server.go?s=3348:3410#L108">AttachCdrom</a></h3>
+				<h3 id="AttachCdrom">func <a href="/src/pkg/target/server.go?s=3344:3406#L104">AttachCdrom</a></h3>
 				<pre>func AttachCdrom(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, cdid <a href="/pkg/builtin/#string">string</a>) <a href="#Image">Image</a></pre>
 				
 				
@@ -1045,14 +1027,14 @@ Deletes an image where id==imageid
 			        
 			
 				
-				<h3 id="DetachCdrom">func <a href="/src/pkg/target/server.go?s=3676:3724#L120">DetachCdrom</a></h3>
+				<h3 id="DetachCdrom">func <a href="/src/pkg/target/server.go?s=3671:3719#L115">DetachCdrom</a></h3>
 				<pre>func DetachCdrom(dcid, srvid, cdid <a href="/pkg/builtin/#string">string</a>) <a href="#Image">Image</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="GetAttachedCdrom">func <a href="/src/pkg/target/server.go?s=3541:3594#L115">GetAttachedCdrom</a></h3>
+				<h3 id="GetAttachedCdrom">func <a href="/src/pkg/target/server.go?s=3536:3589#L110">GetAttachedCdrom</a></h3>
 				<pre>func GetAttachedCdrom(dcid, srvid, cdid <a href="/pkg/builtin/#string">string</a>) <a href="#Image">Image</a></pre>
 				
 				
@@ -1154,7 +1136,7 @@ Images is a struct for Image collections
 
 			
 				
-				<h3 id="ListAttachedCdroms">func <a href="/src/pkg/target/server.go?s=3217:3267#L103">ListAttachedCdroms</a></h3>
+				<h3 id="ListAttachedCdroms">func <a href="/src/pkg/target/server.go?s=3213:3263#L99">ListAttachedCdroms</a></h3>
 				<pre>func ListAttachedCdroms(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Images">Images</a></pre>
 				
 				
@@ -1405,7 +1387,7 @@ ListLan returns a Lans struct collection for lans in the Datacenter
 		
 			
 			
-			<h2 id="Loadbalancer">type <a href="/src/pkg/target/loadbalancer.go?s=279:655#L5">Loadbalancer</a></h2>
+			<h2 id="Loadbalancer">type <a href="/src/pkg/target/loadbalancer.go?s=279:726#L5">Loadbalancer</a></h2>
 			<pre>type Loadbalancer struct {
     Id         <a href="/pkg/builtin/#string">string</a>                  `json:&#34;id,omitempty&#34;`
     Type       <a href="/pkg/builtin/#string">string</a>                  `json:&#34;type,omitempty&#34;`
@@ -1427,7 +1409,7 @@ ListLan returns a Lans struct collection for lans in the Datacenter
 
 			
 				
-				<h3 id="CreateLoadbalancer">func <a href="/src/pkg/target/loadbalancer.go?s=1517:1580#L46">CreateLoadbalancer</a></h3>
+				<h3 id="CreateLoadbalancer">func <a href="/src/pkg/target/loadbalancer.go?s=1588:1651#L46">CreateLoadbalancer</a></h3>
 				<pre>func CreateLoadbalancer(dcid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Loadbalancer">Loadbalancer</a></pre>
 				<p>
 Createloadbalancer creates a loadbalancer in the datacenter
@@ -1438,14 +1420,14 @@ from a jason []byte and returns a Loadbalancer struct
 			        
 			
 				
-				<h3 id="DeleteLoadbalancer">func <a href="/src/pkg/target/loadbalancer.go?s=2215:2272#L68">DeleteLoadbalancer</a></h3>
+				<h3 id="DeleteLoadbalancer">func <a href="/src/pkg/target/loadbalancer.go?s=2286:2343#L68">DeleteLoadbalancer</a></h3>
 				<pre>func DeleteLoadbalancer(dcid, lbalid <a href="/pkg/builtin/#string">string</a>) <a href="#Loadbalancer">Loadbalancer</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="GetLoadbalancer">func <a href="/src/pkg/target/loadbalancer.go?s=1762:1816#L53">GetLoadbalancer</a></h3>
+				<h3 id="GetLoadbalancer">func <a href="/src/pkg/target/loadbalancer.go?s=1833:1887#L53">GetLoadbalancer</a></h3>
 				<pre>func GetLoadbalancer(dcid, lbalid <a href="/pkg/builtin/#string">string</a>) <a href="#Loadbalancer">Loadbalancer</a></pre>
 				<p>
 GetLoadbalancer pulls data for the Loadbalancer
@@ -1456,14 +1438,14 @@ where id = lbalid returns a Loadbalancer struct
 			        
 			
 				
-				<h3 id="PatchLoadBalancer">func <a href="/src/pkg/target/loadbalancer.go?s=2053:2130#L63">PatchLoadBalancer</a></h3>
+				<h3 id="PatchLoadBalancer">func <a href="/src/pkg/target/loadbalancer.go?s=2124:2201#L63">PatchLoadBalancer</a></h3>
 				<pre>func PatchLoadBalancer(dcid <a href="/pkg/builtin/#string">string</a>, lbalid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Loadbalancer">Loadbalancer</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="UpdateLoadbalancer">func <a href="/src/pkg/target/loadbalancer.go?s=1892:1970#L58">UpdateLoadbalancer</a></h3>
+				<h3 id="UpdateLoadbalancer">func <a href="/src/pkg/target/loadbalancer.go?s=1963:2041#L58">UpdateLoadbalancer</a></h3>
 				<pre>func UpdateLoadbalancer(dcid <a href="/pkg/builtin/#string">string</a>, lbalid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Loadbalancer">Loadbalancer</a></pre>
 				
 				
@@ -1516,7 +1498,7 @@ where id = lbalid returns a Loadbalancer struct
 		
 			
 			
-			<h2 id="Loadbalancers">type <a href="/src/pkg/target/loadbalancer.go?s=794:1039#L22">Loadbalancers</a></h2>
+			<h2 id="Loadbalancers">type <a href="/src/pkg/target/loadbalancer.go?s=865:1110#L22">Loadbalancers</a></h2>
 			<pre>type Loadbalancers struct {
     Id    <a href="/pkg/builtin/#string">string</a>         `json:&#34;id,omitempty&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>         `json:&#34;type,omitempty&#34;`
@@ -1536,7 +1518,7 @@ where id = lbalid returns a Loadbalancer struct
 
 			
 				
-				<h3 id="ListLoadbalancers">func <a href="/src/pkg/target/loadbalancer.go?s=1276:1325#L39">ListLoadbalancers</a></h3>
+				<h3 id="ListLoadbalancers">func <a href="/src/pkg/target/loadbalancer.go?s=1347:1396#L39">ListLoadbalancers</a></h3>
 				<pre>func ListLoadbalancers(dcid <a href="/pkg/builtin/#string">string</a>) <a href="#Loadbalancers">Loadbalancers</a></pre>
 				<p>
 Listloadbalancers returns a Loadbalancers struct
@@ -1647,7 +1629,7 @@ ToLocations Unmarshals json into a Locations struct
 		
 			
 			
-			<h2 id="MetaData">type <a href="/src/pkg/target/metadata.go?s=78:445#L1">MetaData</a></h2>
+			<h2 id="MetaData">type <a href="/src/pkg/target/resp.go?s=136:503#L1">MetaData</a></h2>
 			<pre>type MetaData struct {
     LastModified   <a href="/pkg/builtin/#string">string</a> `json:&#34;lastModifiedDate,omitempty&#34;`
     LastModifiedBy <a href="/pkg/builtin/#string">string</a> `json:&#34;lastModifiedBy,omitempty&#34;`
@@ -1707,7 +1689,7 @@ from a jason []byte and returns a Nic struct
 			        
 			
 				
-				<h3 id="DeleteBalancedNic">func <a href="/src/pkg/target/loadbalancer.go?s=2752:2809#L88">DeleteBalancedNic</a></h3>
+				<h3 id="DeleteBalancedNic">func <a href="/src/pkg/target/loadbalancer.go?s=2823:2880#L88">DeleteBalancedNic</a></h3>
 				<pre>func DeleteBalancedNic(dcid, lbalid, balnicid <a href="/pkg/builtin/#string">string</a>) <a href="#Nic">Nic</a></pre>
 				
 				
@@ -1724,7 +1706,7 @@ DeleteNic deletes the nic where id=nicid and returns a PBResp struct
 			        
 			
 				
-				<h3 id="GetBalancedNic">func <a href="/src/pkg/target/loadbalancer.go?s=2619:2673#L83">GetBalancedNic</a></h3>
+				<h3 id="GetBalancedNic">func <a href="/src/pkg/target/loadbalancer.go?s=2690:2744#L83">GetBalancedNic</a></h3>
 				<pre>func GetBalancedNic(dcid, lbalid, balnicid <a href="/pkg/builtin/#string">string</a>) <a href="#Nic">Nic</a></pre>
 				
 				
@@ -1812,14 +1794,14 @@ Returns Nic struct
 
 			
 				
-				<h3 id="AssociateNics">func <a href="/src/pkg/target/loadbalancer.go?s=2472:2537#L78">AssociateNics</a></h3>
+				<h3 id="AssociateNics">func <a href="/src/pkg/target/loadbalancer.go?s=2543:2608#L78">AssociateNics</a></h3>
 				<pre>func AssociateNics(dcid <a href="/pkg/builtin/#string">string</a>, lbalid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Nics">Nics</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="ListBalancedNics">func <a href="/src/pkg/target/loadbalancer.go?s=2351:2398#L73">ListBalancedNics</a></h3>
+				<h3 id="ListBalancedNics">func <a href="/src/pkg/target/loadbalancer.go?s=2422:2469#L73">ListBalancedNics</a></h3>
 				<pre>func ListBalancedNics(dcid, lbalid <a href="/pkg/builtin/#string">string</a>) <a href="#Nics">Nics</a></pre>
 				
 				
@@ -1850,7 +1832,7 @@ ListNics returns a Nics struct collection
 		
 			
 			
-			<h2 id="PBResp">type <a href="/src/pkg/target/resp.go?s=136:236#L1">PBResp</a></h2>
+			<h2 id="PBResp">type <a href="/src/pkg/target/resp.go?s=568:668#L9">PBResp</a></h2>
 			<pre>type PBResp struct {
     StatusCode <a href="/pkg/builtin/#int">int</a>
     Headers    <a href="/pkg/net/http/">http</a>.<a href="/pkg/net/http/#Header">Header</a>
@@ -1872,13 +1854,6 @@ PBResp is the struct returned by all Rest request functions
 
 			
 				
-				<h3 id="AttachVolume">func <a href="/src/pkg/target/server_volume.go?s=221:286#L4">AttachVolume</a></h3>
-				<pre>func AttachVolume(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, volid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
 				<h3 id="CreateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1356:1435#L39">CreateFwRule</a></h3>
 				<pre>func CreateFwRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
 				
@@ -1895,27 +1870,6 @@ PBResp is the struct returned by all Rest request functions
 				
 				<h3 id="DeleteSnapshot">func <a href="/src/pkg/target/snapshot.go?s=2074:2115#L60">DeleteSnapshot</a></h3>
 				<pre>func DeleteSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="DeleteVolume">func <a href="/src/pkg/target/volume.go?s=2156:2200#L63">DeleteVolume</a></h3>
-				<pre>func DeleteVolume(dcid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="DetachVolume">func <a href="/src/pkg/target/server_volume.go?s=620:671#L22">DetachVolume</a></h3>
-				<pre>func DetachVolume(dcid, srvid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="GetAttachedVolume">func <a href="/src/pkg/target/server_volume.go?s=489:545#L17">GetAttachedVolume</a></h3>
-				<pre>func GetAttachedVolume(dcid, srvid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
@@ -1966,13 +1920,6 @@ GetLocation returns a PBResp with data for a location in the Body
 				
 				<h3 id="GetSnapshot">func <a href="/src/pkg/target/snapshot.go?s=1737:1775#L45">GetSnapshot</a></h3>
 				<pre>func GetSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="ListAttachedVolumes">func <a href="/src/pkg/target/server_volume.go?s=98:149#L1">ListAttachedVolumes</a></h3>
-				<pre>func ListAttachedVolumes(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
 			        
@@ -2030,14 +1977,7 @@ ListLocations returns a PBResp with location collection data in the Body
 			        
 			
 				
-				<h3 id="PatchVolume">func <a href="/src/pkg/target/volume.go?s=2022:2086#L58">PatchVolume</a></h3>
-				<pre>func PatchVolume(dcid <a href="/pkg/builtin/#string">string</a>, volid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="RebootServer">func <a href="/src/pkg/target/server_command.go?s=331:375#L10">RebootServer</a></h3>
+				<h3 id="RebootServer">func <a href="/src/pkg/target/server_command.go?s=330:374#L9">RebootServer</a></h3>
 				<pre>func RebootServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
@@ -2058,7 +1998,7 @@ ListLocations returns a PBResp with location collection data in the Body
 			        
 			
 				
-				<h3 id="StartServer">func <a href="/src/pkg/target/server_command.go?s=161:204#L2">StartServer</a></h3>
+				<h3 id="StartServer">func <a href="/src/pkg/target/server_command.go?s=160:203#L1">StartServer</a></h3>
 				<pre>func StartServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
@@ -2072,7 +2012,7 @@ ListLocations returns a PBResp with location collection data in the Body
 			        
 			
 				
-				<h3 id="StopServer">func <a href="/src/pkg/target/server_command.go?s=247:289#L6">StopServer</a></h3>
+				<h3 id="StopServer">func <a href="/src/pkg/target/server_command.go?s=246:288#L5">StopServer</a></h3>
 				<pre>func StopServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
 				
 				
@@ -2092,17 +2032,10 @@ ListLocations returns a PBResp with location collection data in the Body
 				
 			        
 			
-				
-				<h3 id="UpdateVolume">func <a href="/src/pkg/target/volume.go?s=1889:1954#L53">UpdateVolume</a></h3>
-				<pre>func UpdateVolume(dcid <a href="/pkg/builtin/#string">string</a>, volid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
 
 			
 				
-				<h3 id="PBResp.PrintHeaders">func (*PBResp) <a href="/src/pkg/target/resp.go?s=291:322#L7">PrintHeaders</a></h3>
+				<h3 id="PBResp.PrintHeaders">func (*PBResp) <a href="/src/pkg/target/resp.go?s=723:754#L17">PrintHeaders</a></h3>
 				<pre>func (r *<a href="#PBResp">PBResp</a>) PrintHeaders()</pre>
 				<p>
 PrintHeaders prints the http headers as k,v pairs
@@ -2412,13 +2345,14 @@ ListServers returns a server struct collection
 		
 			
 			
-			<h2 id="Volume">type <a href="/src/pkg/target/volume.go?s=1062:1287#L16">Volume</a></h2>
+			<h2 id="Volume">type <a href="/src/pkg/target/volume.go?s=1062:1319#L16">Volume</a></h2>
 			<pre>type Volume struct {
     Id         <a href="/pkg/builtin/#string">string</a>   `json:&#34;id&#34;`
     Type       <a href="/pkg/builtin/#string">string</a>   `json:&#34;type&#34;`
     Href       <a href="/pkg/builtin/#string">string</a>   `json:&#34;href&#34;`
     MetaData   <a href="#MetaData">MetaData</a> `json:&#34;metadata,omitempty&#34;`
     Properties <a href="#VolProps">VolProps</a> `json:&#34;properties,omitempty&#34;`
+    Resp       <a href="#PBResp">PBResp</a>   `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -2432,8 +2366,43 @@ ListServers returns a server struct collection
 
 			
 				
-				<h3 id="ToVolume">func <a href="/src/pkg/target/volume.go?s=1521:1554#L34">ToVolume</a></h3>
-				<pre>func ToVolume(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Volume">Volume</a></pre>
+				<h3 id="AttachVolume">func <a href="/src/pkg/target/server.go?s=3939:4004#L125">AttachVolume</a></h3>
+				<pre>func AttachVolume(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, volid <a href="/pkg/builtin/#string">string</a>) <a href="#Volume">Volume</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="DeleteVolume">func <a href="/src/pkg/target/volume.go?s=2451:2495#L72">DeleteVolume</a></h3>
+				<pre>func DeleteVolume(dcid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#Volume">Volume</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="DetachVolume">func <a href="/src/pkg/target/server.go?s=4278:4329#L136">DetachVolume</a></h3>
+				<pre>func DetachVolume(dcid, srvid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#Volume">Volume</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="GetAttachedVolume">func <a href="/src/pkg/target/server.go?s=4137:4193#L131">GetAttachedVolume</a></h3>
+				<pre>func GetAttachedVolume(dcid, srvid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#Volume">Volume</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="PatchVolume">func <a href="/src/pkg/target/volume.go?s=2307:2371#L67">PatchVolume</a></h3>
+				<pre>func PatchVolume(dcid <a href="/pkg/builtin/#string">string</a>, volid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Volume">Volume</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="UpdateVolume">func <a href="/src/pkg/target/volume.go?s=2164:2229#L62">UpdateVolume</a></h3>
+				<pre>func UpdateVolume(dcid <a href="/pkg/builtin/#string">string</a>, volid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Volume">Volume</a></pre>
 				
 				
 			        
@@ -2441,7 +2410,7 @@ ListServers returns a server struct collection
 
 			
 				
-				<h3 id="Volume.Save">func (*Volume) <a href="/src/pkg/target/volume.go?s=1289:1314#L24">Save</a></h3>
+				<h3 id="Volume.Save">func (*Volume) <a href="/src/pkg/target/volume.go?s=1321:1346#L25">Save</a></h3>
 				<pre>func (vol *<a href="#Volume">Volume</a>) Save()</pre>
 				
 				
@@ -2451,12 +2420,13 @@ ListServers returns a server struct collection
 		
 			
 			
-			<h2 id="Volumes">type <a href="/src/pkg/target/volume.go?s=1625:1777#L40">Volumes</a></h2>
+			<h2 id="Volumes">type <a href="/src/pkg/target/volume.go?s=1688:1867#L42">Volumes</a></h2>
 			<pre>type Volumes struct {
     Id    <a href="/pkg/builtin/#string">string</a>   `json:&#34;id&#34;`
     Type  <a href="/pkg/builtin/#string">string</a>   `json:&#34;type&#34;`
     Href  <a href="/pkg/builtin/#string">string</a>   `json:&#34;href&#34;`
     Items []<a href="#Volume">Volume</a> `json:&#34;items,omitempty&#34;`
+    Resp  <a href="#PBResp">PBResp</a>   `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -2470,9 +2440,19 @@ ListServers returns a server struct collection
 
 			
 				
-				<h3 id="ToVolumes">func <a href="/src/pkg/target/volume.go?s=1779:1814#L47">ToVolumes</a></h3>
-				<pre>func ToVolumes(body []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Volumes">Volumes</a></pre>
+				<h3 id="ListAttachedVolumes">func <a href="/src/pkg/target/server.go?s=3804:3856#L120">ListAttachedVolumes</a></h3>
+				<pre>func ListAttachedVolumes(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Volumes">Volumes</a></pre>
 				
+				
+			        
+			
+				
+				<h3 id="ListVolumes">func <a href="/src/pkg/target/volume.go?s=2058:2095#L57">ListVolumes</a></h3>
+				<pre>func ListVolumes(dcid <a href="/pkg/builtin/#string">string</a>) <a href="#Volumes">Volumes</a></pre>
+				<p>
+ListVolumes returns a Volumes struct for volumes in the Datacenter
+</p>
+
 				
 			        
 			

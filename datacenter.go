@@ -58,13 +58,6 @@ func (dc *Datacenter) ToJson() string {
 	return string(jason)
 }
 
-// ListVolumes returns a Volumes struct for volumes in the Datacenter
-
-func (dc *Datacenter) ListVolumes() Volumes {
-	pbresp := is_get(dc.Entities.Volumes.Href)
-	return ToVolumes(pbresp.Body)
-}
-
 // Datacenters is a struct for Datacenter collections
 type Datacenters struct {
 	Id    string       `json:"id,omitempty"`

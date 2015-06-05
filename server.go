@@ -126,3 +126,24 @@ func DetachCdrom(dcid, srvid, cdid string) Image {
 	path := server_cdrom_path(dcid, srvid, cdid)
 	return toCdRom(is_delete(path))
 }
+
+func ListAttachedVolumes(dcid, srvid string) Volumes {
+	path := server_volume_col_path(dcid, srvid)
+	return toVolumes(is_get(path))
+}
+
+func AttachVolume(dcid string, srvid string, volid string) Volume {
+	jason := []byte(`{"id":"` + volid + `"}`)
+	path := server_volume_col_path(dcid, srvid)
+	return toVolume(is_post(path, jason))
+}
+
+func GetAttachedVolume(dcid, srvid, volid string) Volume {
+	path := server_volume_path(dcid, srvid, volid)
+	return toVolume(is_get(path))
+}
+
+func DetachVolume(dcid, srvid, volid string) Volume {
+	path := server_volume_path(dcid, srvid, volid)
+	return toVolume(is_delete(path))
+}

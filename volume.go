@@ -29,6 +29,7 @@ type Volume struct {
 	Href       string   `json:"href"`
 	MetaData   MetaData `json:"metadata,omitempty"`
 	Properties VolProps `json:"properties,omitempty"`
+	Resp       PBResp   `json:"-"`
 }
 
 func (vol *Volume) Save() {
@@ -41,10 +42,11 @@ func (vol *Volume) Save() {
 	fmt.Println("save status code is ", pbreq.StatusCode)
 }
 
-func ToVolume(body []byte) Volume {
-	var Volume Volume
-	json.Unmarshal(body, &Volume)
-	return Volume
+func toVolume(pbresp PBResp) Volume {
+	var volume Volume
+	json.Unmarshal(pbresp.Body, &volume)
+	volume.Resp = pbresp
+	return volume
 }
 
 type Volumes struct {
@@ -52,27 +54,34 @@ type Volumes struct {
 	Type  string   `json:"type"`
 	Href  string   `json:"href"`
 	Items []Volume `json:"items,omitempty"`
+	Resp  PBResp   `json:"-"`
 }
 
-func ToVolumes(body []byte) Volumes {
-	var Volumes Volumes
-	json.Unmarshal(body, &Volumes)
-	return Volumes
+func toVolumes(pbresp PBResp) Volumes {
+	var volumes Volumes
+	json.Unmarshal(pbresp.Body, &volumes)
+	return volumes
 }
 
-func UpdateVolume(dcid string, volid string, jason []byte) PBResp {
+// ListVolumes returns a Volumes struct for volumes in the Datacenter
+func ListVolumes(dcid string) Volumes {
+	path := volume_col_path(dcid)
+	return toVolumes(is_get(path))
+}
+
+func UpdateVolume(dcid string, volid string, jason []byte) Volume {
 	path := volume_path(dcid, volid)
-	return is_put(path, jason)
+	return toVolume(is_put(path, jason))
 }
 
-func PatchVolume(dcid string, volid string, jason []byte) PBResp {
+func PatchVolume(dcid string, volid string, jason []byte) Volume {
 	path := volume_path(dcid, volid)
-	return is_patch(path, jason)
+	return toVolume(is_patch(path, jason))
 }
 
-func DeleteVolume(dcid, volid string) PBResp {
+func DeleteVolume(dcid, volid string) Volume {
 	path := volume_path(dcid, volid)
-	return is_delete(path)
+	return toVolume(is_delete(path))
 }
 
 /**
