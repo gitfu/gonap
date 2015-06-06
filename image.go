@@ -7,7 +7,7 @@ type Image_Properties struct {
 	Name                string `json:"name,omitempty"`
 	Description         string `json:"description,omitempty"`
 	Location            string `json:"location"`
-	Size                int    `json:"size"`
+	Size                int    `json:"size,omitempty"`
 	Public              bool   `json:"public,omitempty"`
 	ImageType           string `json:"imageType,omitempty"`
 	CpuHotPlug          bool   `json:"cpuHotPlug,omitempty"`
@@ -56,12 +56,6 @@ func toImages(pbresp PBResp) Images {
 func ListImages() Images {
 	path := image_col_path()
 	return toImages(is_get(path))
-}
-
-// CreateImage creates an Image and returns an Image struct
-func CreateImage(jason []byte) Image {
-	path := image_col_path()
-	return toImage(is_post(path, jason))
 }
 
 // GetImage returns an Image struct where id ==imageid
