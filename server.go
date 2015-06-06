@@ -22,7 +22,7 @@ type Server_Entities struct {
 type Server struct {
 	Id_Type_Href
 	MetaData   MetaData          `json:"metadata,omitempty"`
-	Properties Server_Properties `json:"properties,omitempty"`
+	Properties Props 	 `json:"properties,omitempty"`
 	Entities   Server_Entities   `json:"entities,omitempty"`
 	Resp       PBResp            `json:"-"`
 }

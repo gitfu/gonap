@@ -65,6 +65,7 @@ func do(req *http.Request) PBResp {
 	defer resp.Body.Close()
 	resp_body, _ := ioutil.ReadAll(resp.Body)
 	var R PBResp
+	R.Req =resp.Request
 	R.Body = resp_body
 	R.Headers = resp.Header
 	R.StatusCode = resp.StatusCode

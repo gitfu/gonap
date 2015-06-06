@@ -11,19 +11,14 @@ type Id_Type_Href struct {
 	Href string `json:"href"`
 }
 
-// MetaData is a struct for metadata returned in a PBResp.Body
-type MetaData struct {
-	LastModified   string `json:"lastModifiedDate,omitempty"`
-	LastModifiedBy string `json:"lastModifiedBy,omitempty"`
-	Created        string `json:"createdDate,omitempty"` //"2014-02-01T11:12:12Z",
-	CreatedBy      string `json:"createdBy,omitempty"`
-	State          string `json:"state,omitempty"`
-	Etag           string `json:"etag,omitempty"`
-}
+// MetaData is a map for metadata returned in a PBResp.Body
+type MetaData map[string]string
+
+type Props map[string]string
 
 // PBResp is the struct returned by all Rest request functions
 type PBResp struct {
-	req_url    string
+	Req    *http.Request
 	StatusCode int
 	Headers    http.Header
 	Body       []byte

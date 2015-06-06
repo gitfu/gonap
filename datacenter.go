@@ -23,7 +23,7 @@ type Datacenter_Entities struct {
 type Datacenter struct {
 	Id_Type_Href
 	MetaData   MetaData              `json:"metadata,omitempty"`
-	Properties Datacenter_Properties `json:"properties"`
+	Properties Props				 `json:"properties"`
 	Entities   Datacenter_Entities   `json:"entities,omitempty"`
 	Resp       PBResp                `json:"-"`
 }

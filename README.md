@@ -1,31 +1,37 @@
-## Go Docs
+PACKAGE DOCUMENTATION
 
-#### package gonap 
+package gonap
+    import "github.com/gitfu/gonap"
 
-```go
-import "github.com/gitfu/gonap"
-```
 
-#### Variables
-```go
+CONSTANTS
+
+const CommandHeader = "application/x-www-form-urlencoded"
+    CommandHeader is used with is_command
+
+const FullHeader = "application/vnd.profitbricks.resource+json"
+    FullHeader is the standard header to include with all http requests
+    except is_patch and is_command
+
+const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
+    PatchHeader is used with is_patch .
+
+VARIABLES
+
 var Depth = "5"
-```
-* Depth sets the level of detail returned from the REST server .
-```go
-var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
-```
-* Endpoint is the base url for REST requests .
-```go
-var Passwd = "my_password"
-```
+    Depth sets the level of detail returned from the REST server .
 
-*    Password for authentication .
+var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
+    Endpoint is the base url for REST requests .
+
+var Passwd = "my_password"
+    Password for authentication .
 
 var Username = "my_username"
     Username for authentication .
 
-#### FUNCTIONS
-```go
+FUNCTIONS
+
 func SetAuth(u, p string)
     SetAuth is used to set Username and Passwd. Username and Passwd are
     declared in config.go
@@ -36,16 +42,11 @@ func SetDepth(newdepth string) string
 func SetEndpoint(newendpoint string) string
     SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
     config.go
-```
 
-#### TYPES
+TYPES
 
-##### Datacenters
-```go
 type Datacenter struct {
-    Id         string                `json:"id"`
-    Type       string                `json:"type"`
-    Href       string                `json:"href"`
+    Id_Type_Href
     MetaData   MetaData              `json:"metadata,omitempty"`
     Properties Datacenter_Properties `json:"properties"`
     Entities   Datacenter_Entities   `json:"entities,omitempty"`
@@ -93,9 +94,7 @@ type Datacenter_Properties struct {
 }
 
 type Datacenters struct {
-    Id    string       `json:"id,omitempty"`
-    Type  string       `json:"type,omitempty"`
-    Href  string       `json:"href,omitempty"`
+    Id_Type_Href
     Items []Datacenter `json:"items,omitempty"`
     Resp  PBResp       `json:"-"`
 }
@@ -106,18 +105,18 @@ func ListDatacenters() Datacenters
 
 func (dcs *Datacenters) ToJson() string
     Datacenter.ToJson marshals the Datacenter struct into json
-```
 
-##### Firewall Rules
-```go
 type FwRule struct {
     Id_Type_Href
     MetaData   MetaData          `json:"metadata,omitempty"`
     Properties FwRule_Properties `json:"properties,omitempty"`
     Resp       PBResp            `json:"-"`
 }
+    FwRule is struct for Firewall rule instance data
 
 func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) FwRule
+    CreateFwRule uses the json values in jason to create a new firewall rule
+    and returns a FwRule struct
 
 func DeleteFWRule(dcid, srvid, nicid, fwruleid string) FwRule
     DeleteFwRule removes firewall rule
@@ -144,31 +143,31 @@ type FwRule_Properties struct {
     IcmpType       string `json:"icmpType,omitempty"`
     IcmpCode       string `json:"icmpCode,omitempty"`
 }
+    FwRule_Properties is a struct for firewall rule properties
 
 type FwRules struct {
     Id_Type_Href
     Items []FwRule `json:"items,omitempty"`
     Resp  PBResp   `json:"-"`
 }
+    FwRules is the struct for firewall rule collections
 
 func ListFwRules(dcid, srvid, nicid string) FwRules
+    ListFwRules returns a collection of firewall rules
 
 type Id_Type_Href struct {
     Id   string `json:"id"`
     Type string `json:"type"`
     Href string `json:"href"`
 }
-```
 
-#### Images and Cdroms
-```go
 type Image struct {
     Id_Type_Href
     MetaData   MetaData         `json:"metadata,omitempty"`
     Properties Image_Properties `json:"properties,omitempty"`
     Resp       PBResp           `json:"-"`
 }
-    Image is thr struct for image data
+    Image is the struct for image and cdrom data
 
 func AttachCdrom(dcid string, srvid string, cdid string) Image
 
@@ -212,27 +211,27 @@ type Image_Properties struct {
     DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
     LicenceType         string `json:"licenceType,omitempty"`
 }
+    Image_Properties for image and cdrom data
 
 type Images struct {
     Id_Type_Href
     Items []Image `json:"items,omitempty"`
     Resp  PBResp  `json:"-"`
 }
-    Images is a struct for Image collections
+    Images is a struct for Image and cdrom collections
 
 func ListAttachedCdroms(dcid, srvid string) Images
 
 func ListImages() Images
     ListImages returns an Images struct
-```
-##### Ipblocks
-```go
+
 type Ipblock struct {
     Id_Type_Href
     MetaData   MetaData           `json:"metadata,omitempty"`
     Properties Ipblock_Properties `json:"properties"`
     Resp       PBResp             `json:"-"`
 }
+    Ipblock is the struct for Ipblock data
 
 func GetIpBlock(ipblockid string) Ipblock
 
@@ -244,19 +243,20 @@ type Ipblock_Properties struct {
     Location string `json:"location"`
     Size     int    `json:"size"`
 }
+    Ipblock_Properties is just that
 
 type Ipblocks struct {
     Id_Type_Href
     Items []Ipblock `json:"items,omitempty"`
     Resp  PBResp    `json:"-"`
 }
+    Ipblocks is the struct for an Ipblock collection
 
 func ListIpBlocks() Ipblocks
+    ListIpBlocks
 
 type Lan struct {
-    Id         string         `json:"id,omitempty"`
-    Type       string         `json:"type,omitempty"`
-    Href       string         `json:"href,omitempty"`
+    Id_Type_Href
     MetaData   MetaData       `json:"metadata,omitempty"`
     Properties Lan_Properties `json:"properties"`
     Entities   Lan_Entities   `json:"entities,omitempty"`
@@ -287,9 +287,7 @@ type Lan_Properties struct {
 }
 
 type Lans struct {
-    Id    string `json:"id,omitempty"`
-    Type  string `json:"type,omitempty"`
-    Href  string `json:"href,omitempty"`
+    Id_Type_Href
     Items []Lan  `json:"items,omitempty"`
     Resp  PBResp `json:"-"`
 }
@@ -376,9 +374,7 @@ type MetaData struct {
     MetaData is a struct for metadata returned in a PBResp.Body
 
 type Nic struct {
-    Id         string         `json:"id,omitempty"`
-    Type       string         `json:"type,omitempty"`
-    Href       string         `json:"href,omitempty"`
+    Id_Type_Href
     MetaData   MetaData       `json:"metadata,omitempty"`
     Properties Nic_Properties `json:"properties,omitempty"`
     Resp       PBResp         `json:"-"`
@@ -416,9 +412,7 @@ type Nic_Properties struct {
 }
 
 type Nics struct {
-    Id    string `json:"id,omitempty"`
-    Type  string `json:"type,omitempty"`
-    Href  string `json:"href,omitempty"`
+    Id_Type_Href
     Items []Nic  `json:"items,omitempty"`
     Resp  PBResp `json:"-"`
 }
@@ -441,10 +435,6 @@ type PBResp struct {
 }
     PBResp is the struct returned by all Rest request functions
 
-func ListRequests() PBResp
-
-func StatusRequest(requestid string) PBResp
-
 func (r *PBResp) PrintHeaders()
     PrintHeaders prints the http headers as k,v pairs
 
@@ -457,12 +447,23 @@ type RestRequest struct {
 
 func GetRequest(requestid string) RestRequest
 
+func StatusRequest(requestid string) RestRequest
+
 type RestRequest_Properties struct {
     Method  string            `json:"method"`
     Headers map[string]string `json:"headers"`
     Body    string            `json:"body"`
     Url     string            `json:"url"`
 }
+
+type RestRequests struct {
+    Id_Type_Href
+    Metadata MetaData      `json:"metadata"`
+    Items    []RestRequest `json:"items"`
+    Resp     PBResp        `json:"-"`
+}
+
+func ListRequests() RestRequests
 
 type Server struct {
     Id_Type_Href
@@ -581,9 +582,7 @@ func ListSnapshots() Snapshots
     Snapshots struct
 
 type Volume struct {
-    Id         string            `json:"id"`
-    Type       string            `json:"type"`
-    Href       string            `json:"href"`
+    Id_Type_Href
     MetaData   MetaData          `json:"metadata,omitempty"`
     Properties Volume_Properties `json:"properties,omitempty"`
     Resp       PBResp            `json:"-"`
@@ -624,9 +623,7 @@ type Volume_Properties struct {
 }
 
 type Volumes struct {
-    Id    string   `json:"id"`
-    Type  string   `json:"type"`
-    Href  string   `json:"href"`
+    Id_Type_Href
     Items []Volume `json:"items,omitempty"`
     Resp  PBResp   `json:"-"`
 }
@@ -636,4 +633,8 @@ func ListAttachedVolumes(dcid, srvid string) Volumes
 func ListVolumes(dcid string) Volumes
     ListVolumes returns a Volumes struct for volumes in the Datacenter
 
-```
+SUBDIRECTORIES
+
+	p
+	tests
+
