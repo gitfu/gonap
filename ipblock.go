@@ -1,12 +1,13 @@
 package gonap
 
 import "encoding/json"
-
+// Ipblock_Properties is just that
 type Ipblock_Properties struct {
 	Location string `json:"location"`
 	Size     int    `json:"size"`
 }
 
+// Ipblock is the struct for Ipblock data
 type Ipblock struct {
 	Id_Type_Href
 	MetaData   MetaData           `json:"metadata,omitempty"`
@@ -21,6 +22,7 @@ func toIpblock(pbresp PBResp) Ipblock {
 	return ipb
 }
 
+// Ipblocks is the struct for an Ipblock collection
 type Ipblocks struct {
 	Id_Type_Href
 	Items []Ipblock `json:"items,omitempty"`
@@ -33,7 +35,7 @@ func toIpblocks(pbresp PBResp) Ipblocks {
 	ipbs.Resp = pbresp
 	return ipbs
 }
-
+// ListIpBlocks 
 func ListIpBlocks() Ipblocks {
 	path := ipblock_col_path()
 	return toIpblocks(is_get(path))

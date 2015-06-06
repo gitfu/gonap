@@ -53,6 +53,8 @@
 			<div id="manual-nav">
 			<dl>
 			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
 			
 				<dd><a href="#pkg-variables">Variables</a></dd>
 			
@@ -377,12 +379,6 @@
 				
 				<dd><a href="#PBResp">type PBResp</a></dd>
 				
-					
-					<dd>&nbsp; &nbsp; <a href="#ListRequests">func ListRequests() PBResp</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="#StatusRequest">func StatusRequest(requestid string) PBResp</a></dd>
-				
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#PBResp.PrintHeaders">func (r *PBResp) PrintHeaders()</a></dd>
@@ -394,10 +390,21 @@
 					
 					<dd>&nbsp; &nbsp; <a href="#GetRequest">func GetRequest(requestid string) RestRequest</a></dd>
 				
+					
+					<dd>&nbsp; &nbsp; <a href="#StatusRequest">func StatusRequest(requestid string) RestRequest</a></dd>
+				
 				
 			
 				
 				<dd><a href="#RestRequest_Properties">type RestRequest_Properties</a></dd>
+				
+				
+			
+				
+				<dd><a href="#RestRequests">type RestRequests</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ListRequests">func ListRequests() RestRequests</a></dd>
 				
 				
 			
@@ -608,6 +615,27 @@
 		</div> <!-- #pkg-callgraph -->
 
 		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<pre>const <span id="CommandHeader">CommandHeader</span> = &#34;application/x-www-form-urlencoded&#34;</pre>
+				<p>
+CommandHeader is used with is_command
+</p>
+
+			
+				<pre>const <span id="FullHeader">FullHeader</span> = &#34;application/vnd.profitbricks.resource+json&#34;</pre>
+				<p>
+FullHeader is the standard header to include with all http requests except is_patch and is_command
+</p>
+
+			
+				<pre>const <span id="PatchHeader">PatchHeader</span> = &#34;application/vnd.profitbricks.partial-properties+json&#34;</pre>
+				<p>
+PatchHeader is used with is_patch .
+</p>
+
+			
+		
 		
 			<h2 id="pkg-variables">Variables</h2>
 			
@@ -639,7 +667,7 @@ Username for authentication .
 		
 			
 			
-			<h2 id="SetAuth">func <a href="/src/pkg/target/req.go?s=934:959#L27">SetAuth</a></h2>
+			<h2 id="SetAuth">func <a href="/src/pkg/target/req.go?s=924:949#L26">SetAuth</a></h2>
 			<pre>func SetAuth(u, p <a href="/pkg/builtin/#string">string</a>)</pre>
 			<p>
 SetAuth is used to set Username and Passwd. Username and Passwd are declared in config.go
@@ -651,7 +679,7 @@ SetAuth is used to set Username and Passwd. Username and Passwd are declared in 
 		
 			
 			
-			<h2 id="SetDepth">func <a href="/src/pkg/target/req.go?s=594:631#L15">SetDepth</a></h2>
+			<h2 id="SetDepth">func <a href="/src/pkg/target/req.go?s=584:621#L14">SetDepth</a></h2>
 			<pre>func SetDepth(newdepth <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 			<p>
 SetDepth is used to set Depth
@@ -663,7 +691,7 @@ SetDepth is used to set Depth
 		
 			
 			
-			<h2 id="SetEndpoint">func <a href="/src/pkg/target/req.go?s=751:794#L21">SetEndpoint</a></h2>
+			<h2 id="SetEndpoint">func <a href="/src/pkg/target/req.go?s=741:784#L20">SetEndpoint</a></h2>
 			<pre>func SetEndpoint(newendpoint <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
 			<p>
 SetEnpoint is used to set the REST Endpoint. Endpoint is declared in config.go
@@ -872,14 +900,17 @@ Datacenter.ToJson marshals the Datacenter struct into json
 		
 			
 			
-			<h2 id="FwRule">type <a href="/src/pkg/target/fwrule.go?s=540:735#L7">FwRule</a></h2>
+			<h2 id="FwRule">type <a href="/src/pkg/target/fwrule.go?s=652:847#L7">FwRule</a></h2>
 			<pre>type FwRule struct {
     <a href="#Id_Type_Href">Id_Type_Href</a>
     MetaData   <a href="#MetaData">MetaData</a>          `json:&#34;metadata,omitempty&#34;`
     Properties <a href="#FwRule_Properties">FwRule_Properties</a> `json:&#34;properties,omitempty&#34;`
     Resp       <a href="#PBResp">PBResp</a>            `json:&#34;-&#34;`
 }</pre>
-			
+			<p>
+FwRule is struct for Firewall rule instance data
+</p>
+
 
 			
 
@@ -891,14 +922,18 @@ Datacenter.ToJson marshals the Datacenter struct into json
 
 			
 				
-				<h3 id="CreateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1231:1310#L39">CreateFwRule</a></h3>
+				<h3 id="CreateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1557:1636#L41">CreateFwRule</a></h3>
 				<pre>func CreateFwRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#FwRule">FwRule</a></pre>
-				
+				<p>
+CreateFwRule uses the json values in jason to create a new firewall rule
+and returns a FwRule struct
+</p>
+
 				
 			        
 			
 				
-				<h3 id="DeleteFWRule">func <a href="/src/pkg/target/fwrule.go?s=2223:2284#L65">DeleteFWRule</a></h3>
+				<h3 id="DeleteFWRule">func <a href="/src/pkg/target/fwrule.go?s=2549:2610#L67">DeleteFWRule</a></h3>
 				<pre>func DeleteFWRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#FwRule">FwRule</a></pre>
 				<p>
 DeleteFwRule removes firewall rule
@@ -908,7 +943,7 @@ DeleteFwRule removes firewall rule
 			        
 			
 				
-				<h3 id="GetFwRule">func <a href="/src/pkg/target/fwrule.go?s=1464:1522#L45">GetFwRule</a></h3>
+				<h3 id="GetFwRule">func <a href="/src/pkg/target/fwrule.go?s=1790:1848#L47">GetFwRule</a></h3>
 				<pre>func GetFwRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#FwRule">FwRule</a></pre>
 				<p>
 GetFwRule Retrieve a firewall rule and returns fwRule struct
@@ -918,7 +953,7 @@ GetFwRule Retrieve a firewall rule and returns fwRule struct
 			        
 			
 				
-				<h3 id="PatchFWRule">func <a href="/src/pkg/target/fwrule.go?s=1993:2088#L59">PatchFWRule</a></h3>
+				<h3 id="PatchFWRule">func <a href="/src/pkg/target/fwrule.go?s=2319:2414#L61">PatchFWRule</a></h3>
 				<pre>func PatchFWRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, fwruleid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#FwRule">FwRule</a></pre>
 				<p>
 PatchFwRule 	Partially updates a firewall rule with data from []byte jason
@@ -929,7 +964,7 @@ returns FwRule struct
 			        
 			
 				
-				<h3 id="UpdateFwRule">func <a href="/src/pkg/target/fwrule.go?s=1699:1795#L52">UpdateFwRule</a></h3>
+				<h3 id="UpdateFwRule">func <a href="/src/pkg/target/fwrule.go?s=2025:2121#L54">UpdateFwRule</a></h3>
 				<pre>func UpdateFwRule(dcid <a href="/pkg/builtin/#string">string</a>, srvid <a href="/pkg/builtin/#string">string</a>, nicid <a href="/pkg/builtin/#string">string</a>, fwruleid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#FwRule">FwRule</a></pre>
 				<p>
 UpdateFwRule Replaces all the properties of firewall rule,
@@ -944,7 +979,7 @@ returns a FwRule struct
 		
 			
 			
-			<h2 id="FwRule_Properties">type <a href="/src/pkg/target/fwrule.go?s=39:538#L1">FwRule_Properties</a></h2>
+			<h2 id="FwRule_Properties">type <a href="/src/pkg/target/fwrule.go?s=100:599#L1">FwRule_Properties</a></h2>
 			<pre>type FwRule_Properties struct {
     Name           <a href="/pkg/builtin/#string">string</a> `json:&#34;name,omitempty&#34;`
     Protocol       <a href="/pkg/builtin/#string">string</a> `json:&#34;protocol,omitempty&#34;`
@@ -956,7 +991,10 @@ returns a FwRule struct
     IcmpType       <a href="/pkg/builtin/#string">string</a> `json:&#34;icmpType,omitempty&#34;`
     IcmpCode       <a href="/pkg/builtin/#string">string</a> `json:&#34;icmpCode,omitempty&#34;`
 }</pre>
-			
+			<p>
+FwRule_Properties is a struct for firewall rule properties
+</p>
+
 
 			
 
@@ -972,13 +1010,16 @@ returns a FwRule struct
 		
 			
 			
-			<h2 id="FwRules">type <a href="/src/pkg/target/fwrule.go?s=860:965#L21">FwRules</a></h2>
+			<h2 id="FwRules">type <a href="/src/pkg/target/fwrule.go?s=1026:1131#L21">FwRules</a></h2>
 			<pre>type FwRules struct {
     <a href="#Id_Type_Href">Id_Type_Href</a>
     Items []<a href="#FwRule">FwRule</a> `json:&#34;items,omitempty&#34;`
     Resp  <a href="#PBResp">PBResp</a>   `json:&#34;-&#34;`
 }</pre>
-			
+			<p>
+FwRules is the struct for firewall rule collections
+</p>
+
 
 			
 
@@ -990,9 +1031,12 @@ returns a FwRule struct
 
 			
 				
-				<h3 id="ListFwRules">func <a href="/src/pkg/target/fwrule.go?s=1097:1148#L34">ListFwRules</a></h3>
+				<h3 id="ListFwRules">func <a href="/src/pkg/target/fwrule.go?s=1316:1367#L34">ListFwRules</a></h3>
 				<pre>func ListFwRules(dcid, srvid, nicid <a href="/pkg/builtin/#string">string</a>) <a href="#FwRules">FwRules</a></pre>
-				
+				<p>
+ListFwRules returns a collection of firewall rules
+</p>
+
 				
 			        
 			
@@ -1023,7 +1067,7 @@ returns a FwRule struct
 		
 			
 			
-			<h2 id="Image">type <a href="/src/pkg/target/image.go?s=1094:1285#L16">Image</a></h2>
+			<h2 id="Image">type <a href="/src/pkg/target/image.go?s=1148:1339#L16">Image</a></h2>
 			<pre>type Image struct {
     <a href="#Id_Type_Href">Id_Type_Href</a>
     MetaData   <a href="#MetaData">MetaData</a>         `json:&#34;metadata,omitempty&#34;`
@@ -1031,7 +1075,7 @@ returns a FwRule struct
     Resp       <a href="#PBResp">PBResp</a>           `json:&#34;-&#34;`
 }</pre>
 			<p>
-Image is thr struct for image data
+Image is the struct for image and cdrom data
 </p>
 
 
@@ -1052,7 +1096,7 @@ Image is thr struct for image data
 			        
 			
 				
-				<h3 id="CreateImage">func <a href="/src/pkg/target/image.go?s=1868:1904#L51">CreateImage</a></h3>
+				<h3 id="CreateImage">func <a href="/src/pkg/target/image.go?s=1932:1968#L51">CreateImage</a></h3>
 				<pre>func CreateImage(jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Image">Image</a></pre>
 				<p>
 CreateImage creates an Image and returns an Image struct
@@ -1062,7 +1106,7 @@ CreateImage creates an Image and returns an Image struct
 			        
 			
 				
-				<h3 id="DeleteImage">func <a href="/src/pkg/target/image.go?s=2636:2674#L77">DeleteImage</a></h3>
+				<h3 id="DeleteImage">func <a href="/src/pkg/target/image.go?s=2700:2738#L77">DeleteImage</a></h3>
 				<pre>func DeleteImage(imageid <a href="/pkg/builtin/#string">string</a>) <a href="#Image">Image</a></pre>
 				<p>
 Deletes an image where id==imageid
@@ -1086,7 +1130,7 @@ Deletes an image where id==imageid
 			        
 			
 				
-				<h3 id="GetImage">func <a href="/src/pkg/target/image.go?s=2029:2064#L57">GetImage</a></h3>
+				<h3 id="GetImage">func <a href="/src/pkg/target/image.go?s=2093:2128#L57">GetImage</a></h3>
 				<pre>func GetImage(imageid <a href="/pkg/builtin/#string">string</a>) <a href="#Image">Image</a></pre>
 				<p>
 GetImage returns an Image struct where id ==imageid
@@ -1096,7 +1140,7 @@ GetImage returns an Image struct where id ==imageid
 			        
 			
 				
-				<h3 id="PatchImage">func <a href="/src/pkg/target/image.go?s=2473:2524#L71">PatchImage</a></h3>
+				<h3 id="PatchImage">func <a href="/src/pkg/target/image.go?s=2537:2588#L71">PatchImage</a></h3>
 				<pre>func PatchImage(imageid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Image">Image</a></pre>
 				<p>
 PatchImage replaces any image properties from values in jason
@@ -1107,7 +1151,7 @@ returns an Image struct where id ==imageid
 			        
 			
 				
-				<h3 id="UpdateImage">func <a href="/src/pkg/target/image.go?s=2239:2291#L64">UpdateImage</a></h3>
+				<h3 id="UpdateImage">func <a href="/src/pkg/target/image.go?s=2303:2355#L64">UpdateImage</a></h3>
 				<pre>func UpdateImage(imageid <a href="/pkg/builtin/#string">string</a>, jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Image">Image</a></pre>
 				<p>
 UpdateImage updates all image properties from values in jason
@@ -1122,7 +1166,7 @@ returns an Image struct where id ==imageid
 		
 			
 			
-			<h2 id="Image_Properties">type <a href="/src/pkg/target/image.go?s=39:1054#L1">Image_Properties</a></h2>
+			<h2 id="Image_Properties">type <a href="/src/pkg/target/image.go?s=83:1098#L1">Image_Properties</a></h2>
 			<pre>type Image_Properties struct {
     Name                <a href="/pkg/builtin/#string">string</a> `json:&#34;name,omitempty&#34;`
     Description         <a href="/pkg/builtin/#string">string</a> `json:&#34;description,omitempty&#34;`
@@ -1142,7 +1186,10 @@ returns an Image struct where id ==imageid
     DiscScsiHotUnplug   <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;discScsiHotUnplug,omitempty&#34;`
     LicenceType         <a href="/pkg/builtin/#string">string</a> `json:&#34;licenceType,omitempty&#34;`
 }</pre>
-			
+			<p>
+Image_Properties for image and cdrom data
+</p>
+
 
 			
 
@@ -1158,14 +1205,14 @@ returns an Image struct where id ==imageid
 		
 			
 			
-			<h2 id="Images">type <a href="/src/pkg/target/image.go?s=1451:1553#L31">Images</a></h2>
+			<h2 id="Images">type <a href="/src/pkg/target/image.go?s=1515:1617#L31">Images</a></h2>
 			<pre>type Images struct {
     <a href="#Id_Type_Href">Id_Type_Href</a>
     Items []<a href="#Image">Image</a> `json:&#34;items,omitempty&#34;`
     Resp  <a href="#PBResp">PBResp</a>  `json:&#34;-&#34;`
 }</pre>
 			<p>
-Images is a struct for Image collections
+Images is a struct for Image and cdrom collections
 </p>
 
 
@@ -1186,7 +1233,7 @@ Images is a struct for Image collections
 			        
 			
 				
-				<h3 id="ListImages">func <a href="/src/pkg/target/image.go?s=1721:1745#L45">ListImages</a></h3>
+				<h3 id="ListImages">func <a href="/src/pkg/target/image.go?s=1785:1809#L45">ListImages</a></h3>
 				<pre>func ListImages() <a href="#Images">Images</a></pre>
 				<p>
 ListImages returns an Images struct
@@ -1200,14 +1247,17 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="Ipblock">type <a href="/src/pkg/target/ipblock.go?s=141:330#L1">Ipblock</a></h2>
+			<h2 id="Ipblock">type <a href="/src/pkg/target/ipblock.go?s=217:406#L1">Ipblock</a></h2>
 			<pre>type Ipblock struct {
     <a href="#Id_Type_Href">Id_Type_Href</a>
     MetaData   <a href="#MetaData">MetaData</a>           `json:&#34;metadata,omitempty&#34;`
     Properties <a href="#Ipblock_Properties">Ipblock_Properties</a> `json:&#34;properties&#34;`
     Resp       <a href="#PBResp">PBResp</a>             `json:&#34;-&#34;`
 }</pre>
-			
+			<p>
+Ipblock is the struct for Ipblock data
+</p>
+
 
 			
 
@@ -1219,21 +1269,21 @@ ListImages returns an Images struct
 
 			
 				
-				<h3 id="GetIpBlock">func <a href="/src/pkg/target/ipblock.go?s=910:951#L36">GetIpBlock</a></h3>
+				<h3 id="GetIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1054:1095#L38">GetIpBlock</a></h3>
 				<pre>func GetIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#Ipblock">Ipblock</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="ReleaseIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1022:1067#L41">ReleaseIpBlock</a></h3>
+				<h3 id="ReleaseIpBlock">func <a href="/src/pkg/target/ipblock.go?s=1166:1211#L43">ReleaseIpBlock</a></h3>
 				<pre>func ReleaseIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#Ipblock">Ipblock</a></pre>
 				
 				
 			        
 			
 				
-				<h3 id="ReserveIpBlock">func <a href="/src/pkg/target/ipblock.go?s=795:836#L31">ReserveIpBlock</a></h3>
+				<h3 id="ReserveIpBlock">func <a href="/src/pkg/target/ipblock.go?s=939:980#L33">ReserveIpBlock</a></h3>
 				<pre>func ReserveIpBlock(jason []<a href="/pkg/builtin/#byte">byte</a>) <a href="#Ipblock">Ipblock</a></pre>
 				
 				
@@ -1244,12 +1294,15 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="Ipblock_Properties">type <a href="/src/pkg/target/ipblock.go?s=39:139#L1">Ipblock_Properties</a></h2>
+			<h2 id="Ipblock_Properties">type <a href="/src/pkg/target/ipblock.go?s=73:173#L1">Ipblock_Properties</a></h2>
 			<pre>type Ipblock_Properties struct {
     Location <a href="/pkg/builtin/#string">string</a> `json:&#34;location&#34;`
     Size     <a href="/pkg/builtin/#int">int</a>    `json:&#34;size&#34;`
 }</pre>
-			
+			<p>
+Ipblock_Properties is just that
+</p>
+
 
 			
 
@@ -1265,13 +1318,16 @@ ListImages returns an Images struct
 		
 			
 			
-			<h2 id="Ipblocks">type <a href="/src/pkg/target/ipblock.go?s=458:566#L14">Ipblocks</a></h2>
+			<h2 id="Ipblocks">type <a href="/src/pkg/target/ipblock.go?s=586:694#L16">Ipblocks</a></h2>
 			<pre>type Ipblocks struct {
     <a href="#Id_Type_Href">Id_Type_Href</a>
     Items []<a href="#Ipblock">Ipblock</a> `json:&#34;items,omitempty&#34;`
     Resp  <a href="#PBResp">PBResp</a>    `json:&#34;-&#34;`
 }</pre>
-			
+			<p>
+Ipblocks is the struct for an Ipblock collection
+</p>
+
 
 			
 
@@ -1283,9 +1339,12 @@ ListImages returns an Images struct
 
 			
 				
-				<h3 id="ListIpBlocks">func <a href="/src/pkg/target/ipblock.go?s=701:729#L27">ListIpBlocks</a></h3>
+				<h3 id="ListIpBlocks">func <a href="/src/pkg/target/ipblock.go?s=845:873#L29">ListIpBlocks</a></h3>
 				<pre>func ListIpBlocks() <a href="#Ipblocks">Ipblocks</a></pre>
-				
+				<p>
+ListIpBlocks
+</p>
+
 				
 			        
 			
@@ -1892,20 +1951,6 @@ PBResp is the struct returned by all Rest request functions
 			
 
 			
-				
-				<h3 id="ListRequests">func <a href="/src/pkg/target/request_status.go?s=561:587#L16">ListRequests</a></h3>
-				<pre>func ListRequests() <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
-				
-				<h3 id="StatusRequest">func <a href="/src/pkg/target/request_status.go?s=762:805#L26">StatusRequest</a></h3>
-				<pre>func StatusRequest(requestid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
-				
-				
-			        
-			
 
 			
 				
@@ -1941,8 +1986,15 @@ PrintHeaders prints the http headers as k,v pairs
 
 			
 				
-				<h3 id="GetRequest">func <a href="/src/pkg/target/request_status.go?s=642:687#L21">GetRequest</a></h3>
+				<h3 id="GetRequest">func <a href="/src/pkg/target/request_status.go?s=950:995#L35">GetRequest</a></h3>
 				<pre>func GetRequest(requestid <a href="/pkg/builtin/#string">string</a>) <a href="#RestRequest">RestRequest</a></pre>
+				
+				
+			        
+			
+				
+				<h3 id="StatusRequest">func <a href="/src/pkg/target/request_status.go?s=1070:1118#L40">StatusRequest</a></h3>
+				<pre>func StatusRequest(requestid <a href="/pkg/builtin/#string">string</a>) <a href="#RestRequest">RestRequest</a></pre>
 				
 				
 			        
@@ -1969,6 +2021,36 @@ PrintHeaders prints the http headers as k,v pairs
 			
 			
 
+			
+
+			
+		
+			
+			
+			<h2 id="RestRequests">type <a href="/src/pkg/target/request_status.go?s=561:704#L16">RestRequests</a></h2>
+			<pre>type RestRequests struct {
+    <a href="#Id_Type_Href">Id_Type_Href</a>
+    Metadata <a href="#MetaData">MetaData</a>      `json:&#34;metadata&#34;`
+    Items    []<a href="#RestRequest">RestRequest</a> `json:&#34;items&#34;`
+    Resp     <a href="#PBResp">PBResp</a>        `json:&#34;-&#34;`
+}</pre>
+			
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="ListRequests">func <a href="/src/pkg/target/request_status.go?s=847:879#L30">ListRequests</a></h3>
+				<pre>func ListRequests() <a href="#RestRequests">RestRequests</a></pre>
+				
+				
+			        
 			
 
 			

@@ -1,7 +1,7 @@
 package gonap
 
 import "encoding/json"
-
+// FwRule_Properties is a struct for firewall rule properties
 type FwRule_Properties struct {
 	Name           string `json:"name,omitempty"`
 	Protocol       string `json:"protocol,omitempty"`
@@ -13,7 +13,7 @@ type FwRule_Properties struct {
 	IcmpType       string `json:"icmpType,omitempty"`
 	IcmpCode       string `json:"icmpCode,omitempty"`
 }
-
+// FwRule is struct for Firewall rule instance data
 type FwRule struct {
 	Id_Type_Href
 	MetaData   MetaData          `json:"metadata,omitempty"`
@@ -27,7 +27,7 @@ func toFwRule(pbresp PBResp) FwRule {
 	fwr.Resp = pbresp
 	return fwr
 }
-
+// FwRules is the struct for firewall rule collections
 type FwRules struct {
 	Id_Type_Href
 	Items []FwRule `json:"items,omitempty"`
@@ -40,12 +40,14 @@ func toFwRules(pbresp PBResp) FwRules {
 	fwrs.Resp = pbresp
 	return fwrs
 }
-
+// ListFwRules returns a collection of firewall rules
 func ListFwRules(dcid, srvid, nicid string) FwRules {
 	path := fwrule_col_path(dcid, srvid, nicid)
 	return toFwRules(is_get(path))
 }
 
+// CreateFwRule uses the json values in jason to create a new firewall rule
+// and returns a FwRule struct
 func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) FwRule {
 	path := fwrule_col_path(dcid, srvid, nicid)
 	return toFwRule(is_post(path, jason))

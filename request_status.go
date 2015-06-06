@@ -23,9 +23,23 @@ func toRestRequest(pbresp PBResp) RestRequest {
 	return rr
 }
 
-func ListRequests() PBResp {
+type RestRequests struct {
+	Id_Type_Href
+	Metadata   MetaData `json:"metadata"`
+	Items []RestRequest `json:"items"`
+	Resp   PBResp `json:"-"`
+}
+func toRestRequests(pbresp PBResp) RestRequests {
+	var rrs RestRequests
+	json.Unmarshal(pbresp.Body, &rrs)
+	rrs.Resp = pbresp
+	return rrs
+}
+
+
+func ListRequests() RestRequests {
 	path := request_col_path()
-	return is_get(path)
+	return toRestRequests(is_get(path))
 }
 
 func GetRequest(requestid string) RestRequest {
@@ -33,7 +47,7 @@ func GetRequest(requestid string) RestRequest {
 	return toRestRequest(is_get(path))
 }
 
-func StatusRequest(requestid string) PBResp {
+func StatusRequest(requestid string) RestRequest {
 	path := request_status_path(requestid)
-	return is_get(path)
+	return toRestRequest(is_get(path))
 }

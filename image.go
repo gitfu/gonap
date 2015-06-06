@@ -1,7 +1,7 @@
 package gonap
 
 import "encoding/json"
-
+// Image_Properties for image and cdrom data
 type Image_Properties struct {
 	Name                string `json:"name,omitempty"`
 	Description         string `json:"description,omitempty"`
@@ -22,7 +22,7 @@ type Image_Properties struct {
 	LicenceType         string `json:"licenceType,omitempty"`
 }
 
-// Image is thr struct for image data
+// Image is the struct for image and cdrom data
 type Image struct {
 	Id_Type_Href
 	MetaData   MetaData         `json:"metadata,omitempty"`
@@ -37,7 +37,7 @@ func toImage(pbresp PBResp) Image {
 	return img
 }
 
-// Images is a struct for Image collections
+// Images is a struct for Image and cdrom collections
 type Images struct {
 	Id_Type_Href
 	Items []Image `json:"items,omitempty"`
