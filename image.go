@@ -1,6 +1,7 @@
 package gonap
 
 import "encoding/json"
+
 // Image_Properties for image and cdrom data
 type Image_Properties struct {
 	Name                string `json:"name,omitempty"`

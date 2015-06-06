@@ -18,7 +18,7 @@ type Props map[string]string
 
 // PBResp is the struct returned by all Rest request functions
 type PBResp struct {
-	Req    *http.Request
+	Req        *http.Request
 	StatusCode int
 	Headers    http.Header
 	Body       []byte

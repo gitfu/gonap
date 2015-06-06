@@ -1,6 +1,7 @@
 package gonap
 
 import "encoding/json"
+
 // Ipblock_Properties is just that
 type Ipblock_Properties struct {
 	Location string `json:"location"`
@@ -35,7 +36,8 @@ func toIpblocks(pbresp PBResp) Ipblocks {
 	ipbs.Resp = pbresp
 	return ipbs
 }
-// ListIpBlocks 
+
+// ListIpBlocks
 func ListIpBlocks() Ipblocks {
 	path := ipblock_col_path()
 	return toIpblocks(is_get(path))

@@ -25,17 +25,17 @@ func toRestRequest(pbresp PBResp) RestRequest {
 
 type RestRequests struct {
 	Id_Type_Href
-	Metadata   MetaData `json:"metadata"`
-	Items []RestRequest `json:"items"`
-	Resp   PBResp `json:"-"`
+	Metadata MetaData      `json:"metadata"`
+	Items    []RestRequest `json:"items"`
+	Resp     PBResp        `json:"-"`
 }
+
 func toRestRequests(pbresp PBResp) RestRequests {
 	var rrs RestRequests
 	json.Unmarshal(pbresp.Body, &rrs)
 	rrs.Resp = pbresp
 	return rrs
 }
-
 
 func ListRequests() RestRequests {
 	path := request_col_path()
