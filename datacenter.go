@@ -22,10 +22,10 @@ type Datacenter_Entities struct {
 // Datacenter is  struct to hold data for a datacenter
 type Datacenter struct {
 	Id_Type_Href
-	MetaData   MetaData              `json:"metadata,omitempty"`
-	Properties Props				 `json:"properties"`
-	Entities   Datacenter_Entities   `json:"entities,omitempty"`
-	Resp       PBResp                `json:"-"`
+	MetaData   MetaData            `json:"metadata,omitempty"`
+	Properties Props               `json:"properties"`
+	Entities   Datacenter_Entities `json:"entities,omitempty"`
+	Resp       PBResp              `json:"-"`
 }
 
 func toDatacenter(pbresp PBResp) Datacenter {

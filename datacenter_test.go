@@ -7,7 +7,7 @@ func mkdcid() string {
 					"name":"Original DC",
 					"location":"us/las"
 					}`))
-	
+
 	dcid := dc.Id
 	return dcid
 }
@@ -17,7 +17,7 @@ func TestListDatacenters(t *testing.T) {
 	shouldbe := "collection"
 	want := 200
 	dcs := ListDatacenters()
-	
+
 	if dcs.Type != shouldbe {
 		t.Errorf("ListDatacenters() type == %v, wanted %v", dcs.Type, shouldbe)
 	}
@@ -92,4 +92,3 @@ func TestDeleteDatacenter(t *testing.T) {
 }
 
 // New  format (method style) testing
- 
