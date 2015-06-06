@@ -21,10 +21,10 @@ type Server_Entities struct {
 // Server is a struct for Server data
 type Server struct {
 	Id_Type_Href
-	MetaData   MetaData          `json:"metadata,omitempty"`
-	Properties Props 	 `json:"properties,omitempty"`
-	Entities   Server_Entities   `json:"entities,omitempty"`
-	Resp       PBResp            `json:"-"`
+	MetaData   MetaData        `json:"metadata,omitempty"`
+	Properties Props           `json:"properties,omitempty"`
+	Entities   Server_Entities `json:"entities,omitempty"`
+	Resp       PBResp          `json:"-"`
 }
 
 // toServer converts a PBResp struct into a Server struct
