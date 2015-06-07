@@ -3,7 +3,7 @@ package gonap
 import "encoding/json"
 
 // Ipblock is the struct for Ipblock data
-type Ipblock Instance 
+type Ipblock Instance
 
 func toIpblock(pbresp PBResp) Ipblock {
 	var ipb Ipblock

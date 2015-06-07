@@ -27,7 +27,6 @@ func ListImages() Images {
 	return toImages(is_get(path))
 }
 
-
 // GetImage returns an Image struct where id ==imageid
 func GetImage(imageid string) Image {
 	path := image_path(imageid)

@@ -10,6 +10,7 @@ type RestRequest_Properties struct {
 }
 
 type RestRequest Instance
+
 func toRestRequest(pbresp PBResp) RestRequest {
 	var rr RestRequest
 	json.Unmarshal(pbresp.Body, &rr)

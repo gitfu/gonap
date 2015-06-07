@@ -13,7 +13,7 @@ func toDatacenter(pbresp PBResp) Datacenter {
 }
 
 // Datacenters is a struct for Datacenter collections
-type Datacenters Collection 
+type Datacenters Collection
 
 func toDatacenters(pbresp PBResp) Datacenters {
 	var DCS Datacenters

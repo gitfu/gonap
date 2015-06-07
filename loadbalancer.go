@@ -2,7 +2,6 @@ package gonap
 
 import "encoding/json"
 
-
 type Loadbalancer Instance
 
 func toLoadbalancer(pbresp PBResp) Loadbalancer {

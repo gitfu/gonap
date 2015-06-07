@@ -4,7 +4,6 @@ import "net/http"
 import "fmt"
 import "encoding/json"
 
-
 func MkJson(i interface{}) string {
 	jason, err := json.MarshalIndent(&i, "", "    ")
 	if err != nil {
@@ -13,7 +12,6 @@ func MkJson(i interface{}) string {
 	fmt.Println(string(jason))
 	return string(jason)
 }
-
 
 // MetaData is a map for metadata returned in a PBResp.Body
 type StringMap map[string]string
@@ -37,11 +35,11 @@ type Id_Type_Href struct {
 type MetaData StringIfaceMap
 
 type Instance struct {
-Id_Type_Href
-MetaData	StringMap 		`json:"metaData"`
-Properties	StringIfaceMap 	`json:"properties"`
-Entities	StringIfaceMap	`json:"entities"`
-Resp       	PBResp          `json:"-"`
+	Id_Type_Href
+	MetaData   StringMap      `json:"metaData"`
+	Properties StringIfaceMap `json:"properties"`
+	Entities   StringIfaceMap `json:"entities"`
+	Resp       PBResp         `json:"-"`
 }
 
 // Save converts the datacenter struct's properties to json
@@ -59,7 +57,7 @@ func (ins *Instance) Save() {
 type Collection struct {
 	Id_Type_Href
 	Items []Instance `json:"items,omitempty"`
-	Resp  PBResp  `json:"-"`
+	Resp  PBResp     `json:"-"`
 }
 
 // PrintHeaders prints the http headers as k,v pairs

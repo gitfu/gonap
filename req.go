@@ -62,7 +62,9 @@ func do(req *http.Request) PBResp {
 	client := &http.Client{}
 	req.SetBasicAuth(Username, Passwd)
 	resp, err := client.Do(req)
-	if err != nil { panic(err) }
+	if err != nil {
+		panic(err)
+	}
 	defer resp.Body.Close()
 	resp_body, _ := ioutil.ReadAll(resp.Body)
 	var R PBResp

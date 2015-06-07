@@ -23,6 +23,7 @@ func toVolume(pbresp PBResp) Volume {
 }
 
 type Volumes Collection
+
 func toVolumes(pbresp PBResp) Volumes {
 	var volumes Volumes
 	json.Unmarshal(pbresp.Body, &volumes)

@@ -119,7 +119,7 @@ func DetachVolume(dcid, srvid, volid string) Volume {
 }
 
 // server_command is a generic function for running server commands
-func server_command(dcid, srvid, cmd string) Server{
+func server_command(dcid, srvid, cmd string) Server {
 	jason := `
 		{}
 		`
