@@ -131,7 +131,8 @@ func fwrule_col_path(dcid, srvid, nicid string) string {
 	return nic_path(dcid, srvid, nicid) + slash("firewallrules")
 }
 
-// fwrule_path returns the string   "/datacenters/<dcid>/servers/<srvid>/nics/<nicid>/firewallrules/<fwruleid>"
+// fwrule_path returns the string 
+//  "/datacenters/<dcid>/servers/<srvid>/nics/<nicid>/firewallrules/<fwruleid>"
 func fwrule_path(dcid, srvid, nicid, fwruleid string) string {
 	return fwrule_col_path(dcid, srvid, nicid) + slash(fwruleid)
 }

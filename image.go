@@ -2,22 +2,17 @@ package gonap
 
 import "encoding/json"
 
-type Image struct {
-Obj
-}
+type Image Instance
 
-func toImage(pbresp PBResp) Obj {
-	var img Obj
+func toImage(pbresp PBResp) Image {
+	var img Image
 	json.Unmarshal(pbresp.Body, &img)
 	img.Resp = pbresp
 	return img
 }
 
 // Images is a struct for Image and cdrom collections
-type Images struct {
-Collection
-}
-//type Fu []Image 
+type Images Collection
 
 func toImages(pbresp PBResp) Images {
 	var imgs Images
@@ -34,27 +29,27 @@ func ListImages() Images {
 
 
 // GetImage returns an Image struct where id ==imageid
-func GetImage(imageid string) Obj {
+func GetImage(imageid string) Image {
 	path := image_path(imageid)
 	return toImage(is_get(path))
 }
 
 // UpdateImage updates all image properties from values in jason
 //returns an Image struct where id ==imageid
-func UpdateImage(imageid string, jason []byte) Obj {
+func UpdateImage(imageid string, jason []byte) Image {
 	path := image_path(imageid)
 	return toImage(is_put(path, jason))
 }
 
 // PatchImage replaces any image properties from values in jason
 //returns an Image struct where id ==imageid
-func PatchImage(imageid string, jason []byte) Obj {
+func PatchImage(imageid string, jason []byte) Image {
 	path := image_path(imageid)
 	return toImage(is_patch(path, jason))
 }
 
 // Deletes an image where id==imageid
-func DeleteImage(imageid string) Obj {
+func DeleteImage(imageid string) Image {
 	path := image_path(imageid)
 	return toImage(is_delete(path))
 }

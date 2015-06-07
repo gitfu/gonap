@@ -4,7 +4,8 @@ import "net/http"
 import "fmt"
 import "encoding/json"
 
-func Mkjson(i interface{}) string {
+
+func MkJson(i interface{}) string {
 	jason, err := json.MarshalIndent(&i, "", "    ")
 	if err != nil {
 		panic(err)
@@ -35,17 +36,29 @@ type Id_Type_Href struct {
 
 type MetaData StringIfaceMap
 
-type Obj struct {
+type Instance struct {
 Id_Type_Href
 MetaData	StringMap 		`json:"metaData"`
 Properties	StringIfaceMap 	`json:"properties"`
-Entities	StringIfaceMap		`json:"entities"`
-Resp       	PBResp              	`json:"-"`
+Entities	StringIfaceMap	`json:"entities"`
+Resp       	PBResp          `json:"-"`
+}
+
+// Save converts the datacenter struct's properties to json
+// and "patch"es them to the rest server
+func (ins *Instance) Save() {
+	path := ins.Href
+	jason, err := json.MarshalIndent(&ins.Properties, "", "    ")
+	if err != nil {
+		panic(err)
+	}
+	resp := is_patch(path, jason)
+	fmt.Println("save status code is ", resp.StatusCode)
 }
 
 type Collection struct {
 	Id_Type_Href
-	Items []Obj `json:"items,omitempty"`
+	Items []Instance `json:"items,omitempty"`
 	Resp  PBResp  `json:"-"`
 }
 

@@ -33,12 +33,12 @@ func SetEndpoint(newendpoint string) string {
 }
 
 // SetAuth is used to set Username and Passwd. Username and Passwd are declared in config.go
-/**
+
 func SetAuth(u, p string) {
 	Username = u
 	Passwd = p
 }
-**/
+
 // mk_url  either:
 // returns the path (if it`s a full url)
 //			 or
@@ -62,9 +62,7 @@ func do(req *http.Request) PBResp {
 	client := &http.Client{}
 	req.SetBasicAuth(Username, Passwd)
 	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
+	if err != nil { panic(err) }
 	defer resp.Body.Close()
 	resp_body, _ := ioutil.ReadAll(resp.Body)
 	var R PBResp
@@ -81,7 +79,6 @@ func is_delete(path string) PBResp {
 	req, _ := http.NewRequest("DELETE", url, nil)
 	req.Header.Add("Content-Type", FullHeader)
 	return do(req)
-
 }
 
 // is_get performs an http.NewRequest GET and returns a PBResp struct

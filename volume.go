@@ -3,32 +3,7 @@ package gonap
 import "encoding/json"
 import "fmt"
 
-type Volume_Properties struct {
-	Name                string `json:"name,omitempty"`
-	Size                int    `json:"size"`
-	Bus                 string `json:"bus,omitempty"`
-	Image               string `json:"image,omitempty"`
-	ImagePassword       string `json:"imagePassword,omitempty"`
-	Type                string `json:"type,omitempty"`
-	LicenceType         string `json:"licenceType,omitempty"`
-	CpuHotPlug          bool   `json:"cpuHotPlug,omitempty"`
-	CpuHotUnplug        bool   `json:"cpuHotUnplug,omitempty"`
-	RamHotPlug          bool   `json:"ramHotPlug,omitempty"`
-	RamHotUnplug        bool   `json:"ramHotUnplug,omitempty"`
-	NicHotPlug          bool   `json:"nicHotPlug,omitempty"`
-	NicHotUnplug        bool   `json:"nicHotUnplug,omitempty"`
-	DiscVirtioHotPlug   bool   `json:"discVirtioHotPlug,omitempty"`
-	DiscVirtioHotUnplug bool   `json:"discVirtioHotUnplug,omitempty"`
-	DiscScsiHotPlug     bool   `json:"discScsiHotPlug,omitempty"`
-	DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
-}
-
-type Volume struct {
-	Id_Type_Href
-	MetaData   MetaData          `json:"metadata,omitempty"`
-	Properties Volume_Properties `json:"properties,omitempty"`
-	Resp       PBResp            `json:"-"`
-}
+type Volume Instance
 
 func (vol *Volume) Save() {
 	path := vol.Href
@@ -47,12 +22,7 @@ func toVolume(pbresp PBResp) Volume {
 	return volume
 }
 
-type Volumes struct {
-	Id_Type_Href
-	Items []Volume `json:"items,omitempty"`
-	Resp  PBResp   `json:"-"`
-}
-
+type Volumes Collection
 func toVolumes(pbresp PBResp) Volumes {
 	var volumes Volumes
 	json.Unmarshal(pbresp.Body, &volumes)

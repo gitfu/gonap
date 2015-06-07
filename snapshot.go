@@ -2,32 +2,8 @@ package gonap
 
 import "encoding/json"
 
-//Snapshot_Properties struct
-type Snapshot_Properties struct {
-	Name                string `json:"name,omitempty"`
-	Description         string `json:"description,omitempty"`
-	Location            string `json:"location,omitempty"`
-	Size                int    `json:"size,omitempty"`
-	CpuHotPlug          bool   `json:"cpuHotPlug,omitempty"`
-	CpuHotUnplug        bool   `json:"cpuHotUnplug,omitempty"`
-	RamHotPlug          bool   `json:"ramHotPlug,omitempty"`
-	RamHotUnplug        bool   `json:"ramHotUnplug,omitempty"`
-	NicHotPlug          bool   `json:"nicHotPlug,omitempty"`
-	NicHotUnplug        bool   `json:"nicHotUnplug,omitempty"`
-	DiscVirtioHotPlug   bool   `json:"discVirtioHotPlug,omitempty"`
-	DiscVirtioHotUnplug bool   `json:"discVirtioHotUnplug,omitempty"`
-	DiscScsiHotPlug     bool   `json:"discScsiHotPlug,omitempty"`
-	DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
-	LicenceType         string `json:"licenceType,omitempty"`
-}
-
 // Snapshot struct for Snapshot data
-type Snapshot struct {
-	Id_Type_Href
-	MetaData   MetaData            `json:"metadata,omitempty"`
-	Properties Snapshot_Properties `json:"properties,omitempty"`
-	Resp       PBResp              `json:"-"`
-}
+type Snapshot Instance
 
 func toSnapshot(pbresp PBResp) Snapshot {
 	var snap Snapshot
@@ -37,11 +13,7 @@ func toSnapshot(pbresp PBResp) Snapshot {
 }
 
 // Snapshots struct for a Snapshot collection
-type Snapshots struct {
-	Id_Type_Href
-	Items []Snapshot `json:"items,omitempty"`
-	Resp  PBResp     `json:"-"`
-}
+type Snapshots Collection
 
 func toSnapshots(pbresp PBResp) Snapshots {
 	var snaps Snapshots

@@ -9,13 +9,7 @@ type RestRequest_Properties struct {
 	Url     string            `json:"url"`
 }
 
-type RestRequest struct {
-	Id_Type_Href
-	Metadata               MetaData `json:"metadata"`
-	RestRequest_Properties `json:"properties"`
-	Resp                   PBResp `json:"-"`
-}
-
+type RestRequest Instance
 func toRestRequest(pbresp PBResp) RestRequest {
 	var rr RestRequest
 	json.Unmarshal(pbresp.Body, &rr)
@@ -23,12 +17,7 @@ func toRestRequest(pbresp PBResp) RestRequest {
 	return rr
 }
 
-type RestRequests struct {
-	Id_Type_Href
-	Metadata MetaData      `json:"metadata"`
-	Items    []RestRequest `json:"items"`
-	Resp     PBResp        `json:"-"`
-}
+type RestRequests Collection
 
 func toRestRequests(pbresp PBResp) RestRequests {
 	var rrs RestRequests

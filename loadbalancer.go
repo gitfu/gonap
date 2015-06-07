@@ -2,23 +2,8 @@ package gonap
 
 import "encoding/json"
 
-type Loadbalancer_Properties struct {
-	Name string `json:"name,omitempty"`
-	Ip   string `json:"ip,omitempty"`
-	Dhcp bool   `json:"dhcp,omitempty"`
-}
 
-type Loadbalancer_Entities struct {
-	BalancedNics Nics `json:"balancednics,omitempty"`
-}
-
-type Loadbalancer struct {
-	Id_Type_Href
-	MetaData   MetaData                `json:"metadata,omitempty"`
-	Properties Loadbalancer_Properties `json:"properties,omitempty"`
-	Entities   Loadbalancer_Entities   `json:"entities,omitempty"`
-	Resp       PBResp                  `json:"-"`
-}
+type Loadbalancer Instance
 
 func toLoadbalancer(pbresp PBResp) Loadbalancer {
 	var lb Loadbalancer
@@ -27,11 +12,7 @@ func toLoadbalancer(pbresp PBResp) Loadbalancer {
 	return lb
 }
 
-type Loadbalancers struct {
-	Id_Type_Href
-	Items []Loadbalancer `json:"items,omitempty"`
-	Resp  PBResp         `json:"-"`
-}
+type Loadbalancers Collection
 
 func toLoadbalancers(pbresp PBResp) Loadbalancers {
 	var lbs Loadbalancers
@@ -66,7 +47,7 @@ func UpdateLoadbalancer(dcid string, lbalid string, jason []byte) Loadbalancer {
 	return toLoadbalancer(is_put(path, jason))
 }
 
-func PatchLoadBalancer(dcid string, lbalid string, jason []byte) Loadbalancer {
+func PatchLoadbalancer(dcid string, lbalid string, jason []byte) Loadbalancer {
 	path := lbal_path(dcid, lbalid)
 	return toLoadbalancer(is_patch(path, jason))
 }

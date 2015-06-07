@@ -2,21 +2,7 @@ package gonap
 
 import "encoding/json"
 
-type Nic_Properties struct {
-	Name           string   `json:"name,omitempty"`
-	Ips            []string `json:"ips,omitempty"`
-	Dhcp           bool     `json:"dhcp,omitempty"`
-	Lan            int      `json:"lan"`
-	FirewallActive bool     `json:"firewallActive,omitempty"`
-	Firewallrules  []FwRule `json:"firewallrules,omitempty"`
-}
-
-type Nic struct {
-	Id_Type_Href
-	MetaData   MetaData       `json:"metadata,omitempty"`
-	Properties Nic_Properties `json:"properties,omitempty"`
-	Resp       PBResp         `json:"-"`
-}
+type Nic Instance
 
 func toNic(pbresp PBResp) Nic {
 	var nic Nic
@@ -25,11 +11,7 @@ func toNic(pbresp PBResp) Nic {
 	return nic
 }
 
-type Nics struct {
-	Id_Type_Href
-	Items []Nic  `json:"items,omitempty"`
-	Resp  PBResp `json:"-"`
-}
+type Nics Collection
 
 func toNics(pbresp PBResp) Nics {
 	var nics Nics

@@ -2,18 +2,8 @@ package gonap
 
 import "encoding/json"
 
-// Location_Properties is aa struct for Locaation Properties
-type Location_Properties struct {
-	Name string `json:"name"`
-}
-
 // Location is the struct for a Location
-type Location struct {
-	Id_Type_Href
-	MetaData   MetaData            `json:"metadata,omitempty"`
-	Properties Location_Properties `json:"properties"`
-	Resp       PBResp              `json:"-"`
-}
+type Location Instance
 
 func toLocation(pbresp PBResp) Location {
 	var loc Location
@@ -23,11 +13,7 @@ func toLocation(pbresp PBResp) Location {
 }
 
 // Locations is the struct for a Location Collection
-type Locations struct {
-	Id_Type_Href
-	Items []Location `json:"items,omitempty"`
-	Resp  PBResp     `json:"-"`
-}
+type Locations Collection
 
 func toLocations(pbresp PBResp) Locations {
 	var locs Locations

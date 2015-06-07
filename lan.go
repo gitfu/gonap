@@ -2,27 +2,7 @@ package gonap
 
 import "encoding/json"
 
-// Lan_Properties is  just that
-type Lan_Properties struct {
-	Name   string `json:"name,omitempty"`
-	Public bool   `json:"public,omitempty"`
-}
-
-// Lan_Entities contains a Nics struct, a collection of Nic structs
-type Lan_Entities struct {
-	Nics Nics `json:"nics,omitempty"`
-}
-
-type Lan struct {
-/**
-	Id_Type_Href
-	MetaData   MetaData       `json:"metadata,omitempty"`
-	Properties Lan_Properties `json:"properties"`
-	Entities   Lan_Entities   `json:"entities,omitempty"`
-	Resp       PBResp         `json:"-"`
-**/
-Obj
-}
+type Lan Instance
 
 // toLan converts a PBResp struct into a Lan struct
 func toLan(pbresp PBResp) Lan {
@@ -32,11 +12,7 @@ func toLan(pbresp PBResp) Lan {
 	return lan
 }
 
-type Lans struct {
-	Id_Type_Href
-	Items []Lan  `json:"items,omitempty"`
-	Resp  PBResp `json:"-"`
-}
+type Lans Collection
 
 func toLans(pbresp PBResp) Lans {
 	var lans Lans

@@ -2,26 +2,8 @@ package gonap
 
 import "encoding/json"
 
-// FwRule_Properties is a struct for firewall rule properties
-type FwRule_Properties struct {
-	Name           string `json:"name,omitempty"`
-	Protocol       string `json:"protocol,omitempty"`
-	SourceMac      string `json:"sourceMac,omitempty"`
-	SourceIp       string `json:"sourceIp,omitempty"`
-	TargetIp       string `json:"targetIp,omitempty"`
-	PortRangeStart string `json:"portRangeStart,omitempty"`
-	PortRangeEnd   string `json:"portRangeEnd,omitempty"`
-	IcmpType       string `json:"icmpType,omitempty"`
-	IcmpCode       string `json:"icmpCode,omitempty"`
-}
-
 // FwRule is struct for Firewall rule instance data
-type FwRule struct {
-	Id_Type_Href
-	MetaData   MetaData          `json:"metadata,omitempty"`
-	Properties FwRule_Properties `json:"properties,omitempty"`
-	Resp       PBResp            `json:"-"`
-}
+type FwRule Instance
 
 func toFwRule(pbresp PBResp) FwRule {
 	var fwr FwRule
@@ -31,11 +13,7 @@ func toFwRule(pbresp PBResp) FwRule {
 }
 
 // FwRules is the struct for firewall rule collections
-type FwRules struct {
-	Id_Type_Href
-	Items []FwRule `json:"items,omitempty"`
-	Resp  PBResp   `json:"-"`
-}
+type FwRules Collection
 
 func toFwRules(pbresp PBResp) FwRules {
 	var fwrs FwRules
