@@ -32,9 +32,9 @@ var Username = "my_username"
 
 FUNCTIONS
 
+func MkJson(i interface{}) string
+
 func SetAuth(u, p string)
-    SetAuth is used to set Username and Passwd. Username and Passwd are
-    declared in config.go
 
 func SetDepth(newdepth string) string
     SetDepth is used to set Depth
@@ -45,13 +45,13 @@ func SetEndpoint(newendpoint string) string
 
 TYPES
 
-type Datacenter struct {
+type Collection struct {
     Id_Type_Href
-    MetaData   MetaData              `json:"metadata,omitempty"`
-    Properties Datacenter_Properties `json:"properties"`
-    Entities   Datacenter_Entities   `json:"entities,omitempty"`
-    Resp       PBResp                `json:"-"`
+    Items []Instance `json:"items,omitempty"`
+    Resp  PBResp     `json:"-"`
 }
+
+type Datacenter Instance
     Datacenter is struct to hold data for a datacenter
 
 func CreateDatacenter(jason []byte) Datacenter
@@ -71,47 +71,13 @@ func UpdateDatacenter(dcid string, jason []byte) Datacenter
     UpdateDatacenter updates all Datacenter properties from values in jason
     returns an Datacenter struct where id ==dcid
 
-func (dc *Datacenter) Save()
-    Save converts the datacenter struct's properties to json and "patch"es
-    them to the rest server
-
-func (dc *Datacenter) ToJson() string
-    Datacenter.ToJson marshals the Datacenter struct into json
-
-type Datacenter_Entities struct {
-    Servers       Servers       `json:"servers,omitempty"`
-    Loadbalancers Loadbalancers `json:"loadbalancers,omitempty"`
-    Lans          Lans          `json:"lans,omitempty"`
-    Volumes       Volumes       `json:"volumes,omitempty"`
-}
-    Datacenter_Entities is a struct inside a Datacenter struct to hold
-    collections of other structs
-
-type Datacenter_Properties struct {
-    Name        string `json:"name"`
-    Location    string `json:"location"`
-    Description string `json:"description,omitempty"`
-}
-
-type Datacenters struct {
-    Id_Type_Href
-    Items []Datacenter `json:"items,omitempty"`
-    Resp  PBResp       `json:"-"`
-}
+type Datacenters Collection
     Datacenters is a struct for Datacenter collections
 
 func ListDatacenters() Datacenters
     ListDatacenters returns a Datacenter collection struct
 
-func (dcs *Datacenters) ToJson() string
-    Datacenter.ToJson marshals the Datacenter struct into json
-
-type FwRule struct {
-    Id_Type_Href
-    MetaData   MetaData          `json:"metadata,omitempty"`
-    Properties FwRule_Properties `json:"properties,omitempty"`
-    Resp       PBResp            `json:"-"`
-}
+type FwRule Instance
     FwRule is struct for Firewall rule instance data
 
 func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) FwRule
@@ -132,24 +98,7 @@ func UpdateFwRule(dcid string, srvid string, nicid string, fwruleid string, jaso
     UpdateFwRule Replaces all the properties of firewall rule, returns a
     FwRule struct
 
-type FwRule_Properties struct {
-    Name           string `json:"name,omitempty"`
-    Protocol       string `json:"protocol,omitempty"`
-    SourceMac      string `json:"sourceMac,omitempty"`
-    SourceIp       string `json:"sourceIp,omitempty"`
-    TargetIp       string `json:"targetIp,omitempty"`
-    PortRangeStart string `json:"portRangeStart,omitempty"`
-    PortRangeEnd   string `json:"portRangeEnd,omitempty"`
-    IcmpType       string `json:"icmpType,omitempty"`
-    IcmpCode       string `json:"icmpCode,omitempty"`
-}
-    FwRule_Properties is a struct for firewall rule properties
-
-type FwRules struct {
-    Id_Type_Href
-    Items []FwRule `json:"items,omitempty"`
-    Resp  PBResp   `json:"-"`
-}
+type FwRules Collection
     FwRules is the struct for firewall rule collections
 
 func ListFwRules(dcid, srvid, nicid string) FwRules
@@ -161,18 +110,9 @@ type Id_Type_Href struct {
     Href string `json:"href"`
 }
 
-type Image struct {
-    Id_Type_Href
-    MetaData   MetaData         `json:"metadata,omitempty"`
-    Properties Image_Properties `json:"properties,omitempty"`
-    Resp       PBResp           `json:"-"`
-}
-    Image is the struct for image and cdrom data
+type Image Instance
 
 func AttachCdrom(dcid string, srvid string, cdid string) Image
-
-func CreateImage(jason []byte) Image
-    CreateImage creates an Image and returns an Image struct
 
 func DeleteImage(imageid string) Image
     Deletes an image where id==imageid
@@ -192,32 +132,7 @@ func UpdateImage(imageid string, jason []byte) Image
     UpdateImage updates all image properties from values in jason returns an
     Image struct where id ==imageid
 
-type Image_Properties struct {
-    Name                string `json:"name,omitempty"`
-    Description         string `json:"description,omitempty"`
-    Location            string `json:"location"`
-    Size                int    `json:"size"`
-    Public              bool   `json:"public,omitempty"`
-    ImageType           string `json:"imageType,omitempty"`
-    CpuHotPlug          bool   `json:"cpuHotPlug,omitempty"`
-    CpuHotUnplug        bool   `json:"cpuHotUnplug,omitempty"`
-    RamHotPlug          bool   `json:"ramHotPlug,omitempty"`
-    RamHotUnplug        bool   `json:"ramHotUnplug,omitempty"`
-    NicHotPlug          bool   `json:"nicHotPlug,omitempty"`
-    NicHotUnplug        bool   `json:"nicHotUnplug,omitempty"`
-    DiscVirtioHotPlug   bool   `json:"discVirtioHotPlug,omitempty"`
-    DiscVirtioHotUnplug bool   `json:"discVirtioHotUnplug,omitempty"`
-    DiscScsiHotPlug     bool   `json:"discScsiHotPlug,omitempty"`
-    DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
-    LicenceType         string `json:"licenceType,omitempty"`
-}
-    Image_Properties for image and cdrom data
-
-type Images struct {
-    Id_Type_Href
-    Items []Image `json:"items,omitempty"`
-    Resp  PBResp  `json:"-"`
-}
+type Images Collection
     Images is a struct for Image and cdrom collections
 
 func ListAttachedCdroms(dcid, srvid string) Images
@@ -225,12 +140,19 @@ func ListAttachedCdroms(dcid, srvid string) Images
 func ListImages() Images
     ListImages returns an Images struct
 
-type Ipblock struct {
+type Instance struct {
     Id_Type_Href
-    MetaData   MetaData           `json:"metadata,omitempty"`
-    Properties Ipblock_Properties `json:"properties"`
-    Resp       PBResp             `json:"-"`
+    MetaData   StringMap      `json:"metaData"`
+    Properties StringIfaceMap `json:"properties"`
+    Entities   StringIfaceMap `json:"entities"`
+    Resp       PBResp         `json:"-"`
 }
+
+func (ins *Instance) Save()
+    Save converts the datacenter struct's properties to json and "patch"es
+    them to the rest server
+
+type Ipblock Instance
     Ipblock is the struct for Ipblock data
 
 func GetIpBlock(ipblockid string) Ipblock
@@ -239,29 +161,13 @@ func ReleaseIpBlock(ipblockid string) Ipblock
 
 func ReserveIpBlock(jason []byte) Ipblock
 
-type Ipblock_Properties struct {
-    Location string `json:"location"`
-    Size     int    `json:"size"`
-}
-    Ipblock_Properties is just that
-
-type Ipblocks struct {
-    Id_Type_Href
-    Items []Ipblock `json:"items,omitempty"`
-    Resp  PBResp    `json:"-"`
-}
+type Ipblocks Collection
     Ipblocks is the struct for an Ipblock collection
 
 func ListIpBlocks() Ipblocks
     ListIpBlocks
 
-type Lan struct {
-    Id_Type_Href
-    MetaData   MetaData       `json:"metadata,omitempty"`
-    Properties Lan_Properties `json:"properties"`
-    Entities   Lan_Entities   `json:"entities,omitempty"`
-    Resp       PBResp         `json:"-"`
-}
+type Lan Instance
 
 func CreateLan(dcid string, jason []byte) Lan
     CreateLan creates a lan in the datacenter from a jason []byte and
@@ -274,34 +180,19 @@ func GetLan(dcid, lanid string) Lan
     GetLan pulls data for the lan where id = lanid returns a Lan struct
 
 func PatchLan(dcid string, lanid string, jason []byte) Lan
+    PatchLan does a partial update to a lan using json from []byte jason
+    returns a Lan struct
 
 func UpdateLan(dcid string, lanid string, jason []byte) Lan
+    UpdateLan does a complete update to a lan using json from []byte jason
+    returns a Lan struct
 
-type Lan_Entities struct {
-    Nics Nics `json:"nics,omitempty"`
-}
-
-type Lan_Properties struct {
-    Name   string `json:"name,omitempty"`
-    Public bool   `json:"public,omitempty"`
-}
-
-type Lans struct {
-    Id_Type_Href
-    Items []Lan  `json:"items,omitempty"`
-    Resp  PBResp `json:"-"`
-}
+type Lans Collection
 
 func ListLans(dcid string) Lans
     ListLan returns a Lans struct collection for lans in the Datacenter
 
-type Loadbalancer struct {
-    Id_Type_Href
-    MetaData   MetaData                `json:"metadata,omitempty"`
-    Properties Loadbalancer_Properties `json:"properties,omitempty"`
-    Entities   Loadbalancer_Entities   `json:"entities,omitempty"`
-    Resp       PBResp                  `json:"-"`
-}
+type Loadbalancer Instance
 
 func CreateLoadbalancer(dcid string, jason []byte) Loadbalancer
     Createloadbalancer creates a loadbalancer in the datacenter from a jason
@@ -313,72 +204,31 @@ func GetLoadbalancer(dcid, lbalid string) Loadbalancer
     GetLoadbalancer pulls data for the Loadbalancer where id = lbalid
     returns a Loadbalancer struct
 
-func PatchLoadBalancer(dcid string, lbalid string, jason []byte) Loadbalancer
+func PatchLoadbalancer(dcid string, lbalid string, jason []byte) Loadbalancer
 
 func UpdateLoadbalancer(dcid string, lbalid string, jason []byte) Loadbalancer
 
-type Loadbalancer_Entities struct {
-    BalancedNics Nics `json:"balancednics,omitempty"`
-}
-
-type Loadbalancer_Properties struct {
-    Name string `json:"name,omitempty"`
-    Ip   string `json:"ip,omitempty"`
-    Dhcp bool   `json:"dhcp,omitempty"`
-}
-
-type Loadbalancers struct {
-    Id_Type_Href
-    Items []Loadbalancer `json:"items,omitempty"`
-    Resp  PBResp         `json:"-"`
-}
+type Loadbalancers Collection
 
 func ListLoadbalancers(dcid string) Loadbalancers
     Listloadbalancers returns a Loadbalancers struct for loadbalancers in
     the Datacenter
 
-type Location struct {
-    Id_Type_Href
-    MetaData   MetaData            `json:"metadata,omitempty"`
-    Properties Location_Properties `json:"properties"`
-    Resp       PBResp              `json:"-"`
-}
+type Location Instance
     Location is the struct for a Location
 
 func GetLocation(locid string) Location
     GetLocation returns a PBResp with data for a location in the Body
 
-type Location_Properties struct {
-    Name string `json:"name"`
-}
-    Location_Properties is aa struct for Locaation Properties
-
-type Locations struct {
-    Id_Type_Href
-    Items []Location `json:"items,omitempty"`
-    Resp  PBResp     `json:"-"`
-}
+type Locations Collection
     Locations is the struct for a Location Collection
 
 func ListLocations() Locations
     ListLocations returns a PBResp with location collection data in the Body
 
-type MetaData struct {
-    LastModified   string `json:"lastModifiedDate,omitempty"`
-    LastModifiedBy string `json:"lastModifiedBy,omitempty"`
-    Created        string `json:"createdDate,omitempty"` //"2014-02-01T11:12:12Z",
-    CreatedBy      string `json:"createdBy,omitempty"`
-    State          string `json:"state,omitempty"`
-    Etag           string `json:"etag,omitempty"`
-}
-    MetaData is a struct for metadata returned in a PBResp.Body
+type MetaData StringIfaceMap
 
-type Nic struct {
-    Id_Type_Href
-    MetaData   MetaData       `json:"metadata,omitempty"`
-    Properties Nic_Properties `json:"properties,omitempty"`
-    Resp       PBResp         `json:"-"`
-}
+type Nic Instance
 
 func CreateNic(dcid string, srvid string, jason []byte) Nic
     CreateNic creates a nic on a server from a jason []byte and returns a
@@ -402,20 +252,7 @@ func UpdateNic(dcid string, srvid string, nicid string, jason []byte) Nic
     UpdateNic is a full update of nic properties passed in as jason []byte
     Returns Nic struct
 
-type Nic_Properties struct {
-    Name           string   `json:"name,omitempty"`
-    Ips            []string `json:"ips,omitempty"`
-    Dhcp           bool     `json:"dhcp,omitempty"`
-    Lan            int      `json:"lan"`
-    FirewallActive bool     `json:"firewallActive,omitempty"`
-    Firewallrules  []FwRule `json:"firewallrules,omitempty"`
-}
-
-type Nics struct {
-    Id_Type_Href
-    Items []Nic  `json:"items,omitempty"`
-    Resp  PBResp `json:"-"`
-}
+type Nics Collection
 
 func AssociateNics(dcid string, lbalid string, jason []byte) Nics
 
@@ -428,22 +265,17 @@ func ListNics(dcid, srvid string) Nics
     ListNics returns a Nics struct collection
 
 type PBResp struct {
+    Req        *http.Request
     StatusCode int
     Headers    http.Header
     Body       []byte
-    // contains filtered or unexported fields
 }
     PBResp is the struct returned by all Rest request functions
 
 func (r *PBResp) PrintHeaders()
     PrintHeaders prints the http headers as k,v pairs
 
-type RestRequest struct {
-    Id_Type_Href
-    Metadata               MetaData `json:"metadata"`
-    RestRequest_Properties `json:"properties"`
-    Resp                   PBResp `json:"-"`
-}
+type RestRequest Instance
 
 func GetRequest(requestid string) RestRequest
 
@@ -456,22 +288,11 @@ type RestRequest_Properties struct {
     Url     string            `json:"url"`
 }
 
-type RestRequests struct {
-    Id_Type_Href
-    Metadata MetaData      `json:"metadata"`
-    Items    []RestRequest `json:"items"`
-    Resp     PBResp        `json:"-"`
-}
+type RestRequests Collection
 
 func ListRequests() RestRequests
 
-type Server struct {
-    Id_Type_Href
-    MetaData   MetaData          `json:"metadata,omitempty"`
-    Properties Server_Properties `json:"properties,omitempty"`
-    Entities   Server_Entities   `json:"entities,omitempty"`
-    Resp       PBResp            `json:"-"`
-}
+type Server Instance
     Server is a struct for Server data
 
 func CreateServer(dcid string, jason []byte) Server
@@ -502,38 +323,13 @@ func UpdateServer(dcid string, srvid string, jason []byte) Server
     UpdateServer is a full update of server properties passed in as jason
     []byte Returns Server struct
 
-type Server_Entities struct {
-    Cdroms  Images  `json:"cdroms,omitempty"`
-    Nics    Nics    `json:"nics,omitempty"`
-    Volumes Volumes `json:"volumes,omitempty"`
-}
-
-type Server_Properties struct {
-    Name             string `json:"name,omitempty"`
-    Cores            int    `json:"cores,omitempty"`
-    Ram              int    `json:"ram,omitempty"`
-    Availabilityzone string `json:"availabilityzone,omitempty"`
-    Licencetype      string `json:"licencetype,omitempty"`
-    Bootvolume       string `json:"bootvolume,omitempty"`
-    Bootcdrom        string `json:"bootcdrom,omitempty"`
-}
-
-type Servers struct {
-    Id_Type_Href
-    Items []Server `json:"items,omitempty"`
-    Resp  PBResp   `json:"-"`
-}
+type Servers Collection
     Servers is a struct for Server struct collections
 
 func ListServers(dcid string) Servers
     ListServers returns a server struct collection
 
-type Snapshot struct {
-    Id_Type_Href
-    MetaData   MetaData            `json:"metadata,omitempty"`
-    Properties Snapshot_Properties `json:"properties,omitempty"`
-    Resp       PBResp              `json:"-"`
-}
+type Snapshot Instance
     Snapshot struct for Snapshot data
 
 func DeleteSnapshot(snapid string) Snapshot
@@ -551,42 +347,19 @@ func UpdateSnapshot(snapid string, jason []byte) Snapshot
     UpdateSnapshot replaces all snapshot properties from values in jason
     returns an Snapshot struct where id ==snapid
 
-type Snapshot_Properties struct {
-    Name                string `json:"name,omitempty"`
-    Description         string `json:"description,omitempty"`
-    Location            string `json:"location,omitempty"`
-    Size                int    `json:"size,omitempty"`
-    CpuHotPlug          bool   `json:"cpuHotPlug,omitempty"`
-    CpuHotUnplug        bool   `json:"cpuHotUnplug,omitempty"`
-    RamHotPlug          bool   `json:"ramHotPlug,omitempty"`
-    RamHotUnplug        bool   `json:"ramHotUnplug,omitempty"`
-    NicHotPlug          bool   `json:"nicHotPlug,omitempty"`
-    NicHotUnplug        bool   `json:"nicHotUnplug,omitempty"`
-    DiscVirtioHotPlug   bool   `json:"discVirtioHotPlug,omitempty"`
-    DiscVirtioHotUnplug bool   `json:"discVirtioHotUnplug,omitempty"`
-    DiscScsiHotPlug     bool   `json:"discScsiHotPlug,omitempty"`
-    DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
-    LicenceType         string `json:"licenceType,omitempty"`
-}
-    Snapshot_Properties struct
-
-type Snapshots struct {
-    Id_Type_Href
-    Items []Snapshot `json:"items,omitempty"`
-    Resp  PBResp     `json:"-"`
-}
+type Snapshots Collection
     Snapshots struct for a Snapshot collection
 
 func ListSnapshots() Snapshots
     ListSnapshots retrieves a collection of snapshot data returns a
     Snapshots struct
 
-type Volume struct {
-    Id_Type_Href
-    MetaData   MetaData          `json:"metadata,omitempty"`
-    Properties Volume_Properties `json:"properties,omitempty"`
-    Resp       PBResp            `json:"-"`
-}
+type StringIfaceMap map[string]interface{}
+
+type StringMap map[string]string
+    MetaData is a map for metadata returned in a PBResp.Body
+
+type Volume Instance
 
 func AttachVolume(dcid string, srvid string, volid string) Volume
 
@@ -602,31 +375,7 @@ func UpdateVolume(dcid string, volid string, jason []byte) Volume
 
 func (vol *Volume) Save()
 
-type Volume_Properties struct {
-    Name                string `json:"name,omitempty"`
-    Size                int    `json:"size"`
-    Bus                 string `json:"bus,omitempty"`
-    Image               string `json:"image,omitempty"`
-    ImagePassword       string `json:"imagePassword,omitempty"`
-    Type                string `json:"type,omitempty"`
-    LicenceType         string `json:"licenceType,omitempty"`
-    CpuHotPlug          bool   `json:"cpuHotPlug,omitempty"`
-    CpuHotUnplug        bool   `json:"cpuHotUnplug,omitempty"`
-    RamHotPlug          bool   `json:"ramHotPlug,omitempty"`
-    RamHotUnplug        bool   `json:"ramHotUnplug,omitempty"`
-    NicHotPlug          bool   `json:"nicHotPlug,omitempty"`
-    NicHotUnplug        bool   `json:"nicHotUnplug,omitempty"`
-    DiscVirtioHotPlug   bool   `json:"discVirtioHotPlug,omitempty"`
-    DiscVirtioHotUnplug bool   `json:"discVirtioHotUnplug,omitempty"`
-    DiscScsiHotPlug     bool   `json:"discScsiHotPlug,omitempty"`
-    DiscScsiHotUnplug   bool   `json:"discScsiHotUnplug,omitempty"`
-}
-
-type Volumes struct {
-    Id_Type_Href
-    Items []Volume `json:"items,omitempty"`
-    Resp  PBResp   `json:"-"`
-}
+type Volumes Collection
 
 func ListAttachedVolumes(dcid, srvid string) Volumes
 
