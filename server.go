@@ -20,16 +20,12 @@ type Server_Entities struct {
 
 // Server is a struct for Server data
 type Server struct {
-	Id_Type_Href
-	MetaData   MetaData        `json:"metadata,omitempty"`
-	Properties Props           `json:"properties,omitempty"`
-	Entities   Server_Entities `json:"entities,omitempty"`
-	Resp       PBResp          `json:"-"`
+Obj
 }
 
 // toServer converts a PBResp struct into a Server struct
-func toServer(pbresp PBResp) Server {
-	var Server Server
+func toServer(pbresp PBResp) Obj {
+	var Server Obj
 	json.Unmarshal(pbresp.Body, &Server)
 	Server.Resp = pbresp
 	return Server
@@ -38,52 +34,52 @@ func toServer(pbresp PBResp) Server {
 // Servers is a struct for Server struct collections
 type Servers struct {
 	Id_Type_Href
-	Items []Server `json:"items,omitempty"`
+	Items []Obj `json:"items,omitempty"`
 	Resp  PBResp   `json:"-"`
 }
 
 // toServers converts a PBResp struct into a Servers struct
-func toServers(pbresp PBResp) Servers {
-	var Servers Servers
+func toServers(pbresp PBResp) Collection{
+	var Servers Collection
 	json.Unmarshal(pbresp.Body, &Servers)
 	Servers.Resp = pbresp
 	return Servers
 }
 
 // ListServers returns a server struct collection
-func ListServers(dcid string) Servers {
+func ListServers(dcid string) Collection {
 	path := server_col_path(dcid)
 	return toServers(is_get(path))
 }
 
 // CreateServer creates a server from a jason []byte and returns a Server struct
-func CreateServer(dcid string, jason []byte) Server {
+func CreateServer(dcid string, jason []byte) Obj {
 	path := server_col_path(dcid)
 	return toServer(is_post(path, jason))
 }
 
 // GetServer pulls data for the server where id = srvid returns a Server struct
-func GetServer(dcid, srvid string) Server {
+func GetServer(dcid, srvid string) Obj {
 	path := server_path(dcid, srvid)
 	return toServer(is_get(path))
 }
 
 // UpdateServer is a full update of server properties passed in as jason []byte
 // Returns Server struct
-func UpdateServer(dcid string, srvid string, jason []byte) Server {
+func UpdateServer(dcid string, srvid string, jason []byte) Obj {
 	path := server_path(dcid, srvid)
 	return toServer(is_put(path, jason))
 }
 
 // PatchServer partial update of server properties passed in as jason []byte
 // Returns Server struct
-func PatchServer(dcid string, srvid string, jason []byte) Server {
+func PatchServer(dcid string, srvid string, jason []byte) Obj {
 	path := server_path(dcid, srvid)
 	return toServer(is_patch(path, jason))
 }
 
 // DeleteServer deletes the server where id=srvid and returns Server struct
-func DeleteServer(dcid, srvid string) Server {
+func DeleteServer(dcid, srvid string) Obj {
 	path := server_path(dcid, srvid)
 	return toServer(is_delete(path))
 }
@@ -145,7 +141,7 @@ func DetachVolume(dcid, srvid, volid string) Volume {
 }
 
 // server_command is a generic function for running server commands
-func server_command(dcid, srvid, cmd string) Server {
+func server_command(dcid, srvid, cmd string) Obj{
 	jason := `
 		{}
 		`
@@ -154,16 +150,16 @@ func server_command(dcid, srvid, cmd string) Server {
 }
 
 // StartServer starts a server
-func StartServer(dcid, srvid string) Server {
+func StartServer(dcid, srvid string) Obj {
 	return server_command(dcid, srvid, "start")
 }
 
 // StopServer stops a server
-func StopServer(dcid, srvid string) Server {
+func StopServer(dcid, srvid string) Obj {
 	return server_command(dcid, srvid, "stop")
 }
 
 // RebootServer reboots a server
-func RebootServer(dcid, srvid string) Server {
+func RebootServer(dcid, srvid string) Obj {
 	return server_command(dcid, srvid, "reboot")
 }
