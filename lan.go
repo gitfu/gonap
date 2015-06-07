@@ -14,11 +14,14 @@ type Lan_Entities struct {
 }
 
 type Lan struct {
+/**
 	Id_Type_Href
 	MetaData   MetaData       `json:"metadata,omitempty"`
 	Properties Lan_Properties `json:"properties"`
 	Entities   Lan_Entities   `json:"entities,omitempty"`
 	Resp       PBResp         `json:"-"`
+**/
+Obj
 }
 
 // toLan converts a PBResp struct into a Lan struct

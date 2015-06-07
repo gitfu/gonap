@@ -33,11 +33,12 @@ func SetEndpoint(newendpoint string) string {
 }
 
 // SetAuth is used to set Username and Passwd. Username and Passwd are declared in config.go
+/**
 func SetAuth(u, p string) {
 	Username = u
 	Passwd = p
 }
-
+**/
 // mk_url  either:
 // returns the path (if it`s a full url)
 //			 or
