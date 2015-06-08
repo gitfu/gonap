@@ -1,37 +1,47 @@
-PACKAGE DOCUMENTATION
+## ```Go Docs```
 
+```go 
 package gonap
-    import "github.com/gitfu/gonap"
 
+import "github.com/gitfu/gonap"
+```
 
-CONSTANTS
+### ```CONSTANTS```
 
+```go
 const CommandHeader = "application/x-www-form-urlencoded"
-    CommandHeader is used with is_command
-
+```   
+* CommandHeader is used with is_command
+```go
 const FullHeader = "application/vnd.profitbricks.resource+json"
-    FullHeader is the standard header to include with all http requests
-    except is_patch and is_command
-
+```
+* FullHeader is the standard header to include with all http requests 
+except is_patch and is_command
+```go
 const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
-    PatchHeader is used with is_patch .
+```
+* PatchHeader is used with is_patch .
 
-VARIABLES
-
+### ```VARIABLES```
+```go
 var Depth = "5"
-    Depth sets the level of detail returned from the REST server .
-
+```    
+* Depth sets the level of detail returned from the REST server .
+```go
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
-    Endpoint is the base url for REST requests .
-
+```
+Endpoint is the base url for REST requests .
+```go
 var Passwd = "my_password"
-    Password for authentication .
-
+```
+Password for authentication .
+```go
 var Username = "my_username"
-    Username for authentication .
+```
+*Username for authentication .
 
-FUNCTIONS
-
+### ``` FUNCTIONS ```
+```go
 func MkJson(i interface{}) string
 
 func SetAuth(u, p string)
@@ -42,14 +52,16 @@ func SetDepth(newdepth string) string
 func SetEndpoint(newendpoint string) string
     SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
     config.go
+```
 
-TYPES
-
+### ``` TYPES ```
+```go
 type Collection struct {
     Id_Type_Href
     Items []Instance `json:"items,omitempty"`
     Resp  PBResp     `json:"-"`
 }
+```
 
 type Datacenter Instance
     Datacenter is struct to hold data for a datacenter
