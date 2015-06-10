@@ -1,133 +1,175 @@
-PACKAGE DOCUMENTATION
+## ```Go Docs```
 
+```go 
 package gonap
-    import "github.com/gitfu/gonap"
 
+import "github.com/gitfu/gonap"
+```
 
-CONSTANTS
+### ```CONSTANTS```
 
+```go
 const CommandHeader = "application/x-www-form-urlencoded"
-    CommandHeader is used with is_command
-
+```   
+* CommandHeader is used with is_command
+```go
 const FullHeader = "application/vnd.profitbricks.resource+json"
-    FullHeader is the standard header to include with all http requests
-    except is_patch and is_command
-
+```
+* FullHeader is the standard header to include with all http requests 
+except is_patch and is_command
+```go
 const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
-    PatchHeader is used with is_patch .
+```
+* PatchHeader is used with is_patch .
 
-VARIABLES
-
+### ```VARIABLES```
+```go
 var Depth = "5"
-    Depth sets the level of detail returned from the REST server .
-
+```    
+* Depth sets the level of detail returned from the REST server .
+```go
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
-    Endpoint is the base url for REST requests .
-
+```
+Endpoint is the base url for REST requests .
+```go
 var Passwd = "my_password"
-    Password for authentication .
-
+```
+Password for authentication .
+```go
 var Username = "my_username"
-    Username for authentication .
+```
+* Username for authentication .
 
-FUNCTIONS
-
+### ``` FUNCTIONS ```
+```go
 func MkJson(i interface{}) string
-
+```
+```go
 func SetAuth(u, p string)
-
+```
+```go
 func SetDepth(newdepth string) string
+```
+```go
     SetDepth is used to set Depth
-
+```
+```go
 func SetEndpoint(newendpoint string) string
     SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
     config.go
+```
 
-TYPES
-
+### ``` TYPES ```
+```go
 type Collection struct {
     Id_Type_Href
     Items []Instance `json:"items,omitempty"`
     Resp  PBResp     `json:"-"`
 }
+```
 
+```go
 type Datacenter Instance
     Datacenter is struct to hold data for a datacenter
-
+```
+```go
 func CreateDatacenter(jason []byte) Datacenter
     CreateDatacenter creates a datacenter and returns a Datacenter struct
-
+```
+```go
 func DeleteDatacenter(dcid string) Datacenter
     Deletes a Datacenter where id==dcid
-
+```
+```go
 func GetDatacenter(dcid string) Datacenter
     GetDatacenter returns a Datacenter struct where id == dcid
-
+```
+```go
 func PatchDatacenter(dcid string, jason []byte) Datacenter
     PatchDatacenter replaces any Datacenter properties with the values in
     jason returns an Datacenter struct where id ==dcid
-
+```
+```go
 func UpdateDatacenter(dcid string, jason []byte) Datacenter
     UpdateDatacenter updates all Datacenter properties from values in jason
     returns an Datacenter struct where id ==dcid
-
+```
+```go
 type Datacenters Collection
     Datacenters is a struct for Datacenter collections
-
+```
+```go
 func ListDatacenters() Datacenters
     ListDatacenters returns a Datacenter collection struct
-
+```
+```go
 type FwRule Instance
     FwRule is struct for Firewall rule instance data
-
+```
+```go
 func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) FwRule
     CreateFwRule uses the json values in jason to create a new firewall rule
     and returns a FwRule struct
-
+```
+```go
 func DeleteFWRule(dcid, srvid, nicid, fwruleid string) FwRule
     DeleteFwRule removes firewall rule
-
+```
+```go
 func GetFwRule(dcid, srvid, nicid, fwruleid string) FwRule
     GetFwRule Retrieve a firewall rule and returns fwRule struct
-
+```
+```go
 func PatchFWRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) FwRule
     PatchFwRule Partially updates a firewall rule with data from []byte
     jason returns FwRule struct
-
+```
+```go
 func UpdateFwRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) FwRule
     UpdateFwRule Replaces all the properties of firewall rule, returns a
     FwRule struct
-
+```
+```go
 type FwRules Collection
     FwRules is the struct for firewall rule collections
-
+```
+```go
 func ListFwRules(dcid, srvid, nicid string) FwRules
     ListFwRules returns a collection of firewall rules
-
+```
+```go
 type Id_Type_Href struct {
     Id   string `json:"id"`
     Type string `json:"type"`
     Href string `json:"href"`
 }
-
+```
+```go
 type Image Instance
-
+```
+```go
 func AttachCdrom(dcid string, srvid string, cdid string) Image
-
+```
+```go
 func DeleteImage(imageid string) Image
     Deletes an image where id==imageid
-
+```
+```go
 func DetachCdrom(dcid, srvid, cdid string) Image
-
+```
+```go
 func GetAttachedCdrom(dcid, srvid, cdid string) Image
-
+```
+```go
 func GetImage(imageid string) Image
     GetImage returns an Image struct where id ==imageid
-
+```
+```go
 func PatchImage(imageid string, jason []byte) Image
     PatchImage replaces any image properties from values in jason returns an
     Image struct where id ==imageid
-
+```
+```go
 func UpdateImage(imageid string, jason []byte) Image
     UpdateImage updates all image properties from values in jason returns an
     Image struct where id ==imageid
@@ -381,9 +423,5 @@ func ListAttachedVolumes(dcid, srvid string) Volumes
 
 func ListVolumes(dcid string) Volumes
     ListVolumes returns a Volumes struct for volumes in the Datacenter
-
-SUBDIRECTORIES
-
-	p
-	tests
+```
 
