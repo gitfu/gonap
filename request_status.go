@@ -9,35 +9,33 @@ type RestRequest_Properties struct {
 	Url     string            `json:"url"`
 }
 
-type RestRequest Instance
-
-func toRestRequest(pbresp PBResp) RestRequest {
-	var rr RestRequest
+func toRestRequest(pbresp PBResp) Instance {
+	var rr Instance
 	json.Unmarshal(pbresp.Body, &rr)
 	rr.Resp = pbresp
 	return rr
 }
 
-type RestRequests Collection
 
-func toRestRequests(pbresp PBResp) RestRequests {
-	var rrs RestRequests
+
+func toRestRequests(pbresp PBResp) Collection {
+	var rrs Collection
 	json.Unmarshal(pbresp.Body, &rrs)
 	rrs.Resp = pbresp
 	return rrs
 }
 
-func ListRequests() RestRequests {
+func ListRequests() Collection {
 	path := request_col_path()
 	return toRestRequests(is_get(path))
 }
 
-func GetRequest(requestid string) RestRequest {
+func GetRequest(requestid string) Instance {
 	path := request_path(requestid)
 	return toRestRequest(is_get(path))
 }
 
-func StatusRequest(requestid string) RestRequest {
+func StatusRequest(requestid string) Instance {
 	path := request_status_path(requestid)
 	return toRestRequest(is_get(path))
 }

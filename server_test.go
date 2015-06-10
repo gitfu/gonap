@@ -101,7 +101,7 @@ func TestDeleteServer(t *testing.T) {
 	want := 202
 	srvid := mksrvid(srv_dcid)
 	srv := DeleteServer(srv_dcid, srvid)
-	if srv.Resp.StatusCode != want {
-		t.Errorf("DeleteServer() StatusCode == %v, wanted %v", srv.Resp.StatusCode, want)
+	if srv.StatusCode != want {
+		t.Errorf("DeleteServer() StatusCode == %v, wanted %v", srv.StatusCode, want)
 	}
 }

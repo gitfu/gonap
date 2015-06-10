@@ -96,7 +96,7 @@ func TestDeleteLoadbalancer(t *testing.T) {
 	want := 202
 	lbalid := mklbalid(lbal_dcid)
 	lbal := DeleteLoadbalancer(lbal_dcid, lbalid)
-	if lbal.Resp.StatusCode != want {
-		t.Errorf("DeleteLoadbalancer() StatusCode == %v, wanted %v", lbal.Resp.StatusCode, want)
+	if lbal.StatusCode != want {
+		t.Errorf("DeleteLoadbalancer() StatusCode == %v, wanted %v", lbal.StatusCode, want)
 	}
 }

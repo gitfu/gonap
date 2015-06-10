@@ -42,7 +42,7 @@ type Instance struct {
 	Resp       PBResp         `json:"-"`
 }
 
-// Save converts the datacenter struct's properties to json
+// Save converts the Instance struct's properties to json
 // and "patch"es them to the rest server
 func (ins *Instance) Save() {
 	path := ins.Href

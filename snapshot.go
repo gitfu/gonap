@@ -2,56 +2,51 @@ package gonap
 
 import "encoding/json"
 
-// Snapshot struct for Snapshot data
-type Snapshot Instance
 
-func toSnapshot(pbresp PBResp) Snapshot {
-	var snap Snapshot
+func toSnapshot(pbresp PBResp) Instance {
+	var snap Instance
 	json.Unmarshal(pbresp.Body, &snap)
 	snap.Resp = pbresp
 	return snap
 }
 
-// Snapshots struct for a Snapshot collection
-type Snapshots Collection
-
-func toSnapshots(pbresp PBResp) Snapshots {
-	var snaps Snapshots
+func toSnapshots(pbresp PBResp) Collection {
+	var snaps Collection
 	json.Unmarshal(pbresp.Body, &snaps)
 	snaps.Resp = pbresp
 	return snaps
 }
 
 // ListSnapshots retrieves a collection of snapshot data
-// returns a Snapshots struct
-func ListSnapshots() Snapshots {
+// returns a Collection struct
+func ListSnapshots() Collection {
 	path := snapshot_col_path()
 	return toSnapshots(is_get(path))
 }
 
-// GetSnapshot retrieves Snapshot data where id==snapid
+// GetSnapshot retrieves Instance data where id==snapid
 // returns a` snapshot struct
-func GetSnapshot(snapid string) Snapshot {
+func GetSnapshot(snapid string) Instance {
 	path := snapshot_path(snapid)
 	return toSnapshot(is_get(path))
 }
 
 // UpdateSnapshot replaces all snapshot properties from values in jason
-//returns an Snapshot struct where id ==snapid
-func UpdateSnapshot(snapid string, jason []byte) Snapshot {
+//returns an Instance struct where id ==snapid
+func UpdateSnapshot(snapid string, jason []byte) Instance {
 	path := snapshot_path(snapid)
 	return toSnapshot(is_put(path, jason))
 }
 
 // PatchSnapshot replaces any snapshot properties from values in jason
-//returns an Snapshot struct where id ==snapid
-func PatchSnapshot(snapid string, jason []byte) Snapshot {
+//returns an Instance struct where id ==snapid
+func PatchSnapshot(snapid string, jason []byte) Instance {
 	path := snapshot_path(snapid)
 	return toSnapshot(is_patch(path, jason))
 }
 
 // Deletes a Snapshot with id == snapid
-func DeleteSnapshot(snapid string) Snapshot {
+func DeleteSnapshot(snapid string) PBResp {
 	path := snapshot_path(snapid)
-	return toSnapshot(is_delete(path))
+	return is_delete(path)
 }

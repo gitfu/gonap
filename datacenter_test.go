@@ -86,8 +86,8 @@ func TestDeleteDatacenter(t *testing.T) {
 	want := 202
 	dcid := mkdcid()
 	resp := DeleteDatacenter(dcid)
-	if resp.Resp.StatusCode != want {
-		t.Errorf("DeleteDatacenter() StatusCode == %v, wanted %v", resp.Resp.StatusCode, want)
+	if resp.StatusCode != want {
+		t.Errorf("DeleteDatacenter() StatusCode == %v, wanted %v", resp.StatusCode, want)
 	}
 }
 

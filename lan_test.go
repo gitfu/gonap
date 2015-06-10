@@ -88,7 +88,7 @@ func TestDeleteLan(t *testing.T) {
 	want := 202
 	lanid := mklanid(lan_dcid)
 	resp := DeleteLan(lan_dcid, lanid)
-	if resp.Resp.StatusCode != want {
-		t.Errorf("DeleteLan() StatusCode == %v, wanted %v", resp.Resp.StatusCode, want)
+	if resp.StatusCode != want {
+		t.Errorf("DeleteLan() StatusCode == %v, wanted %v", resp.StatusCode, want)
 	}
 }

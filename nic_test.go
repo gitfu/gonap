@@ -95,7 +95,7 @@ func TestDeleteNic(t *testing.T) {
 	want := 202
 	nicid := mknicid(nic_dcid, nic_srvid)
 	nic := DeleteNic(nic_dcid, nic_srvid, nicid)
-	if nic.Resp.StatusCode != want {
-		t.Errorf("DeleteNic() StatusCode == %v, wanted %v", nic.Resp.StatusCode, want)
+	if nic.StatusCode != want {
+		t.Errorf("DeleteNic() StatusCode == %v, wanted %v", nic.StatusCode, want)
 	}
 }

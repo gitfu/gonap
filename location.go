@@ -2,33 +2,26 @@ package gonap
 
 import "encoding/json"
 
-// Location is the struct for a Location
-type Location Instance
-
-func toLocation(pbresp PBResp) Location {
-	var loc Location
+func toLocation(pbresp PBResp) Instance {
+	var loc Instance
 	json.Unmarshal(pbresp.Body, &loc)
 	loc.Resp = pbresp
 	return loc
 }
 
-// Locations is the struct for a Location Collection
-type Locations Collection
-
-func toLocations(pbresp PBResp) Locations {
-	var locs Locations
+func toLocations(pbresp PBResp) Collection {
+	var locs Collection
 	json.Unmarshal(pbresp.Body, &locs)
 	locs.Resp = pbresp
 	return locs
 }
 
-// ListLocations returns a PBResp with location collection data in the Body
-func ListLocations() Locations {
+// ListLocations returns location collection data
+func ListLocations() Collection {
 	return toLocations(is_get(location_col_path()))
 }
 
-// GetLocation returns a PBResp with data for a location in the Body
-func GetLocation(locid string) Location {
-	path := location_path(locid)
-	return toLocation(is_get(path))
+// GetLocation returns location data
+func GetLocation(locid string) Instance {
+	return toLocation(is_get(location_path(locid)))
 }

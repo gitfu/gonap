@@ -72,7 +72,7 @@ func TestDeleteImage(t *testing.T) {
 	want := 202
 	imgid := mkimgid()
 	resp := DeleteImage(imgid)
-	if resp.Resp.StatusCode != want {
-		t.Errorf("DeleteImage() StatusCode == %v, wanted %v", resp.Resp.StatusCode, want)
+	if resp.StatusCode != want {
+		t.Errorf("DeleteImage() StatusCode == %v, wanted %v", resp.StatusCode, want)
 	}
 }

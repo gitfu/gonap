@@ -60,7 +60,7 @@ func TestReleaseIpBlock(t *testing.T) {
 	want := 202
 	ipblkid := mkipblkid()
 	ipb := ReleaseIpBlock(ipblkid)
-	if ipb.Resp.StatusCode != want {
-		t.Errorf("DeleteIpBlock() StatusCode == %v, wanted %v", ipb.Resp.StatusCode, want)
+	if ipb.StatusCode != want {
+		t.Errorf("DeleteIpBlock() StatusCode == %v, wanted %v", ipb.StatusCode, want)
 	}
 }
