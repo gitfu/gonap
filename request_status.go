@@ -16,8 +16,6 @@ func toRestRequest(pbresp PBResp) Instance {
 	return rr
 }
 
-
-
 func toRestRequests(pbresp PBResp) Collection {
 	var rrs Collection
 	json.Unmarshal(pbresp.Body, &rrs)

@@ -2,7 +2,6 @@ package gonap
 
 import "encoding/json"
 
-
 func toSnapshot(pbresp PBResp) Instance {
 	var snap Instance
 	json.Unmarshal(pbresp.Body, &snap)

@@ -2,14 +2,12 @@ package gonap
 
 import "encoding/json"
 
-
 func toDatacenter(pbresp PBResp) Instance {
 	var DC Instance
 	json.Unmarshal(pbresp.Body, &DC)
 	DC.Resp = pbresp
 	return DC
 }
-
 
 func toDatacenters(pbresp PBResp) Collection {
 	var DCS Collection

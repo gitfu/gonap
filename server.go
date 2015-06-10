@@ -2,7 +2,6 @@ package gonap
 
 import "encoding/json"
 
-
 // toServer converts a PBResp struct into a Instance struct
 func toServer(pbresp PBResp) Instance {
 	var Server Instance
@@ -10,7 +9,6 @@ func toServer(pbresp PBResp) Instance {
 	Server.Resp = pbresp
 	return Server
 }
-
 
 // toServers converts a PBResp struct into a Collection struct
 func toServers(pbresp PBResp) Collection {
@@ -120,7 +118,7 @@ func server_command(dcid, srvid, cmd string) PBResp {
 		{}
 		`
 	path := server_command_path(dcid, srvid, cmd)
-	return  is_command(path, jason)
+	return is_command(path, jason)
 }
 
 // StartServer starts a server
