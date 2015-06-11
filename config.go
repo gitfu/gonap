@@ -4,10 +4,10 @@ package gonap
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
 
 //  Username for authentication .
-var Username = "my_username"
+var Username string
 
 // Password for authentication .
-var Passwd = "my_password"
+var Passwd string
 
 // SetEnpoint is used to set the REST Endpoint. Endpoint is declared in config.go
 func SetEndpoint(newendpoint string) string {
