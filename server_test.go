@@ -26,7 +26,7 @@ func ExampleListServers() {
 }
 
 func TestListServers(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
 	srvs := ListServers(srv_dcid)
@@ -39,7 +39,7 @@ func TestListServers(t *testing.T) {
 }
 
 func TestCreateServer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	var jason = []byte(`{
 					"name":"Goat",
@@ -53,7 +53,7 @@ func TestCreateServer(t *testing.T) {
 }
 
 func TestGetServer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "server"
 	want := 200
 	srvid := mksrvid(srv_dcid)
@@ -68,7 +68,7 @@ func TestGetServer(t *testing.T) {
 }
 
 func TestPatchServer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_patch := []byte(`{
 					"name":"Renamed Server",
@@ -81,7 +81,7 @@ func TestPatchServer(t *testing.T) {
 }
 
 func TestUpdateServer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_update := []byte(`{
 					"name":"Renamed Server",
@@ -97,7 +97,7 @@ func TestUpdateServer(t *testing.T) {
 }
 
 func TestDeleteServer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	srvid := mksrvid(srv_dcid)
 	srv := DeleteServer(srv_dcid, srvid)

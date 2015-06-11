@@ -14,7 +14,7 @@ func mkipblkid() string {
 }
 
 func TestListIpBlocks(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
 	ipbs := ListIpBlocks()
@@ -28,7 +28,7 @@ func TestListIpBlocks(t *testing.T) {
 }
 
 func TestReserveIpBlock(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	var jason = []byte(`{
 					"name":"Original IpBlock",
@@ -41,7 +41,7 @@ func TestReserveIpBlock(t *testing.T) {
 }
 
 func TestGetIpBlock(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "ipblock"
 	want := 200
 	ipblkid := mkipblkid()
@@ -56,7 +56,7 @@ func TestGetIpBlock(t *testing.T) {
 }
 
 func TestReleaseIpBlock(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	ipblkid := mkipblkid()
 	ipb := ReleaseIpBlock(ipblkid)

@@ -24,7 +24,7 @@ func ExampleListLoadbalancers() {
 }
 
 func TestListLoadbalancers(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
 	lbals := ListLoadbalancers(lbal_dcid)
@@ -37,7 +37,7 @@ func TestListLoadbalancers(t *testing.T) {
 }
 
 func TestCreateLoadbalancer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	var jason = []byte(`{
 					"name":"Goat",
@@ -49,7 +49,7 @@ func TestCreateLoadbalancer(t *testing.T) {
 }
 
 func TestGetLoadbalancer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "loadbalancer"
 	want := 200
 	lbalid := mklbalid(lbal_dcid)
@@ -64,7 +64,7 @@ func TestGetLoadbalancer(t *testing.T) {
 }
 
 func TestPatchLoadbalancer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_patch := []byte(`{
 					"name":"Renamed Loadbalancer",
@@ -77,7 +77,7 @@ func TestPatchLoadbalancer(t *testing.T) {
 }
 
 func TestUpdateLoadbalancer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_update := []byte(`{
 					"name":"Renamed Loadbalancer",
@@ -92,7 +92,7 @@ func TestUpdateLoadbalancer(t *testing.T) {
 }
 
 func TestDeleteLoadbalancer(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	lbalid := mklbalid(lbal_dcid)
 	lbal := DeleteLoadbalancer(lbal_dcid, lbalid)

@@ -19,7 +19,7 @@ func mknicid(nic_dcid, nic_srvid string) string {
 }
 
 func TestListNics(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
 	nics := ListNics(nic_dcid, nic_srvid)
@@ -32,7 +32,7 @@ func TestListNics(t *testing.T) {
 }
 
 func TestCreateNic(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	var jason = []byte(`{
 					"name":"Original Nic",
@@ -46,7 +46,7 @@ func TestCreateNic(t *testing.T) {
 }
 
 func TestGetNic(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "nic"
 	want := 200
 	nicid := mknicid(nic_dcid, nic_srvid)
@@ -61,7 +61,7 @@ func TestGetNic(t *testing.T) {
 }
 
 func TestPatchNic(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_patch := []byte(`{
 					"name":"Patched Nic",
@@ -76,7 +76,7 @@ func TestPatchNic(t *testing.T) {
 }
 
 func TestUpdateNic(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_update := []byte(`{
 					"name":"Update Nic",
@@ -91,7 +91,7 @@ func TestUpdateNic(t *testing.T) {
 }
 
 func TestDeleteNic(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	nicid := mknicid(nic_dcid, nic_srvid)
 	nic := DeleteNic(nic_dcid, nic_srvid, nicid)

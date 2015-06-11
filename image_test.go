@@ -12,7 +12,7 @@ func mkimgid() string {
 }
 
 func TestListImages(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
 	imgs := ListImages()
@@ -26,7 +26,7 @@ func TestListImages(t *testing.T) {
 }
 
 func TestGetImage(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "image"
 	want := 200
 	imgid := mkimgid()
@@ -40,7 +40,7 @@ func TestGetImage(t *testing.T) {
 }
 
 func TestPatchImage(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_patch := []byte(`{
 					"name":"Renamed img",
@@ -53,7 +53,7 @@ func TestPatchImage(t *testing.T) {
 }
 
 func TestUpdateImage(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_update := []byte(`{
 					"size":80,
@@ -68,7 +68,7 @@ func TestUpdateImage(t *testing.T) {
 }
 
 func TestDeleteImage(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	imgid := mkimgid()
 	resp := DeleteImage(imgid)

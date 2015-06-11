@@ -16,7 +16,7 @@ func mklanid(lan_dcid string) string {
 }
 
 func TestListLans(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
 	lans := ListLans(lan_dcid)
@@ -31,7 +31,7 @@ func TestListLans(t *testing.T) {
 }
 
 func TestCreateLan(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	var jason = []byte(`{
 					"name":"A lan"
@@ -43,7 +43,7 @@ func TestCreateLan(t *testing.T) {
 }
 
 func TestGetLan(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	shouldbe := "lan"
 	want := 200
 	lanid := mklanid(lan_dcid)
@@ -57,7 +57,7 @@ func TestGetLan(t *testing.T) {
 }
 
 func TestPatchLan(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_patch := []byte(`{
 					"name":"Patched lan",
@@ -70,7 +70,7 @@ func TestPatchLan(t *testing.T) {
 }
 
 func TestUpdateLan(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	jason_update := []byte(`{
 					"name":"Updated Lan"
@@ -84,7 +84,7 @@ func TestUpdateLan(t *testing.T) {
 }
 
 func TestDeleteLan(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 	want := 202
 	lanid := mklanid(lan_dcid)
 	resp := DeleteLan(lan_dcid, lanid)

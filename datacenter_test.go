@@ -13,7 +13,7 @@ func mkdcid() string {
 }
 
 func TestListDatacenters(t *testing.T) {
-	t.Parallel()
+	////t.Parallel()
 	shouldbe := "collection"
 	want := 200
 	dcs := ListDatacenters()
@@ -27,7 +27,7 @@ func TestListDatacenters(t *testing.T) {
 }
 
 func TestCreateDatacenter(t *testing.T) {
-	t.Parallel()
+	////t.Parallel()
 	want := 202
 	var jason = []byte(`{
 					"name":"Original DC",
@@ -40,7 +40,7 @@ func TestCreateDatacenter(t *testing.T) {
 }
 
 func TestGetDatacenter(t *testing.T) {
-	t.Parallel()
+	////t.Parallel()
 	shouldbe := "datacenter"
 	want := 200
 	dcid := mkdcid()
@@ -54,7 +54,7 @@ func TestGetDatacenter(t *testing.T) {
 }
 
 func TestPatchDatacenter(t *testing.T) {
-	t.Parallel()
+	////t.Parallel()
 	want := 202
 	jason_patch := []byte(`{
 					"name":"Renamed DC",
@@ -67,7 +67,7 @@ func TestPatchDatacenter(t *testing.T) {
 }
 
 func TestUpdateDatacenter(t *testing.T) {
-	t.Parallel()
+	////t.Parallel()
 	want := 202
 	jason_update := []byte(`{
 					"name":"Renamed DC",
@@ -82,7 +82,7 @@ func TestUpdateDatacenter(t *testing.T) {
 }
 
 func TestDeleteDatacenter(t *testing.T) {
-	t.Parallel()
+	////t.Parallel()
 	want := 202
 	dcid := mkdcid()
 	resp := DeleteDatacenter(dcid)
