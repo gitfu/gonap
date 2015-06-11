@@ -17,15 +17,13 @@ const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
 //CommandHeader is used with is_command
 const CommandHeader = "application/x-www-form-urlencoded"
 
+var Depth = "5"
 
-var Depth = "5" 
-
-// SetDepth is used to set Depth 
-func SetDepth(newdepth string) string { 
-        Depth = newdepth 
-        return Depth 
-} 
-
+// SetDepth is used to set Depth
+func SetDepth(newdepth string) string {
+	Depth = newdepth
+	return Depth
+}
 
 // mk_url  either:
 // returns the path (if it`s a full url)
