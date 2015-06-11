@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListIpBlocks
 func ListIpBlocks() Collection {

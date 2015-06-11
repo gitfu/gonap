@@ -1,6 +1,7 @@
-package gonap
+package goprofitbricks
 
 import "testing"
+
 //import "fmt"
 
 func mklocid() string {
@@ -24,8 +25,6 @@ func TestListLocations(t *testing.T) {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
-
 
 /**	Fails on apiary server.
 

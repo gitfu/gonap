@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListNics returns a Nics struct collection
 func ListNics(dcid, srvid string) Collection {

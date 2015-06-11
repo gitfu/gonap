@@ -1,5 +1,5 @@
 // ipblock_test.go
-package gonap
+package goprofitbricks
 
 import "testing"
 

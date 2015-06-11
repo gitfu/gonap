@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListFwRules returns a collection of firewall rules
 func ListFwRules(dcid, srvid, nicid string) Collection {

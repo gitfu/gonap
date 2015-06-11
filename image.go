@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListImages returns an Collection struct
 func ListImages() Collection {

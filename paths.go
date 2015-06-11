@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // slash returns "/<str>" great for making url paths
 func slash(str string) string {

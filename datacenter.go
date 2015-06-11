@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListDatacenters returns a Collection struct
 func ListDatacenters() Collection {

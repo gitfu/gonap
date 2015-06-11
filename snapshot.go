@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListSnapshots retrieves a collection of snapshot data
 // returns a Collection struct

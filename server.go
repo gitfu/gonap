@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListServers returns a server struct collection
 func ListServers(dcid string) Collection {

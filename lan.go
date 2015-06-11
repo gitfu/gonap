@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListLan returns a Collection for lans in the Datacenter
 func ListLans(dcid string) Collection {

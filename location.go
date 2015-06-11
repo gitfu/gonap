@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // ListLocations returns location collection data
 func ListLocations() Collection {

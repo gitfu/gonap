@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 import "net/http"
 import "fmt"

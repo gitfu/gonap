@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // Listloadbalancers returns a Collection struct
 // for loadbalancers in the Datacenter

@@ -1,4 +1,4 @@
-package gonap
+package goprofitbricks
 
 // Endpoint is the base url for REST requests .
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
