@@ -29,12 +29,12 @@ func TestListServers(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
-	srvs := ListServers(srv_dcid)
-	if srvs.Type != shouldbe {
-		t.Errorf("ListServers() type == %v, wanted %v", srvs.Type, shouldbe)
+	resp := ListServers(srv_dcid)
+	if resp.Type != shouldbe {
+		t.Errorf("ListServers() type == %v, wanted %v", resp.Type, shouldbe)
 	}
-	if srvs.Resp.StatusCode != want {
-		t.Errorf("ListServers() StatusCode == %v, wanted %v", srvs.Resp.StatusCode, want)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -46,24 +46,23 @@ func TestCreateServer(t *testing.T) {
 					"cores":4,
 					"ram": 4096
 					}`)
-	newsrv := CreateServer(srv_dcid, jason)
-	if newsrv.Resp.StatusCode != want {
-		t.Errorf("CreateServer() StatusCode == %v, wanted %v", newsrv.Resp.StatusCode, want)
+	resp := CreateServer(srv_dcid, jason)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestGetServer(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "server"
 	want := 200
 	srvid := mksrvid(srv_dcid)
-	srv := GetServer(srv_dcid, srvid)
+	resp := GetServer(srv_dcid, srvid)
 
-	if srv.Type != shouldbe {
-		t.Errorf("GetServer() type == %v, wanted %v", srv.Type, shouldbe)
+	if resp.Type != shouldbe {
+		t.Errorf("GetServer() type == %v, wanted %v", resp.Type, shouldbe)
 	}
-	if srv.Resp.StatusCode != want {
-		t.Errorf("GetServer() StatusCode == %v, wanted %v", srv.Resp.StatusCode, want)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -74,12 +73,11 @@ func TestPatchServer(t *testing.T) {
 					"name":"Renamed Server",
 					}`)
 	srvid := mksrvid(srv_dcid)
-	srv := PatchServer(srv_dcid, srvid, jason_patch)
-	if srv.Resp.StatusCode != want {
-		t.Errorf("PatchServer() StatusCode == %v, wanted %v", srv.Resp.StatusCode, want)
+	resp := PatchServer(srv_dcid, srvid, jason_patch)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestUpdateServer(t *testing.T) {
 	//t.Parallel()
 	want := 202
@@ -90,18 +88,17 @@ func TestUpdateServer(t *testing.T) {
 					}`)
 
 	srvid := mksrvid(srv_dcid)
-	srv := UpdateServer(srv_dcid, srvid, jason_update)
-	if srv.Resp.StatusCode != want {
-		t.Errorf("UpdateServer() StatusCode == %v, wanted %v", srv.Resp.StatusCode, want)
+	resp := UpdateServer(srv_dcid, srvid, jason_update)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestDeleteServer(t *testing.T) {
 	//t.Parallel()
 	want := 202
 	srvid := mksrvid(srv_dcid)
-	srv := DeleteServer(srv_dcid, srvid)
-	if srv.StatusCode != want {
-		t.Errorf("DeleteServer() StatusCode == %v, wanted %v", srv.StatusCode, want)
+	resp := DeleteServer(srv_dcid, srvid)
+	if resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.StatusCode))
 	}
 }

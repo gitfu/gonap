@@ -15,27 +15,26 @@ func TestListImages(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
-	imgs := ListImages()
+	resp := ListImages()
 
-	if imgs.Type != shouldbe {
-		t.Errorf("ListImages() type == %v, wanted %v", imgs.Type, shouldbe)
+	if resp.Type != shouldbe {
+		t.Errorf("ListImages() type == %v, wanted %v", resp.Type, shouldbe)
 	}
-	if imgs.Resp.StatusCode != want {
-		t.Errorf("ListImages() StatusCode == %v, wanted %v", imgs.Resp.StatusCode, want)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestGetImage(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "image"
 	want := 200
 	imgid := mkimgid()
-	img := GetImage(imgid)
-	if img.Type != shouldbe {
-		t.Errorf("ListImages() type == %v, wanted %v", img.Type, shouldbe)
+	resp := GetImage(imgid)
+	if resp.Type != shouldbe {
+		t.Errorf("ListImages() type == %v, wanted %v", resp.Type, shouldbe)
 	}
-	if img.Resp.StatusCode != want {
-		t.Errorf("GetImage() StatusCode == %v, wanted %v", img.Resp.StatusCode, want)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -46,12 +45,11 @@ func TestPatchImage(t *testing.T) {
 					"name":"Renamed img",
 					}`)
 	imgid := mkimgid()
-	img := PatchImage(imgid, jason_patch)
-	if img.Resp.StatusCode != want {
-		t.Errorf("PatchImage() StatusCode == %v, wanted %v", img.Resp.StatusCode, want)
+	resp := PatchImage(imgid, jason_patch)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestUpdateImage(t *testing.T) {
 	//t.Parallel()
 	want := 202
@@ -61,18 +59,17 @@ func TestUpdateImage(t *testing.T) {
 					}`)
 
 	imgid := mkimgid()
-	img := UpdateImage(imgid, jason_update)
-	if img.Resp.StatusCode != want {
-		t.Errorf("UpdateImage() StatusCode == %v, wanted %v", img.Resp.StatusCode, want)
+	resp := UpdateImage(imgid, jason_update)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestDeleteImage(t *testing.T) {
 	//t.Parallel()
 	want := 202
 	imgid := mkimgid()
 	resp := DeleteImage(imgid)
 	if resp.StatusCode != want {
-		t.Errorf("DeleteImage() StatusCode == %v, wanted %v", resp.StatusCode, want)
+		t.Errorf(bad_status(want, resp.StatusCode))
 	}
 }

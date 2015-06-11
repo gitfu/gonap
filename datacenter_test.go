@@ -51,7 +51,6 @@ func TestGetDatacenter(t *testing.T) {
 	}
 }
 
-
 func TestPatchDatacenter(t *testing.T) {
 	////t.Parallel()
 	want := 202
@@ -81,7 +80,6 @@ func TestUpdateDatacenter(t *testing.T) {
 	}
 }
 
-
 func TestDeleteDatacenter(t *testing.T) {
 	////t.Parallel()
 	want := 202
@@ -91,5 +89,3 @@ func TestDeleteDatacenter(t *testing.T) {
 		t.Errorf(bad_status(want, resp.StatusCode))
 	}
 }
-
-

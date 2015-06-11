@@ -47,7 +47,6 @@ func TestGetIpBlock(t *testing.T) {
 	ipblkid := mkipblkid()
 	resp := GetIpBlock(ipblkid)
 
-	
 	if resp.Type != shouldbe {
 		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
@@ -66,4 +65,3 @@ func TestReleaseIpBlock(t *testing.T) {
 		t.Errorf(bad_status(want, resp.StatusCode))
 	}
 }
-

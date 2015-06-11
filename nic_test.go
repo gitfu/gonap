@@ -22,15 +22,14 @@ func TestListNics(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
-	nics := ListNics(nic_dcid, nic_srvid)
-	if nics.Type != shouldbe {
-		t.Errorf("ListNics() type == %v, wanted %v", nics.Type, shouldbe)
+	resp := ListNics(nic_dcid, nic_srvid)
+	if resp.Type != shouldbe {
+		t.Errorf("ListNics() type == %v, wanted %v", resp.Type, shouldbe)
 	}
-	if nics.Resp.StatusCode != want {
-		t.Errorf("ListNics() StatusCode == %v, wanted %v", nics.Resp.StatusCode, want)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestCreateNic(t *testing.T) {
 	//t.Parallel()
 	want := 202
@@ -39,27 +38,25 @@ func TestCreateNic(t *testing.T) {
 					"lan":1
 					}`)
 
-	nic := CreateNic(nic_dcid, nic_srvid, jason)
-	if nic.Resp.StatusCode != want {
-		t.Errorf("CreateNic() StatusCode == %v, wanted %v", nic.Resp.StatusCode, want)
+	resp := CreateNic(nic_dcid, nic_srvid, jason)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestGetNic(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "nic"
 	want := 200
 	nicid := mknicid(nic_dcid, nic_srvid)
-	nic := GetNic(nic_dcid, nic_srvid, nicid)
+	resp := GetNic(nic_dcid, nic_srvid, nicid)
 
-	if nic.Type != shouldbe {
-		t.Errorf("GetNic() type == %v, wanted %v", nic.Type, shouldbe)
+	if resp.Type != shouldbe {
+		t.Errorf("GetNic() type == %v, wanted %v", resp.Type, shouldbe)
 	}
-	if nic.Resp.StatusCode != want {
-		t.Errorf("GetNic() StatusCode == %v, wanted %v", nic.Resp.StatusCode, want)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestPatchNic(t *testing.T) {
 	//t.Parallel()
 	want := 202
@@ -69,12 +66,11 @@ func TestPatchNic(t *testing.T) {
 					}`)
 
 	nicid := mknicid(nic_dcid, nic_srvid)
-	nic := PatchNic(nic_dcid, nic_srvid, nicid, jason_patch)
-	if nic.Resp.StatusCode != want {
-		t.Errorf("PatchNic() StatusCode == %v, wanted %v", nic.Resp.StatusCode, want)
+	resp := PatchNic(nic_dcid, nic_srvid, nicid, jason_patch)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestUpdateNic(t *testing.T) {
 	//t.Parallel()
 	want := 202
@@ -84,18 +80,17 @@ func TestUpdateNic(t *testing.T) {
 					}`)
 
 	nicid := mknicid(nic_dcid, nic_srvid)
-	nic := UpdateNic(nic_dcid, nic_srvid, nicid, jason_update)
-	if nic.Resp.StatusCode != want {
-		t.Errorf("UpdateNic() StatusCode == %v, wanted %v", nic.Resp.StatusCode, want)
+	resp := UpdateNic(nic_dcid, nic_srvid, nicid, jason_update)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestDeleteNic(t *testing.T) {
 	//t.Parallel()
 	want := 202
 	nicid := mknicid(nic_dcid, nic_srvid)
-	nic := DeleteNic(nic_dcid, nic_srvid, nicid)
-	if nic.StatusCode != want {
-		t.Errorf("DeleteNic() StatusCode == %v, wanted %v", nic.StatusCode, want)
+	resp := DeleteNic(nic_dcid, nic_srvid, nicid)
+	if resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.StatusCode))
 	}
 }

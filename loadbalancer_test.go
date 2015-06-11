@@ -28,7 +28,7 @@ func TestListLoadbalancers(t *testing.T) {
 	shouldbe := "collection"
 	want := 200
 	resp := ListLoadbalancers(lbal_dcid)
-	
+
 	if resp.Type != shouldbe {
 		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
@@ -72,7 +72,7 @@ func TestPatchLoadbalancer(t *testing.T) {
 					"name":"Renamed Loadbalancer",
 					}`)
 	lbalid := mklbalid(lbal_dcid)
-	resp:= PatchLoadbalancer(lbal_dcid, lbalid, jason_patch)
+	resp := PatchLoadbalancer(lbal_dcid, lbalid, jason_patch)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
