@@ -8,3 +8,19 @@ var Username = "my_username"
 
 // Password for authentication .
 var Passwd = "my_password"
+
+
+
+// SetEnpoint is used to set the REST Endpoint. Endpoint is declared in config.go
+func SetEndpoint(newendpoint string) string {
+        Endpoint = newendpoint
+        return Endpoint
+}
+
+// SetAuth is used to set Username and Passwd. Username and Passwd are declared in config.go
+
+func SetAuth(u, p string) {
+        Username = u
+        Passwd = p
+}
+

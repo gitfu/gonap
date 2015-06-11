@@ -17,27 +17,15 @@ const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
 //CommandHeader is used with is_command
 const CommandHeader = "application/x-www-form-urlencoded"
 
-// Depth sets the level of detail returned from the REST server .
-var Depth = "5"
 
-// SetDepth is used to set Depth
-func SetDepth(newdepth string) string {
-	Depth = newdepth
-	return Depth
-}
+var Depth = "5" 
 
-// SetEnpoint is used to set the REST Endpoint. Endpoint is declared in config.go
-func SetEndpoint(newendpoint string) string {
-	Endpoint = newendpoint
-	return Endpoint
-}
+// SetDepth is used to set Depth 
+func SetDepth(newdepth string) string { 
+        Depth = newdepth 
+        return Depth 
+} 
 
-// SetAuth is used to set Username and Passwd. Username and Passwd are declared in config.go
-
-func SetAuth(u, p string) {
-	Username = u
-	Passwd = p
-}
 
 // mk_url  either:
 // returns the path (if it`s a full url)
@@ -47,6 +35,7 @@ func mk_url(path string) string {
 	if strings.HasPrefix(path, "http") {
 		//REMOVE AFTER TESTING
 		path := strings.Replace(path, "https://api.profitbricks.com/rest", Endpoint, 1)
+		// END REMOVE
 		return path
 	}
 	if strings.HasPrefix(path, "<base>") {
