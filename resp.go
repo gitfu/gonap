@@ -36,7 +36,6 @@ func (r *Resp) PrintHeaders() {
 
 }
 
-
 type Id_Type_Href struct {
 	Id   string `json:"id"`
 	Type string `json:"type"`
@@ -104,5 +103,3 @@ type Collection struct {
 	Items []Instance `json:"items,omitempty"`
 	Resp  Resp       `json:"-"`
 }
-
-
