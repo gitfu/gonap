@@ -87,9 +87,11 @@ func main() {
 	    go build testrest.go
 	    go install testrest.go
 ```
+#### Run
 ```go 
 	  testrest
  ```
+ ##### (Output)
 ```go	  
 version  :  4
 location  :  de/fkb
