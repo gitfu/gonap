@@ -2,17 +2,17 @@ package gonap
 
 import "encoding/json"
 
-func toImage(pbresp PBResp) Instance {
+func toImage(resp Resp) Instance {
 	var img Instance
-	json.Unmarshal(pbresp.Body, &img)
-	img.Resp = pbresp
+	json.Unmarshal(resp.Body, &img)
+	img.Resp = resp
 	return img
 }
 
-func toImages(pbresp PBResp) Collection {
+func toImages(resp Resp) Collection {
 	var imgs Collection
-	json.Unmarshal(pbresp.Body, &imgs)
-	imgs.Resp = pbresp
+	json.Unmarshal(resp.Body, &imgs)
+	imgs.Resp = resp
 	return imgs
 }
 
@@ -43,7 +43,7 @@ func PatchImage(imageid string, jason []byte) Instance {
 }
 
 // Deletes an image where id==imageid
-func DeleteImage(imageid string) PBResp {
+func DeleteImage(imageid string) Resp {
 	path := image_path(imageid)
 	return is_delete(path)
 }

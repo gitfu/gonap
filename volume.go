@@ -1,15 +1,16 @@
 package gonap
 
 import "encoding/json"
+import "fmt"
 
-func toVolume(pbresp PBResp) Instance {
+func toVolume(pbresp Resp) Instance {
 	var volume Instance
 	json.Unmarshal(pbresp.Body, &volume)
 	volume.Resp = pbresp
 	return volume
 }
 
-func toVolumes(pbresp PBResp) Collection {
+func toVolumes(pbresp Resp) Collection {
 	var volumes Collection
 	json.Unmarshal(pbresp.Body, &volumes)
 	return volumes
@@ -31,9 +32,24 @@ func PatchVolume(dcid string, volid string, jason []byte) Instance {
 	return toVolume(is_patch(path, jason))
 }
 
-func DeleteVolume(dcid, volid string) PBResp {
+func DeleteVolume(dcid, volid string) Resp {
 	path := volume_path(dcid, volid)
 	return is_delete(path)
+}
+
+func CreateSnapshot(dcid string, volid string, jason []byte) Resp {
+
+	empty := `
+		{}
+		`
+	var path = volume_path(dcid, volid)
+	var data StringMap
+	json.Unmarshal(jason, &data)
+	for key, value := range data {
+		path += ("&" + key + "=" + value)
+		fmt.Println(path)
+	}
+	return is_command(path, empty)
 }
 
 /**

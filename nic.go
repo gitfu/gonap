@@ -4,19 +4,19 @@ import "encoding/json"
 
 type Nic Instance
 
-func toNic(pbresp PBResp) Instance {
+func toNic(resp Resp) Instance {
 	var nic Instance
-	json.Unmarshal(pbresp.Body, &nic)
-	nic.Resp = pbresp
+	json.Unmarshal(resp.Body, &nic)
+	nic.Resp = resp
 	return nic
 }
 
 type Nics Collection
 
-func toNics(pbresp PBResp) Collection {
+func toNics(resp Resp) Collection {
 	var nics Collection
-	json.Unmarshal(pbresp.Body, &nics)
-	nics.Resp = pbresp
+	json.Unmarshal(resp.Body, &nics)
+	nics.Resp = resp
 	return nics
 }
 
@@ -53,8 +53,8 @@ func PatchNic(dcid string, srvid string, nicid string, jason []byte) Instance {
 	return toNic(is_patch(path, jason))
 }
 
-// DeleteNic deletes the nic where id=nicid and returns a PBResp struct
-func DeleteNic(dcid, srvid, nicid string) PBResp {
+// DeleteNic deletes the nic where id=nicid and returns a Resp struct
+func DeleteNic(dcid, srvid, nicid string) Resp {
 	path := nic_path(dcid, srvid, nicid)
 	return is_delete(path)
 }

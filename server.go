@@ -2,19 +2,19 @@ package gonap
 
 import "encoding/json"
 
-// toServer converts a PBResp struct into a Instance struct
-func toServer(pbresp PBResp) Instance {
+// toServer converts a Resp struct into a Instance struct
+func toServer(resp Resp) Instance {
 	var Server Instance
-	json.Unmarshal(pbresp.Body, &Server)
-	Server.Resp = pbresp
+	json.Unmarshal(resp.Body, &Server)
+	Server.Resp = resp
 	return Server
 }
 
-// toServers converts a PBResp struct into a Collection struct
-func toServers(pbresp PBResp) Collection {
+// toServers converts a Resp struct into a Collection struct
+func toServers(resp Resp) Collection {
 	var Servers Collection
-	json.Unmarshal(pbresp.Body, &Servers)
-	Servers.Resp = pbresp
+	json.Unmarshal(resp.Body, &Servers)
+	Servers.Resp = resp
 	return Servers
 }
 
@@ -50,23 +50,23 @@ func PatchServer(dcid string, srvid string, jason []byte) Instance {
 	return toServer(is_patch(path, jason))
 }
 
-// DeleteServer deletes the server where id=srvid and returns PBResp struct
-func DeleteServer(dcid, srvid string) PBResp {
+// DeleteServer deletes the server where id=srvid and returns Resp struct
+func DeleteServer(dcid, srvid string) Resp {
 	path := server_path(dcid, srvid)
 	return is_delete(path)
 }
 
-func toCdRom(pbresp PBResp) Instance {
+func toCdRom(resp Resp) Instance {
 	var cdrom Instance
-	json.Unmarshal(pbresp.Body, &cdrom)
-	cdrom.Resp = pbresp
+	json.Unmarshal(resp.Body, &cdrom)
+	cdrom.Resp = resp
 	return cdrom
 }
 
-func toCdRoms(pbresp PBResp) Collection {
+func toCdRoms(resp Resp) Collection {
 	var cdroms Collection
-	json.Unmarshal(pbresp.Body, &cdroms)
-	cdroms.Resp = pbresp
+	json.Unmarshal(resp.Body, &cdroms)
+	cdroms.Resp = resp
 	return cdroms
 }
 
@@ -86,7 +86,7 @@ func GetAttachedCdrom(dcid, srvid, cdid string) Instance {
 	return toCdRom(is_get(path))
 }
 
-func DetachCdrom(dcid, srvid, cdid string) PBResp {
+func DetachCdrom(dcid, srvid, cdid string) Resp {
 	path := server_cdrom_path(dcid, srvid, cdid)
 	return is_delete(path)
 }
@@ -107,13 +107,13 @@ func GetAttachedVolume(dcid, srvid, volid string) Instance {
 	return toVolume(is_get(path))
 }
 
-func DetachVolume(dcid, srvid, volid string) PBResp {
+func DetachVolume(dcid, srvid, volid string) Resp {
 	path := server_volume_path(dcid, srvid, volid)
 	return is_delete(path)
 }
 
 // server_command is a generic function for running server commands
-func server_command(dcid, srvid, cmd string) PBResp {
+func server_command(dcid, srvid, cmd string) Resp {
 	jason := `
 		{}
 		`
@@ -122,16 +122,16 @@ func server_command(dcid, srvid, cmd string) PBResp {
 }
 
 // StartServer starts a server
-func StartServer(dcid, srvid string) PBResp {
+func StartServer(dcid, srvid string) Resp {
 	return server_command(dcid, srvid, "start")
 }
 
 // StopServer stops a server
-func StopServer(dcid, srvid string) PBResp {
+func StopServer(dcid, srvid string) Resp {
 	return server_command(dcid, srvid, "stop")
 }
 
 // RebootServer reboots a server
-func RebootServer(dcid, srvid string) PBResp {
+func RebootServer(dcid, srvid string) Resp {
 	return server_command(dcid, srvid, "reboot")
 }

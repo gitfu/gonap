@@ -2,17 +2,17 @@ package gonap
 
 import "encoding/json"
 
-func toSnapshot(pbresp PBResp) Instance {
+func toSnapshot(resp Resp) Instance {
 	var snap Instance
-	json.Unmarshal(pbresp.Body, &snap)
-	snap.Resp = pbresp
+	json.Unmarshal(resp.Body, &snap)
+	snap.Resp = resp
 	return snap
 }
 
-func toSnapshots(pbresp PBResp) Collection {
+func toSnapshots(resp Resp) Collection {
 	var snaps Collection
-	json.Unmarshal(pbresp.Body, &snaps)
-	snaps.Resp = pbresp
+	json.Unmarshal(resp.Body, &snaps)
+	snaps.Resp = resp
 	return snaps
 }
 
@@ -45,7 +45,7 @@ func PatchSnapshot(snapid string, jason []byte) Instance {
 }
 
 // Deletes a Snapshot with id == snapid
-func DeleteSnapshot(snapid string) PBResp {
+func DeleteSnapshot(snapid string) Resp {
 	path := snapshot_path(snapid)
 	return is_delete(path)
 }

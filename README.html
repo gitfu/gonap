@@ -299,59 +299,59 @@
 				
 			
 				
-				<dd><a href="#PBResp">type PBResp</a></dd>
+				<dd><a href="#Resp">type Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteBalancedNic">func DeleteBalancedNic(dcid, lbalid, balnicid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteBalancedNic">func DeleteBalancedNic(dcid, lbalid, balnicid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteDatacenter">func DeleteDatacenter(dcid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteDatacenter">func DeleteDatacenter(dcid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteFWRule">func DeleteFWRule(dcid, srvid, nicid, fwruleid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteFWRule">func DeleteFWRule(dcid, srvid, nicid, fwruleid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteImage">func DeleteImage(imageid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteImage">func DeleteImage(imageid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteLan">func DeleteLan(dcid, lanid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteLan">func DeleteLan(dcid, lanid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteLoadbalancer">func DeleteLoadbalancer(dcid, lbalid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteLoadbalancer">func DeleteLoadbalancer(dcid, lbalid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteNic">func DeleteNic(dcid, srvid, nicid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteNic">func DeleteNic(dcid, srvid, nicid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteServer">func DeleteServer(dcid, srvid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteServer">func DeleteServer(dcid, srvid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteSnapshot">func DeleteSnapshot(snapid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteSnapshot">func DeleteSnapshot(snapid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DeleteVolume">func DeleteVolume(dcid, volid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DeleteVolume">func DeleteVolume(dcid, volid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DetachCdrom">func DetachCdrom(dcid, srvid, cdid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DetachCdrom">func DetachCdrom(dcid, srvid, cdid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#DetachVolume">func DetachVolume(dcid, srvid, volid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#DetachVolume">func DetachVolume(dcid, srvid, volid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#RebootServer">func RebootServer(dcid, srvid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#RebootServer">func RebootServer(dcid, srvid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#ReleaseIpBlock">func ReleaseIpBlock(ipblockid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#ReleaseIpBlock">func ReleaseIpBlock(ipblockid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#StartServer">func StartServer(dcid, srvid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#StartServer">func StartServer(dcid, srvid string) Resp</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#StopServer">func StopServer(dcid, srvid string) PBResp</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#StopServer">func StopServer(dcid, srvid string) Resp</a></dd>
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="#PBResp.PrintHeaders">func (r *PBResp) PrintHeaders()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="#Resp.PrintHeaders">func (r *Resp) PrintHeaders()</a></dd>
 				
 			
 				
@@ -563,7 +563,7 @@ SetEnpoint is used to set the REST Endpoint. Endpoint is declared in config.go
 			<pre>type Collection struct {
     <a href="#Id_Type_Href">Id_Type_Href</a>
     Items []<a href="#Instance">Instance</a> `json:&#34;items,omitempty&#34;`
-    Resp  <a href="#PBResp">PBResp</a>     `json:&#34;-&#34;`
+    Resp  <a href="#Resp">Resp</a>     `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -808,7 +808,7 @@ ListVolumes returns a Collection struct for volumes in the Datacenter
     MetaData   <a href="#StringMap">StringMap</a>      `json:&#34;metaData&#34;`
     Properties <a href="#StringIfaceMap">StringIfaceMap</a> `json:&#34;properties&#34;`
     Entities   <a href="#StringIfaceMap">StringIfaceMap</a> `json:&#34;entities&#34;`
-    Resp       <a href="#PBResp">PBResp</a>         `json:&#34;-&#34;`
+    Resp       <a href="#Resp">Resp</a>         `json:&#34;-&#34;`
 }</pre>
 			
 
@@ -1329,15 +1329,15 @@ and &#34;patch&#34;es them to the rest server
 		
 			
 			
-			<h2 id="PBResp">type <a href="/src/target/resp.go?s=443:550#L12">PBResp</a></h2>
-			<pre>type PBResp struct {
+			<h2 id="Resp">type <a href="/src/target/resp.go?s=443:550#L12">Resp</a></h2>
+			<pre>type Resp struct {
     Req        *<a href="/pkg/net/http/">http</a>.<a href="/pkg/net/http/#Request">Request</a>
     StatusCode <a href="/pkg/builtin/#int">int</a>
     Headers    <a href="/pkg/net/http/">http</a>.<a href="/pkg/net/http/#Header">Header</a>
     Body       []<a href="/pkg/builtin/#byte">byte</a>
 }</pre>
 			<p>
-PBResp is the struct returned by all Rest request functions
+Resp is the struct returned by all Rest request functions
 </p>
 
 
@@ -1352,14 +1352,14 @@ PBResp is the struct returned by all Rest request functions
 			
 				
 				<h3 id="DeleteBalancedNic">func <a href="/src/target/loadbalancer.go?s=1897:1957#L64">DeleteBalancedNic</a></h3>
-				<pre>func DeleteBalancedNic(dcid, lbalid, balnicid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteBalancedNic(dcid, lbalid, balnicid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				
 				
 				
 			
 				
 				<h3 id="DeleteDatacenter">func <a href="/src/target/datacenter.go?s=1338:1379#L42">DeleteDatacenter</a></h3>
-				<pre>func DeleteDatacenter(dcid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteDatacenter(dcid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
 Deletes a Datacenter where id==dcid
 </p>
@@ -1369,7 +1369,7 @@ Deletes a Datacenter where id==dcid
 			
 				
 				<h3 id="DeleteFWRule">func <a href="/src/target/fwrule.go?s=1609:1670#L43">DeleteFWRule</a></h3>
-				<pre>func DeleteFWRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteFWRule(dcid, srvid, nicid, fwruleid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
 DeleteFwRule removes firewall rule
 </p>
@@ -1379,7 +1379,7 @@ DeleteFwRule removes firewall rule
 			
 				
 				<h3 id="DeleteImage">func <a href="/src/target/image.go?s=1114:1153#L36">DeleteImage</a></h3>
-				<pre>func DeleteImage(imageid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteImage(imageid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
 Deletes an image where id==imageid
 </p>
@@ -1389,7 +1389,7 @@ Deletes an image where id==imageid
 			
 				
 				<h3 id="DeleteLan">func <a href="/src/target/lan.go?s=1434:1475#L44">DeleteLan</a></h3>
-				<pre>func DeleteLan(dcid, lanid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteLan(dcid, lanid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
 DeleteLan deletes a lan where id == lanid
 </p>
@@ -1399,16 +1399,16 @@ DeleteLan deletes a lan where id == lanid
 			
 				
 				<h3 id="DeleteLoadbalancer">func <a href="/src/target/loadbalancer.go?s=1365:1416#L44">DeleteLoadbalancer</a></h3>
-				<pre>func DeleteLoadbalancer(dcid, lbalid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteLoadbalancer(dcid, lbalid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				
 				
 				
 			
 				
 				<h3 id="DeleteNic">func <a href="/src/target/nic.go?s=1510:1558#L47">DeleteNic</a></h3>
-				<pre>func DeleteNic(dcid, srvid, nicid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteNic(dcid, srvid, nicid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
-DeleteNic deletes the nic where id=nicid and returns a PBResp struct
+DeleteNic deletes the nic where id=nicid and returns a Resp struct
 </p>
 
 				
@@ -1416,9 +1416,9 @@ DeleteNic deletes the nic where id=nicid and returns a PBResp struct
 			
 				
 				<h3 id="DeleteServer">func <a href="/src/target/server.go?s=1594:1638#L44">DeleteServer</a></h3>
-				<pre>func DeleteServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
-DeleteServer deletes the server where id=srvid and returns PBResp struct
+DeleteServer deletes the server where id=srvid and returns Resp struct
 </p>
 
 				
@@ -1426,7 +1426,7 @@ DeleteServer deletes the server where id=srvid and returns PBResp struct
 			
 				
 				<h3 id="DeleteSnapshot">func <a href="/src/target/snapshot.go?s=1244:1285#L38">DeleteSnapshot</a></h3>
-				<pre>func DeleteSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteSnapshot(snapid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
 Deletes a Snapshot with id == snapid
 </p>
@@ -1436,28 +1436,28 @@ Deletes a Snapshot with id == snapid
 			
 				
 				<h3 id="DeleteVolume">func <a href="/src/target/volume.go?s=776:820#L24">DeleteVolume</a></h3>
-				<pre>func DeleteVolume(dcid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DeleteVolume(dcid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				
 				
 				
 			
 				
 				<h3 id="DetachCdrom">func <a href="/src/target/server.go?s=2447:2496#L79">DetachCdrom</a></h3>
-				<pre>func DetachCdrom(dcid, srvid, cdid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DetachCdrom(dcid, srvid, cdid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				
 				
 				
 			
 				
 				<h3 id="DetachVolume">func <a href="/src/target/server.go?s=3053:3104#L100">DetachVolume</a></h3>
-				<pre>func DetachVolume(dcid, srvid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func DetachVolume(dcid, srvid, volid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				
 				
 				
 			
 				
 				<h3 id="RebootServer">func <a href="/src/target/server.go?s=3686:3730#L125">RebootServer</a></h3>
-				<pre>func RebootServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func RebootServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
 RebootServer reboots a server
 </p>
@@ -1467,14 +1467,14 @@ RebootServer reboots a server
 			
 				
 				<h3 id="ReleaseIpBlock">func <a href="/src/target/ipblock.go?s=646:690#L25">ReleaseIpBlock</a></h3>
-				<pre>func ReleaseIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func ReleaseIpBlock(ipblockid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				
 				
 				
 			
 				
 				<h3 id="StartServer">func <a href="/src/target/server.go?s=3438:3481#L115">StartServer</a></h3>
-				<pre>func StartServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func StartServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
 StartServer starts a server
 </p>
@@ -1484,7 +1484,7 @@ StartServer starts a server
 			
 				
 				<h3 id="StopServer">func <a href="/src/target/server.go?s=3561:3603#L120">StopServer</a></h3>
-				<pre>func StopServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#PBResp">PBResp</a></pre>
+				<pre>func StopServer(dcid, srvid <a href="/pkg/builtin/#string">string</a>) <a href="#Resp">Resp</a></pre>
 				<p>
 StopServer stops a server
 </p>
@@ -1495,8 +1495,8 @@ StopServer stops a server
 
 			
 				
-				<h3 id="PBResp.PrintHeaders">func (*PBResp) <a href="/src/target/resp.go?s=1404:1435#L54">PrintHeaders</a></h3>
-				<pre>func (r *<a href="#PBResp">PBResp</a>) PrintHeaders()</pre>
+				<h3 id="Resp.PrintHeaders">func (*Resp) <a href="/src/target/resp.go?s=1404:1435#L54">PrintHeaders</a></h3>
+				<pre>func (r *<a href="#Resp">Resp</a>) PrintHeaders()</pre>
 				<p>
 PrintHeaders prints the http headers as k,v pairs
 </p>
@@ -1552,7 +1552,7 @@ PrintHeaders prints the http headers as k,v pairs
 			<h2 id="StringMap">type <a href="/src/target/resp.go?s=302:334#L7">StringMap</a></h2>
 			<pre>type StringMap map[<a href="/pkg/builtin/#string">string</a>]<a href="/pkg/builtin/#string">string</a></pre>
 			<p>
-MetaData is a map for metadata returned in a PBResp.Body
+MetaData is a map for metadata returned in a Resp.Body
 </p>
 
 

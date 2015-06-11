@@ -47,7 +47,7 @@ TYPES
 type Collection struct {
     Id_Type_Href
     Items []Instance `json:"items,omitempty"`
-    Resp  PBResp     `json:"-"`
+    Resp  Resp     `json:"-"`
 }
 
 func AssociateNics(dcid string, lbalid string, jason []byte) Collection
@@ -109,7 +109,7 @@ type Instance struct {
     MetaData   StringMap           `json:"metaData"`
     Properties StringIfaceMap      `json:"properties"`
     Entities   StringCollectionMap `json:"entities"`
-    Resp       PBResp              `json:"-"`
+    Resp       Resp              `json:"-"`
 }
 
 func AttachCdrom(dcid string, srvid string, cdid string) Instance
@@ -270,57 +270,57 @@ type Nic Instance
 
 type Nics Collection
 
-type PBResp struct {
+type Resp struct {
     Req        *http.Request
     StatusCode int
     Headers    http.Header
     Body       []byte
 }
-    PBResp is the struct returned by all Rest request functions
+    Resp is the struct returned by all Rest request functions
 
-func DeleteBalancedNic(dcid, lbalid, balnicid string) PBResp
+func DeleteBalancedNic(dcid, lbalid, balnicid string) Resp
 
-func DeleteDatacenter(dcid string) PBResp
+func DeleteDatacenter(dcid string) Resp
     Deletes a Datacenter where id==dcid
 
-func DeleteFWRule(dcid, srvid, nicid, fwruleid string) PBResp
+func DeleteFWRule(dcid, srvid, nicid, fwruleid string) Resp
     DeleteFwRule removes firewall rule
 
-func DeleteImage(imageid string) PBResp
+func DeleteImage(imageid string) Resp
     Deletes an image where id==imageid
 
-func DeleteLan(dcid, lanid string) PBResp
+func DeleteLan(dcid, lanid string) Resp
     DeleteLan deletes a lan where id == lanid
 
-func DeleteLoadbalancer(dcid, lbalid string) PBResp
+func DeleteLoadbalancer(dcid, lbalid string) Resp
 
-func DeleteNic(dcid, srvid, nicid string) PBResp
-    DeleteNic deletes the nic where id=nicid and returns a PBResp struct
+func DeleteNic(dcid, srvid, nicid string) Resp
+    DeleteNic deletes the nic where id=nicid and returns a Resp struct
 
-func DeleteServer(dcid, srvid string) PBResp
-    DeleteServer deletes the server where id=srvid and returns PBResp struct
+func DeleteServer(dcid, srvid string) Resp
+    DeleteServer deletes the server where id=srvid and returns Resp struct
 
-func DeleteSnapshot(snapid string) PBResp
+func DeleteSnapshot(snapid string) Resp
     Deletes a Snapshot with id == snapid
 
-func DeleteVolume(dcid, volid string) PBResp
+func DeleteVolume(dcid, volid string) Resp
 
-func DetachCdrom(dcid, srvid, cdid string) PBResp
+func DetachCdrom(dcid, srvid, cdid string) Resp
 
-func DetachVolume(dcid, srvid, volid string) PBResp
+func DetachVolume(dcid, srvid, volid string) Resp
 
-func RebootServer(dcid, srvid string) PBResp
+func RebootServer(dcid, srvid string) Resp
     RebootServer reboots a server
 
-func ReleaseIpBlock(ipblockid string) PBResp
+func ReleaseIpBlock(ipblockid string) Resp
 
-func StartServer(dcid, srvid string) PBResp
+func StartServer(dcid, srvid string) Resp
     StartServer starts a server
 
-func StopServer(dcid, srvid string) PBResp
+func StopServer(dcid, srvid string) Resp
     StopServer stops a server
 
-func (r *PBResp) PrintHeaders()
+func (r *Resp) PrintHeaders()
     PrintHeaders prints the http headers as k,v pairs
 
 type RestRequest_Properties struct {
@@ -335,6 +335,6 @@ type StringCollectionMap map[string]Collection
 type StringIfaceMap map[string]interface{}
 
 type StringMap map[string]string
-    MetaData is a map for metadata returned in a PBResp.Body
+    MetaData is a map for metadata returned in a Resp.Body
 
 

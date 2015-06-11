@@ -5,6 +5,16 @@ func slash(str string) string {
 	return "/" + str
 }
 
+// dc_col_path	returns the string "/datacenters"
+func dc_col_path() string {
+	return slash("datacenters")
+}
+
+// dc_path returns the string "/datacenters/<dcid>"
+func dc_path(dcid string) string {
+	return dc_col_path() + slash(dcid)
+}
+
 // image_col_path returns the string" /images"
 func image_col_path() string {
 	return slash("images")
@@ -35,14 +45,29 @@ func location_path(locid string) string {
 	return location_col_path() + slash(locid)
 }
 
-// dc_col_path	returns the string "/datacenters"
-func dc_col_path() string {
-	return slash("datacenters")
+// request_col_path returns the string   "/requests"
+func request_col_path() string {
+	return slash("requests")
 }
 
-// dc_path returns the string "/datacenters/<dcid>"
-func dc_path(dcid string) string {
-	return dc_col_path() + slash(dcid)
+// request_path returns the string   "/requests/<requestid>"
+func request_path(requestid string) string {
+	return request_col_path() + slash(requestid)
+}
+
+// request_status_path returns the string   "/requests<requestid>/status"
+func request_status_path(requestid string) string {
+	return request_path(requestid) + slash("status")
+}
+
+// snapshot_col_path returns the string "/snapshots"
+func snapshot_col_path() string {
+	return slash("snapshots")
+}
+
+// snapshot_path returns the string "/snapshots/<snapid>"
+func snapshot_path(snapid string) string {
+	return snapshot_col_path() + slash(snapid)
 }
 
 // lan_col_path returns the string "/datacenters/<dcid>/lans"
@@ -55,12 +80,6 @@ func lan_path(dcid, lanid string) string {
 	return lan_col_path(dcid) + slash(lanid)
 }
 
-// lan_nic_col_path returns the string	/datacenters/<dcid>/lans/<lanid>/nics
-func lan_nic_col(dcid, lanid string) string {
-	return lan_path(dcid, lanid) + slash("nics")
-
-}
-
 //  lbal_col_path returns the string "/loadbalancers"
 func lbal_col_path(dcid string) string {
 	return dc_path(dcid) + slash("loadbalancers")
@@ -69,16 +88,6 @@ func lbal_col_path(dcid string) string {
 // lbalpath returns the string "/loadbalancers/<lbalid>"
 func lbal_path(dcid, lbalid string) string {
 	return lbal_col_path(dcid) + slash(lbalid)
-}
-
-//  balnic_col_path returns the string "/loadbalancers/<lbalid>/balancednics"
-func balnic_col_path(dcid, lbalid string) string {
-	return lbal_path(dcid, lbalid) + slash("balancednics")
-}
-
-//  balnic_path returns the string "/loadbalancers/<lbalid>/balancednics<balnicid>"
-func balnic_path(dcid, lbalid, balnicid string) string {
-	return balnic_col_path(dcid, lbalid) + slash(balnicid)
 }
 
 // server_col_path returns the string	"/datacenters/<dcid>/servers"
@@ -94,6 +103,32 @@ func server_path(dcid, srvid string) string {
 // server_cmd_path returns the string   "/datacenters/<dcid>/servers/<srvid>/<cmd>"
 func server_command_path(dcid, srvid, cmd string) string {
 	return server_path(dcid, srvid) + slash(cmd)
+}
+
+// volume_col_path returns the string "/volumes"
+func volume_col_path(dcid string) string {
+	return dc_path(dcid) + slash("volumes")
+}
+
+// volume_path returns the string "/volumes/<volid>"
+func volume_path(dcid, volid string) string {
+	return volume_col_path(dcid) + slash(volid)
+}
+
+// lan_nic_col_path returns the string	/datacenters/<dcid>/lans/<lanid>/nics
+func lan_nic_col(dcid, lanid string) string {
+	return lan_path(dcid, lanid) + slash("nics")
+
+}
+
+//  balnic_col_path returns the string "/loadbalancers/<lbalid>/balancednics"
+func balnic_col_path(dcid, lbalid string) string {
+	return lbal_path(dcid, lbalid) + slash("balancednics")
+}
+
+//  balnic_path returns the string "/loadbalancers/<lbalid>/balancednics<balnicid>"
+func balnic_path(dcid, lbalid, balnicid string) string {
+	return balnic_col_path(dcid, lbalid) + slash(balnicid)
 }
 
 // server_cdrom_col_path returns the string   "/datacenters/<dcid>/servers/<srvid>/cdroms"
@@ -135,39 +170,4 @@ func fwrule_col_path(dcid, srvid, nicid string) string {
 //  "/datacenters/<dcid>/servers/<srvid>/nics/<nicid>/firewallrules/<fwruleid>"
 func fwrule_path(dcid, srvid, nicid, fwruleid string) string {
 	return fwrule_col_path(dcid, srvid, nicid) + slash(fwruleid)
-}
-
-// request_col_path returns the string   "/requests"
-func request_col_path() string {
-	return slash("requests")
-}
-
-// request_path returns the string   "/requests/<requestid>"
-func request_path(requestid string) string {
-	return request_col_path() + slash(requestid)
-}
-
-// request_status_path returns the string   "/requests<requestid>/status"
-func request_status_path(requestid string) string {
-	return request_path(requestid) + slash("status")
-}
-
-// volume_col_path returns the string "/volumes"
-func volume_col_path(dcid string) string {
-	return dc_path(dcid) + slash("volumes")
-}
-
-// volume_path returns the string "/volumes/<volid>"
-func volume_path(dcid, volid string) string {
-	return volume_col_path(dcid) + slash(volid)
-}
-
-// snapshot_col_path returns the string "/snapshots"
-func snapshot_col_path() string {
-	return slash("snapshots")
-}
-
-// snapshot_path returns the string "/snapshots/<snapid>"
-func snapshot_path(snapid string) string {
-	return snapshot_col_path() + slash(snapid)
 }

@@ -9,17 +9,17 @@ type RestRequest_Properties struct {
 	Url     string            `json:"url"`
 }
 
-func toRestRequest(pbresp PBResp) Instance {
+func toRestRequest(resp Resp) Instance {
 	var rr Instance
-	json.Unmarshal(pbresp.Body, &rr)
-	rr.Resp = pbresp
+	json.Unmarshal(resp.Body, &rr)
+	rr.Resp = resp
 	return rr
 }
 
-func toRestRequests(pbresp PBResp) Collection {
+func toRestRequests(resp Resp) Collection {
 	var rrs Collection
-	json.Unmarshal(pbresp.Body, &rrs)
-	rrs.Resp = pbresp
+	json.Unmarshal(resp.Body, &rrs)
+	rrs.Resp = resp
 	return rrs
 }
 

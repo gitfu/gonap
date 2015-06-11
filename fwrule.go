@@ -2,17 +2,17 @@ package gonap
 
 import "encoding/json"
 
-func toFwRule(pbresp PBResp) Instance {
+func toFwRule(resp Resp) Instance {
 	var fwr Instance
-	json.Unmarshal(pbresp.Body, &fwr)
-	fwr.Resp = pbresp
+	json.Unmarshal(resp.Body, &fwr)
+	fwr.Resp = resp
 	return fwr
 }
 
-func toFwRules(pbresp PBResp) Collection {
+func toFwRules(resp Resp) Collection {
 	var fwrs Collection
-	json.Unmarshal(pbresp.Body, &fwrs)
-	fwrs.Resp = pbresp
+	json.Unmarshal(resp.Body, &fwrs)
+	fwrs.Resp = resp
 	return fwrs
 }
 
@@ -50,7 +50,7 @@ func PatchFWRule(dcid string, srvid string, nicid string, fwruleid string, jason
 }
 
 // DeleteFwRule removes firewall rule
-func DeleteFWRule(dcid, srvid, nicid, fwruleid string) PBResp {
+func DeleteFWRule(dcid, srvid, nicid, fwruleid string) Resp {
 	path := fwrule_path(dcid, srvid, nicid, fwruleid)
 	return is_delete(path)
 }

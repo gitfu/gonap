@@ -20,10 +20,10 @@ func TestListIpBlocks(t *testing.T) {
 	ipbs := ListIpBlocks()
 
 	if ipbs.Type != shouldbe {
-		t.Errorf("ListIpblocks() type == %v, wanted %v", ipbs.Type, shouldbe)
+		t.Errorf(bad_type(shouldbe, ipbs.Type))
 	}
 	if ipbs.Resp.StatusCode != want {
-		t.Errorf("ListIpblocks() StatusCode == %v, wanted %v", ipbs.Resp.StatusCode, want)
+		t.Errorf(bad_status(want, ipbs.Resp.StatusCode))
 	}
 }
 
@@ -36,7 +36,8 @@ func TestReserveIpBlock(t *testing.T) {
 					}`)
 	ipb := ReserveIpBlock(jason)
 	if ipb.Resp.StatusCode != want {
-		t.Errorf("ReserveIpBlock() StatusCode == %v, wanted %v", ipb.Resp.StatusCode, want)
+		t.Errorf(bad_status(want, ipb.Resp.StatusCode))
+
 	}
 }
 
@@ -51,7 +52,7 @@ func TestGetIpBlock(t *testing.T) {
 		t.Errorf("GetIpBlock() type == %v, wanted %v", ipb.Type, shouldbe)
 	}
 	if ipb.Resp.StatusCode != want {
-		t.Errorf("GetIpblock() StatusCode == %v, wanted %v", ipb.Resp.StatusCode, want)
+		t.Errorf(bad_status(want, ipb.Resp.StatusCode))
 	}
 }
 
@@ -61,6 +62,6 @@ func TestReleaseIpBlock(t *testing.T) {
 	ipblkid := mkipblkid()
 	ipb := ReleaseIpBlock(ipblkid)
 	if ipb.StatusCode != want {
-		t.Errorf("DeleteIpBlock() StatusCode == %v, wanted %v", ipb.StatusCode, want)
+		t.Errorf(bad_status(want, ipb.StatusCode))
 	}
 }

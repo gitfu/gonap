@@ -2,17 +2,17 @@ package gonap
 
 import "encoding/json"
 
-func toLocation(pbresp PBResp) Instance {
+func toLocation(resp Resp) Instance {
 	var loc Instance
-	json.Unmarshal(pbresp.Body, &loc)
-	loc.Resp = pbresp
+	json.Unmarshal(resp.Body, &loc)
+	loc.Resp = resp
 	return loc
 }
 
-func toLocations(pbresp PBResp) Collection {
+func toLocations(resp Resp) Collection {
 	var locs Collection
-	json.Unmarshal(pbresp.Body, &locs)
-	locs.Resp = pbresp
+	json.Unmarshal(resp.Body, &locs)
+	locs.Resp = resp
 	return locs
 }
 

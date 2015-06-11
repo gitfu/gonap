@@ -4,19 +4,19 @@ import "encoding/json"
 
 type Loadbalancer Instance
 
-func toLoadbalancer(pbresp PBResp) Instance {
+func toLoadbalancer(resp Resp) Instance {
 	var lb Instance
-	json.Unmarshal(pbresp.Body, &lb)
-	lb.Resp = pbresp
+	json.Unmarshal(resp.Body, &lb)
+	lb.Resp = resp
 	return lb
 }
 
 type Loadbalancers Collection
 
-func toLoadbalancers(pbresp PBResp) Collection {
+func toLoadbalancers(resp Resp) Collection {
 	var lbs Collection
-	json.Unmarshal(pbresp.Body, &lbs)
-	lbs.Resp = pbresp
+	json.Unmarshal(resp.Body, &lbs)
+	lbs.Resp = resp
 	return lbs
 }
 
@@ -51,7 +51,7 @@ func PatchLoadbalancer(dcid string, lbalid string, jason []byte) Instance {
 	return toLoadbalancer(is_patch(path, jason))
 }
 
-func DeleteLoadbalancer(dcid, lbalid string) PBResp {
+func DeleteLoadbalancer(dcid, lbalid string) Resp {
 	path := lbal_path(dcid, lbalid)
 	return is_delete(path)
 }
@@ -71,7 +71,7 @@ func GetBalancedNic(dcid, lbalid, balnicid string) Instance {
 	return toNic(is_get(path))
 }
 
-func DeleteBalancedNic(dcid, lbalid, balnicid string) PBResp {
+func DeleteBalancedNic(dcid, lbalid, balnicid string) Resp {
 	path := balnic_path(dcid, lbalid, balnicid)
 	return is_delete(path)
 }

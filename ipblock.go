@@ -2,17 +2,17 @@ package gonap
 
 import "encoding/json"
 
-func toIpblock(pbresp PBResp) Instance {
+func toIpblock(resp Resp) Instance {
 	var ipb Instance
-	json.Unmarshal(pbresp.Body, &ipb)
-	ipb.Resp = pbresp
+	json.Unmarshal(resp.Body, &ipb)
+	ipb.Resp = resp
 	return ipb
 }
 
-func toIpblocks(pbresp PBResp) Collection {
+func toIpblocks(resp Resp) Collection {
 	var ipbs Collection
-	json.Unmarshal(pbresp.Body, &ipbs)
-	ipbs.Resp = pbresp
+	json.Unmarshal(resp.Body, &ipbs)
+	ipbs.Resp = resp
 	return ipbs
 }
 
@@ -32,7 +32,7 @@ func GetIpBlock(ipblockid string) Instance {
 	return toIpblock(is_get(path))
 }
 
-func ReleaseIpBlock(ipblockid string) PBResp {
+func ReleaseIpBlock(ipblockid string) Resp {
 	path := ipblock_path(ipblockid)
 	return is_delete(path)
 }

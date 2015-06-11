@@ -2,18 +2,18 @@ package gonap
 
 import "encoding/json"
 
-// toLan converts a PBResp struct into a Instance struct
-func toLan(pbresp PBResp) Instance {
+// toLan converts a Resp struct into a Instance struct
+func toLan(resp Resp) Instance {
 	var lan Instance
-	json.Unmarshal(pbresp.Body, &lan)
-	lan.Resp = pbresp
+	json.Unmarshal(resp.Body, &lan)
+	lan.Resp = resp
 	return lan
 }
 
-func toLans(pbresp PBResp) Collection {
+func toLans(resp Resp) Collection {
 	var lans Collection
-	json.Unmarshal(pbresp.Body, &lans)
-	lans.Resp = pbresp
+	json.Unmarshal(resp.Body, &lans)
+	lans.Resp = resp
 	return lans
 }
 
@@ -51,7 +51,7 @@ func PatchLan(dcid string, lanid string, jason []byte) Instance {
 }
 
 // DeleteLan deletes a lan where id == lanid
-func DeleteLan(dcid, lanid string) PBResp {
+func DeleteLan(dcid, lanid string) Resp {
 	path := lan_path(dcid, lanid)
 	return is_delete(path)
 }

@@ -45,7 +45,7 @@ func mk_url(path string) string {
 	return url
 }
 
-func do(req *http.Request) PBResp {
+func do(req *http.Request) Resp {
 	client := &http.Client{}
 	req.SetBasicAuth(Username, Passwd)
 	resp, err := client.Do(req)
@@ -54,7 +54,7 @@ func do(req *http.Request) PBResp {
 	}
 	defer resp.Body.Close()
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var R PBResp
+	var R Resp
 	R.Req = resp.Request
 	R.Body = resp_body
 	R.Headers = resp.Header
@@ -62,48 +62,48 @@ func do(req *http.Request) PBResp {
 	return R
 }
 
-// is_delete performs an http.NewRequest DELETE  and returns a PBResp struct
-func is_delete(path string) PBResp {
+// is_delete performs an http.NewRequest DELETE  and returns a Resp struct
+func is_delete(path string) Resp {
 	url := mk_url(path)
 	req, _ := http.NewRequest("DELETE", url, nil)
 	req.Header.Add("Content-Type", FullHeader)
 	return do(req)
 }
 
-// is_get performs an http.NewRequest GET and returns a PBResp struct
-func is_get(path string) PBResp {
+// is_get performs an http.NewRequest GET and returns a Resp struct
+func is_get(path string) Resp {
 	url := mk_url(path) + `?depth=` + Depth
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Add("Content-Type", FullHeader)
 	return do(req)
 }
 
-// is_patch performs an http.NewRequest PATCH and returns a PBResp struct
-func is_patch(path string, jason []byte) PBResp {
+// is_patch performs an http.NewRequest PATCH and returns a Resp struct
+func is_patch(path string, jason []byte) Resp {
 	url := mk_url(path)
 	req, _ := http.NewRequest("PATCH", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", PatchHeader)
 	return do(req)
 }
 
-// is_put performs an http.NewRequest PUT and returns a PBResp struct
-func is_put(path string, jason []byte) PBResp {
+// is_put performs an http.NewRequest PUT and returns a Resp struct
+func is_put(path string, jason []byte) Resp {
 	url := mk_url(path)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", FullHeader)
 	return do(req)
 }
 
-// is_post performs an http.NewRequest POST and returns a PBResp struct
-func is_post(path string, jason []byte) PBResp {
+// is_post performs an http.NewRequest POST and returns a Resp struct
+func is_post(path string, jason []byte) Resp {
 	url := mk_url(path)
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", FullHeader)
 	return do(req)
 }
 
-// is_command performs an http.NewRequest PUT and returns a PBResp struct
-func is_command(path string, jason string) PBResp {
+// is_command performs an http.NewRequest PUT and returns a Resp struct
+func is_command(path string, jason string) Resp {
 	url := mk_url(path)
 	body := json.RawMessage(jason)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(body))

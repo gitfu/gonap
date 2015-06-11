@@ -2,17 +2,17 @@ package gonap
 
 import "encoding/json"
 
-func toDatacenter(pbresp PBResp) Instance {
+func toDatacenter(resp Resp) Instance {
 	var DC Instance
-	json.Unmarshal(pbresp.Body, &DC)
-	DC.Resp = pbresp
+	json.Unmarshal(resp.Body, &DC)
+	DC.Resp = resp
 	return DC
 }
 
-func toDatacenters(pbresp PBResp) Collection {
+func toDatacenters(resp Resp) Collection {
 	var DCS Collection
-	json.Unmarshal(pbresp.Body, &DCS)
-	DCS.Resp = pbresp
+	json.Unmarshal(resp.Body, &DCS)
+	DCS.Resp = resp
 	return DCS
 }
 
@@ -49,7 +49,7 @@ func PatchDatacenter(dcid string, jason []byte) Instance {
 }
 
 // Deletes a Datacenter where id==dcid
-func DeleteDatacenter(dcid string) PBResp {
+func DeleteDatacenter(dcid string) Resp {
 	path := dc_path(dcid)
 	return is_delete(path)
 }

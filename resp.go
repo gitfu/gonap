@@ -13,15 +13,15 @@ func MkJson(i interface{}) string {
 	return string(jason)
 }
 
-// MetaData is a map for metadata returned in a PBResp.Body
+// MetaData is a map for metadata returned in a Resp.Body
 type StringMap map[string]string
 
 type StringIfaceMap map[string]interface{}
 
 type StringCollectionMap map[string]Collection
 
-// PBResp is the struct returned by all Rest request functions
-type PBResp struct {
+// Resp is the struct returned by all Rest request functions
+type Resp struct {
 	Req        *http.Request
 	StatusCode int
 	Headers    http.Header
@@ -41,7 +41,7 @@ type Instance struct {
 	MetaData   StringMap           `json:"metaData"`
 	Properties StringIfaceMap      `json:"properties"`
 	Entities   StringCollectionMap `json:"entities"`
-	Resp       PBResp              `json:"-"`
+	Resp       Resp                `json:"-"`
 }
 
 // Save converts the Instance struct's properties to json
@@ -77,11 +77,11 @@ func (ins *Instance) ShowEnts() {
 type Collection struct {
 	Id_Type_Href
 	Items []Instance `json:"items,omitempty"`
-	Resp  PBResp     `json:"-"`
+	Resp  Resp       `json:"-"`
 }
 
 // PrintHeaders prints the http headers as k,v pairs
-func (r *PBResp) PrintHeaders() {
+func (r *Resp) PrintHeaders() {
 	for key, value := range r.Headers {
 		fmt.Println(key, " : ", value[0])
 	}
