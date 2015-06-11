@@ -8,24 +8,29 @@ package gonap
 ```go
 const CommandHeader = "application/x-www-form-urlencoded"
     CommandHeader is used with is_command
-
+```
+```go
 const FullHeader = "application/vnd.profitbricks.resource+json"
     FullHeader is the standard header to include with all http requests
     except is_patch and is_command
-
+```
+```go
 const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
     PatchHeader is used with is_patch .
 ```
 #### VARIABLES
 ```go
 var Depth = "5"
-
+```
+```go
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
     Endpoint is the base url for REST requests .
-
+```
+```go
 var Passwd string
     Password for authentication .
-
+```
+```go
 var Username string
     Username for authentication .
 ```
@@ -33,12 +38,15 @@ var Username string
 #### FUNCTIONS
 ```go
 func MkJson(i interface{}) string
-
+```
+```go
 func SetAuth(u, p string)
-
+```
+```go
 func SetDepth(newdepth string) string
     SetDepth is used to set Depth
-
+```
+```go
 func SetEndpoint(newendpoint string) string
     SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
     config.go
@@ -51,55 +59,73 @@ type Collection struct {
     Items []Instance `json:"items,omitempty"`
     Resp  PBResp     `json:"-"`
 }
-
+```
+```go
 func AssociateNics(dcid string, lbalid string, jason []byte) Collection
-
+```
+```go
 func ListAttachedCdroms(dcid, srvid string) Collection
-
+```
+```go
 func ListAttachedVolumes(dcid, srvid string) Collection
-
+```
+```go
 func ListBalancedNics(dcid, lbalid string) Collection
-
+```
+```go
 func ListDatacenters() Collection
     ListDatacenters returns a Collection struct
-
+```
+```go
 func ListFwRules(dcid, srvid, nicid string) Collection
     ListFwRules returns a collection of firewall rules
-
+```
+```go
 func ListImages() Collection
     ListImages returns an Collection struct
-
+```
+```go
 func ListIpBlocks() Collection
     ListIpBlocks
-
+```
+```go
 func ListLanMembers(dcid, lanid string) Collection
     ListLanMembers returns a Nic struct collection for the Lan
-
+```
+```go
 func ListLans(dcid string) Collection
     ListLan returns a Collection for lans in the Datacenter
-
+```
+```go
 func ListLoadbalancers(dcid string) Collection
     Listloadbalancers returns a Collection struct for loadbalancers in the
     Datacenter
-
+```
+```go
 func ListLocations() Collection
     ListLocations returns location collection data
-
+```
+```go
 func ListNics(dcid, srvid string) Collection
     ListNics returns a Nics struct collection
-
+```
+```go
 func ListRequests() Collection
-
+```
+```go
 func ListServers(dcid string) Collection
     ListServers returns a server struct collection
-
+```
+```go
 func ListSnapshots() Collection
     ListSnapshots retrieves a collection of snapshot data returns a
     Collection struct
-
+```
+```go
 func ListVolumes(dcid string) Collection
     ListVolumes returns a Collection struct for volumes in the Datacenter
 ```
+
 ```go
 type Id_Type_Href struct {
     Id   string `json:"id"`
@@ -178,36 +204,46 @@ func CreateServer(dcid string, jason []byte) Instance
 ##### Get functions
 ```go
 func GetAttachedCdrom(dcid, srvid, cdid string) Instance
-
+```
+```go
 func GetAttachedVolume(dcid, srvid, volid string) Instance
-
+```
+```go
 func GetBalancedNic(dcid, lbalid, balnicid string) Instance
-
+```
+```go
 func GetDatacenter(dcid string) Instance
     GetDatacenter returns a Instance struct where id == dcid
-
+```
+```go
 func GetFwRule(dcid, srvid, nicid, fwruleid string) Instance
     GetFwRule Retrieve a firewall rule and returns Instance struct
-
+```
+```go
 func GetImage(imageid string) Instance
     GetImage returns an Instance struct where id ==imageid
-
+```
+```go
 func GetIpBlock(ipblockid string) Instance
-
+```
+```go
 func GetLan(dcid, lanid string) Instance
     GetLan pulls data for the lan where id = lanid returns an Instance
     struct
-
+```
+```go
 func GetLoadbalancer(dcid, lbalid string) Instance
     GetLoadbalancer pulls data for the Loadbalancer where id = lbalid
     returns a Instance struct
-
+```
+```go
 func GetLocation(locid string) Instance
     GetLocation returns location data
-
+```
+```go
 func GetNic(dcid, srvid, nicid string) Instance
     GetNic pulls data for the nic where id = srvid returns a Instance struct
-
+```
 func GetRequest(requestid string) Instance
 
 func GetServer(dcid, srvid string) Instance
