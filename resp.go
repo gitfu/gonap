@@ -9,7 +9,7 @@ func MkJson(i interface{}) string {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(string(jason))
+//	fmt.Println(string(jason))
 	return string(jason)
 }
 
@@ -18,6 +18,7 @@ type StringMap map[string]string
 
 type StringIfaceMap map[string]interface{}
 
+type StringCollectionMap map[string]Collection
 // PBResp is the struct returned by all Rest request functions
 type PBResp struct {
 	Req        *http.Request
@@ -38,7 +39,7 @@ type Instance struct {
 	Id_Type_Href
 	MetaData   StringMap      `json:"metaData"`
 	Properties StringIfaceMap `json:"properties"`
-	Entities   StringIfaceMap `json:"entities"`
+	Entities   StringCollectionMap  `json:"entities"`
 	Resp       PBResp         `json:"-"`
 }
 
@@ -53,6 +54,25 @@ func (ins *Instance) Save() {
 	resp := is_patch(path, jason)
 	fmt.Println("save status code is ", resp.StatusCode)
 }
+
+// ShowProps prints the properties as k,v pairs
+func (ins *Instance ) ShowProps() {
+        for key, value := range ins.Properties {
+                fmt.Println(key, " : ", value)
+        }
+}
+func (ins *Instance ) SetProp(key, val string) {
+	ins.Properties[key]=val
+}
+
+// ShowEnts prints the Entities  as k,v pairs
+func (ins *Instance ) ShowEnts() {
+        for key, value := range ins.Entities {
+		v :=MkJson(value)
+                fmt.Println(key, " : ", v)
+        }
+}
+
 
 type Collection struct {
 	Id_Type_Href
