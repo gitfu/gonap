@@ -23,10 +23,10 @@ var Depth = "5"
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
     Endpoint is the base url for REST requests .
 
-var Passwd = "my_password"
+var Passwd string
     Password for authentication .
 
-var Username = "my_username"
+var Username string
     Username for authentication .
 
 FUNCTIONS
@@ -106,10 +106,10 @@ type Id_Type_Href struct {
 
 type Instance struct {
     Id_Type_Href
-    MetaData   StringMap      `json:"metaData"`
-    Properties StringIfaceMap `json:"properties"`
-    Entities   StringIfaceMap `json:"entities"`
-    Resp       PBResp         `json:"-"`
+    MetaData   StringMap           `json:"metaData"`
+    Properties StringIfaceMap      `json:"properties"`
+    Entities   StringCollectionMap `json:"entities"`
+    Resp       PBResp              `json:"-"`
 }
 
 func AttachCdrom(dcid string, srvid string, cdid string) Instance
@@ -252,6 +252,14 @@ func (ins *Instance) Save()
     Save converts the Instance struct's properties to json and "patch"es
     them to the rest server
 
+func (ins *Instance) SetProp(key, val string)
+
+func (ins *Instance) ShowEnts()
+    ShowEnts prints the Entities as k,v pairs
+
+func (ins *Instance) ShowProps()
+    ShowProps prints the properties as k,v pairs
+
 type Loadbalancer Instance
 
 type Loadbalancers Collection
@@ -321,6 +329,8 @@ type RestRequest_Properties struct {
     Body    string            `json:"body"`
     Url     string            `json:"url"`
 }
+
+type StringCollectionMap map[string]Collection
 
 type StringIfaceMap map[string]interface{}
 
