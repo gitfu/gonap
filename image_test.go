@@ -18,7 +18,7 @@ func TestListImages(t *testing.T) {
 	resp := ListImages()
 
 	if resp.Type != shouldbe {
-		t.Errorf("ListImages() type == %v, wanted %v", resp.Type, shouldbe)
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))
@@ -31,7 +31,7 @@ func TestGetImage(t *testing.T) {
 	imgid := mkimgid()
 	resp := GetImage(imgid)
 	if resp.Type != shouldbe {
-		t.Errorf("ListImages() type == %v, wanted %v", resp.Type, shouldbe)
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))

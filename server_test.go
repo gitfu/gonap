@@ -31,7 +31,7 @@ func TestListServers(t *testing.T) {
 	want := 200
 	resp := ListServers(srv_dcid)
 	if resp.Type != shouldbe {
-		t.Errorf("ListServers() type == %v, wanted %v", resp.Type, shouldbe)
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))
@@ -42,10 +42,10 @@ func TestCreateServer(t *testing.T) {
 	//t.Parallel()
 	want := 202
 	var jason = []byte(`{
-					"name":"Goat",
-					"cores":4,
-					"ram": 4096
-					}`)
+			"name":"Goat",
+			"cores":4,
+			"ram": 4096
+			}`)
 	resp := CreateServer(srv_dcid, jason)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))
@@ -57,9 +57,8 @@ func TestGetServer(t *testing.T) {
 	want := 200
 	srvid := mksrvid(srv_dcid)
 	resp := GetServer(srv_dcid, srvid)
-
 	if resp.Type != shouldbe {
-		t.Errorf("GetServer() type == %v, wanted %v", resp.Type, shouldbe)
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))
@@ -70,7 +69,7 @@ func TestPatchServer(t *testing.T) {
 	//t.Parallel()
 	want := 202
 	jason_patch := []byte(`{
-					"name":"Renamed Server",
+			"name":"Renamed Server",
 					}`)
 	srvid := mksrvid(srv_dcid)
 	resp := PatchServer(srv_dcid, srvid, jason_patch)
@@ -82,9 +81,9 @@ func TestUpdateServer(t *testing.T) {
 	//t.Parallel()
 	want := 202
 	jason_update := []byte(`{
-					"name":"Renamed Server",
-					"cores":16,
-					"ram": 8192
+			"name":"Renamed Server",
+			"cores":16,
+			"ram": 8192
 					}`)
 
 	srvid := mksrvid(srv_dcid)

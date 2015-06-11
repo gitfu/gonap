@@ -24,7 +24,7 @@ func TestListNics(t *testing.T) {
 	want := 200
 	resp := ListNics(nic_dcid, nic_srvid)
 	if resp.Type != shouldbe {
-		t.Errorf("ListNics() type == %v, wanted %v", resp.Type, shouldbe)
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))
@@ -49,9 +49,8 @@ func TestGetNic(t *testing.T) {
 	want := 200
 	nicid := mknicid(nic_dcid, nic_srvid)
 	resp := GetNic(nic_dcid, nic_srvid, nicid)
-
 	if resp.Type != shouldbe {
-		t.Errorf("GetNic() type == %v, wanted %v", resp.Type, shouldbe)
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))

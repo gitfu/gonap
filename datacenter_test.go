@@ -44,7 +44,7 @@ func TestGetDatacenter(t *testing.T) {
 	dcid := mkdcid()
 	resp := GetDatacenter(dcid)
 	if resp.Type != shouldbe {
-		t.Errorf("ListDatacenters() type == %v, wanted %v", resp.Type, shouldbe)
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
 		t.Errorf(bad_status(want, resp.Resp.StatusCode))
