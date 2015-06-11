@@ -41,19 +41,6 @@ func CreateSnapshot(dcid string, volid string, jason []byte) Resp {
 
 /**
 
-createSnapshot : function(dc_id,volume_id,jason,callback){
-                var str=""
-		if (jason){
-                	if (jason['name']){
-                        	str +=('&name='+jason['name'])
-                	}
-                	if (jason['description']){
-                        	str +=('&description='+jason['description'])
-                	}
-		}
-                pbreq.is_command([ "datacenters",dc_id,"volumes",volume_id,"create-snapshot" ],str,callback)
-        },
-
 
 
 	restoreSnapshot : function(dc_id,volume_id,jason,callback){
