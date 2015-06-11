@@ -6,17 +6,17 @@ import "fmt"
 // ListVolumes returns a Collection struct for volumes in the Datacenter
 func ListVolumes(dcid string) Collection {
 	path := volume_col_path(dcid)
-	return toCollection(is_get(path))
+	return is_list(path)
 }
 
 func UpdateVolume(dcid string, volid string, jason []byte) Instance {
 	path := volume_path(dcid, volid)
-	return toInstance(is_put(path, jason))
+	return is_put(path, jason)
 }
 
 func PatchVolume(dcid string, volid string, jason []byte) Instance {
 	path := volume_path(dcid, volid)
-	return toInstance(is_patch(path, jason))
+	return is_patch(path, jason)
 }
 
 func DeleteVolume(dcid, volid string) Resp {

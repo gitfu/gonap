@@ -70,36 +70,45 @@ func is_delete(path string) Resp {
 	return do(req)
 }
 
-// is_get performs an http.NewRequest GET and returns a Resp struct
-func is_get(path string) Resp {
+
+// is_list performs an http.NewRequest GET and returns a Collection struct
+func is_list(path string) Collection {
 	url := mk_url(path) + `?depth=` + Depth
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Add("Content-Type", FullHeader)
-	return do(req)
+	return toCollection(do(req))
 }
 
-// is_patch performs an http.NewRequest PATCH and returns a Resp struct
-func is_patch(path string, jason []byte) Resp {
+// is_get performs an http.NewRequest GET and returns an Instance struct
+func is_get(path string) Instance {
+	url := mk_url(path) + `?depth=` + Depth
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Add("Content-Type", FullHeader)
+	return toInstance(do(req))
+}
+
+// is_patch performs an http.NewRequest PATCH and returns an Instance struct
+func is_patch(path string, jason []byte) Instance {
 	url := mk_url(path)
 	req, _ := http.NewRequest("PATCH", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", PatchHeader)
-	return do(req)
+	return toInstance(do(req))
 }
 
-// is_put performs an http.NewRequest PUT and returns a Resp struct
-func is_put(path string, jason []byte) Resp {
+// is_put performs an http.NewRequest PUT and returns an Instance struct
+func is_put(path string, jason []byte) Instance{
 	url := mk_url(path)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", FullHeader)
-	return do(req)
+	return toInstance(do(req))
 }
 
-// is_post performs an http.NewRequest POST and returns a Resp struct
-func is_post(path string, jason []byte) Resp {
+// is_post performs an http.NewRequest POST and returns an Instance struct
+func is_post(path string, jason []byte) Instance {
 	url := mk_url(path)
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", FullHeader)
-	return do(req)
+	return toInstance(do(req))
 }
 
 // is_command performs an http.NewRequest PUT and returns a Resp struct
