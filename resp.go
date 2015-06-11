@@ -28,6 +28,15 @@ type Resp struct {
 	Body       []byte
 }
 
+// PrintHeaders prints the http headers as k,v pairs
+func (r *Resp) PrintHeaders() {
+	for key, value := range r.Headers {
+		fmt.Println(key, " : ", value[0])
+	}
+
+}
+
+
 type Id_Type_Href struct {
 	Id   string `json:"id"`
 	Type string `json:"type"`
@@ -96,10 +105,4 @@ type Collection struct {
 	Resp  Resp       `json:"-"`
 }
 
-// PrintHeaders prints the http headers as k,v pairs
-func (r *Resp) PrintHeaders() {
-	for key, value := range r.Headers {
-		fmt.Println(key, " : ", value[0])
-	}
 
-}
