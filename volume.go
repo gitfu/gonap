@@ -3,33 +3,20 @@ package gonap
 import "encoding/json"
 import "fmt"
 
-func toVolume(pbresp Resp) Instance {
-	var volume Instance
-	json.Unmarshal(pbresp.Body, &volume)
-	volume.Resp = pbresp
-	return volume
-}
-
-func toVolumes(pbresp Resp) Collection {
-	var volumes Collection
-	json.Unmarshal(pbresp.Body, &volumes)
-	return volumes
-}
-
 // ListVolumes returns a Collection struct for volumes in the Datacenter
 func ListVolumes(dcid string) Collection {
 	path := volume_col_path(dcid)
-	return toVolumes(is_get(path))
+	return toCollection(is_get(path))
 }
 
 func UpdateVolume(dcid string, volid string, jason []byte) Instance {
 	path := volume_path(dcid, volid)
-	return toVolume(is_put(path, jason))
+	return toInstance(is_put(path, jason))
 }
 
 func PatchVolume(dcid string, volid string, jason []byte) Instance {
 	path := volume_path(dcid, volid)
-	return toVolume(is_patch(path, jason))
+	return toInstance(is_patch(path, jason))
 }
 
 func DeleteVolume(dcid, volid string) Resp {

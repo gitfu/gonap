@@ -36,6 +36,14 @@ type Id_Type_Href struct {
 
 type MetaData StringIfaceMap
 
+// toInstance converts a Resp struct into a Instance struct
+func toInstance(resp Resp) Instance {
+	var ins Instance
+	json.Unmarshal(resp.Body, &ins)
+	ins.Resp = resp
+	return ins
+}
+
 type Instance struct {
 	Id_Type_Href
 	MetaData   StringMap           `json:"metaData"`
@@ -72,6 +80,14 @@ func (ins *Instance) ShowEnts() {
 		v := MkJson(value)
 		fmt.Println(key, " : ", v)
 	}
+}
+
+// toServers converts a Resp struct into a Collection struct
+func toCollection(resp Resp) Collection {
+	var col Collection
+	json.Unmarshal(resp.Body, &col)
+	col.Resp = resp
+	return col
 }
 
 type Collection struct {
