@@ -1,11 +1,11 @@
-PACKAGE DOCUMENTATION
-
+## PACKAGE DOCUMENTATION
+```go
 package gonap
     import "github.com/gitfu/gonap"
+```
 
-
-CONSTANTS
-
+#### CONSTANTS
+```go
 const CommandHeader = "application/x-www-form-urlencoded"
     CommandHeader is used with is_command
 
@@ -15,9 +15,9 @@ const FullHeader = "application/vnd.profitbricks.resource+json"
 
 const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
     PatchHeader is used with is_patch .
-
-VARIABLES
-
+```
+#### VARIABLES
+```go
 var Depth = "5"
 
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
@@ -28,9 +28,10 @@ var Passwd string
 
 var Username string
     Username for authentication .
+```
 
-FUNCTIONS
-
+#### FUNCTIONS
+```go
 func MkJson(i interface{}) string
 
 func SetAuth(u, p string)
@@ -41,9 +42,10 @@ func SetDepth(newdepth string) string
 func SetEndpoint(newendpoint string) string
     SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
     config.go
+```
 
-TYPES
-
+#### TYPES
+```go
 type Collection struct {
     Id_Type_Href
     Items []Instance `json:"items,omitempty"`
@@ -97,48 +99,84 @@ func ListSnapshots() Collection
 
 func ListVolumes(dcid string) Collection
     ListVolumes returns a Collection struct for volumes in the Datacenter
-
+```
+```go
 type Id_Type_Href struct {
     Id   string `json:"id"`
     Type string `json:"type"`
     Href string `json:"href"`
 }
-
+```
+```go
 type Instance struct {
     Id_Type_Href
     MetaData   StringMap           `json:"metaData"`
     Properties StringIfaceMap      `json:"properties"`
     Entities   StringCollectionMap `json:"entities"`
     Resp       PBResp              `json:"-"`
+    
 }
+```
+```go
+func (ins *Instance) Save()
+    Save converts the Instance struct's properties to json and "patch"es
+    them to the rest server
+```
+```go
+func (ins *Instance) SetProp(key, val string)
+```
+```go
+func (ins *Instance) ShowEnts()
+    ShowEnts prints the Entities as k,v pairs
+```
+```go
+func (ins *Instance) ShowProps()
+    ShowProps prints the properties as k,v pairs
 
+
+```
+
+
+##### Attach functions
+```go
 func AttachCdrom(dcid string, srvid string, cdid string) Instance
-
+```
+```go
 func AttachVolume(dcid string, srvid string, volid string) Instance
+```
+##### Create functions
 
+```go
 func CreateDatacenter(jason []byte) Instance
     CreateDatacenter creates a datacenter and returns a Instance struct
-
+```
+```go
 func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) Instance
     CreateFwRule uses the json values in jason to create a new firewall rule
     and returns an Instance struct
-
+```
+```go
 func CreateLan(dcid string, jason []byte) Instance
     CreateLan creates a lan in the datacenter from a jason []byte and
     returns a Instance struct
-
+```
+```go
 func CreateLoadbalancer(dcid string, jason []byte) Instance
     Createloadbalancer creates a loadbalancer in the datacenter from a jason
     []byte and returns a Instance struct
-
+```
+```go
 func CreateNic(dcid string, srvid string, jason []byte) Instance
     CreateNic creates a nic on a server from a jason []byte and returns a
     Instance struct
-
+```
+```go
 func CreateServer(dcid string, jason []byte) Instance
     CreateServer creates a server from a jason []byte and returns a Instance
     struct
-
+```
+##### Get functions
+```go
 func GetAttachedCdrom(dcid, srvid, cdid string) Instance
 
 func GetAttachedVolume(dcid, srvid, volid string) Instance
@@ -179,7 +217,7 @@ func GetServer(dcid, srvid string) Instance
 func GetSnapshot(snapid string) Instance
     GetSnapshot retrieves Instance data where id==snapid returns a` snapshot
     struct
-
+```
 func PatchDatacenter(dcid string, jason []byte) Instance
     PatchDatacenter replaces any Datacenter properties with the values in
     jason returns an Instance struct where id ==dcid
@@ -248,17 +286,6 @@ func UpdateSnapshot(snapid string, jason []byte) Instance
 
 func UpdateVolume(dcid string, volid string, jason []byte) Instance
 
-func (ins *Instance) Save()
-    Save converts the Instance struct's properties to json and "patch"es
-    them to the rest server
-
-func (ins *Instance) SetProp(key, val string)
-
-func (ins *Instance) ShowEnts()
-    ShowEnts prints the Entities as k,v pairs
-
-func (ins *Instance) ShowProps()
-    ShowProps prints the properties as k,v pairs
 
 type Loadbalancer Instance
 
