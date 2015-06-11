@@ -41,12 +41,16 @@ func ListBalancedNics(dcid, lbalid string) Collection {
 	return is_list(path)
 }
 
-/**
-func AssociateNics(dcid string, lbalid string, jason []byte) Collection {
+
+func AssociateNic(dcid string, lbalid string, nicid string ) Instance {
+
+	var sm StringMap
+	sm["id"]=nicid
+	jason :=[]byte(MkJson(sm))
 	path := balnic_col_path(dcid, lbalid)
 	return is_post(path, jason)
 }
-**/
+
 func GetBalancedNic(dcid, lbalid, balnicid string) Instance {
 	path := balnic_path(dcid, lbalid, balnicid)
 	return is_get(path)

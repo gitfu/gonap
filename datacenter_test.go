@@ -16,16 +16,15 @@ func TestListDatacenters(t *testing.T) {
 	////t.Parallel()
 	shouldbe := "collection"
 	want := 200
-	dcs := ListDatacenters()
+	resp := ListDatacenters()
 
-	if dcs.Type != shouldbe {
-		t.Errorf("ListDatacenters() type == %v, wanted %v", dcs.Type, shouldbe)
+	if resp.Type != shouldbe {
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
-	if dcs.Resp.StatusCode != want {
-		t.Errorf("ListDatacenters() StatusCode == %v, wanted %v", dcs.Resp.StatusCode, want)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestCreateDatacenter(t *testing.T) {
 	////t.Parallel()
 	want := 202
@@ -33,25 +32,25 @@ func TestCreateDatacenter(t *testing.T) {
 					"name":"Original DC",
 					"location":"us/las"
 					}`)
-	newdc := CreateDatacenter(jason)
-	if newdc.Resp.StatusCode != want {
-		t.Errorf("CreateDatacenter() StatusCode == %v, wanted %v", newdc.Resp.StatusCode, want)
+	resp := CreateDatacenter(jason)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestGetDatacenter(t *testing.T) {
 	////t.Parallel()
 	shouldbe := "datacenter"
 	want := 200
 	dcid := mkdcid()
-	dc := GetDatacenter(dcid)
-	if dc.Type != shouldbe {
-		t.Errorf("ListDatacenters() type == %v, wanted %v", dc.Type, shouldbe)
+	resp := GetDatacenter(dcid)
+	if resp.Type != shouldbe {
+		t.Errorf("ListDatacenters() type == %v, wanted %v", resp.Type, shouldbe)
 	}
-	if dc.Resp.StatusCode != want {
-		t.Errorf("GetDatacenter() StatusCode == %v, wanted %v", dc.Resp.StatusCode, want)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
+
 
 func TestPatchDatacenter(t *testing.T) {
 	////t.Parallel()
@@ -60,10 +59,11 @@ func TestPatchDatacenter(t *testing.T) {
 					"name":"Renamed DC",
 					}`)
 	dcid := mkdcid()
-	dc := PatchDatacenter(dcid, jason_patch)
-	if dc.Resp.StatusCode != want {
-		t.Errorf("PatchDatacenter() StatusCode == %v, wanted %v", dc.Resp.StatusCode, want)
+	resp := PatchDatacenter(dcid, jason_patch)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
+
 }
 
 func TestUpdateDatacenter(t *testing.T) {
@@ -75,11 +75,12 @@ func TestUpdateDatacenter(t *testing.T) {
 					}`)
 
 	dcid := mkdcid()
-	dc := UpdateDatacenter(dcid, jason_update)
-	if dc.Resp.StatusCode != want {
-		t.Errorf("UpdateDatacenter() StatusCode == %v, wanted %v", dc.Resp.StatusCode, want)
+	resp := UpdateDatacenter(dcid, jason_update)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
+
 
 func TestDeleteDatacenter(t *testing.T) {
 	////t.Parallel()
@@ -87,8 +88,8 @@ func TestDeleteDatacenter(t *testing.T) {
 	dcid := mkdcid()
 	resp := DeleteDatacenter(dcid)
 	if resp.StatusCode != want {
-		t.Errorf("DeleteDatacenter() StatusCode == %v, wanted %v", resp.StatusCode, want)
+		t.Errorf(bad_status(want, resp.StatusCode))
 	}
 }
 
-// New  format (method style) testing
+

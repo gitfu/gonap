@@ -17,16 +17,15 @@ func TestListIpBlocks(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
-	ipbs := ListIpBlocks()
+	resp := ListIpBlocks()
 
-	if ipbs.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, ipbs.Type))
+	if resp.Type != shouldbe {
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
-	if ipbs.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, ipbs.Resp.StatusCode))
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
 }
-
 func TestReserveIpBlock(t *testing.T) {
 	//t.Parallel()
 	want := 202
@@ -34,11 +33,11 @@ func TestReserveIpBlock(t *testing.T) {
 					"name":"Original IpBlock",
 					"location":"us/las"
 					}`)
-	ipb := ReserveIpBlock(jason)
-	if ipb.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, ipb.Resp.StatusCode))
-
+	resp := ReserveIpBlock(jason)
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
+
 }
 
 func TestGetIpBlock(t *testing.T) {
@@ -46,22 +45,25 @@ func TestGetIpBlock(t *testing.T) {
 	shouldbe := "ipblock"
 	want := 200
 	ipblkid := mkipblkid()
-	ipb := GetIpBlock(ipblkid)
+	resp := GetIpBlock(ipblkid)
 
-	if ipb.Type != shouldbe {
-		t.Errorf("GetIpBlock() type == %v, wanted %v", ipb.Type, shouldbe)
+	
+	if resp.Type != shouldbe {
+		t.Errorf(bad_type(shouldbe, resp.Type))
 	}
-	if ipb.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, ipb.Resp.StatusCode))
+	if resp.Resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.Resp.StatusCode))
 	}
+
 }
 
 func TestReleaseIpBlock(t *testing.T) {
 	//t.Parallel()
 	want := 202
 	ipblkid := mkipblkid()
-	ipb := ReleaseIpBlock(ipblkid)
-	if ipb.StatusCode != want {
-		t.Errorf(bad_status(want, ipb.StatusCode))
+	resp := ReleaseIpBlock(ipblkid)
+	if resp.StatusCode != want {
+		t.Errorf(bad_status(want, resp.StatusCode))
 	}
 }
+
