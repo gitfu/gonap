@@ -93,7 +93,7 @@ func main() {
 	```go 
 	  testrest
 	  ```
-```	  
+```go	  
 version  :  4
 location  :  de/fkb
 name  :  datacenter1
