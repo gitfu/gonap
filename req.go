@@ -70,7 +70,6 @@ func is_delete(path string) Resp {
 	return do(req)
 }
 
-
 // is_list performs an http.NewRequest GET and returns a Collection struct
 func is_list(path string) Collection {
 	url := mk_url(path) + `?depth=` + Depth
@@ -96,7 +95,7 @@ func is_patch(path string, jason []byte) Instance {
 }
 
 // is_put performs an http.NewRequest PUT and returns an Instance struct
-func is_put(path string, jason []byte) Instance{
+func is_put(path string, jason []byte) Instance {
 	url := mk_url(path)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", FullHeader)

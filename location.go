@@ -1,6 +1,5 @@
 package gonap
 
-
 // ListLocations returns location collection data
 func ListLocations() Collection {
 	return is_list(location_col_path())

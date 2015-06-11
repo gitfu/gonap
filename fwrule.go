@@ -1,6 +1,5 @@
 package gonap
 
-
 // ListFwRules returns a collection of firewall rules
 func ListFwRules(dcid, srvid, nicid string) Collection {
 	path := fwrule_col_path(dcid, srvid, nicid)

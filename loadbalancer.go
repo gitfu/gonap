@@ -1,6 +1,5 @@
 package gonap
 
-
 // Listloadbalancers returns a Collection struct
 // for loadbalancers in the Datacenter
 func ListLoadbalancers(dcid string) Collection {

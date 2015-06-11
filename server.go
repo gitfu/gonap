@@ -3,33 +3,33 @@ package gonap
 // ListServers returns a server struct collection
 func ListServers(dcid string) Collection {
 	path := server_col_path(dcid)
-	return  is_list(path)
+	return is_list(path)
 }
 
 // CreateServer creates a server from a jason []byte and returns a Instance struct
 func CreateServer(dcid string, jason []byte) Instance {
 	path := server_col_path(dcid)
-	return   is_post(path, jason)
+	return is_post(path, jason)
 }
 
 // GetServer pulls data for the server where id = srvid returns a Instance struct
 func GetServer(dcid, srvid string) Instance {
 	path := server_path(dcid, srvid)
-	return   is_get(path)
+	return is_get(path)
 }
 
 // UpdateServer is a full update of server properties passed in as jason []byte
 // Returns Instance struct
 func UpdateServer(dcid string, srvid string, jason []byte) Instance {
 	path := server_path(dcid, srvid)
-	return   is_put(path, jason)
+	return is_put(path, jason)
 }
 
 // PatchServer partial update of server properties passed in as jason []byte
 // Returns Instance struct
 func PatchServer(dcid string, srvid string, jason []byte) Instance {
 	path := server_path(dcid, srvid)
-	return   is_patch(path, jason)
+	return is_patch(path, jason)
 }
 
 // DeleteServer deletes the server where id=srvid and returns Resp struct
@@ -40,18 +40,18 @@ func DeleteServer(dcid, srvid string) Resp {
 
 func ListAttachedCdroms(dcid, srvid string) Collection {
 	path := server_cdrom_col_path(dcid, srvid)
-	return  is_list(path)
+	return is_list(path)
 }
 
 func AttachCdrom(dcid string, srvid string, cdid string) Instance {
 	jason := []byte(`{"id":"` + cdid + `"}`)
 	path := server_cdrom_col_path(dcid, srvid)
-	return   is_post(path, jason)
+	return is_post(path, jason)
 }
 
 func GetAttachedCdrom(dcid, srvid, cdid string) Instance {
 	path := server_cdrom_path(dcid, srvid, cdid)
-	return   is_get(path)
+	return is_get(path)
 }
 
 func DetachCdrom(dcid, srvid, cdid string) Resp {
@@ -61,18 +61,18 @@ func DetachCdrom(dcid, srvid, cdid string) Resp {
 
 func ListAttachedVolumes(dcid, srvid string) Collection {
 	path := server_volume_col_path(dcid, srvid)
-	return  is_list(path)
+	return is_list(path)
 }
 
 func AttachVolume(dcid string, srvid string, volid string) Instance {
 	jason := []byte(`{"id":"` + volid + `"}`)
 	path := server_volume_col_path(dcid, srvid)
-	return   is_post(path, jason)
+	return is_post(path, jason)
 }
 
 func GetAttachedVolume(dcid, srvid, volid string) Instance {
 	path := server_volume_path(dcid, srvid, volid)
-	return   is_get(path)
+	return is_get(path)
 }
 
 func DetachVolume(dcid, srvid, volid string) Resp {

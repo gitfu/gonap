@@ -25,15 +25,15 @@ func toRestRequests(resp Resp) Collection {
 
 func ListRequests() Collection {
 	path := request_col_path()
-	return toRestRequests(is_get(path))
+	return is_list(path)
 }
 
 func GetRequest(requestid string) Instance {
 	path := request_path(requestid)
-	return toRestRequest(is_get(path))
+	return is_get(path)
 }
 
 func StatusRequest(requestid string) Instance {
 	path := request_status_path(requestid)
-	return toRestRequest(is_get(path))
+	return is_get(path)
 }

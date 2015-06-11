@@ -60,8 +60,8 @@ func (ins *Instance) Save() {
 	if err != nil {
 		panic(err)
 	}
-	resp := is_patch(path, jason)
-	fmt.Println("save status code is ", resp.StatusCode)
+	r := is_patch(path, jason).Resp
+	fmt.Println("save status code is ", r.StatusCode)
 }
 
 // ShowProps prints the properties as k,v pairs
