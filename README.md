@@ -136,5 +136,28 @@ save status code is  202
 
 ```
   
+
+
+#### PACKAGE DOCUMENTATION
+```go
+package goprofitbricks
+    import "github.com/gitfu/goprofitbricks"
+```
+
+#### CONSTANTS
+```go
+const CommandHeader = "application/x-www-form-urlencoded"
+```
+    CommandHeader is used with is_command
+```go
+const FullHeader = "application/vnd.profitbricks.resource+json"
+```
+    FullHeader is the standard header to include with all http requests
+    except is_patch and is_command
+```go
+const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
+```
+    PatchHeader is used with is_patch .
+
 	
 	
