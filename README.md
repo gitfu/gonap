@@ -194,6 +194,7 @@ package goprofitbricks
 ```go
 	type StringMap map[string]string
 ```
+#### Resp struct
 ```go
 	type Resp struct {
     		Req        *http.Request
@@ -221,6 +222,7 @@ package goprofitbricks
 ```
 *  	The Id_Type_Href struct is embedded in Instance structs and Collection structs
 
+#### Instance struct
 ```go
 
 	type Instance struct {
@@ -251,6 +253,24 @@ package goprofitbricks
 		func (ins *Instance) ShowProps()
 ```   
 * 			ShowProps prints the properties as k,v pairs
+
+##### Get functions that return an instance 
+```go	
+	GetAttachedCdrom(dcid, srvid, cdid string)
+	GetAttachedVolume(dcid, srvid, volid string)
+	GetBalancedNic(dcid, lbalid, balnicid string)
+	GetDatacenter(dcid string)
+	GetFwRule(dcid, srvid, nicid, fwruleid string)
+	GetImage(imageid string)
+	GetIpBlock(ipblockid string)
+ 	GetLan(dcid, lanid string)
+	GetLoadbalancer(dcid, lbalid string)
+	GetLocation(locid string)
+	GetNic(dcid, srvid, nicid string) 
+	GetRequest(requestid string)
+	GetServer(dcid, srvid string) 
+	GetSnapshot(snapid string) 
+```
 
 
 ```go
