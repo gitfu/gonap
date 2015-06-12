@@ -284,4 +284,22 @@ type Collection struct {
 * Collection Structs contain Instance arrays. 
 * List functions return Collections
 
-	
+##### List functions that return Collection structs
+```go
+	ListAttachedCdroms(dcid, srvid string) 
+	ListAttachedVolumes(dcid, srvid string) 
+	ListBalancedNics(dcid, lbalid string)
+	ListDatacenters()
+	ListFwRules(dcid, srvid, nicid string)
+	ListImages()
+	ListIpBlocks()
+	ListLanMembers(dcid, lanid string)
+	func ListLans(dcid string)
+	ListLoadbalancers(dcid string)
+	ListLocations()
+	ListNics(dcid, srvid string)
+	ListRequests()
+	ListServers(dcid string)
+	ListSnapshots() 
+	ListVolumes(dcid string) 
+```
