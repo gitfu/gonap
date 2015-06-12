@@ -199,6 +199,53 @@ func SetEndpoint(newendpoint string) string
 *  SetEndpoint is used to set the REST Endpoint. 
   Endpoint is declared in config.go
 
+#### Types
 
+
+
+
+
+
+```go 
+
+type Id_Type_Href struct {
+    Id   string `json:"id"`
+    Type string `json:"type"`
+    Href string `json:"href"`
+}
+```
+*  The Id_Type_Href struct is embedded in Instance structs and Collection structs
+
+```go
+
+type Instance struct {
+    Id_Type_Href
+    MetaData   StringMap           `json:"metaData"`
+    Properties StringIfaceMap      `json:"properties"`
+    Entities   StringCollectionMap `json:"entities"`
+    Resp       Resp                `json:"-"`
+}
+
+```
+```go
+func (ins *Instance) Save()
+```
+* Save converts the Instance struct's properties to json and "patch"es
+    them to the rest server
+```go
+func (ins *Instance) SetProp(key, val string)
+```
+* Sets an Instance property
+```go
+func (ins *Instance) ShowEnts()
+```
+* ShowEnts prints the Instance Entities as k,v pairs
+```go
+func (ins *Instance) ShowProps()
+```   
+* ShowProps prints the properties as k,v pairs
+
+
+** Get, Create, Update, and Patch functions all return an Instance struct.
 	
 	
