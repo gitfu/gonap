@@ -148,16 +148,16 @@ package goprofitbricks
 ```go
 const CommandHeader = "application/x-www-form-urlencoded"
 ```
-    CommandHeader is used with is_command
+*    CommandHeader is used with is_command
 ```go
 const FullHeader = "application/vnd.profitbricks.resource+json"
 ```
-    FullHeader is the standard header to include with all http requests
+*    FullHeader is the standard header to include with all http requests
     except is_patch and is_command
 ```go
 const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
 ```
-    PatchHeader is used with is_patch .
+*    PatchHeader is used with is_patch .
 
 #### VARIABLES
 ```go
@@ -186,16 +186,16 @@ func SetAuth(u, p string)
 ```go
 func SetDepth(newdepth string) string
 ```
-```go
-    SetDepth is used to set Depth
-```
+
+*   SetDepth is used to set Depth
+
 ```go
 func SetEndpoint(newendpoint string) string
 ```
-```go
-    SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
+
+*    SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
     config.go
-```
+
 
 	
 	
