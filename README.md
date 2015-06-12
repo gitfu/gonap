@@ -271,5 +271,17 @@ func (ins *Instance) ShowProps()
 ```   
 * ShowProps prints the properties as k,v pairs
 
-	
+
+```go
+
+type Collection struct {
+    Id_Type_Href
+    Items []Instance `json:"items,omitempty"`
+    Resp  Resp       `json:"-"`
+}
+
+```
+* Collection Structs contain Instance arrays. 
+* List functions return Collections
+
 	
