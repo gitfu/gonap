@@ -144,7 +144,7 @@ package goprofitbricks
     import "github.com/gitfu/goprofitbricks"
 ```
 
-#### CONSTANTS
+#### Constants
 ```go
 const CommandHeader = "application/x-www-form-urlencoded"
 ```
@@ -159,30 +159,33 @@ const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
 ```
 *    PatchHeader is used with is_patch .
 
-#### VARIABLES
+#### Variables
 ```go
 var Depth = "5"
 ```
+
 ```go
 var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
+
 ```
-    Endpoint is the base url for REST requests .
+* Endpoint is the base url for REST requests .
 ```go
 var Passwd string
 ```
-    Password for authentication .
+* Password for authentication .
 ```go
 var Username string
 ```
-Username for authentication .
+* Username for authentication .
 
-#### FUNCTIONS
+#### Functions
 ```go
 func MkJson(i interface{}) string
 ```
 ```go
 func SetAuth(u, p string)
 ```
+
 ```go
 func SetDepth(newdepth string) string
 ```
@@ -193,8 +196,8 @@ func SetDepth(newdepth string) string
 func SetEndpoint(newendpoint string) string
 ```
 
-*    SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
-    config.go
+*  SetEndpoint is used to set the REST Endpoint. 
+  Endpoint is declared in config.go
 
 
 	
