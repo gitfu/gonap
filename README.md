@@ -309,10 +309,10 @@ var Username string
 ### Functions by target 
 #### Datacenter
 ```go
-func ListDatacenters()  
-func CreateDatacenter(jason []byte)
-func GetDatacenter(dcid string) 
-func UpdateDatacenter(dcid string, jason []byte) 
-func PatchDatacenter(dcid string, jason []byte) 
-func DeleteDatacenter(dcid string) 
+	ListDatacenters()  
+	CreateDatacenter(jason []byte)
+	GetDatacenter(dcid string) 
+	UpdateDatacenter(dcid string, jason []byte) 
+	PatchDatacenter(dcid string, jason []byte) 
+	DeleteDatacenter(dcid string) 
 ```
