@@ -99,15 +99,24 @@ func main() {
 	  testrest
  ```
 ##### (Output)
+
+
 ```go	  
+Before...
+description  :  Description of my DC
 version  :  4
 location  :  de/fkb
 name  :  datacenter1
-description  :  Description of my DC
-name  :  fu
-description  :  Description of my DC
+After.....
 version  :  4
 location  :  de/fkb
+name  :  fu
+description  :  Description of my DC
+lans  :  {
+    "id": "700e1cab-99b2-4c30-ba8c-1d273ddba022/lans",
+    "type": "collection",
+    "href": "https://api.profitbricks.com/rest/datacenters/700e1cab-99b2-4c30-ba8c-1d273ddba022/lans"
+}
 servers  :  {
     "id": "700e1cab-99b2-4c30-ba8c-1d273ddba022/servers",
     "type": "collection",
@@ -123,12 +132,8 @@ loadbalancers  :  {
     "type": "collection",
     "href": "https://api.profitbricks.com/rest/datacenters/700e1cab-99b2-4c30-ba8c-1d273ddba022/loadbalancers"
 }
-lans  :  {
-    "id": "700e1cab-99b2-4c30-ba8c-1d273ddba022/lans",
-    "type": "collection",
-    "href": "https://api.profitbricks.com/rest/datacenters/700e1cab-99b2-4c30-ba8c-1d273ddba022/lans"
-}
 save status code is  202
+
 ```
   
 	
