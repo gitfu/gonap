@@ -201,8 +201,32 @@ func SetEndpoint(newendpoint string) string
 
 #### Types
 
+```go
+type StringCollectionMap map[string]Collection
+```
+```go
+type StringIfaceMap map[string]interface{}
+```
+```go
+type StringMap map[string]string
+```
 
+```go
 
+type Resp struct {
+    Req        *http.Request
+    StatusCode int
+    Headers    http.Header
+    Body       []byte
+}
+```
+* Resp is the struct returned by all Rest request functions
+
+```go
+
+func (r *Resp) PrintHeaders()
+```
+* PrintHeaders prints the http headers as k,v pairs
 
 
 
@@ -227,6 +251,8 @@ type Instance struct {
 }
 
 ```
+* Get, Create, Update, and Patch functions all return an Instance struct.
+
 ```go
 func (ins *Instance) Save()
 ```
@@ -245,7 +271,5 @@ func (ins *Instance) ShowProps()
 ```   
 * ShowProps prints the properties as k,v pairs
 
-
-** Get, Create, Update, and Patch functions all return an Instance struct.
 	
 	
