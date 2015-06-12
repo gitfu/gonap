@@ -32,12 +32,13 @@ cd $GOPATH/src/github.com/gitfu/goprofitbricks
 ```
 ```
 vi config_test.go
-(Set Username, Password, and Endpoint for testing)
 ```
-```
+*Set Username, Password, and Endpoint for testing
+
+```go
 go test -v 
 ```
-
+* runs all the tests and reports pass/fail 
 
 ### Use
 ```
