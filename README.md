@@ -27,10 +27,10 @@ export PATH=$PATH:$GOBIN
 go get "github.com/gitfu/goprofitbricks"
 ```
 ###  Test stuff
-```
+```go
 cd $GOPATH/src/github.com/gitfu/goprofitbricks
 ```
-```
+```go
 vi config_test.go
 ```
 * Set Username, Password, and Endpoint for testing
@@ -41,11 +41,11 @@ go test -v
 * runs all the tests and reports pass/fail 
 
 ### Use
-```
+```ada
 cd ~/
 ```
 
-```
+```ada
 vi testrest.go
 ```
 
@@ -97,7 +97,7 @@ func main() {
 #### Run
 ```go 
 	  testrest
- ```
+```
 ##### (Output)
 
 
