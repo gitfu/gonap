@@ -146,20 +146,20 @@ package goprofitbricks
 
 #### Variables
 ```go
-	var Depth = "5"
+var Depth = "5"
 ```
 
 ```go
-	var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
+var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
 
 ```
 * Endpoint is the base url for REST requests .
 ```go
-	var Passwd string
+var Passwd string
 ```
 * Password for authentication .
 ```go
-	var Username string
+var Username string
 ```
 * Username for authentication .
 
@@ -234,7 +234,9 @@ package goprofitbricks
 	}
 ```
 * 		Get, Create, Update, and Patch functions all return an Instance struct.
-
+*		A Resp struct is embedded in the Instance struct,
+*		the raw server response is available as Instance.Resp.Body
+		
 ##### Instance methods
 ```go
 		func (ins *Instance) Save()
@@ -302,4 +304,15 @@ package goprofitbricks
 	ListServers(dcid string)
 	ListSnapshots() 
 	ListVolumes(dcid string) 
+```
+
+### Functions by target 
+#### Datacenter
+```go
+func ListDatacenters()  
+func CreateDatacenter(jason []byte)
+func GetDatacenter(dcid string) 
+func UpdateDatacenter(dcid string, jason []byte) 
+func PatchDatacenter(dcid string, jason []byte) 
+func DeleteDatacenter(dcid string) 
 ```
