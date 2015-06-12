@@ -31,7 +31,7 @@ go get "github.com/gitfu/goprofitbricks"
 cd $GOPATH/src/github.com/gitfu/goprofitbricks
 ```
 ```
-vi config_test.
+vi config_test.go
 (Set Username, Password, and Endpoint for testing)
 ```
 ```
@@ -80,6 +80,7 @@ func main() {
 	// Calling Save on an Instance patches the properties to the current values. 
 	
 	dc.Save()
+	}
 	
 ```
 #### build 
