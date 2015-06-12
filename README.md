@@ -144,43 +144,28 @@ package goprofitbricks
     import "github.com/gitfu/goprofitbricks"
 ```
 
-#### Constants
-```go
-const CommandHeader = "application/x-www-form-urlencoded"
-```
-*    CommandHeader is used with is_command
-```go
-const FullHeader = "application/vnd.profitbricks.resource+json"
-```
-*    FullHeader is the standard header to include with all http requests
-    except is_patch and is_command
-```go
-const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
-```
-*    PatchHeader is used with is_patch .
-
 #### Variables
 ```go
-var Depth = "5"
+	var Depth = "5"
 ```
 
 ```go
-var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
+	var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
 
 ```
 * Endpoint is the base url for REST requests .
 ```go
-var Passwd string
+	var Passwd string
 ```
 * Password for authentication .
 ```go
-var Username string
+	var Username string
 ```
 * Username for authentication .
 
 #### Functions
 ```go
-func MkJson(i interface{}) string
+	func MkJson(i interface{}) string
 ```
 ```go
 	func SetAuth(u, p string)
@@ -189,14 +174,14 @@ func MkJson(i interface{}) string
 	func SetDepth(newdepth string) string
 ```
 
-*   SetDepth is used to set Depth
+*   		SetDepth is used to set Depth
 
 ```go
 	func SetEndpoint(newendpoint string) string
 ```
 
-*  SetEndpoint is used to set the REST Endpoint. 
-  Endpoint is declared in config.go
+*  		SetEndpoint is used to set the REST Endpoint. 
+*  		Endpoint is declared in config.go
 
 #### Types
 
@@ -209,9 +194,7 @@ func MkJson(i interface{}) string
 ```go
 	type StringMap map[string]string
 ```
-
 ```go
-
 	type Resp struct {
     		Req        *http.Request
     		StatusCode int
@@ -219,15 +202,14 @@ func MkJson(i interface{}) string
     		Body       []byte
 	}
 ```
-* Resp is the struct returned by all Rest request functions
+* 		Resp is the struct returned by all Rest request functions
 
+##### Resp methods
 ```go
 
-	func (r *Resp) PrintHeaders()
+			func (r *Resp) PrintHeaders()
 ```
-* PrintHeaders prints the http headers as k,v pairs
-
-
+* 				PrintHeaders prints the http headers as k,v pairs
 
 ```go 
 
@@ -237,7 +219,7 @@ func MkJson(i interface{}) string
     		Href string `json:"href"`
 	}
 ```
-*  The Id_Type_Href struct is embedded in Instance structs and Collection structs
+*  	The Id_Type_Href struct is embedded in Instance structs and Collection structs
 
 ```go
 
@@ -248,27 +230,27 @@ func MkJson(i interface{}) string
     		Entities   StringCollectionMap `json:"entities"`
     		Resp       Resp                `json:"-"`
 	}
+```
+* 		Get, Create, Update, and Patch functions all return an Instance struct.
 
-```
-* Get, Create, Update, and Patch functions all return an Instance struct.
-
+##### Instance methods
 ```go
-	func (ins *Instance) Save()
+		func (ins *Instance) Save()
 ```
-* Save converts the Instance struct's properties to json and "patch"es
-    them to the rest server
+* 			Patch'es current Instance properties to the rest server 
+			
 ```go
-	func (ins *Instance) SetProp(key, val string)
+		func (ins *Instance) SetProp(key, val string)
 ```
-* Sets an Instance property
+* 			Sets an Instance property
 ```go
-	func (ins *Instance) ShowEnts()
+		func (ins *Instance) ShowEnts()
 ```
-* ShowEnts prints the Instance Entities as k,v pairs
+* 			ShowEnts prints the Instance Entities as k,v pairs
 ```go
-	func (ins *Instance) ShowProps()
+		func (ins *Instance) ShowProps()
 ```   
-* ShowProps prints the properties as k,v pairs
+* 			ShowProps prints the properties as k,v pairs
 
 
 ```go
@@ -279,8 +261,8 @@ func MkJson(i interface{}) string
 	}
 
 ```
-* Collection Structs contain Instance arrays. 
-* List functions return Collections
+* 	Collection Structs contain Instance arrays. 
+* 	List functions return Collections
 
 ##### List functions that return Collection structs
 ```go
