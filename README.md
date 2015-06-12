@@ -52,8 +52,12 @@ vi testrest.go
 ```go
 package  main
 import "github.com/gitfu/goprofitbricks"
-	
+import "fmt"	
+
+
 func main() {
+	// auth however you like,  I like Jasmin's technique myself. 
+	goprofitbricks.SetAuth("your_username","your_password")
 	/**
 	 List Datacenter returns a collection of (Datacenter) Instances
 	See file resp.go
@@ -67,12 +71,13 @@ func main() {
 	dc := goprofitbricks.GetDatacenter(resp.Items[0].Id)
 
 	// Instances have methods like ShowProps()	
-
+	fmt.Println("Before...")
 	dc.ShowProps()
 	
 	// Instances have a  SetProp method.
-
 	dc.SetProp("name","fu")
+
+	fmt.Println("After.....")
 	dc.ShowProps()
 	// Instances have a  ShowEnts method.
 
