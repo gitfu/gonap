@@ -183,17 +183,16 @@ var Username string
 func MkJson(i interface{}) string
 ```
 ```go
-func SetAuth(u, p string)
+	func SetAuth(u, p string)
 ```
-
 ```go
-func SetDepth(newdepth string) string
+	func SetDepth(newdepth string) string
 ```
 
 *   SetDepth is used to set Depth
 
 ```go
-func SetEndpoint(newendpoint string) string
+	func SetEndpoint(newendpoint string) string
 ```
 
 *  SetEndpoint is used to set the REST Endpoint. 
@@ -202,29 +201,29 @@ func SetEndpoint(newendpoint string) string
 #### Types
 
 ```go
-type StringCollectionMap map[string]Collection
+	type StringCollectionMap map[string]Collection
 ```
 ```go
-type StringIfaceMap map[string]interface{}
+	type StringIfaceMap map[string]interface{}
 ```
 ```go
-type StringMap map[string]string
+	type StringMap map[string]string
 ```
 
 ```go
 
-type Resp struct {
-    Req        *http.Request
-    StatusCode int
-    Headers    http.Header
-    Body       []byte
-}
+	type Resp struct {
+    		Req        *http.Request
+    		StatusCode int
+    		Headers    http.Header
+    		Body       []byte
+	}
 ```
 * Resp is the struct returned by all Rest request functions
 
 ```go
 
-func (r *Resp) PrintHeaders()
+	func (r *Resp) PrintHeaders()
 ```
 * PrintHeaders prints the http headers as k,v pairs
 
@@ -232,53 +231,52 @@ func (r *Resp) PrintHeaders()
 
 ```go 
 
-type Id_Type_Href struct {
-    Id   string `json:"id"`
-    Type string `json:"type"`
-    Href string `json:"href"`
-}
+	type Id_Type_Href struct {
+    		Id   string `json:"id"`
+    		Type string `json:"type"`
+    		Href string `json:"href"`
+	}
 ```
 *  The Id_Type_Href struct is embedded in Instance structs and Collection structs
 
 ```go
 
-type Instance struct {
-    Id_Type_Href
-    MetaData   StringMap           `json:"metaData"`
-    Properties StringIfaceMap      `json:"properties"`
-    Entities   StringCollectionMap `json:"entities"`
-    Resp       Resp                `json:"-"`
-}
+	type Instance struct {
+    		Id_Type_Href
+    		MetaData   StringMap           `json:"metaData"`
+    		Properties StringIfaceMap      `json:"properties"`
+    		Entities   StringCollectionMap `json:"entities"`
+    		Resp       Resp                `json:"-"`
+	}
 
 ```
 * Get, Create, Update, and Patch functions all return an Instance struct.
 
 ```go
-func (ins *Instance) Save()
+	func (ins *Instance) Save()
 ```
 * Save converts the Instance struct's properties to json and "patch"es
     them to the rest server
 ```go
-func (ins *Instance) SetProp(key, val string)
+	func (ins *Instance) SetProp(key, val string)
 ```
 * Sets an Instance property
 ```go
-func (ins *Instance) ShowEnts()
+	func (ins *Instance) ShowEnts()
 ```
 * ShowEnts prints the Instance Entities as k,v pairs
 ```go
-func (ins *Instance) ShowProps()
+	func (ins *Instance) ShowProps()
 ```   
 * ShowProps prints the properties as k,v pairs
 
 
 ```go
-
-type Collection struct {
-    Id_Type_Href
-    Items []Instance `json:"items,omitempty"`
-    Resp  Resp       `json:"-"`
-}
+	type Collection struct {
+    		Id_Type_Href
+    		Items []Instance `json:"items,omitempty"`
+    		Resp  Resp       `json:"-"`
+	}
 
 ```
 * Collection Structs contain Instance arrays. 
@@ -294,7 +292,7 @@ type Collection struct {
 	ListImages()
 	ListIpBlocks()
 	ListLanMembers(dcid, lanid string)
-	func ListLans(dcid string)
+	ListLans(dcid string)
 	ListLoadbalancers(dcid string)
 	ListLocations()
 	ListNics(dcid, srvid string)
