@@ -23,7 +23,7 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 ```
 ### Get goprofitbricks
-```
+```go
 go get "github.com/gitfu/goprofitbricks"
 ```
 ###  Test stuff
@@ -33,7 +33,7 @@ cd $GOPATH/src/github.com/gitfu/goprofitbricks
 ```
 vi config_test.go
 ```
-*Set Username, Password, and Endpoint for testing
+* Set Username, Password, and Endpoint for testing
 
 ```go
 go test -v 
