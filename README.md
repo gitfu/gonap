@@ -159,5 +159,43 @@ const PatchHeader = "application/vnd.profitbricks.partial-properties+json"
 ```
     PatchHeader is used with is_patch .
 
+#### VARIABLES
+```go
+var Depth = "5"
+```
+```go
+var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
+```
+    Endpoint is the base url for REST requests .
+```go
+var Passwd string
+```
+    Password for authentication .
+```go
+var Username string
+```
+Username for authentication .
+
+#### FUNCTIONS
+```go
+func MkJson(i interface{}) string
+```
+```go
+func SetAuth(u, p string)
+```
+```go
+func SetDepth(newdepth string) string
+```
+```go
+    SetDepth is used to set Depth
+```
+```go
+func SetEndpoint(newendpoint string) string
+```
+```go
+    SetEnpoint is used to set the REST Endpoint. Endpoint is declared in
+    config.go
+```
+
 	
 	
