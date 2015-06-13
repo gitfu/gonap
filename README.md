@@ -77,7 +77,7 @@ func main() {
 
 
 
-### ```PACKAGE DOCUMENTATION```
+## PACKAGE DOCUMENTATION
 
 ```go
 package goprofitbricks
@@ -102,7 +102,7 @@ var Username string
 ```
 * Username for authentication .
 
-#### Functions
+#### ```Functions```
 ```go
 func MkJson(i interface{}) string
 ```
@@ -120,7 +120,7 @@ func SetEndpoint(newendpoint string) string
 ```
 *  SetEndpoint is used to set the REST Endpoint. 
 
-### Resp struct
+### ```Resp struct```
 * 	Resp is the struct returned by all Rest request functions
 
 ```go
@@ -137,6 +137,9 @@ Body       []byte
 ```
 * 	PrintHeaders prints the http headers as k,v pairs
 
+### ```Id_Type_Href struct```
+
+* 	The Id_Type_Href struct is embedded in Instance structs and Collection structs
 ```go 
 type Id_Type_Href struct {
 Id   string `json:"id"`
@@ -144,9 +147,8 @@ Type string `json:"type"`
 Href string `json:"href"`
 }
 ```
-* 	The Id_Type_Href struct is embedded in Instance structs and Collection structs
 
-### Instance struct
+### ```Instance struct```
 * 	"Get", "Create", "Update", and "Patch" functions all return an Instance struct.
 *	A Resp struct is embedded in the Instance struct,
 *	the raw server response is available as Instance.Resp.Body
@@ -161,7 +163,7 @@ Resp       Resp                `json:"-"`
 }
 ```
 
-###### Instance methods
+###### ```Instance methods```
 ```go
 	func (ins *Instance) Save()
 ```
@@ -180,7 +182,7 @@ Resp       Resp                `json:"-"`
 ```   
 * 	ShowProps prints the properties as k,v pairs
 
-### Collection 
+### ```Collection struct``` 
 * 	Collection Structs contain Instance arrays. 
 * 	List functions return Collections
 
@@ -191,6 +193,7 @@ Items []Instance `json:"items,omitempty"`
 Resp  Resp       `json:"-"`
 }
 ```
+
 
 ## ```Functions by target```
 
