@@ -1,28 +1,16 @@
-# goprofitbricks
+# ```goprofitbricks```
 
-### ```Install``` 
-
-install go 
-* OpenBSD  
-``` pkg_add go ```
-
-*  Arch linux 
-    ```pacman -S go```
-    
-* Debian 
-     ``` apt-get install golang-go ```
-* etc ....
+#### ```Install go```
       https://golang.org/doc/install
 
 #### ```Set your Environment```
-
 ```
 mkdir -p ~/go/bin
 export GOPATH=~/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 ```
-### ``` Fetch goprofitbricks```
+#### ``` Fetch goprofitbricks```
 ```go
 go get "github.com/gitfu/goprofitbricks"
 ```
@@ -41,51 +29,42 @@ go test -v
 * runs all the tests and reports pass/fail 
 
 ### Use
-```ada
-cd ~/
 ```
-
-```ada
+cd ~/
 vi testrest.go
 ```
-
 ```go
 package  main
 import "github.com/gitfu/goprofitbricks"
 import "fmt"	
 
-
 func main() {
-	// auth however you like,  I like Jasmin's technique myself. 
 	goprofitbricks.SetAuth("your_username","your_password")
 	/**
 	 List Datacenter returns a collection of (Datacenter) Instances
-	See file resp.go
-	
+	See file resp.go for Instance struct
 	**/
 	
 	resp:=goprofitbricks.ListDatacenters()
 
 	//get the Id of the first Item in the collection
-
 	dc := goprofitbricks.GetDatacenter(resp.Items[0].Id)
 
 	// Instances have methods like ShowProps()	
 	fmt.Println("Before...")
 	dc.ShowProps()
-	
+
 	// Instances have a  SetProp method.
 	dc.SetProp("name","fu")
 
-	fmt.Println("After.....")
-	dc.ShowProps()
 	// Instances have a  ShowEnts method.
-
 	dc.ShowEnts()
 	
 	// Calling Save on an Instance patches the properties to the current values. 
-	
 	dc.Save()
+	
+	fmt.Println("After.....")
+	dc.ShowProps()
 	}
 	
 ```
@@ -143,7 +122,6 @@ func MkJson(i interface{}) string
 ```
 
 *  	SetEndpoint is used to set the REST Endpoint. 
-*  	Endpoint is declared in config.go
 
 #### Types
 
@@ -156,7 +134,9 @@ func MkJson(i interface{}) string
 ```go
 	type StringMap map[string]string
 ```
-#### Resp struct
+### Resp struct
+* 	Resp is the struct returned by all Rest request functions
+
 ```go
 	type Resp struct {
     		Req        *http.Request
@@ -165,14 +145,13 @@ func MkJson(i interface{}) string
     		Body       []byte
 	}
 ```
-* 		Resp is the struct returned by all Rest request functions
 
-##### Resp methods
+###### Resp methods
 ```go
 
 			func (r *Resp) PrintHeaders()
 ```
-* 				PrintHeaders prints the http headers as k,v pairs
+* PrintHeaders prints the http headers as k,v pairs
 
 ```go 
 
@@ -184,7 +163,11 @@ func MkJson(i interface{}) string
 ```
 *  	The Id_Type_Href struct is embedded in Instance structs and Collection structs
 
-#### Instance struct
+### Instance struct
+* 	"Get", "Create", "Update", and "Patch" functions all return an Instance struct.
+*	A Resp struct is embedded in the Instance struct,
+*	the raw server response is available as Instance.Resp.Body
+		
 ```go
 
 	type Instance struct {
@@ -195,30 +178,29 @@ func MkJson(i interface{}) string
     		Resp       Resp                `json:"-"`
 	}
 ```
-* 		Get, Create, Update, and Patch functions all return an Instance struct.
-*		A Resp struct is embedded in the Instance struct,
-*		the raw server response is available as Instance.Resp.Body
-		
-##### Instance methods
+
+###### Instance methods
 ```go
 		func (ins *Instance) Save()
 ```
-* 			Patch'es current Instance properties to the rest server 
+* 	"Patch"es current Instance properties to the rest server 
 			
 ```go
 		func (ins *Instance) SetProp(key, val string)
 ```
-* 			Sets an Instance property
+* 	Sets an Instance property
 ```go
 		func (ins *Instance) ShowEnts()
 ```
-* 			ShowEnts prints the Instance Entities as k,v pairs
+* 	ShowEnts prints the Instance Entities as k,v pairs
 ```go
 		func (ins *Instance) ShowProps()
 ```   
-* 			ShowProps prints the properties as k,v pairs
+* 	ShowProps prints the properties as k,v pairs
 
-##### Get functions that return an instance 
+### Collection 
+* 	Collection Structs contain Instance arrays. 
+* 	List functions return Collections
 
 ```go
 	type Collection struct {
@@ -228,12 +210,10 @@ func MkJson(i interface{}) string
 	}
 
 ```
-* 	Collection Structs contain Instance arrays. 
-* 	List functions return Collections
 
-### ```Functions by target```
+## ```Functions by target```
 
-#### ```Datacenter```
+### ```Datacenter```
 ```go
  func ListDatacenters() Collection  
 ```
@@ -253,7 +233,7 @@ func MkJson(i interface{}) string
  func DeleteDatacenter(dcid string) Resp  
 ```
 
-####  ```Server```
+###  ```Server```
 ```go
  func ListServers(dcid string) Collection  
 ```
@@ -299,9 +279,7 @@ func MkJson(i interface{}) string
  func DetachVolume(dcid, srvid, volid string) Resp  
 ```
 ##### ``` Server Commands ``
-```go
- func server_command(dcid, srvid, cmd string) Resp  
-```
+
 ```go
  func StartServer(dcid, srvid string) Resp  
 ```
@@ -311,7 +289,7 @@ func MkJson(i interface{}) string
 ```go
  func RebootServer(dcid, srvid string) Resp  
 ```
-#### ```Nics```
+### ```Nics```
 
 ```go
  func ListNics(dcid, srvid string) Collection  
@@ -331,3 +309,42 @@ func MkJson(i interface{}) string
 ```go
  func DeleteNic(dcid, srvid, nicid string) Resp  
 ```
+
+### ```Firewall Rules```
+```go
+ func ListFwRules(dcid, srvid, nicid string) Collection  
+```
+```go
+ func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) Instance  
+```
+```go
+ func GetFwRule(dcid, srvid, nicid, fwruleid string) Instance  
+```
+```go
+ func UpdateFwRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) Instance  
+```
+```go
+ func PatchFWRule(dcid string, srvid string, nicid string, fwruleid string, jason []byte) Instance  
+```
+```go
+ func DeleteFWRule(dcid, srvid, nicid, fwruleid string) Resp  
+```
+
+### ```Images```
+
+```go
+ func ListImages() Collection  
+```
+```go
+ func GetImage(imageid string) Instance  
+```
+```go
+ func UpdateImage(imageid string, jason []byte) Instance  
+```
+```go
+ func PatchImage(imageid string, jason []byte) Instance  
+```
+```go
+ func DeleteImage(imageid string) Resp  
+```
+
