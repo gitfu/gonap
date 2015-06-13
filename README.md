@@ -219,23 +219,6 @@ func MkJson(i interface{}) string
 * 			ShowProps prints the properties as k,v pairs
 
 ##### Get functions that return an instance 
-```go	
-	GetAttachedCdrom(dcid, srvid, cdid string)
-	GetAttachedVolume(dcid, srvid, volid string)
-	GetBalancedNic(dcid, lbalid, balnicid string)
-	GetDatacenter(dcid string)
-	GetFwRule(dcid, srvid, nicid, fwruleid string)
-	GetImage(imageid string)
-	GetIpBlock(ipblockid string)
- 	GetLan(dcid, lanid string)
-	GetLoadbalancer(dcid, lbalid string)
-	GetLocation(locid string)
-	GetNic(dcid, srvid, nicid string) 
-	GetRequest(requestid string)
-	GetServer(dcid, srvid string) 
-	GetSnapshot(snapid string) 
-```
-
 
 ```go
 	type Collection struct {
@@ -248,63 +231,103 @@ func MkJson(i interface{}) string
 * 	Collection Structs contain Instance arrays. 
 * 	List functions return Collections
 
-##### List functions that return Collection structs
-```go
-	ListAttachedCdroms(dcid, srvid string) 
-	ListAttachedVolumes(dcid, srvid string) 
-	ListBalancedNics(dcid, lbalid string)
-	ListDatacenters()
-	ListFwRules(dcid, srvid, nicid string)
-	ListImages()
-	ListIpBlocks()
-	ListLanMembers(dcid, lanid string)
-	ListLans(dcid string)
-	ListLoadbalancers(dcid string)
-	ListLocations()
-	ListNics(dcid, srvid string)
-	ListRequests()
-	ListServers(dcid string)
-	ListSnapshots() 
-	ListVolumes(dcid string) 
-```
-
 ### ```Functions by target```
 
 #### ```Datacenter```
 ```go
-	ListDatacenters()  
-	CreateDatacenter(jason []byte)
-	GetDatacenter(dcid string) 
-	UpdateDatacenter(dcid string, jason []byte) 
-	PatchDatacenter(dcid string, jason []byte) 
-	DeleteDatacenter(dcid string) 
+ func ListDatacenters() Collection  
 ```
+```go
+ func CreateDatacenter(jason []byte) Instance  
+```
+```go
+ func GetDatacenter(dcid string) Instance  
+```
+```go
+ func UpdateDatacenter(dcid string, jason []byte) Instance  
+```
+```go
+ func PatchDatacenter(dcid string, jason []byte) Instance  
+```
+```go
+ func DeleteDatacenter(dcid string) Resp  
+```
+
 ####  ```Server```
 ```go
- 	ListServers(dcid string) 
- 	CreateServer(dcid string, jason []byte) 
- 	GetServer(dcid, srvid string) 
- 	UpdateServer(dcid string, srvid string, jason []byte) 
- 	PatchServer(dcid string, srvid string, jason []byte) 
- 	DeleteServer(dcid, srvid string) 
- ```
-######  ```	Server Commands```
-```go
- 		StartServer(dcid, srvid string) 
- 		StopServer(dcid, srvid string) 
- 		RebootServer(dcid, srvid string) 
+ func ListServers(dcid string) Collection  
 ```
-###### ```	Server Attached Cdroms```
 ```go
- 		ListAttachedCdroms(dcid, srvid string) 
- 		AttachCdrom(dcid string, srvid string, cdid string) 
- 		GetAttachedCdrom(dcid, srvid, cdid string) 
- 		DetachCdrom(dcid, srvid, cdid string) 
+ func CreateServer(dcid string, jason []byte) Instance  
 ```
-##### Server Attached Volumes
 ```go
- ListAttachedVolumes(dcid, srvid string) 
- AttachVolume(dcid string, srvid string, volid string) 
- GetAttachedVolume(dcid, srvid, volid string) 
- DetachVolume(dcid, srvid, volid string) 
- ```
+ func GetServer(dcid, srvid string) Instance  
+```
+```go
+ func UpdateServer(dcid string, srvid string, jason []byte) Instance  
+```
+```go
+ func PatchServer(dcid string, srvid string, jason []byte) Instance  
+```
+```go
+ func DeleteServer(dcid, srvid string) Resp  
+```
+##### ``` Server Attached Cdroms```
+```go
+ func ListAttachedCdroms(dcid, srvid string) Collection  
+```
+```go
+ func AttachCdrom(dcid string, srvid string, cdid string) Instance  
+```
+```go
+ func GetAttachedCdrom(dcid, srvid, cdid string) Instance  
+```
+```go
+ func DetachCdrom(dcid, srvid, cdid string) Resp  
+```
+##### ```Server Attached Volumes```
+```go
+ func ListAttachedVolumes(dcid, srvid string) Collection  
+```
+```go
+ func AttachVolume(dcid string, srvid string, volid string) Instance  
+```
+```go
+ func GetAttachedVolume(dcid, srvid, volid string) Instance  
+```
+```go
+ func DetachVolume(dcid, srvid, volid string) Resp  
+```
+##### ``` Server Commands ``
+```go
+ func server_command(dcid, srvid, cmd string) Resp  
+```
+```go
+ func StartServer(dcid, srvid string) Resp  
+```
+```go
+ func StopServer(dcid, srvid string) Resp  
+```
+```go
+ func RebootServer(dcid, srvid string) Resp  
+```
+#### ```Nics```
+
+```go
+ func ListNics(dcid, srvid string) Collection  
+```
+```go
+ func CreateNic(dcid string, srvid string, jason []byte) Instance  
+```
+```go
+ func GetNic(dcid, srvid, nicid string) Instance  
+```
+```go
+ func UpdateNic(dcid string, srvid string, nicid string, jason []byte) Instance  
+```
+```go
+ func PatchNic(dcid string, srvid string, nicid string, jason []byte) Instance  
+```
+```go
+ func DeleteNic(dcid, srvid, nicid string) Resp  
+```
