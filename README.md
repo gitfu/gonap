@@ -1,6 +1,6 @@
 # goprofitbricks
 
-### Install 
+### ```Install``` 
 
 install go 
 * OpenBSD  
@@ -14,7 +14,7 @@ install go
 * etc ....
       https://golang.org/doc/install
 
-### Set your Environment
+#### ```Set your Environment```
 
 ```
 mkdir -p ~/go/bin
@@ -22,11 +22,11 @@ export GOPATH=~/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 ```
-### Get goprofitbricks
+### ``` Fetch goprofitbricks```
 ```go
 go get "github.com/gitfu/goprofitbricks"
 ```
-###  Test stuff
+####  ```Test stuff```
 ```go
 cd $GOPATH/src/github.com/gitfu/goprofitbricks
 ```
@@ -89,72 +89,34 @@ func main() {
 	}
 	
 ```
-#### build 
+###### ```build``` 
 ```go 
 	    go build testrest.go
 	    go install testrest.go
 ```
-#### Run
+###### ```Run```
 ```go 
 	  testrest
 ```
-##### (Output)
 
 
-```go	  
-Before...
-description  :  Description of my DC
-version  :  4
-location  :  de/fkb
-name  :  datacenter1
-After.....
-version  :  4
-location  :  de/fkb
-name  :  fu
-description  :  Description of my DC
-lans  :  {
-    "id": "700e1cab-99b2-4c30-ba8c-1d273ddba022/lans",
-    "type": "collection",
-    "href": "https://api.profitbricks.com/rest/datacenters/700e1cab-99b2-4c30-ba8c-1d273ddba022/lans"
-}
-servers  :  {
-    "id": "700e1cab-99b2-4c30-ba8c-1d273ddba022/servers",
-    "type": "collection",
-    "href": "https://api.profitbricks.com/rest/datacenters/700e1cab-99b2-4c30-ba8c-1d273ddba022/servers"
-}
-volumes  :  {
-    "id": "700e1cab-99b2-4c30-ba8c-1d273ddba022/volumes",
-    "type": "collection",
-    "href": "https://api.profitbricks.com/rest/datacenters/700e1cab-99b2-4c30-ba8c-1d273ddba022/volumes"
-}
-loadbalancers  :  {
-    "id": "700e1cab-99b2-4c30-ba8c-1d273ddba022/loadbalancers",
-    "type": "collection",
-    "href": "https://api.profitbricks.com/rest/datacenters/700e1cab-99b2-4c30-ba8c-1d273ddba022/loadbalancers"
-}
-save status code is  202
+### ```PACKAGE DOCUMENTATION```
 
-```
-  
-
-
-#### PACKAGE DOCUMENTATION
 ```go
 package goprofitbricks
     import "github.com/gitfu/goprofitbricks"
 ```
 
-#### Variables
+#### ```Variables```
 ```go
-var Depth = "5"
+var Depth string
 ```
-
+Depth controls the amount of data returned from the rest server ( range 1-5 )
 ```go
-var Endpoint = "https://private-anon-4354b0b6a-profitbricksrestapi.apiary-mock.com"
-
+var Endpoint string
 ```
 * Endpoint is the base url for REST requests .
-```go
+```go 
 var Passwd string
 ```
 * Password for authentication .
@@ -165,8 +127,10 @@ var Username string
 
 #### Functions
 ```go
-	func MkJson(i interface{}) string
+func MkJson(i interface{}) string
 ```
+*  Turn just about anything into Json
+
 ```go
 	func SetAuth(u, p string)
 ```
@@ -174,14 +138,12 @@ var Username string
 	func SetDepth(newdepth string) string
 ```
 
-*   		SetDepth is used to set Depth
-
 ```go
 	func SetEndpoint(newendpoint string) string
 ```
 
-*  		SetEndpoint is used to set the REST Endpoint. 
-*  		Endpoint is declared in config.go
+*  	SetEndpoint is used to set the REST Endpoint. 
+*  	Endpoint is declared in config.go
 
 #### Types
 
