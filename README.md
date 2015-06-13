@@ -1,4 +1,4 @@
-# ```goprofitbricks```
+# goprofitbricks
 
 #### ```Install go```
       https://golang.org/doc/install
@@ -10,6 +10,7 @@ export GOPATH=~/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 ```
+
 #### ``` Fetch goprofitbricks```
 ```go
 go get "github.com/gitfu/goprofitbricks"
@@ -28,7 +29,7 @@ go test -v
 ```
 * runs all the tests and reports pass/fail 
 
-### Use
+#### ```Use```
 ```
 cd ~/
 vi testrest.go
@@ -68,15 +69,12 @@ func main() {
 	}
 	
 ```
-###### ```build``` 
-```go 
-	    go build testrest.go
-	    go install testrest.go
-```
+
 ###### ```Run```
 ```go 
-	  testrest
+	go run  /root/testrest.go
 ```
+
 
 
 ### ```PACKAGE DOCUMENTATION```
@@ -111,57 +109,42 @@ func MkJson(i interface{}) string
 *  Turn just about anything into Json
 
 ```go
-	func SetAuth(u, p string)
+func SetAuth(u, p string)
 ```
 ```go
-	func SetDepth(newdepth string) string
+func SetDepth(newdepth string) string
 ```
 
 ```go
-	func SetEndpoint(newendpoint string) string
+func SetEndpoint(newendpoint string) string
 ```
+*  SetEndpoint is used to set the REST Endpoint. 
 
-*  	SetEndpoint is used to set the REST Endpoint. 
-
-#### Types
-
-```go
-	type StringCollectionMap map[string]Collection
-```
-```go
-	type StringIfaceMap map[string]interface{}
-```
-```go
-	type StringMap map[string]string
-```
 ### Resp struct
 * 	Resp is the struct returned by all Rest request functions
 
 ```go
-	type Resp struct {
-    		Req        *http.Request
-    		StatusCode int
-    		Headers    http.Header
-    		Body       []byte
-	}
+type Resp struct {
+Req        *http.Request
+StatusCode int
+Headers    http.Header
+Body       []byte
+}
 ```
-
 ###### Resp methods
 ```go
-
-			func (r *Resp) PrintHeaders()
+	func (r *Resp) PrintHeaders()
 ```
-* PrintHeaders prints the http headers as k,v pairs
+* 	PrintHeaders prints the http headers as k,v pairs
 
 ```go 
-
-	type Id_Type_Href struct {
-    		Id   string `json:"id"`
-    		Type string `json:"type"`
-    		Href string `json:"href"`
-	}
+type Id_Type_Href struct {
+Id   string `json:"id"`
+Type string `json:"type"`
+Href string `json:"href"`
+}
 ```
-*  	The Id_Type_Href struct is embedded in Instance structs and Collection structs
+* 	The Id_Type_Href struct is embedded in Instance structs and Collection structs
 
 ### Instance struct
 * 	"Get", "Create", "Update", and "Patch" functions all return an Instance struct.
@@ -169,32 +152,31 @@ func MkJson(i interface{}) string
 *	the raw server response is available as Instance.Resp.Body
 		
 ```go
-
-	type Instance struct {
-    		Id_Type_Href
-    		MetaData   StringMap           `json:"metaData"`
-    		Properties StringIfaceMap      `json:"properties"`
-    		Entities   StringCollectionMap `json:"entities"`
-    		Resp       Resp                `json:"-"`
-	}
+type Instance struct {
+Id_Type_Href
+MetaData   StringMap           `json:"metaData"`
+Properties StringIfaceMap      `json:"properties"`
+Entities   StringCollectionMap `json:"entities"`
+Resp       Resp                `json:"-"`
+}
 ```
 
 ###### Instance methods
 ```go
-		func (ins *Instance) Save()
+	func (ins *Instance) Save()
 ```
 * 	"Patch"es current Instance properties to the rest server 
 			
 ```go
-		func (ins *Instance) SetProp(key, val string)
+	func (ins *Instance) SetProp(key, val string)
 ```
 * 	Sets an Instance property
 ```go
-		func (ins *Instance) ShowEnts()
+	func (ins *Instance) ShowEnts()
 ```
 * 	ShowEnts prints the Instance Entities as k,v pairs
 ```go
-		func (ins *Instance) ShowProps()
+	func (ins *Instance) ShowProps()
 ```   
 * 	ShowProps prints the properties as k,v pairs
 
@@ -203,12 +185,11 @@ func MkJson(i interface{}) string
 * 	List functions return Collections
 
 ```go
-	type Collection struct {
-    		Id_Type_Href
-    		Items []Instance `json:"items,omitempty"`
-    		Resp  Resp       `json:"-"`
-	}
-
+type Collection struct {
+Id_Type_Href
+Items []Instance `json:"items,omitempty"`
+Resp  Resp       `json:"-"`
+}
 ```
 
 ## ```Functions by target```
