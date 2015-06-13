@@ -306,8 +306,9 @@ var Username string
 	ListVolumes(dcid string) 
 ```
 
-### Functions by target 
-#### Datacenter
+### ```Functions by target```
+
+#### ```Datacenter```
 ```go
 	ListDatacenters()  
 	CreateDatacenter(jason []byte)
@@ -316,3 +317,32 @@ var Username string
 	PatchDatacenter(dcid string, jason []byte) 
 	DeleteDatacenter(dcid string) 
 ```
+####  ```Server```
+```go
+ 	ListServers(dcid string) 
+ 	CreateServer(dcid string, jason []byte) 
+ 	GetServer(dcid, srvid string) 
+ 	UpdateServer(dcid string, srvid string, jason []byte) 
+ 	PatchServer(dcid string, srvid string, jason []byte) 
+ 	DeleteServer(dcid, srvid string) 
+ ```
+######  ```	Server Commands```
+```go
+ 		StartServer(dcid, srvid string) 
+ 		StopServer(dcid, srvid string) 
+ 		RebootServer(dcid, srvid string) 
+```
+###### ```	Server Attached Cdroms```
+```go
+ 		ListAttachedCdroms(dcid, srvid string) 
+ 		AttachCdrom(dcid string, srvid string, cdid string) 
+ 		GetAttachedCdrom(dcid, srvid, cdid string) 
+ 		DetachCdrom(dcid, srvid, cdid string) 
+```
+##### Server Attached Volumes
+```go
+ ListAttachedVolumes(dcid, srvid string) 
+ AttachVolume(dcid string, srvid string, volid string) 
+ GetAttachedVolume(dcid, srvid, volid string) 
+ DetachVolume(dcid, srvid, volid string) 
+ ```
