@@ -61,7 +61,8 @@ func main() {
 	// Instances have a  ShowEnts method.
 	dc.ShowEnts()
 	
-	// Calling Save on an Instance patches the properties to the current values. 
+	// Calling Save on an Instance 
+	// "patch"es the properties to the current values. 
 	dc.Save()
 	
 	fmt.Println("After.....")
