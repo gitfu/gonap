@@ -15,7 +15,7 @@ func CreateServer(dcid string, jason []byte) Instance {
 // GetServer pulls data for the server where id = srvid returns a Instance struct
 func GetServer(dcid, srvid string) Instance {
 	path := server_path(dcid, srvid)
-	return is_get(path)
+	return isGet(path)
 }
 
 // UpdateServer is a full update of server properties passed in as jason []byte
@@ -51,7 +51,7 @@ func AttachCdrom(dcid string, srvid string, cdid string) Instance {
 
 func GetAttachedCdrom(dcid, srvid, cdid string) Instance {
 	path := server_cdrom_path(dcid, srvid, cdid)
-	return is_get(path)
+	return isGet(path)
 }
 
 func DetachCdrom(dcid, srvid, cdid string) Resp {
@@ -72,7 +72,7 @@ func AttachVolume(dcid string, srvid string, volid string) Instance {
 
 func GetAttachedVolume(dcid, srvid, volid string) Instance {
 	path := server_volumePath(dcid, srvid, volid)
-	return is_get(path)
+	return isGet(path)
 }
 
 func DetachVolume(dcid, srvid, volid string) Resp {

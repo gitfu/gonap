@@ -18,7 +18,7 @@ func CreateLoadbalancer(dcid string, jason []byte) Instance {
 // where id = lbalid returns a Instance struct
 func GetLoadbalancer(dcid, lbalid string) Instance {
 	path := lbal_path(dcid, lbalid)
-	return is_get(path)
+	return isGet(path)
 }
 
 func UpdateLoadbalancer(dcid string, lbalid string, jason []byte) Instance {
@@ -52,7 +52,7 @@ func AssociateNic(dcid string, lbalid string, nicid string) Instance {
 
 func GetBalancedNic(dcid, lbalid, balnicid string) Instance {
 	path := balnic_path(dcid, lbalid, balnicid)
-	return is_get(path)
+	return isGet(path)
 }
 
 func DeleteBalancedNic(dcid, lbalid, balnicid string) Resp {

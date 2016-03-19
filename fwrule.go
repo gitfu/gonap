@@ -16,7 +16,7 @@ func CreateFwRule(dcid string, srvid string, nicid string, jason []byte) Instanc
 // GetFwRule Retrieve a firewall rule and returns Instance struct
 func GetFwRule(dcid, srvid, nicid, fwruleid string) Instance {
 	path := fwrule_path(dcid, srvid, nicid, fwruleid)
-	return is_get(path)
+	return isGet(path)
 }
 
 // UpdateFwRule Replaces all the properties of firewall rule,

@@ -7,5 +7,5 @@ func ListLocations() Collection {
 
 // GetLocation returns location data
 func GetLocation(locid string) Instance {
-	return is_get(location_path(locid))
+	return isGet(location_path(locid))
 }

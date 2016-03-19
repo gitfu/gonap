@@ -15,7 +15,7 @@ func CreateDatacenter(jason []byte) Instance {
 // GetDatacenter returns a Instance struct where id == dcid
 func GetDatacenter(dcid string) Instance {
 	path := dc_path(dcid)
-	return is_get(path)
+	return isGet(path)
 }
 
 // UpdateDatacenter updates all Datacenter properties from values in jason

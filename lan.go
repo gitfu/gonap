@@ -16,7 +16,7 @@ func CreateLan(dcid string, jason []byte) Instance {
 // GetLan pulls data for the lan where id = lanid returns an Instance struct
 func GetLan(dcid, lanid string) Instance {
 	path := lan_path(dcid, lanid)
-	return is_get(path)
+	return isGet(path)
 }
 
 // UpdateLan does a complete update to a lan using json from []byte jason

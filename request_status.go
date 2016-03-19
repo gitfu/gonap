@@ -30,10 +30,10 @@ func ListRequests() Collection {
 
 func GetRequest(requestid string) Instance {
 	path := request_path(requestid)
-	return is_get(path)
+	return isGet(path)
 }
 
 func StatusRequest(requestid string) Instance {
 	path := request_status_path(requestid)
-	return is_get(path)
+	return isGet(path)
 }

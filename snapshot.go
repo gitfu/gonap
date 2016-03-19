@@ -11,7 +11,7 @@ func ListSnapshots() Collection {
 // returns a` snapshot struct
 func GetSnapshot(snapid string) Instance {
 	path := snapshotPath(snapid)
-	return is_get(path)
+	return isGet(path)
 }
 
 // UpdateSnapshot replaces all snapshot properties from values in jason

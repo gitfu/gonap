@@ -78,8 +78,8 @@ func is_list(path string) Collection {
 	return toCollection(do(req))
 }
 
-// is_get performs an http.NewRequest GET and returns an Instance struct
-func is_get(path string) Instance {
+// isGet performs an http.NewRequest GET and returns an Instance struct
+func isGet(path string) Instance {
 	url := mk_url(path) + `?depth=` + Depth
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Add("Content-Type", FullHeader)

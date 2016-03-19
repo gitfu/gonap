@@ -9,7 +9,7 @@ func ListImages() Collection {
 // GetImage returns an Instance struct where id ==imageid
 func GetImage(imageid string) Instance {
 	path := image_path(imageid)
-	return is_get(path)
+	return isGet(path)
 }
 
 // UpdateImage updates all image properties from values in jason

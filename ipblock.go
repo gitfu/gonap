@@ -13,7 +13,7 @@ func ReserveIpBlock(jason []byte) Instance {
 }
 func GetIpBlock(ipblockid string) Instance {
 	path := ipblock_path(ipblockid)
-	return is_get(path)
+	return isGet(path)
 }
 
 func ReleaseIpBlock(ipblockid string) Resp {

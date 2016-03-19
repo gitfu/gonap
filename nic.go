@@ -16,7 +16,7 @@ func CreateNic(dcid string, srvid string, jason []byte) Instance {
 // GetNic pulls data for the nic where id = srvid returns a Instance struct
 func GetNic(dcid, srvid, nicid string) Instance {
 	path := nic_path(dcid, srvid, nicid)
-	return is_get(path)
+	return isGet(path)
 }
 
 // UpdateNic is a full update of nic properties passed in as jason []byte
