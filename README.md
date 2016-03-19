@@ -1,5 +1,5 @@
 # goprofitbricks
-
+[![Go Report Card](https://goreportcard.com/badge/gitfu/goprofitbricks)](https://goreportcard.com/report/gitfu/goprofitbricks)
 #### ```Install go```
       https://golang.org/doc/install
 
