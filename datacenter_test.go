@@ -19,10 +19,10 @@ func TestListDatacenters(t *testing.T) {
 	resp := ListDatacenters()
 
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestCreateDatacenter(t *testing.T) {
