@@ -3,7 +3,7 @@ package goprofitbricks
 // ListLan returns a Collection for lans in the Datacenter
 func ListLans(dcid string) Collection {
 	path := lan_col_path(dcid)
-	return is_list(path)
+	return isList(path)
 }
 
 // CreateLan creates a lan in the datacenter
@@ -23,24 +23,24 @@ func GetLan(dcid, lanid string) Instance {
 // returns a Instance struct
 func UpdateLan(dcid string, lanid string, jason []byte) Instance {
 	path := lan_path(dcid, lanid)
-	return is_put(path, jason)
+	return isPut(path, jason)
 }
 
 // PatchLan does a partial update to a lan using json from []byte jason
 // returns a Instance struct
 func PatchLan(dcid string, lanid string, jason []byte) Instance {
 	path := lan_path(dcid, lanid)
-	return is_patch(path, jason)
+	return isPatch(path, jason)
 }
 
 // DeleteLan deletes a lan where id == lanid
 func DeleteLan(dcid, lanid string) Resp {
 	path := lan_path(dcid, lanid)
-	return is_delete(path)
+	return isDelete(path)
 }
 
 // ListLanMembers returns a Nic struct collection for the Lan
 func ListLanMembers(dcid, lanid string) Collection {
 	path := lan_nic_col(dcid, lanid)
-	return is_list(path)
+	return isList(path)
 }

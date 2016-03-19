@@ -68,11 +68,11 @@ func TestGetLoadbalancer(t *testing.T) {
 func TestPatchLoadbalancer(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	jason_patch := []byte(`{
+	jasonPatch := []byte(`{
 					"name":"Renamed Loadbalancer",
 					}`)
 	lbalid := mklbalid(lbal_dcid)
-	resp := PatchLoadbalancer(lbal_dcid, lbalid, jason_patch)
+	resp := PatchLoadbalancer(lbal_dcid, lbalid, jasonPatch)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
@@ -81,13 +81,13 @@ func TestPatchLoadbalancer(t *testing.T) {
 func TestUpdateLoadbalancer(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	jason_update := []byte(`{
+	jasonUpdate := []byte(`{
 					"name":"Renamed Loadbalancer",
 				
 					}`)
 
 	lbalid := mklbalid(lbal_dcid)
-	resp := UpdateLoadbalancer(lbal_dcid, lbalid, jason_update)
+	resp := UpdateLoadbalancer(lbal_dcid, lbalid, jasonUpdate)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}

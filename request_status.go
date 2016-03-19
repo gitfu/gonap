@@ -25,7 +25,7 @@ func toRestRequests(resp Resp) Collection {
 
 func ListRequests() Collection {
 	path := request_col_path()
-	return is_list(path)
+	return isList(path)
 }
 
 func GetRequest(requestid string) Instance {

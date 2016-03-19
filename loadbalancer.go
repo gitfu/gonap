@@ -4,7 +4,7 @@ package goprofitbricks
 // for loadbalancers in the Datacenter
 func ListLoadbalancers(dcid string) Collection {
 	path := lbal_col_path(dcid)
-	return is_list(path)
+	return isList(path)
 }
 
 // Createloadbalancer creates a loadbalancer in the datacenter
@@ -23,22 +23,22 @@ func GetLoadbalancer(dcid, lbalid string) Instance {
 
 func UpdateLoadbalancer(dcid string, lbalid string, jason []byte) Instance {
 	path := lbal_path(dcid, lbalid)
-	return is_put(path, jason)
+	return isPut(path, jason)
 }
 
 func PatchLoadbalancer(dcid string, lbalid string, jason []byte) Instance {
 	path := lbal_path(dcid, lbalid)
-	return is_patch(path, jason)
+	return isPatch(path, jason)
 }
 
 func DeleteLoadbalancer(dcid, lbalid string) Resp {
 	path := lbal_path(dcid, lbalid)
-	return is_delete(path)
+	return isDelete(path)
 }
 
 func ListBalancedNics(dcid, lbalid string) Collection {
 	path := balnic_col_path(dcid, lbalid)
-	return is_list(path)
+	return isList(path)
 }
 
 func AssociateNic(dcid string, lbalid string, nicid string) Instance {
@@ -57,5 +57,5 @@ func GetBalancedNic(dcid, lbalid, balnicid string) Instance {
 
 func DeleteBalancedNic(dcid, lbalid, balnicid string) Resp {
 	path := balnic_path(dcid, lbalid, balnicid)
-	return is_delete(path)
+	return isDelete(path)
 }

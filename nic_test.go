@@ -59,13 +59,13 @@ func TestGetNic(t *testing.T) {
 func TestPatchNic(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	jason_patch := []byte(`{
+	jasonPatch := []byte(`{
 					"name":"Patched Nic",
 					"lan":1
 					}`)
 
 	nicid := mknicid(nic_dcid, nic_srvid)
-	resp := PatchNic(nic_dcid, nic_srvid, nicid, jason_patch)
+	resp := PatchNic(nic_dcid, nic_srvid, nicid, jasonPatch)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
@@ -73,13 +73,13 @@ func TestPatchNic(t *testing.T) {
 func TestUpdateNic(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	jason_update := []byte(`{
+	jasonUpdate := []byte(`{
 					"name":"Update Nic",
 					"lan":1
 					}`)
 
 	nicid := mknicid(nic_dcid, nic_srvid)
-	resp := UpdateNic(nic_dcid, nic_srvid, nicid, jason_update)
+	resp := UpdateNic(nic_dcid, nic_srvid, nicid, jasonUpdate)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}

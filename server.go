@@ -3,7 +3,7 @@ package goprofitbricks
 // ListServers returns a server struct collection
 func ListServers(dcid string) Collection {
 	path := server_col_path(dcid)
-	return is_list(path)
+	return isList(path)
 }
 
 // CreateServer creates a server from a jason []byte and returns a Instance struct
@@ -22,25 +22,25 @@ func GetServer(dcid, srvid string) Instance {
 // Returns Instance struct
 func UpdateServer(dcid string, srvid string, jason []byte) Instance {
 	path := server_path(dcid, srvid)
-	return is_put(path, jason)
+	return isPut(path, jason)
 }
 
 // PatchServer partial update of server properties passed in as jason []byte
 // Returns Instance struct
 func PatchServer(dcid string, srvid string, jason []byte) Instance {
 	path := server_path(dcid, srvid)
-	return is_patch(path, jason)
+	return isPatch(path, jason)
 }
 
 // DeleteServer deletes the server where id=srvid and returns Resp struct
 func DeleteServer(dcid, srvid string) Resp {
 	path := server_path(dcid, srvid)
-	return is_delete(path)
+	return isDelete(path)
 }
 
 func ListAttachedCdroms(dcid, srvid string) Collection {
 	path := server_cdrom_col_path(dcid, srvid)
-	return is_list(path)
+	return isList(path)
 }
 
 func AttachCdrom(dcid string, srvid string, cdid string) Instance {
@@ -56,12 +56,12 @@ func GetAttachedCdrom(dcid, srvid, cdid string) Instance {
 
 func DetachCdrom(dcid, srvid, cdid string) Resp {
 	path := server_cdrom_path(dcid, srvid, cdid)
-	return is_delete(path)
+	return isDelete(path)
 }
 
 func ListAttachedVolumes(dcid, srvid string) Collection {
 	path := server_volume_col_path(dcid, srvid)
-	return is_list(path)
+	return isList(path)
 }
 
 func AttachVolume(dcid string, srvid string, volid string) Instance {
@@ -77,7 +77,7 @@ func GetAttachedVolume(dcid, srvid, volid string) Instance {
 
 func DetachVolume(dcid, srvid, volid string) Resp {
 	path := server_volumePath(dcid, srvid, volid)
-	return is_delete(path)
+	return isDelete(path)
 }
 
 // server_command is a generic function for running server commands

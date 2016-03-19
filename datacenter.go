@@ -3,7 +3,7 @@ package goprofitbricks
 // ListDatacenters returns a Collection struct
 func ListDatacenters() Collection {
 	path := dc_col_path()
-	return is_list(path)
+	return isList(path)
 }
 
 // CreateDatacenter creates a datacenter and returns a Instance struct
@@ -22,18 +22,18 @@ func GetDatacenter(dcid string) Instance {
 //returns an Instance struct where id ==dcid
 func UpdateDatacenter(dcid string, jason []byte) Instance {
 	path := dc_path(dcid)
-	return is_put(path, jason)
+	return isPut(path, jason)
 }
 
 // PatchDatacenter replaces any Datacenter properties with the values in jason
 //returns an Instance struct where id ==dcid
 func PatchDatacenter(dcid string, jason []byte) Instance {
 	path := dc_path(dcid)
-	return is_patch(path, jason)
+	return isPatch(path, jason)
 }
 
 // DeletesDatacenter  delete where id==dcid
 func DeleteDatacenter(dcid string) Resp {
 	path := dc_path(dcid)
-	return is_delete(path)
+	return isDelete(path)
 }

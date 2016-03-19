@@ -68,11 +68,11 @@ func TestGetServer(t *testing.T) {
 func TestPatchServer(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	jason_patch := []byte(`{
+	jasonPatch := []byte(`{
 			"name":"Renamed Server",
 					}`)
 	srvid := mksrvid(srv_dcid)
-	resp := PatchServer(srv_dcid, srvid, jason_patch)
+	resp := PatchServer(srv_dcid, srvid, jasonPatch)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
@@ -80,14 +80,14 @@ func TestPatchServer(t *testing.T) {
 func TestUpdateServer(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	jason_update := []byte(`{
+	jasonUpdate := []byte(`{
 			"name":"Renamed Server",
 			"cores":16,
 			"ram": 8192
 					}`)
 
 	srvid := mksrvid(srv_dcid)
-	resp := UpdateServer(srv_dcid, srvid, jason_update)
+	resp := UpdateServer(srv_dcid, srvid, jasonUpdate)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}

@@ -68,7 +68,7 @@ func (ins *Instance) Save() {
 	if err != nil {
 		panic(err)
 	}
-	r := is_patch(path, jason).Resp
+	r := isPatch(path, jason).Resp
 	fmt.Println("save status code is ", r.StatusCode)
 }
 

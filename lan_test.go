@@ -59,11 +59,11 @@ func TestGetLan(t *testing.T) {
 func TestPatchLan(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	jason_patch := []byte(`{
+	jasonPatch := []byte(`{
 					"name":"Patched lan",
 					}`)
 	lanid := mklanid(lan_dcid)
-	lan := PatchLan(lan_dcid, lanid, jason_patch)
+	lan := PatchLan(lan_dcid, lanid, jasonPatch)
 	if lan.Resp.StatusCode != want {
 		t.Errorf("PatchLan() StatusCode == %v, wanted %v", lan.Resp.StatusCode, want)
 	}
@@ -72,12 +72,12 @@ func TestPatchLan(t *testing.T) {
 func TestUpdateLan(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	jason_update := []byte(`{
+	jasonUpdate := []byte(`{
 					"name":"Updated Lan"
 					}`)
 
 	lanid := mklanid(lan_dcid)
-	lan := UpdateLan(lan_dcid, lanid, jason_update)
+	lan := UpdateLan(lan_dcid, lanid, jasonUpdate)
 	if lan.Resp.StatusCode != want {
 		t.Errorf("UpdateLan() StatusCode == %v, wanted %v", lan.Resp.StatusCode, want)
 	}

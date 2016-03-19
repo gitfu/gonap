@@ -43,11 +43,11 @@ func TestGetSnapshot(t *testing.T) {
 func TestPatchSnapshot(t *testing.T) {
 	////t.Parallel()
 	want := 202
-	jason_patch := []byte(`{
+	jasonPatch := []byte(`{
 					"name":"Renamed snap",
 					}`)
 	snapid := mksnapid()
-	resp := PatchSnapshot(snapid, jason_patch)
+	resp := PatchSnapshot(snapid, jasonPatch)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
@@ -57,13 +57,13 @@ func TestPatchSnapshot(t *testing.T) {
 func TestUpdateSnapshot(t *testing.T) {
 	////t.Parallel()
 	want := 202
-	jason_update := []byte(`{
+	jasonUpdate := []byte(`{
 					"name":"Renamed snap",
 					"location":"us/las"
 					}`)
 
 	snapid := mksnapid()
-	resp := UpdateSnapshot(snapid, jason_update)
+	resp := UpdateSnapshot(snapid, jasonUpdate)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}

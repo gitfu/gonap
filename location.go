@@ -2,7 +2,7 @@ package goprofitbricks
 
 // ListLocations returns location collection data
 func ListLocations() Collection {
-	return is_list(location_col_path())
+	return isList(location_col_path())
 }
 
 // GetLocation returns location data
