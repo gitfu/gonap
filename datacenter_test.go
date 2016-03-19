@@ -54,11 +54,11 @@ func TestGetDatacenter(t *testing.T) {
 func TestPatchDatacenter(t *testing.T) {
 	////t.Parallel()
 	want := 202
-	jason_patch := []byte(`{
+	jasonPatch := []byte(`{
 					"name":"Renamed DC",
 					}`)
 	dcid := mkdcid()
-	resp := PatchDatacenter(dcid, jason_patch)
+	resp := PatchDatacenter(dcid, jasonPatch)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
@@ -68,13 +68,13 @@ func TestPatchDatacenter(t *testing.T) {
 func TestUpdateDatacenter(t *testing.T) {
 	////t.Parallel()
 	want := 202
-	jason_update := []byte(`{
+	jasonUpdate := []byte(`{
 					"name":"Renamed DC",
 					"location":"us/las"
 					}`)
 
 	dcid := mkdcid()
-	resp := UpdateDatacenter(dcid, jason_update)
+	resp := UpdateDatacenter(dcid, jasonUpdate)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
