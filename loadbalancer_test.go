@@ -30,10 +30,10 @@ func TestListLoadbalancers(t *testing.T) {
 	resp := ListLoadbalancers(lbal_dcid)
 
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -45,7 +45,7 @@ func TestCreateLoadbalancer(t *testing.T) {
 					}`)
 	resp := CreateLoadbalancer(lbal_dcid, jason)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 
 }
@@ -58,10 +58,10 @@ func TestGetLoadbalancer(t *testing.T) {
 	resp := GetLoadbalancer(lbal_dcid, lbalid)
 
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -74,7 +74,7 @@ func TestPatchLoadbalancer(t *testing.T) {
 	lbalid := mklbalid(lbal_dcid)
 	resp := PatchLoadbalancer(lbal_dcid, lbalid, jason_patch)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -89,7 +89,7 @@ func TestUpdateLoadbalancer(t *testing.T) {
 	lbalid := mklbalid(lbal_dcid)
 	resp := UpdateLoadbalancer(lbal_dcid, lbalid, jason_update)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestDeleteLoadbalancer(t *testing.T) {
@@ -98,6 +98,6 @@ func TestDeleteLoadbalancer(t *testing.T) {
 	lbalid := mklbalid(lbal_dcid)
 	resp := DeleteLoadbalancer(lbal_dcid, lbalid)
 	if resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.StatusCode))
+		t.Errorf(badStatus(want, resp.StatusCode))
 	}
 }

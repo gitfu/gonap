@@ -18,10 +18,10 @@ func TestListImages(t *testing.T) {
 	resp := ListImages()
 
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestGetImage(t *testing.T) {
@@ -31,10 +31,10 @@ func TestGetImage(t *testing.T) {
 	imgid := mkimgid()
 	resp := GetImage(imgid)
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -47,7 +47,7 @@ func TestPatchImage(t *testing.T) {
 	imgid := mkimgid()
 	resp := PatchImage(imgid, jason_patch)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestUpdateImage(t *testing.T) {
@@ -61,7 +61,7 @@ func TestUpdateImage(t *testing.T) {
 	imgid := mkimgid()
 	resp := UpdateImage(imgid, jason_update)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestDeleteImage(t *testing.T) {
@@ -70,6 +70,6 @@ func TestDeleteImage(t *testing.T) {
 	imgid := mkimgid()
 	resp := DeleteImage(imgid)
 	if resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.StatusCode))
+		t.Errorf(badStatus(want, resp.StatusCode))
 	}
 }

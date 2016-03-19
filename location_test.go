@@ -19,10 +19,10 @@ func TestListLocations(t *testing.T) {
 	resp := ListLocations()
 
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -35,10 +35,10 @@ func TestGetLocation(t *testing.T) {
 	locid := mklocid()
 	resp := GetLocation(locid)
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 **/

@@ -10,17 +10,17 @@ func ListVolumes(dcid string) Collection {
 }
 
 func UpdateVolume(dcid string, volid string, jason []byte) Instance {
-	path := volume_path(dcid, volid)
+	path := volumePath(dcid, volid)
 	return is_put(path, jason)
 }
 
 func PatchVolume(dcid string, volid string, jason []byte) Instance {
-	path := volume_path(dcid, volid)
+	path := volumePath(dcid, volid)
 	return is_patch(path, jason)
 }
 
 func DeleteVolume(dcid, volid string) Resp {
-	path := volume_path(dcid, volid)
+	path := volumePath(dcid, volid)
 	return is_delete(path)
 }
 
@@ -29,7 +29,7 @@ func CreateSnapshot(dcid string, volid string, jason []byte) Resp {
 	empty := `
 		{}
 		`
-	var path = volume_path(dcid, volid)
+	var path = volumePath(dcid, volid)
 	var data StringMap
 	json.Unmarshal(jason, &data)
 	for key, value := range data {

@@ -19,10 +19,10 @@ func TestListSnapshots(t *testing.T) {
 	resp := ListSnapshots()
 
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -33,10 +33,10 @@ func TestGetSnapshot(t *testing.T) {
 	snapid := mksnapid()
 	resp := GetSnapshot(snapid)
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -49,7 +49,7 @@ func TestPatchSnapshot(t *testing.T) {
 	snapid := mksnapid()
 	resp := PatchSnapshot(snapid, jason_patch)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 
 }
@@ -65,7 +65,7 @@ func TestUpdateSnapshot(t *testing.T) {
 	snapid := mksnapid()
 	resp := UpdateSnapshot(snapid, jason_update)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -75,6 +75,6 @@ func TestDeleteSnapshot(t *testing.T) {
 	snapid := mksnapid()
 	resp := DeleteSnapshot(snapid)
 	if resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.StatusCode))
+		t.Errorf(badStatus(want, resp.StatusCode))
 	}
 }

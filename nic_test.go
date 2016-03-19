@@ -24,10 +24,10 @@ func TestListNics(t *testing.T) {
 	want := 200
 	resp := ListNics(nic_dcid, nic_srvid)
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestCreateNic(t *testing.T) {
@@ -40,7 +40,7 @@ func TestCreateNic(t *testing.T) {
 
 	resp := CreateNic(nic_dcid, nic_srvid, jason)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestGetNic(t *testing.T) {
@@ -50,10 +50,10 @@ func TestGetNic(t *testing.T) {
 	nicid := mknicid(nic_dcid, nic_srvid)
 	resp := GetNic(nic_dcid, nic_srvid, nicid)
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestPatchNic(t *testing.T) {
@@ -67,7 +67,7 @@ func TestPatchNic(t *testing.T) {
 	nicid := mknicid(nic_dcid, nic_srvid)
 	resp := PatchNic(nic_dcid, nic_srvid, nicid, jason_patch)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestUpdateNic(t *testing.T) {
@@ -81,7 +81,7 @@ func TestUpdateNic(t *testing.T) {
 	nicid := mknicid(nic_dcid, nic_srvid)
 	resp := UpdateNic(nic_dcid, nic_srvid, nicid, jason_update)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestDeleteNic(t *testing.T) {
@@ -90,6 +90,6 @@ func TestDeleteNic(t *testing.T) {
 	nicid := mknicid(nic_dcid, nic_srvid)
 	resp := DeleteNic(nic_dcid, nic_srvid, nicid)
 	if resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.StatusCode))
+		t.Errorf(badStatus(want, resp.StatusCode))
 	}
 }

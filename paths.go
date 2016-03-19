@@ -65,8 +65,8 @@ func snapshot_col_path() string {
 	return slash("snapshots")
 }
 
-// snapshot_path returns the string "/snapshots/<snapid>"
-func snapshot_path(snapid string) string {
+// snapshotPath returns the string "/snapshots/<snapid>"
+func snapshotPath(snapid string) string {
 	return snapshot_col_path() + slash(snapid)
 }
 
@@ -110,8 +110,8 @@ func volume_col_path(dcid string) string {
 	return dc_path(dcid) + slash("volumes")
 }
 
-// volume_path returns the string "/volumes/<volid>"
-func volume_path(dcid, volid string) string {
+// volumePath returns the string "/volumes/<volid>"
+func volumePath(dcid, volid string) string {
 	return volume_col_path(dcid) + slash(volid)
 }
 
@@ -146,8 +146,8 @@ func server_volume_col_path(dcid, srvid string) string {
 	return server_path(dcid, srvid) + slash("volumes")
 }
 
-// server_volume_path returns the string   "/datacenters/<dcid>/servers/<srvid>/volumes/<volid>"
-func server_volume_path(dcid, srvid, volid string) string {
+// server_volumePath returns the string   "/datacenters/<dcid>/servers/<srvid>/volumes/<volid>"
+func server_volumePath(dcid, srvid, volid string) string {
 	return server_volume_col_path(dcid, srvid) + slash(volid)
 }
 

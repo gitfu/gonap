@@ -71,12 +71,12 @@ func AttachVolume(dcid string, srvid string, volid string) Instance {
 }
 
 func GetAttachedVolume(dcid, srvid, volid string) Instance {
-	path := server_volume_path(dcid, srvid, volid)
+	path := server_volumePath(dcid, srvid, volid)
 	return is_get(path)
 }
 
 func DetachVolume(dcid, srvid, volid string) Resp {
-	path := server_volume_path(dcid, srvid, volid)
+	path := server_volumePath(dcid, srvid, volid)
 	return is_delete(path)
 }
 

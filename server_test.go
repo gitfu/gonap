@@ -31,10 +31,10 @@ func TestListServers(t *testing.T) {
 	want := 200
 	resp := ListServers(srv_dcid)
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -48,7 +48,7 @@ func TestCreateServer(t *testing.T) {
 			}`)
 	resp := CreateServer(srv_dcid, jason)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestGetServer(t *testing.T) {
@@ -58,10 +58,10 @@ func TestGetServer(t *testing.T) {
 	srvid := mksrvid(srv_dcid)
 	resp := GetServer(srv_dcid, srvid)
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -74,7 +74,7 @@ func TestPatchServer(t *testing.T) {
 	srvid := mksrvid(srv_dcid)
 	resp := PatchServer(srv_dcid, srvid, jason_patch)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestUpdateServer(t *testing.T) {
@@ -89,7 +89,7 @@ func TestUpdateServer(t *testing.T) {
 	srvid := mksrvid(srv_dcid)
 	resp := UpdateServer(srv_dcid, srvid, jason_update)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestDeleteServer(t *testing.T) {
@@ -98,6 +98,6 @@ func TestDeleteServer(t *testing.T) {
 	srvid := mksrvid(srv_dcid)
 	resp := DeleteServer(srv_dcid, srvid)
 	if resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.StatusCode))
+		t.Errorf(badStatus(want, resp.StatusCode))
 	}
 }
