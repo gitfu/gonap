@@ -34,7 +34,7 @@ func TestCreateDatacenter(t *testing.T) {
 					}`)
 	resp := CreateDatacenter(jason)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 func TestGetDatacenter(t *testing.T) {
@@ -44,10 +44,10 @@ func TestGetDatacenter(t *testing.T) {
 	dcid := mkdcid()
 	resp := GetDatacenter(dcid)
 	if resp.Type != shouldbe {
-		t.Errorf(bad_type(shouldbe, resp.Type))
+		t.Errorf(badType(shouldbe, resp.Type))
 	}
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -60,7 +60,7 @@ func TestPatchDatacenter(t *testing.T) {
 	dcid := mkdcid()
 	resp := PatchDatacenter(dcid, jason_patch)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 
 }
@@ -76,7 +76,7 @@ func TestUpdateDatacenter(t *testing.T) {
 	dcid := mkdcid()
 	resp := UpdateDatacenter(dcid, jason_update)
 	if resp.Resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.Resp.StatusCode))
+		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
 }
 
@@ -86,6 +86,6 @@ func TestDeleteDatacenter(t *testing.T) {
 	dcid := mkdcid()
 	resp := DeleteDatacenter(dcid)
 	if resp.StatusCode != want {
-		t.Errorf(bad_status(want, resp.StatusCode))
+		t.Errorf(badStatus(want, resp.StatusCode))
 	}
 }
