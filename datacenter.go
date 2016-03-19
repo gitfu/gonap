@@ -32,7 +32,7 @@ func PatchDatacenter(dcid string, jason []byte) Instance {
 	return is_patch(path, jason)
 }
 
-// Deletes a Datacenter where id==dcid
+// DeletesDatacenter  delete where id==dcid
 func DeleteDatacenter(dcid string) Resp {
 	path := dc_path(dcid)
 	return is_delete(path)
