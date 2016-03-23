@@ -5,24 +5,24 @@ func slash(str string) string {
 	return "/" + str
 }
 
-// dc_col_path	returns the string "/datacenters"
-func dc_col_path() string {
+// dcColPath	returns the string "/datacenters"
+func dcColPath() string {
 	return slash("datacenters")
 }
 
-// dc_path returns the string "/datacenters/<dcid>"
-func dc_path(dcid string) string {
-	return dc_col_path() + slash(dcid)
+// dcPath returns the string "/datacenters/<dcid>"
+func dcPath(dcid string) string {
+	return dcColPath() + slash(dcid)
 }
 
-// image_col_path returns the string" /images"
-func image_col_path() string {
+// imageColPath returns the string" /images"
+func imageColPath() string {
 	return slash("images")
 }
 
 // image_path returns the string"/images/<imageid>"
 func image_path(imageid string) string {
-	return image_col_path() + slash(imageid)
+	return imageColPath() + slash(imageid)
 }
 
 // ipblock_col_path returns the string "/ipblocks"
@@ -72,7 +72,7 @@ func snapshotPath(snapid string) string {
 
 // lan_col_path returns the string "/datacenters/<dcid>/lans"
 func lan_col_path(dcid string) string {
-	return dc_path(dcid) + slash("lans")
+	return dcPath(dcid) + slash("lans")
 }
 
 // lan_path returns the string	"/datacenters/<dcid>/lans/<lanid>"
@@ -82,7 +82,7 @@ func lan_path(dcid, lanid string) string {
 
 //  lbal_col_path returns the string "/loadbalancers"
 func lbal_col_path(dcid string) string {
-	return dc_path(dcid) + slash("loadbalancers")
+	return dcPath(dcid) + slash("loadbalancers")
 }
 
 // lbalpath returns the string "/loadbalancers/<lbalid>"
@@ -92,7 +92,7 @@ func lbal_path(dcid, lbalid string) string {
 
 // server_col_path returns the string	"/datacenters/<dcid>/servers"
 func server_col_path(dcid string) string {
-	return dc_path(dcid) + slash("servers")
+	return dcPath(dcid) + slash("servers")
 }
 
 // server_path returns the string   "/datacenters/<dcid>/servers/<srvid>"
@@ -107,7 +107,7 @@ func server_command_path(dcid, srvid, cmd string) string {
 
 // volume_col_path returns the string "/volumes"
 func volume_col_path(dcid string) string {
-	return dc_path(dcid) + slash("volumes")
+	return dcPath(dcid) + slash("volumes")
 }
 
 // volumePath returns the string "/volumes/<volid>"

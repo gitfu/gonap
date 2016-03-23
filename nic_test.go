@@ -4,16 +4,16 @@ package goprofitbricks
 
 import "testing"
 
-var nic_dcid = mkdcid()
-var nic_srvid = mksrvid(nic_dcid)
+var nicDcid = mkdcid()
+var nicSrvid = mksrvid(nicDcid)
 
-func mknicid(nic_dcid, nic_srvid string) string {
+func mknicid(nicDcid, nicSrvid string) string {
 	var jason = []byte(`{
 					"name":"Original Nic",
 					"lan":1
 					}`)
 
-	nic := CreateNic(nic_dcid, nic_srvid, jason)
+	nic := CreateNic(nicDcid, nicSrvid, jason)
 	nicid := nic.Id
 	return nicid
 }
@@ -22,7 +22,7 @@ func TestListNics(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
-	resp := ListNics(nic_dcid, nic_srvid)
+	resp := ListNics(nicDcid, nicSrvid)
 	if resp.Type != shouldbe {
 		t.Errorf(badType(shouldbe, resp.Type))
 	}
@@ -38,7 +38,7 @@ func TestCreateNic(t *testing.T) {
 					"lan":1
 					}`)
 
-	resp := CreateNic(nic_dcid, nic_srvid, jason)
+	resp := CreateNic(nicDcid, nicSrvid, jason)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
@@ -47,8 +47,8 @@ func TestGetNic(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "nic"
 	want := 200
-	nicid := mknicid(nic_dcid, nic_srvid)
-	resp := GetNic(nic_dcid, nic_srvid, nicid)
+	nicid := mknicid(nicDcid, nicSrvid)
+	resp := GetNic(nicDcid, nicSrvid, nicid)
 	if resp.Type != shouldbe {
 		t.Errorf(badType(shouldbe, resp.Type))
 	}
@@ -64,8 +64,8 @@ func TestPatchNic(t *testing.T) {
 					"lan":1
 					}`)
 
-	nicid := mknicid(nic_dcid, nic_srvid)
-	resp := PatchNic(nic_dcid, nic_srvid, nicid, jasonPatch)
+	nicid := mknicid(nicDcid, nicSrvid)
+	resp := PatchNic(nicDcid, nicSrvid, nicid, jasonPatch)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
@@ -78,8 +78,8 @@ func TestUpdateNic(t *testing.T) {
 					"lan":1
 					}`)
 
-	nicid := mknicid(nic_dcid, nic_srvid)
-	resp := UpdateNic(nic_dcid, nic_srvid, nicid, jasonUpdate)
+	nicid := mknicid(nicDcid, nicSrvid)
+	resp := UpdateNic(nicDcid, nicSrvid, nicid, jasonUpdate)
 	if resp.Resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.Resp.StatusCode))
 	}
@@ -87,8 +87,8 @@ func TestUpdateNic(t *testing.T) {
 func TestDeleteNic(t *testing.T) {
 	//t.Parallel()
 	want := 202
-	nicid := mknicid(nic_dcid, nic_srvid)
-	resp := DeleteNic(nic_dcid, nic_srvid, nicid)
+	nicid := mknicid(nicDcid, nicSrvid)
+	resp := DeleteNic(nicDcid, nicSrvid, nicid)
 	if resp.StatusCode != want {
 		t.Errorf(badStatus(want, resp.StatusCode))
 	}

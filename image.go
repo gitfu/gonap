@@ -2,7 +2,7 @@ package goprofitbricks
 
 // ListImages returns an Collection struct
 func ListImages() Collection {
-	path := image_col_path()
+	path := imageColPath()
 	return isList(path)
 }
 
