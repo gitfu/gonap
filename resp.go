@@ -4,7 +4,7 @@ import "net/http"
 import "fmt"
 import "encoding/json"
 
-func MkJson(i interface{}) string {
+func MkJSON(i interface{}) string {
 	jason, err := json.MarshalIndent(&i, "", "    ")
 	if err != nil {
 		panic(err)
@@ -85,7 +85,7 @@ func (ins *Instance) SetProp(key, val string) {
 // ShowEnts prints the Entities  as k,v pairs
 func (ins *Instance) ShowEnts() {
 	for key, value := range ins.Entities {
-		v := MkJson(value)
+		v := MkJSON(value)
 		fmt.Println(key, " : ", v)
 	}
 }

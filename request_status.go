@@ -24,7 +24,7 @@ func toRestRequests(resp Resp) Collection {
 }
 
 func ListRequests() Collection {
-	path := request_col_path()
+	path := requestColPath()
 	return isList(path)
 }
 

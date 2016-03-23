@@ -105,7 +105,7 @@ var Username string
 
 #### ```Functions```
 ```go
-func MkJson(i interface{}) string
+func MkJSON(i interface{}) string
 ```
 *  Turn just about anything into Json
 

@@ -20,8 +20,8 @@ func imageColPath() string {
 	return slash("images")
 }
 
-// image_path returns the string"/images/<imageid>"
-func image_path(imageid string) string {
+// imagePath returns the string"/images/<imageid>"
+func imagePath(imageid string) string {
 	return imageColPath() + slash(imageid)
 }
 
@@ -30,29 +30,29 @@ func ipblock_col_path() string {
 	return slash("ipblocks")
 }
 
-//  ipblock_path returns the string "/ipblocks/<ipblockid>"
-func ipblock_path(ipblockid string) string {
+//  ipblockPath returns the string "/ipblocks/<ipblockid>"
+func ipblockPath(ipblockid string) string {
 	return ipblock_col_path() + slash(ipblockid)
 }
 
-// location_col_path returns the string  "/locations"
-func location_col_path() string {
+// locationColPath returns the string  "/locations"
+func locationColPath() string {
 	return slash("locations")
 }
 
 // location_path returns the string   "/locations/<locid>"
 func location_path(locid string) string {
-	return location_col_path() + slash(locid)
+	return locationColPath() + slash(locid)
 }
 
-// request_col_path returns the string   "/requests"
-func request_col_path() string {
+// requestColPath returns the string   "/requests"
+func requestColPath() string {
 	return slash("requests")
 }
 
 // request_path returns the string   "/requests/<requestid>"
 func request_path(requestid string) string {
-	return request_col_path() + slash(requestid)
+	return requestColPath() + slash(requestid)
 }
 
 // request_status_path returns the string   "/requests<requestid>/status"

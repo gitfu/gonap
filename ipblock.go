@@ -1,7 +1,7 @@
 package goprofitbricks
 
-// ListIpBlocks
-func ListIpBlocks() Collection {
+// ListIPBlocks
+func ListIPBlocks() Collection {
 	path := ipblock_col_path()
 	return isList(path)
 }
@@ -12,11 +12,11 @@ func ReserveIpBlock(jason []byte) Instance {
 
 }
 func GetIpBlock(ipblockid string) Instance {
-	path := ipblock_path(ipblockid)
+	path := ipblockPath(ipblockid)
 	return isGet(path)
 }
 
 func ReleaseIpBlock(ipblockid string) Resp {
-	path := ipblock_path(ipblockid)
+	path := ipblockPath(ipblockid)
 	return isDelete(path)
 }

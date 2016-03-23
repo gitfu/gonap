@@ -8,7 +8,7 @@ func mklocid() string {
 	resp := ListLocations()
 
 	locid := resp.Items[0].Id
-	//fmt.Println(MkJson(resp))
+	//fmt.Println(MkJSON(resp))
 	return locid
 }
 

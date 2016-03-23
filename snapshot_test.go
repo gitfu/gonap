@@ -8,7 +8,7 @@ func mksnapid() string {
 	resp := ListSnapshots()
 
 	snapid := resp.Items[0].Id
-	//fmt.Println(MkJson(resp))
+	//fmt.Println(MkJSON(resp))
 	return snapid
 }
 

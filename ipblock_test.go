@@ -13,11 +13,11 @@ func mkipblkid() string {
 	return ipblkid
 }
 
-func TestListIpBlocks(t *testing.T) {
+func TestListIPBlocks(t *testing.T) {
 	//t.Parallel()
 	shouldbe := "collection"
 	want := 200
-	resp := ListIpBlocks()
+	resp := ListIPBlocks()
 
 	if resp.Type != shouldbe {
 		t.Errorf(badType(shouldbe, resp.Type))

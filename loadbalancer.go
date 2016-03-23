@@ -45,7 +45,7 @@ func AssociateNic(dcid string, lbalid string, nicid string) Instance {
 
 	var sm StringMap
 	sm["id"] = nicid
-	jason := []byte(MkJson(sm))
+	jason := []byte(MkJSON(sm))
 	path := balnic_col_path(dcid, lbalid)
 	return is_post(path, jason)
 }
