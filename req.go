@@ -25,11 +25,11 @@ func SetDepth(newdepth string) string {
 	return Depth
 }
 
-// mk_url  either:
+// mkURL  either:
 // returns the path (if it`s a full url)
 //			 or
 //	returns	Endpoint+ path .
-func mk_url(path string) string {
+func mkURL(path string) string {
 	if strings.HasPrefix(path, "http") {
 		//REMOVE AFTER TESTING
 		path := strings.Replace(path, "https://api.profitbricks.com/rest", Endpoint, 1)
@@ -64,7 +64,7 @@ func do(req *http.Request) Resp {
 
 // isDelete performs an http.NewRequest DELETE  and returns a Resp struct
 func isDelete(path string) Resp {
-	url := mk_url(path)
+	url := mkURL(path)
 	req, _ := http.NewRequest("DELETE", url, nil)
 	req.Header.Add("Content-Type", FullHeader)
 	return do(req)
@@ -72,7 +72,7 @@ func isDelete(path string) Resp {
 
 // isList performs an http.NewRequest GET and returns a Collection struct
 func isList(path string) Collection {
-	url := mk_url(path) + `?depth=` + Depth
+	url := mkURL(path) + `?depth=` + Depth
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Add("Content-Type", FullHeader)
 	return toCollection(do(req))
@@ -80,7 +80,7 @@ func isList(path string) Collection {
 
 // isGet performs an http.NewRequest GET and returns an Instance struct
 func isGet(path string) Instance {
-	url := mk_url(path) + `?depth=` + Depth
+	url := mkURL(path) + `?depth=` + Depth
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Add("Content-Type", FullHeader)
 	return toInstance(do(req))
@@ -88,7 +88,7 @@ func isGet(path string) Instance {
 
 // isPatch performs an http.NewRequest PATCH and returns an Instance struct
 func isPatch(path string, jason []byte) Instance {
-	url := mk_url(path)
+	url := mkURL(path)
 	req, _ := http.NewRequest("PATCH", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", PatchHeader)
 	return toInstance(do(req))
@@ -96,7 +96,7 @@ func isPatch(path string, jason []byte) Instance {
 
 // isPut performs an http.NewRequest PUT and returns an Instance struct
 func isPut(path string, jason []byte) Instance {
-	url := mk_url(path)
+	url := mkURL(path)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", FullHeader)
 	return toInstance(do(req))
@@ -104,7 +104,7 @@ func isPut(path string, jason []byte) Instance {
 
 // is_post performs an http.NewRequest POST and returns an Instance struct
 func is_post(path string, jason []byte) Instance {
-	url := mk_url(path)
+	url := mkURL(path)
 	req, _ := http.NewRequest("POST", url, bytes.NewBuffer(jason))
 	req.Header.Add("Content-Type", FullHeader)
 	return toInstance(do(req))
@@ -112,7 +112,7 @@ func is_post(path string, jason []byte) Instance {
 
 // is_command performs an http.NewRequest PUT and returns a Resp struct
 func is_command(path string, jason string) Resp {
-	url := mk_url(path)
+	url := mkURL(path)
 	body := json.RawMessage(jason)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(body))
 	req.Header.Add("Content-Type", CommandHeader)
