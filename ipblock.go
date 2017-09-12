@@ -6,17 +6,17 @@ func ListIPBlocks() Collection {
 	return isList(path)
 }
 
-func ReserveIpBlock(jason []byte) Instance {
+func ReserveIPBlock(jason []byte) Instance {
 	path := ipblock_col_path()
 	return is_post(path, jason)
 
 }
-func GetIpBlock(ipblockid string) Instance {
+func GetIPBlock(ipblockid string) Instance {
 	path := ipblockPath(ipblockid)
 	return isGet(path)
 }
 
-func ReleaseIpBlock(ipblockid string) Resp {
+func ReleaseIPBlock(ipblockid string) Resp {
 	path := ipblockPath(ipblockid)
 	return isDelete(path)
 }
